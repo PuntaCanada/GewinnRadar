@@ -73,7 +73,7 @@ export function eligibleEditorialLinks(data,now=new Date()){
     now.getTime()-Date.parse(g.reviewed_on+'T00:00:00Z')<=8*86400000&&
     [g.url,g.terms_url,g.privacy_url].every(sourceUrl);
  }).sort((a,b)=>Date.parse(a.ends_at)-Date.parse(b.ends_at)||a.title.localeCompare(b.title,'de')||a.id.localeCompare(b.id));
- const future=data.preview.filter(g=>!blocked.has(g.id)&&!blocked.has(g.url)&&g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
+ const future=data.preview.filter(g=>!g.promoted_to&&!blocked.has(g.id)&&!blocked.has(g.url)&&g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
   [g.url,g.terms_url].every(sourceUrl));
  return {live,future};
 }
