@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-21",
+  "policy": "Nur ausdrücklich nachweisbare Veranstalter-Kalender 2026 als bestätigt. Die einzelnen Tages-Türchen müssen am jeweiligen Tag hinsichtlich Frist und Inhalt überprüft werden. Keine automatische Teilnahme, kein verstecktes Newsletter-Opt-in.",
+  "confirmed": [
+    {
+      "id": "t-online-advent-2026",
+      "organizer": "t-online",
+      "title": "t-online – täglich Türchen & Quiz",
+      "url": "https://www.t-online.de/spiele/online-adventskalender/",
+      "terms_url": "https://www.t-online.de/spiele/online-adventskalender/id_101395860/adventskalender-gewinnspiel-2026-jetzt-mitmachen-kostenlos-online.html",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, ab 18, Wohnsitz Deutschland; einmalige E-Mail-Registrierung, täglich Quiz und Spiel. Für den Hauptpreis alle 24 Tage spielen.",
+      "note": "Tagespreis nur am Originaltag; Nachholen bis 26.12. zählt laut Veranstalter nur für den Hauptpreis. Genaue Uhrzeit des täglichen Tagespreisschlusses nicht ausdrücklich angegeben.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.t-online.de/spiele/online-adventskalender/id_101395860/adventskalender-gewinnspiel-2026-jetzt-mitmachen-kostenlos-online.html"
+      }
+    },
+    {
+      "id": "sz-advent-2026",
+      "organizer": "Süddeutsche Zeitung",
+      "title": "SZ-Adventskalender – täglich drei Quizfragen",
+      "url": "https://adventskalender.sueddeutsche.de/",
+      "terms_url": "https://teilnahmebedingungen.swmh.de/SZ-Adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "next_day",
+        "time": "10:00",
+        "certainty": "usual_not_guaranteed"
+      },
+      "requirements": "Einmalig kostenloses SZ-Konto; täglich drei Quizfragen. Für Hauptpreis alle 24 richtig beantworten, Nachholen laut Veranstalter bis 27.12. 10 Uhr.",
+      "note": "Tagesverlosung endet laut Veranstalter IN DER REGEL erst am Folgetag 10 Uhr; konkrete Frist am Türchen prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://adventskalender.sueddeutsche.de/"
+      }
+    },
+    {
+      "id": "joska-advent-2026",
+      "organizer": "JOSKA Kristall",
+      "title": "JOSKA – Facebook-Adventskalender",
+      "url": "https://www.joska.com/erleben/adventskalender-2026.html",
+      "terms_url": "https://www.joska.com/erleben/adventskalender-2026.html",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "17:00",
+        "certainty": "unless_post_differs"
+      },
+      "requirements": "Kostenlos ohne Kauf und Newsletter; Facebook-Konto und je ein Kommentar unter dem Tagespost erforderlich. 18+, Deutschland.",
+      "note": "Türchen ab 08:00 Uhr, regulär Schluss um 17:00 Uhr; Veranstalter kann im Post abweichen. Gewinnabholung/Versand direkt mit Veranstalter klären.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.joska.com/erleben/adventskalender-2026.html"
+      }
+    },
+    {
+      "id": "agravis-advent-2026",
+      "organizer": "AGRAVIS Raiffeisen",
+      "title": "AGRAVIS – 24 tägliche Gewinnspiele",
+      "url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "terms_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenloses Tagesgewinnspiel; je Tag eine eigene Teilnahme, Daten zur Gewinnzustellung. Keine Teilnahme durch Gewinnspielclubs/Automatisierung.",
+      "note": "Jeder Tag ist eine eigenständige Verlosung, die ausschließlich an diesem Tag von 00:00 bis 23:59 Uhr läuft.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender"
+      }
+    },
+    {
+      "id": "wdr3-advent-2026",
+      "organizer": "WDR 3",
+      "title": "WDR 3 – tägliches Musikrätsel",
+      "url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "terms_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, täglich Musiktitel erraten und Antwort per ARD Sounds App, Telefon oder E-Mail an WDR 3; Name, Anschrift, Telefon, E-Mail. Laut Regeln maximal ein Gewinn pro Person.",
+      "note": "Originalseite nennt tägliches Radiospiel, aber KEINE verbindliche Tages-Uhrzeit; täglich Veranstalterhinweise kontrollieren. Ein Gewinn pro Person, daher keine 24 garantierten Gewinnchancen pro bereits gewonnenem Hörer.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html"
+      }
+    }
+  ],
+  "review_candidates": [
+    {
+      "id": "kaufland-advent-2026",
+      "organizer": "Kaufland",
+      "title": "Kaufland – Online-Adventskalender 2026",
+      "url": "https://filiale.kaufland.de/highlights/adventskalender.html",
+      "terms_url": "https://filiale.kaufland.de/highlights/adventskalender.html",
+      "reason": "Offizielle Seite nennt 24 Dezember-Gewinnchancen und einen optionalen Erinnerungsservice mit separater November-Verlosung. Die konkreten Teilnahmebedingungen/Fristen für jede Dezember-Tagesverlosung konnten hier noch NICHT unabhängig verifiziert werden. November-Registrierung ist nicht mit einer Dezember-Teilnahme gleichzusetzen."
+    }
+  ],
+  "archive_candidates": []
+}
