@@ -41,7 +41,8 @@ test('manual original-link confirmation: unauthorized, forged, stale and incompl
  sql.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id='mosel-test'").run(new Date().toISOString());
  const ok=await send(entry);
  assert.equal(ok.status,201);assert.equal((await ok.json()).contest_approved,false);
- assert.deepEqual(sql.prepare("SELECT link_state,status FROM games WHERE id='mosel-test'").get(),{link_state:'ok',status:'review'});
+ assert.equal(sql.prepare("SELECT link_state FROM games WHERE id='mosel-test'").get().link_state,'ok');
+ assert.equal(sql.prepare("SELECT status FROM games WHERE id='mosel-test'").get().status,'review');
  const logged=sql.prepare("SELECT result,http_status,note FROM link_checks WHERE game_id='mosel-test'").get();
  assert.equal(logged.result,'ok');assert.equal(logged.http_status,null);assert.match(logged.note,/Manuelle Original-Link-Prüfung/);
  let publicResponse=await publicGames({request:req('/api/games'),env:{DB:db}});
