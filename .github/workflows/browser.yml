@@ -21,3 +21,11 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Exercise senior view, mobile layout, status persistence requests
         run: node scripts/browser-smoke.mjs
+      - name: Preserve test screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gewinnradar-senior-chromium
+          path: test-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
