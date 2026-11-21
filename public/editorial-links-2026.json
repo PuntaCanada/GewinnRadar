@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-21",
+  "editorial_policy": "Originalquellen-Links; keine D1-Freigabe, keine Speicherung, keine automatische Teilnahme. Vorschauen sind nicht zur sofortigen Teilnahme freigegeben.",
+  "active": [
+    {
+      "id": "bayern-digitalradio-2026",
+      "organizer": "Bayern Digital Radio GmbH",
+      "title": "DAB+-Radio von TechniSat gewinnen",
+      "prize": "11 TECHNIRADIO RDR",
+      "url": "https://www.bayerndigitalradio.de/advent-2026-mit-mkr/",
+      "terms_url": "https://www.bayerndigitalradio.de/advent-2026-teilnahmebedingungen/",
+      "privacy_url": "https://www.bayerndigitalradio.de/datenschutz/",
+      "starts_at": "2026-11-07T00:00:00+01:00",
+      "ends_at": "2026-11-26T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "required_data": "Name, Anschrift, E-Mail, Gewinnspielfrage und Bestätigung der Teilnahmebedingungen",
+      "note": "Originales Teilnahmeformular und Teilnahmebedingungen am 21.11.2026 eingesehen. Kostenlos, 18+, Hauptwohnsitz Deutschland, eine Teilnahme pro Haushalt. Kein Newsletter-Pflichtfeld im sichtbaren Teilnahmeformular. Kein D1-Admin-Freigabeeintrag."
+    }
+  ],
+  "preview": [
+    {
+      "id": "aldi-nord-2026",
+      "organizer": "ALDI Nord",
+      "title": "ALDIventskalender 2026 – kostenlose Türchen",
+      "url": "https://www.aldiventskalender.de/nord",
+      "terms_url": "https://www.aldiventskalender.de/teilnahmebedingungen",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "note": "Tagesfrage und E-Mail. App-Pflicht am 6., 13. und 20. Dezember; Kassenbonverlosung ist eine getrennte Kaufaktion. Tagesformular vor Teilnahme prüfen."
+    },
+    {
+      "id": "agravis-2026",
+      "organizer": "AGRAVIS Raiffeisen AG",
+      "title": "AGRAVIS-Adventskalender 2026",
+      "url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "terms_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "note": "Kostenlose Tagesaktionen laut Veranstalter. Spiele und erforderliche Angaben erst am jeweiligen Tag kontrollieren."
+    },
+    {
+      "id": "wdr3-2026",
+      "organizer": "WDR 3",
+      "title": "WDR 3 Adventskalender 2026",
+      "url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "terms_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "note": "Tägliches Musikrätsel. Tagesfrist und Teilnahmeweg noch vor Öffnung prüfen."
+    }
+  ]
+}
