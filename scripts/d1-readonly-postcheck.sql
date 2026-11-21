@@ -1,5 +1,5 @@
 -- READ-ONLY check after applying ALL five migrations to ONLY gewinnradar-familie.
--- Expected: 16 application tables, 1 append-only evidence trigger; all live tables empty.
+-- Expected: 17 application tables, 1 append-only evidence trigger; all live tables empty.
 SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name;
 PRAGMA foreign_key_check;
 SELECT 'users' AS table_name, count(*) AS rows FROM users
