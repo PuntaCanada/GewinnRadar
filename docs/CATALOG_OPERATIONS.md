@@ -20,3 +20,16 @@ Nur knappe eigene Zusammenfassungen und Links auf Originalquellen, keine fremden
 - Kein 100%-Scam-Schutz; vor jeder Freigabe die Originale und Datenschutzformulare erneut manuell prüfen.
 - Aktuelle Webrecherche ist eine Momentaufnahme vom 21.11.2026, kein automatischer Live-Verfügbarkeitsnachweis.
 - Keine Änderungen an anderen Repositories, kein Cloudflare-Deployment, kein Brevo-Versand.
+
+## Recherchestand 21.11.2026: v0.5
+
+- **53 dokumentierte Einträge insgesamt:** 43 als Recherchekandidaten (nicht freigegeben), 10 ausdrücklich ausgeschlossen/gesperrt.
+- Darunter mehrere **einmalige Verlosungen von Adventskalendern** und Social-Media-Aktionen; keinesfalls mit 53 täglichen Adventskalendern verwechseln.
+- **0 vollständig freigegebene Live-Gewinnspiele** und **0 freigegebene Erinnerungen**. Forschung und Staging sind kein Produktivimport.
+- `catalog/evidence-history-2026.json` enthält zu jedem Eintrag eine datierte Rechercheklassifikation. **11 ältere Einträge bleiben in der aktuellen Evidenzprüfung explizit offen**. Keine der 53 eigentlichen Teilnahmeformular-Prüfungen wird als erledigt ausgegeben.
+- Neue Datenbankmigration `migrations/0004_source_evidence.sql` speichert redaktionelle Beobachtungen. Die API `/api/admin/source-evidence` bietet nur administrativ autorisiertes Anhängen und Abrufen; das Hinzufügen eines Belegs hebt den Sperrstatus eines Gewinnspiels **niemals** auf.
+- Das Browser-Adminformular fragt Originalquelle, Prüfkriterium, Status und konkreten Befund ab.
+- Die regelmäßige `source-monitor`-Action prüft ausschließlich vorab erlaubte Quellhosts mittels einmaligem HEAD und ohne automatische Redirects. HTTP 403/429 = Bot-/Zugriffssperre, HTTP 404/410 = manuell prüfen, nicht automatisch Betrug oder Ablauf. Kein Automatismus für `verified` und keine E-Mail.
+- Teilnahmezeiten unterscheiden: Urlaubsguru laut 2026-Originalseite **00:00–00:59 Uhr in der App**, PILOT nur sieben werbefreie E-Mail-Gewinnspieltage, connect verlangt alle 24 Quizrunden für den Hauptpreis. Dadurch sind allgemeine tägliche Erinnerungen um 9 Uhr nicht für alle Aktionen passend.
+- Die historischen Prüfberichte sind **nicht** als Nachweis einer vollständigen Wiederholung sämtlicher Formularprüfungen zu verstehen. Eine finale redaktionelle Sichtprüfung ab 1. Dezember bleibt notwendig.
+- Weder Datenschutz noch Betrugsfreiheit können allein aus Original-Domain, HTTPS oder HTTP-200 zugesichert werden.
