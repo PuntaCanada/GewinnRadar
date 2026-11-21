@@ -117,6 +117,11 @@ try{
   await guestPage.goto(base+'/admin/');
   await guestPage.getByText(/Keine Admin-Berechtigung/).waitFor();
   assert.equal(await guestPage.locator('#list').locator('.game').count(),0);
+  await guestPage.getByRole('link',{name:'Einmalige Admin-Ersteinrichtung'}).waitFor();
+  const adminGuestField=guestPage.locator('#newForm input[name="organizer"]');
+  const adminGuestFieldBox=await adminGuestField.boundingBox();
+  assert.ok(adminGuestFieldBox.width>=250,'mobile admin form fields remain wide and not inline');
+
   await guest.close();
   const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
   const adminPage=await adminContext.newPage();
@@ -191,6 +196,17 @@ try{
   await adminPage.getByText(/Original-Link bestätigt und protokolliert/).waitFor();
   assert.equal(savedLink.game_id,'sample-2026');
   assert.equal(savedLink.checked_no_redirect,true);
+  // Desktop admin inputs must stack instead of running into neighbouring labels.
+  const adminInput=adminPage.locator('#newForm input[name="organizer"]');
+  const adminLabel=adminInput.locator('xpath=..');
+  const inputBox=await adminInput.boundingBox(),labelBox=await adminLabel.boundingBox();
+  assert.ok(inputBox.width>350,'admin text fields should have usable width on desktop');
+  assert.ok(inputBox.y>labelBox.y+15,'field must sit below its label rather than inline');
+  assert.ok(await adminPage.locator('#adminAccessHelp').isVisible()===false,'authorized admin instructions stay hidden in normal test fixture');
+  await adminPage.goto(base+'/admin/setup/');
+  await adminPage.getByRole('heading',{name:'Ersten Admin-Zugang einrichten'}).waitFor();
+  assert.equal(await adminPage.locator('#setupKey').getAttribute('type'),'password');
+  assert.equal(await adminPage.locator('#setupKey').getAttribute('maxlength'),'64');
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}

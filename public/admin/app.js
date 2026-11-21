@@ -6,6 +6,7 @@ async function reload(){
  try {
   const data=await api('contests');
   list.replaceChildren();
+  document.getElementById('adminAccessHelp').hidden=true;
   if(!data.contests.length){list.append(node('p','Noch keine Kandidaten.'));return}
   for(const g of data.contests){
    const card=node('article');card.className='game';
@@ -28,7 +29,7 @@ async function reload(){
    for(const action of ['approve','review','reject']){const b=node('button',action==='approve'?'Freigeben':action==='review'?'Zur Prüfung zurück':'Ablehnen');b.type='button';b.className=action==='approve'?'':'secondary';b.style.margin='4px';b.onclick=async()=>{const data={id:g.id,action,note:note.value,checked_at:new Date().toISOString().replace(/\.\d{3}Z$/,'Z')};for(const [key] of checks)data[key]=form.elements.namedItem(key).checked;b.disabled=true;try{await api('review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});msg('Entscheidung gespeichert');await reload()}catch(e){msg(e.message)}finally{b.disabled=false}};form.append(b)}
    card.append(form);list.append(card)
   }
- }catch(e){msg('Keine Admin-Berechtigung oder Fehler: '+e.message);list.replaceChildren()}
+ }catch(e){msg('Keine Admin-Berechtigung oder Fehler: '+e.message);document.getElementById('adminAccessHelp').hidden=false;list.replaceChildren()}
 }
 document.querySelector('#newForm').onsubmit=async event=>{
  event.preventDefault();const f=event.currentTarget,fd=new FormData(f),obj=Object.fromEntries(fd.entries());obj.daily=fd.has('daily');

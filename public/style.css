@@ -14,3 +14,21 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 
 /* Anonymous flex text inside filter labels must wrap on narrow phones, including senior font size. */
 @media(max-width:600px){.toolbar .toggle{white-space:normal;min-width:0;overflow-wrap:anywhere}.toolbar .toggle input{flex:0 0 22px}}
+
+
+/* Admin forms: one accessible field per row, including the text/url/date inputs
+   that were previously inline and overlapping on desktop and mobile. */
+.admin-page .panel form{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;max-width:760px}
+.admin-page .panel form>label:not(.toggle){display:grid;grid-template-columns:minmax(0,1fr);gap:5px}
+.admin-page .panel form input:not([type=checkbox]),
+.admin-page .panel form select,
+.admin-page .panel form textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;font:inherit;padding:11px;border:2px solid #b0c8b9;border-radius:10px;background:white;color:inherit;margin:0}
+.admin-page .panel form fieldset{min-width:0;width:100%;border:1px solid #b0c8b9;border-radius:10px;padding:12px}
+.admin-page .panel form fieldset legend{max-width:100%;white-space:normal}
+.admin-page .panel form label.toggle{display:flex;align-items:flex-start;gap:10px;min-width:0;overflow-wrap:anywhere}
+.admin-page .panel form .toggle input[type=checkbox]{flex:0 0 22px;margin-top:5px}
+.admin-page .panel form button{max-width:100%;white-space:normal}
+.admin-page .panel form #emailEntryFields{min-width:0;display:grid;gap:10px}
+.admin-page .panel form #emailEntryFields[hidden]{display:none}
+.admin-page .panel form>p{margin:0}
+@media(max-width:600px){.admin-page .panel{padding:18px}.admin-page .panel form button{width:100%}}

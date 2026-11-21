@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>GewinnRadar – Admin-Ersteinrichtung</title>
+<link rel="stylesheet" href="/style.css"><script type="module" src="/admin/setup/setup.js"></script>
+</head>
+<body class="admin-page">
+<header><div class="wrap"><div class="brand">🎁 GewinnRadar – sichere Admin-Ersteinrichtung</div><div class="sub">Nur zur einmaligen Aktivierung durch den Projektinhaber</div></div></header>
+<main class="wrap">
+<p><a href="/admin/">← Zur Redaktion</a></p>
+<h1>Ersten Admin-Zugang einrichten</h1>
+<section class="panel">
+<p>Standardmäßig deaktiviert. Die Einrichtung funktioniert nur, wenn der Projektinhaber in Cloudflare Production ausdrücklich <code>ADMIN_BOOTSTRAP_ENABLED=true</code>, einen zufälligen geheimen <code>ADMIN_BOOTSTRAP_SECRET</code> und <code>ADMIN_BOOTSTRAP_EMAIL</code> hinterlegt und die D1-Migration 0006 angewendet hat. Der Familien-Login und sämtliche E-Mails bleiben deaktiviert.</p>
+<p>Der Schlüssel wird ausschließlich an die eigene Website gesendet und nicht gespeichert. Nach einmaliger erfolgreicher Verwendung ist die Einrichtung dauerhaft verbraucht. Schalte den Einrichtungsschalter anschließend wieder aus.</p>
+<form id="bootstrapForm">
+<label for="setupKey">Privater einmaliger Einrichtungsschlüssel (64 Hex-Zeichen)</label>
+<input id="setupKey" name="setup_secret" type="password" minlength="64" maxlength="64" pattern="[0-9a-f]{64}" autocomplete="off" spellcheck="false" required>
+<button id="setupSubmit" type="submit">Einmaligen Admin-Zugang aktivieren</button>
+</form>
+<p id="setupStatus" role="status" aria-live="polite"></p>
+</section>
+</main>
+</body>
+</html>
