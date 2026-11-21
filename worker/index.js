@@ -59,4 +59,4 @@ async function sendDigest(env){
  return {sent};
 }
 export default {async scheduled(event,env,ctx){ctx.waitUntil((async()=>{await checkGames(env);if(berlinHour()===8)await sendDigest(env)})())}};
-export {berlin,berlinHour,validUrl,checkTarget,checkGames};
+export {berlin,berlinHour,validUrl,checkTarget,checkGames,sendDigest};
