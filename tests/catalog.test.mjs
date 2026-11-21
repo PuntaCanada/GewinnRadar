@@ -38,3 +38,16 @@ test('year-round source wave: real organizer evidence but zero automatic public 
  assert.equal(eligibleToday(wave.find(e=>e.id==='elamo-wunschwochen-2026'),'2026-11-22'),false,'mandatory marketing cannot be published as eligible');
  assert.equal(eligibleToday(wave.find(e=>e.id==='prosafecon-quiz-2026'),'2026-11-22'),false,'future one-time action cannot be marked open');
 });
+
+test('Stilbruch is researched but a two-step entry is not approved as a simple instant raffle',()=>{
+ const item=catalog.entries.find(x=>x.id==='stilbruch-mode-two-step-2026');
+ assert.ok(item);
+ assert.equal(item.state,'candidate');
+ assert.equal(item.cadence,'single');
+ assert.equal(item.human_approved,false);
+ assert.equal(item.allowed_for_reminders,false);
+ assert.match(item.review_note,/zwei|zwei-Schritt|zwei echte Phasen/i);
+ assert.match(item.review_note,/29\.11\.2026/);
+ assert.match(item.review_note,/15\.12\.2026/);
+ assert.match(item.review_note,/nicht end-to-end geprüft/i);
+});
