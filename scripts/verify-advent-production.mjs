@@ -35,7 +35,9 @@ for(const path of paths){
      const rule=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js' data-cf-beacon='\{"token": "[0-9a-f]{32}"\}'><\/script><!-- Cloudflare Pages Analytics -->$/;
      entry.injection_bytes=Buffer.byteLength(injection);
      entry.exact_injection_format=rule.test(injection);
-     const normalized=html.slice(0,start)+html.slice(mark+marker.length);
+     const prefixComment=start>=marker.length&&html.slice(start-marker.length,start)===marker;
+     entry.has_preceding_analytics_comment=prefixComment;
+     const normalized=html.slice(0,prefixComment?start-marker.length:start)+html.slice(mark+marker.length);
      entry.normalized_sha256=hash(Buffer.from(normalized));
      entry.normalized_length=Buffer.byteLength(normalized);
      entry.normalized_first_diff=Array.from({length:Math.min(normalized.length,expected.length)},(_,i)=>i).find(i=>normalized[i]!==expected[i])??Math.min(normalized.length,expected.length);
@@ -44,7 +46,7 @@ for(const path of paths){
      entry.normalized_end=normalized.slice(-250);
      entry.first_difference_expected=expected.slice(Math.max(0,entry.normalized_first_diff-90),entry.normalized_first_diff+130);
      entry.first_difference_live=normalized.slice(Math.max(0,entry.normalized_first_diff-90),entry.normalized_first_diff+130);
-     if(rule.test(injection)&&Buffer.from(normalized).equals(bytes)){
+     if(prefixComment&&rule.test(injection)&&Buffer.from(normalized).equals(bytes)){
       entry.status='MATCH_WITH_PLATFORM_INJECTION';
       entry.platform_injection='Verified one exact Cloudflare Pages Analytics beacon; all original HTML bytes unchanged';
      }
