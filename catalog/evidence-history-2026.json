@@ -968,6 +968,20 @@
       "finding": "Offizielle Regeln setzen Einwilligung in E-Mail-Newsletter UND Telefonwerbung explizit voraus; deshalb ausgeschlossen.",
       "reviewer": "assistant-research",
       "license_note": "Eigene knappe Zusammenfassung mit Verweis auf Originalquelle; keine Komplettkopie"
+    },
+    {
+      "candidate_id": "falken-bulls-bikes-2026",
+      "source_url": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Über indexierten Text der 2026-Originalseite nun konkrete Pflichtfelder, zwei Fahrradtypen, 18:00 Uhr 30.11. und kostenfreie Teilnahme ohne Kauf belegt. Rechtstexte hinter eingeblendeten Buttons und tatsächlicher Browser-Absendefluss bleiben ungeprüft. Dies ist KEINE Live-Formularfreigabe.",
+      "reviewer": "assistant-research",
+      "license_note": "Kurzer eigener Nachweis aus indexiertem Originaltext; kein Einsendeversuch"
     }
   ]
 }
