@@ -20,6 +20,18 @@ for(const path of paths){
    const actual=Buffer.from(await r.arrayBuffer());
    entry.production_sha256=hash(actual);
    entry.expected_bytes=bytes.length;entry.production_bytes=actual.length;
+   if(path==='public/index.html'&&entry.status==='MISMATCH'){
+    const trailing=actual.subarray(bytes.length).toString('utf8');
+    entry.prefix_byte_identical=actual.length>=bytes.length&&actual.subarray(0,bytes.length).equals(bytes);
+    entry.trailing_bytes=Buffer.byteLength(trailing);
+    entry.trailing_has_analytics=trailing.includes('static.cloudflareinsights.com/beacon.min.js');
+    entry.trailing_has_close=trailing.includes('</body></html>');
+    const suffix=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js' data-cf-beacon='[^']*'><\/script><!-- Cloudflare Pages Analytics --><\/body><\/html>\s*$/;
+    if(entry.prefix_byte_identical&&suffix.test(trailing)){
+      entry.status='MATCH_WITH_PLATFORM_INJECTION';
+      entry.platform_injection='HTML content exact prefix plus appended Cloudflare Analytics snippet and closing tags';
+    }
+   }
    if(path==='public/index.html'&&!actual.equals(bytes)){
     const html=actual.toString('utf8');const expected=bytes.toString('utf8');
     entry.production_has_advent_section=html.includes('id="adventDaily"');
@@ -54,7 +66,7 @@ for(const path of paths){
  if(entry.status==='UNVERIFIED'&&audit.status!=='MISMATCH')audit.status='UNVERIFIED';
 }
 await writeFile('advent-production-verification.json',JSON.stringify(audit,null,2)+'\n');
-const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','- Ergebnis: **'+audit.status+'**','- GitHub-Commit: '+commit,'- Zeitpunkt: '+audit.timestamp,...audit.files.map(e=>'- '+e.path+': **'+e.status+'**, HTTP '+(e.http_status??'keine Antwort')+', GitHub SHA-256 '+e.expected_sha256+', Production SHA-256 '+(e.production_sha256??'unbekannt')+', HTML script vorhanden: '+(e.production_has_advent_script??'n/a')+', HTML Bereich vorhanden: '+(e.production_has_advent_section??'n/a')+', erste Abweichung: '+(e.first_difference_offset??'n/a')+', remote-Auszug: '+(e.production_excerpt??'n/a')+', GitHub-Auszug: '+(e.github_excerpt??'n/a'))];
+const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','- Ergebnis: **'+audit.status+'**','- GitHub-Commit: '+commit,'- Zeitpunkt: '+audit.timestamp,...audit.files.map(e=>'- '+e.path+': **'+e.status+'**, HTTP '+(e.http_status??'keine Antwort')+', GitHub SHA-256 '+e.expected_sha256+', Production SHA-256 '+(e.production_sha256??'unbekannt')+', Prefix identisch: '+(e.prefix_byte_identical??'n/a')+', Extra Bytes: '+(e.trailing_bytes??'n/a')+', Analytics-Anhang: '+(e.trailing_has_analytics??'n/a')+', HTML script vorhanden: '+(e.production_has_advent_script??'n/a')+', HTML Bereich vorhanden: '+(e.production_has_advent_section??'n/a')+', erste Abweichung: '+(e.first_difference_offset??'n/a')+', remote-Auszug: '+(e.production_excerpt??'n/a')+', GitHub-Auszug: '+(e.github_excerpt??'n/a'))];
 console.log(lines.join('\n'));
 if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,lines.join('\n')+'\n');
 if(audit.status==='MISMATCH')process.exitCode=2;
