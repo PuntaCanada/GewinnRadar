@@ -13,6 +13,7 @@ test('approval requires all checks and current verification',()=>{
  assert.ok(validateEvidence(complete).value);
  assert.ok(validateEvidence({...complete,no_mandatory_marketing:false}).error);
  assert.ok(validateEvidence({...complete,checked_at:'2020-01-01T00:00:00Z'}).error);
+ assert.ok(validateEvidence({...complete,checked_at:new Date(Date.now()+2*3600000).toISOString().replace(/\.\d{3}Z$/,'Z')}).error,'future reviewer timestamp must fail');
 });
 test('reviewer must be a verified admin',()=>{assert.equal(safeAdmin({role:'member',email_verified:1}),false);assert.equal(safeAdmin({role:'admin',email_verified:0}),false);assert.equal(safeAdmin({role:'admin',email_verified:1}),true)});
 test('login requires explicit opt-in and configured secret',()=>{
