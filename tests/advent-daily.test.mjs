@@ -5,19 +5,25 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,21);
+ assert.equal(data.confirmed.length,29);
+ const pilot=data.confirmed.find(g=>g.id==='pilot-advent-2026');
+ const draco=data.confirmed.find(g=>g.id==='draco-advent-2026');
+ assert.deepEqual(pilot.participation_days,[1,3,5,9,16,19,22,24]);
+ assert.deepEqual(draco.participation_days,[1,6,18,24]);
+ assert.match(pilot.note,/22.12.*Newsletter/);
+ assert.match(draco.note,/NUR VIER VERLOSUNGSTAGE/);
  assert.match(data.confirmed.find(x=>x.id==='mueller-app-advent-2026').requirements,/nicht jeder Tag ist eine Verlosung/);
  assert.match(data.confirmed.find(x=>x.id==='supernurse-advent-2026').note,/Gesamtverlosung/);
  const aldi=data.confirmed.find(x=>x.id==='aldi-nord-advent-2026');
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
  const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
  assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
- assert.equal(data.review_candidates.length,2);
+ assert.equal(data.review_candidates.length,3);
  assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,21);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,29);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Berlin day respects midnight independently of browser timezone',()=>{
@@ -29,6 +35,12 @@ test('daily deadline only enforced when independently supported, never invented'
  const joska=data.confirmed.find(g=>g.id==='joska-advent-2026');
  const sz=data.confirmed.find(g=>g.id==='sz-advent-2026');
  const online=data.confirmed.find(g=>g.id==='t-online-advent-2026');
+ const pilot=data.confirmed.find(g=>g.id==='pilot-advent-2026');
+ const draco=data.confirmed.find(g=>g.id==='draco-advent-2026');
+ assert.equal(dailyState(pilot,at('2026-12-02T12:00:00+01:00')),'outside');
+ assert.equal(dailyState(pilot,at('2026-12-03T12:00:00+01:00')),'today');
+ assert.equal(dailyState(draco,at('2026-12-02T12:00:00+01:00')),'outside');
+ assert.equal(dailyState(draco,at('2026-12-06T12:00:00+01:00')),'today');
  assert.equal(dailyState(joska,at('2026-12-01T07:59:00+01:00')),'not-open-yet');
  assert.equal(dailyState(joska,at('2026-12-01T08:00:00+01:00')),'today');
  assert.equal(dailyState(joska,at('2026-12-01T17:01:00+01:00')),'deadline-passed');

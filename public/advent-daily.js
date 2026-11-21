@@ -22,6 +22,7 @@ function berlinDateTime(day,time){
 export function dailyState(game,now=new Date()){
  const day=berlinDay(now);
  if(!validDay(day)||game.starts_on>day||game.ends_on<day)return 'outside';
+ if(Array.isArray(game.participation_days)&&!game.participation_days.includes(Number(day.slice(-2))))return 'outside';
  const d=game.daily_deadline||{};
  if(game.open_time&&/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(game.open_time)&&now.getTime()<berlinDateTime(day,game.open_time))return 'not-open-yet';
  if(d.type==='same_day'&&d.time&& /^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(d.time)){
@@ -61,7 +62,11 @@ function paint(now=new Date()){
   let msg='Tagesfrist nicht unabhängig bestätigt – auf Originalseite prüfen';
   if(deadline.type==='next_day')msg='Tagesfrist laut Veranstalter in der Regel Folgetag '+deadline.time+' Uhr – am Türchen bestätigen';
   else if(deadline.time&&deadline.certainty!=='not_verified')msg='Reguläre Tagesfrist '+deadline.time+' Uhr'+(deadline.certainty==='confirmed'?'':' – mögliche Abweichung im Originalbeitrag');
+  if(Array.isArray(g.participation_days))msg='Nur am '+g.participation_days.map(d=>String(d).padStart(2,'0')+'.12.').join(', ')+' · '+msg;
   card.append(el('p',msg,'meta'),el('p',g.note,'notes'));
+  if(/newsletter|werbe|marketing/i.test(g.requirements+' '+g.note))card.append(el('p','Werbe-/Newsletter-Bedingungen im Hinweis unbedingt beachten.','notes'));
+  if(g.today_state==='outside'&&isDec)card.append(el('p','Heute keine Verlosung bei diesem Veranstalter.','meta'));
+
   const links=el('div',null,'action');links.append(link('Türchen beim Veranstalter öffnen',g.url),link('Regeln und Datenschutz prüfen',g.terms_url));card.append(links);
   if(isDec&&g.today_state==='today'){
    const lab=el('label',null,'guest-checkrow');

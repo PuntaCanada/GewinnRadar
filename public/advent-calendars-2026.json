@@ -448,6 +448,191 @@
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.juist.de/presse-1/pressemitteilungen"
       }
+    },
+    {
+      "id": "good4pets-advent-2026",
+      "organizer": "MINERVA Verlag / Good4Pets",
+      "title": "Good4Pets – 24 Tagespreise für Hund und Katze",
+      "url": "https://good4pets.de/adventskalender/",
+      "terms_url": "https://good4pets.de/adventskalender/teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf; 18+, Deutschland. Pro Türchen E-Mail-Formular, zwingend Anmeldung zum jeweils passenden Good4Pets-Werbenewsletter.",
+      "note": "WICHTIG: Newsletter-PFLICHT! Eine Abmeldung vor Auslosung beendet laut Veranstalter die Gewinnspielteilnahme; pro Person maximal ein Gewinn im gesamten Kalender. Die originale Regelseite ist über Suchindex dokumentiert, direkter Seitenabruf teilweise gesperrt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://good4pets.de/adventskalender/teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "openexperience-advent-2026",
+      "organizer": "Open Experience GmbH",
+      "title": "Open Experience – täglich Lose sammeln",
+      "url": "https://openexperience.de/adventskalender/",
+      "terms_url": "https://openexperience.de/adventskalender/teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, 18+, Deutschland; E-Mail-Bestätigungslink. Jeden Tag Türchen öffnen und Aufgaben lösen, Sterne sammeln.",
+      "note": "Eine gemeinsame Schlussverlosung am 07.01.2027 statt täglicher Preisziehung. Werbezwecke per E-Mail/Post werden mit der Gewinnspielteilnahme akzeptiert und sind widerrufbar; technische Cookies werden gesetzt. Frühere Aufgaben bis 24.12. nachholbar, tägliche Türchen-Sterne nicht.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://openexperience.de/adventskalender/teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "spielplatz-advent-2026",
+      "organizer": "Meng GmbH / Spielplatz.de",
+      "title": "Spielplatz.de – täglich 24 Türchen, 24 Preise",
+      "url": "https://spielplatz.de/adventskalender",
+      "terms_url": "https://spielplatz.de/teilnahmebedingungen",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, 18+, Deutschland; einmalige E-Mail-Bestätigung und tägliche Zahl des Türchens als Quizantwort. Die derzeit geltenden allgemeinen Gewinnspielregeln verlangen die Anmeldung zum Meng-Newsletter.",
+      "note": "Newsletter ist gemäß allgemeinen Originalbedingungen Voraussetzung, auch wenn der Adventkalender selbst nur von kostenloser Anmeldung spricht. Eine spezielle abweichende 2026er Befreiung ist NICHT nachgewiesen. Dauer je Tagesrunde 00:00–23:59.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://spielplatz.de/teilnahmebedingungen"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "outside-stories-advent-2026",
+      "organizer": "OUTSIDEstories UG",
+      "title": "OUTSIDEstories – tägliche Outdoor-Gewinnspiele",
+      "url": "https://outside-stories.de/teilnahmebedingungen-adventskalender-2026",
+      "terms_url": "https://outside-stories.de/teilnahmebedingungen-adventskalender-2026",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, ab 18, Wohnsitz Deutschland/Österreich/Schweiz; Formular mit Name/E-Mail über Tageslandingpage ODER Aktion auf Social-Media-Kanälen laut Tagespost.",
+      "note": "Pro Tag eigener Preis und Auslosung. Teilnahmeweg und Tagesfrist je Original-Türchen kontrollieren; Social-Media-Nutzernamen/Teilnahmehandlungen können öffentlich gezeigt werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://outside-stories.de/teilnahmebedingungen-adventskalender-2026"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "wirliebenbau-advent-2026",
+      "organizer": "WirliebenBau GmbH",
+      "title": "WirliebenBau – täglich Social-Media-Gewinnspiele",
+      "url": "https://www.wirliebenbau.de/teilnahmebedingungen-adventskalender-2026/",
+      "terms_url": "https://www.wirliebenbau.de/teilnahmebedingungen-adventskalender-2026/",
+      "open_time": "06:00",
+      "daily_deadline": {
+        "type": "next_day",
+        "time": "06:00",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 18, Deutschland/Österreich/Schweiz. Instagram/Facebook/TikTok-Tagespost, dortige Aktion ausführen. Newsletter keine Pflicht.",
+      "note": "Reguläres Tages-Türchen 06:00 bis 06:00 Folgetag, teilweise ZWEI Postings: zusätzliche Ziehung ab 12:00 bis Folgetag 12:00. Die am Vortag gestartete Aktion kann vormittags noch laufen. Preispost je Datum prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.wirliebenbau.de/teilnahmebedingungen-adventskalender-2026/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "pilot-advent-2026",
+      "organizer": "Pilot Pen (Deutschland) GmbH",
+      "title": "PILOT – kostenlose Verlosungen an acht Adventstagen",
+      "url": "https://www.pilotpen.de/TNB-Adventskalender",
+      "terms_url": "https://www.pilotpen.de/TNB-Adventskalender",
+      "participation_days": [
+        1,
+        3,
+        5,
+        9,
+        16,
+        19,
+        22,
+        24
+      ],
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Nur 1., 3., 5., 9., 16., 19., 22. und 24.12.; Erwachsene mit Wohnsitz Deutschland/Österreich. An sieben Tagen kostenlose E-Mail-Teilnahme mit exakt dem Türchen-Betreff statt Bestellung möglich.",
+      "note": "WICHTIG: 22.12. ausnahmsweise ausschließlich durch verpflichtende Werbe-Newsletter-Anmeldung; die restlichen sieben Gewinnspieltage sind ohne Kauf und ohne Newsletter per E-Mail nutzbar. An anderen Tagen KEINE Verlosung!",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.pilotpen.de/TNB-Adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "draco-advent-2026",
+      "organizer": "DRACO / Dr. Ausbüttel",
+      "title": "DRACO – vier kostenlose Gesundheitsberufe-Türchen",
+      "url": "https://www.draco.de/service/teilnahmebedingungen-adventskalender-2026/",
+      "terms_url": "https://www.draco.de/service/teilnahmebedingungen-adventskalender-2026/",
+      "participation_days": [
+        1,
+        6,
+        18,
+        24
+      ],
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Nur Beschäftigte ab 18 Jahren in Arztpraxis, Apotheke, Pflege- oder sonstiger Gesundheitseinrichtung. Kostenlos ohne Kauf, Newsletter oder Werbung, Quiz mit Name/E-Mail.",
+      "note": "NUR VIER VERLOSUNGSTAGE: 01., 06., 18., 24.12., jeweils 00:00–23:59. Nicht für alle Privatpersonen – Tätigkeit im Gesundheitsbereich zwingend erforderlich.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.draco.de/service/teilnahmebedingungen-adventskalender-2026/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "beatwings-advent-2026",
+      "organizer": "BEATWINGS GmbH",
+      "title": "BEATWINGS – täglich neue Lose in zwei Sammelverlosungen",
+      "url": "https://beatwings.com/teilnahmebedingungen-adventskalender-2026/",
+      "terms_url": "https://beatwings.com/teilnahmebedingungen-adventskalender-2026/",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "per_post"
+      },
+      "requirements": "Kostenlos ohne Kauf/Buchung; Instagram oder TikTok @beatwingsadventure folgen, Tagespost kommentieren und andere Person markieren. 1.–6.12. ab 18 Jahren, 7.–24.12. ab 20; Deutschland, Österreich, Schweiz.",
+      "note": "ACHTUNG: NICHT 24 einzelne Tagesverlosungen. Es gibt nur zwei Gesamtverlosungen: Nikolaus (01.–06.12.; Ende 06.12. 23:59) und Weihnachten (07.–24.12.; Ende 24.12. 23:59). Tagesposts erhöhen Lose, nicht tägliche Gewinnausschüttung.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://beatwings.com/teilnahmebedingungen-adventskalender-2026/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
@@ -460,12 +645,20 @@
       "reason": "Offizielle Seite nennt 24 Dezember-Gewinnchancen und einen optionalen Erinnerungsservice mit separater November-Verlosung. Die konkreten Teilnahmebedingungen/Fristen für jede Dezember-Tagesverlosung konnten hier noch NICHT unabhängig verifiziert werden. November-Registrierung ist nicht mit einer Dezember-Teilnahme gleichzusetzen."
     },
     {
-      "id": "spielplatz-advent-2026",
-      "organizer": "Spielplatz.de (Meng GmbH)",
-      "title": "Spielplatz.de – Advent 2026",
-      "url": "https://spielplatz.de/adventskalender",
-      "terms_url": "https://spielplatz.de/teilnahmebedingungen",
-      "reason": "Offizielle 2026er Kalenderseite verspricht tägliche kostenlose Türchen; allgemeine Veranstalter-Teilnahmebedingungen verlangen jedoch einen Newsletter. Nicht als newsletterfrei freigeben, bis die spezielle Adventsteilnahme eindeutig geklärt ist."
+      "id": "focus-advent-2026",
+      "organizer": "FOCUS online",
+      "title": "FOCUS – Online-Adventskalender 2026",
+      "url": "https://games.focus.de/adventskalender/",
+      "terms_url": "https://games.focus.de/adventskalender/",
+      "reason": "Offizielle Seite bestätigt kostenlose 24 Tagesquizze und Hauptpreis, lässt sich aber beim aktuellen Abruf nur teilweise bzw. per HTTP 403 einsehen. Konkrete individuelle Teilnahmebedingungen/Datennutzung vor Freigabe prüfen."
+    },
+    {
+      "id": "connect-advent-2026",
+      "organizer": "connect",
+      "title": "connect – Online-Adventskalender 2026",
+      "url": "https://spiele.connect.de/adventskalender/",
+      "terms_url": "https://spiele.connect.de/adventskalender/",
+      "reason": "Offizielle 2026er Startseite bestätigt täglich spielen und Kreuzfahrt-Hauptpreis; echte aktuelle 2026er Teilnahmebedingungen/Formular konnten beim Direktabruf wegen HTTP 403 nicht vollständig kontrolliert werden."
     }
   ],
   "archive_candidates": []
