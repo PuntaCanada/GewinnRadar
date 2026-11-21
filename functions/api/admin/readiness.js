@@ -35,12 +35,12 @@ export async function onRequestGet(ctx){
  const publicSql="SELECT g.id FROM games g"+verifiedJoins+
    " WHERE g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions+
    " ORDER BY g.ends_at ASC LIMIT 500";
- const [result,live,total]=await Promise.all([
+ const [result,publicResult,total]=await Promise.all([
   ctx.env.DB.prepare(q).bind().all(),
   ctx.env.DB.prepare(publicSql).bind(stamp,stamp,from,until,dayStart).all(),
   ctx.env.DB.prepare('SELECT COUNT(*) AS count FROM games').bind().first()
  ]);
- const publicIds=new Set((live.results||[]).map(g=>g.id));
+ const publicIds=new Set((publicResult.results||[]).map(g=>g.id));
  const contests=(result.results||[]).map(g=>{
   const reasons=readinessReasons(g,now);
   const ready=publicIds.has(g.id);
