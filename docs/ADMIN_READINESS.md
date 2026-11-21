@@ -36,3 +36,15 @@ Die Abfrage verändert nichts. Wenn diese Tabellen unerwartete persönliche Date
 Der neue lokale SQLite-Test `tests/admin-readiness.test.mjs` prüft ohne Netzwerk-/Echtkonten, dass nur Admin-Sitzungen die Admin-API lesen können, Mitglieder keine Gewinnspiele anlegen und der Mailversand bei deaktiviertem Login gesperrt ist.
 
 **Keine produktiven E-Mails, kein kostenpflichtiger Dienst, keine anderen Datenbanken und keine weiteren Repositories.**
+
+## Read-only Cloudflare-Liveprüfung (erst nach separat geprüftem Merge und Deployment)
+
+Der neue öffentliche Endpunkt `https://gewinnradar.pages.dev/api/health` prüft ausschließlich, ob die echte Pages-Function die D1-Bindung `DB` hat und aus den Tabellen `users` und `games` lesen kann. Bei Erfolg antwortet er `{"ok":true,"db_ready":true}`; andernfalls mit HTTP 503 und `{"ok":false,"db_ready":false}`. Keine Adressen, Namen, Datensätze, Tabellenliste oder Secrets werden ausgegeben. Es erfolgt keine Schreiboperation und kein Mailversand.
+
+Dieser Status beweist **nicht** automatisch, dass geschützte Anmeldung, Rechte, D1-Migrationen 0002–0005, Mailintegration oder Cloudflare-Deployment-Historie funktionieren. `/api/me` ist separat ein privatsphäreschonender Session-Test (`{"user":null}` ohne Login).
+
+## Persönlichen Admin-Account später nur mit ausdrücklicher Freigabe
+
+Erst nach bestätigter Live-Bindung, Sicherheits- und Rechtstextprüfung und eigener Zustimmung wird ein Admin-Konto mit bewusst gewählter persönlicher E-Mail erstellt. Standardwerte: `daily_email=0`, `email_verified=0` bis zur echten Bestätigung, keine vorgefertigte Session. Keine Accountdaten in GitHub speichern. Da die Anmeldung per Magic Link erfolgt, ist sie ohne den gesondert freigegebenen und streng geschützten LOGIN-Mailversand noch **nicht nutzbar**. Den täglichen Digest aktiviert dies nicht.
+
+Die aktuelle Vorbereitung erstellt weder Admin-Konten noch Token. Bestehende produktive Daten bleiben unverändert.
