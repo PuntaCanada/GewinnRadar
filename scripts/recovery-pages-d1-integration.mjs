@@ -24,9 +24,13 @@ let server;
 async function stop(){
  if(!server)return;
  const child=server;server=null;
- child.kill('SIGTERM');
- await Promise.race([new Promise(resolve=>child.once('exit',resolve)),delay(5000)]);
- if(child.exitCode===null)child.kill('SIGKILL');
+ // npm/npx launches nested Wrangler, workerd and esbuild processes. Stop
+ // the whole detached process group so CI does not hang after a PASS.
+ try{process.kill(-child.pid,'SIGTERM')}catch{child.kill('SIGTERM')}
+ if(child.exitCode===null)
+  await Promise.race([new Promise(resolve=>child.once('exit',resolve)),delay(3000)]);
+ try{process.kill(-child.pid,'SIGKILL')}catch{}
+ child.stdout.destroy();child.stderr.destroy();
 }
 async function start(){
  const [cmd,...argv]=command(['pages','dev','public','--d1','DB='+id,'--ip','127.0.0.1','--port',String(port),'--persist-to',persist,
@@ -34,7 +38,7 @@ async function start(){
   '--binding','LOGIN_MAIL_ENABLED=false','--binding','ADMIN_BOOTSTRAP_EMAIL='+email,
   '--binding','ADMIN_BOOTSTRAP_SECRET='+secret]);
  let output='';
- server=spawn(cmd,argv,{stdio:['ignore','pipe','pipe'],env:{...process.env,CI:'true'}});
+ server=spawn(cmd,argv,{stdio:['ignore','pipe','pipe'],detached:true,env:{...process.env,CI:'true'}});
  server.stdout.on('data',v=>{output=(output+v.toString()).slice(-3000)});
  server.stderr.on('data',v=>{output=(output+v.toString()).slice(-3000)});
  for(let i=0;i<120;i++){
