@@ -159,6 +159,7 @@ export async function loadEditorialLinks(){
  }
 }
 if(typeof document!=='undefined'&&$('editorialLive')){
+ $('editorialOnlyOpen')?.addEventListener('change',updateGuestProgress);
  loadEditorialLinks();
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadEditorialLinks()});
 }
