@@ -405,6 +405,49 @@
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.mueller.de/service/app/teilnahmebedingungen-app-aktion/"
       }
+    },
+    {
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "id": "bbhotels-advent-2026",
+      "organizer": "B&B HOTELS Germany",
+      "title": "B&B HOTELS – 24 Instagram-Tagesverlosungen",
+      "url": "https://www.hotel-bb.com/de/teilnahmebedingungen-fuer-den-bb-hotels-social-media-adventskalender-2026-und-die-darin-enthaltenen",
+      "terms_url": "https://www.hotel-bb.com/de/teilnahmebedingungen-fuer-den-bb-hotels-social-media-adventskalender-2026-und-die-darin-enthaltenen",
+      "open_time": "08:00",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "per_post"
+      },
+      "requirements": "Kostenlos ohne Kauf, 18+, öffentliches Instagram-Profil; @bbhotels_de folgen, Post liken und kommentieren.",
+      "note": "ACHTUNG: Die 24 Tagesposts haben UNTERSCHIEDLICHE Wochen-Sammelfristen; Post vom 1.–7.12. endet beispielsweise am 7.12. 23:59, Posts vom 22.–24.12. erst am 4.1.2027. Ausgeloste Personen müssen noch am Auslosungstag bis 18 Uhr per Nachricht reagieren.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.hotel-bb.com/de/teilnahmebedingungen-fuer-den-bb-hotels-social-media-adventskalender-2026-und-die-darin-enthaltenen"
+      }
+    },
+    {
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "id": "juist-advent-2026",
+      "organizer": "Kurverwaltung Juist",
+      "title": "Juist – tägliches Inselrätsel mit Gewinnen",
+      "url": "https://adventskalender.juist.de/",
+      "terms_url": "https://www.juist.de/presse-1/pressemitteilungen",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlose einmalige Registrierung mit E-Mail-Erinnerung; täglich Frage zur Inselgeschichte beantworten. Tagesgewinn bei richtiger Antwort. Konkrete Tagesfrist beim Veranstalter kontrollieren.",
+      "note": "Amtliche Veranstalter-Mitteilung vom 17.11.2026 bestätigt tägliche Türchen 1.–24.12. sowie zwei Bonus-Türchen an den Weihnachtsfeiertagen für Personen, die jeden Tag teilgenommen haben. Eine konkrete Tages-Uhrzeit ist nicht belegt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.juist.de/presse-1/pressemitteilungen"
+      }
     }
   ],
   "review_candidates": [
