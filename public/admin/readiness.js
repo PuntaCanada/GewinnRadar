@@ -7,7 +7,7 @@ button?.addEventListener('click',async()=>{
   const response=await fetch('/api/admin/readiness',{credentials:'same-origin'});
   const result=await response.json();
   if(!response.ok)throw Error(result.error||'Keine Admin-Berechtigung');
-  summary.textContent=result.ready+' freigabereif · '+result.blocked+' mit offenen Voraussetzungen. Keine automatische Veröffentlichung.';
+  summary.textContent=result.ready+' öffentlich sichtbar · '+result.blocked+' nicht öffentlich sichtbar. Keine automatische Veröffentlichung.'+(result.truncated?' Achtung: nur '+result.shown+' von '+result.total+' Datensätzen einzeln angezeigt.':'');
   for(const game of result.contests){
    const item=document.createElement('li'),strong=document.createElement('strong');
    strong.textContent=game.title+' – '+(game.ready?'alle Freigabekriterien erfüllt':'noch gesperrt');
