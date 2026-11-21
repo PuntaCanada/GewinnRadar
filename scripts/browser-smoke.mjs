@@ -123,7 +123,7 @@ try{
     await done.check();
     assert.equal(actions.length,1);
     assert.equal(actions[0].action,'completed');
-    await page.getByText('1 von 1 erledigt').waitFor();
+    assert.equal(await page.locator('#progressBar').getAttribute('aria-label'),'1 von 1 Gewinnspielen erledigt');
     await page.locator('#dailyOnly').check();
     assert.equal(await page.locator('#cards .game').count(),1);
     await page.locator('#simpleOnly').check();
