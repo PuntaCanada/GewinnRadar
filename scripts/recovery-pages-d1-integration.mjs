@@ -29,7 +29,7 @@ async function stop(){
  if(child.exitCode===null)child.kill('SIGKILL');
 }
 async function start(){
- const [cmd,...argv]=command(['pages','dev','public','--config',config,'--ip','127.0.0.1','--port',String(port),'--persist-to',persist,
+ const [cmd,...argv]=command(['pages','dev','public','--d1','DB='+id,'--ip','127.0.0.1','--port',String(port),'--persist-to',persist,
   '--binding','ADMIN_RECOVERY_ENABLED=true','--binding','ADMIN_BOOTSTRAP_ENABLED=false',
   '--binding','LOGIN_MAIL_ENABLED=false','--binding','ADMIN_BOOTSTRAP_EMAIL='+email,
   '--binding','ADMIN_BOOTSTRAP_SECRET='+secret]);
