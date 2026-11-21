@@ -32,7 +32,7 @@ test('unverified or malformed source entries cannot appear as active',()=>{
 
 test('deadline shows the last eligible date, not exclusive expiry or review date',()=>{
  assert.match(editorialDeadline('2026-11-26T00:00:00+01:00'),/25\.11\.2026.*23:59/);
- assert.match(editorialDeadline('2027-01-01T00:00:00+01:00'),/39\.12\.2026.*23:59/);
+ assert.match(editorialDeadline('2027-01-01T00:00:00+01:00'),/31\.12\.2026.*23:59/);
  assert.equal(editorialDeadline('invalid'),null);
 });
 test('a future daily research review is allowed, but stale or future-dated evidence is rejected',()=>{
