@@ -74,6 +74,7 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date().toISOString(),'advent-2026-check');
  assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,200);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'verified');
+ sqlite.prepare('UPDATE games SET verification_note=? WHERE id=?').run('PRIVATE INTERNAL AUDIT: confidential redaction details','advent-2026-check');
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0,'Unknown link should not appear');
  sqlite.prepare("UPDATE games SET link_state='ok' WHERE id=?").run('advent-2026-check');
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,1);
@@ -81,6 +82,9 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  // and must also block progress changes, even when status and link_state still say verified.
  const guest=async()=>(await (await call(games,'/api/games','GET')).json()).games.length;
  assert.equal(await guest(),1);
+ const publicPayload=await (await call(games,'/api/games','GET')).json();
+ assert.equal(publicPayload.games[0].verification_note,undefined,'No editorial notes may leak to public visitors');
+ assert.ok(!JSON.stringify(publicPayload).includes('PRIVATE INTERNAL AUDIT'),'Private editorial text must not appear in public JSON');
  const verified=await check(adminToken);
  assert.equal(verified.ready,1,'Admin diagnostics and public gate must agree');
  assert.equal((await (await call(games,'/api/games','GET')).json()).games.length,verified.ready,'Real public and private endpoint counts agree');
