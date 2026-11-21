@@ -35,10 +35,11 @@ export async function onRequestGet(ctx){
  const publicSql="SELECT g.id FROM games g"+verifiedJoins+
    " WHERE g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions+
    " ORDER BY g.ends_at ASC LIMIT 500";
- const [result,publicResult,total]=await Promise.all([
+ const [result,publicResult,total,research]=await Promise.all([
   ctx.env.DB.prepare(q).bind().all(),
   ctx.env.DB.prepare(publicSql).bind(stamp,stamp,from,until,dayStart).all(),
-  ctx.env.DB.prepare('SELECT COUNT(*) AS count FROM games').bind().first()
+  ctx.env.DB.prepare('SELECT COUNT(*) AS count FROM games').bind().first(),
+  ctx.env.DB.prepare("SELECT COUNT(*) AS total, SUM(CASE WHEN research_state='candidate' THEN 1 ELSE 0 END) AS candidates, SUM(CASE WHEN research_state='excluded' THEN 1 ELSE 0 END) AS excluded FROM research_candidates").bind().first()
  ]);
  const publicIds=new Set((publicResult.results||[]).map(g=>g.id));
  const contests=(result.results||[]).map(g=>{
@@ -48,5 +49,15 @@ export async function onRequestGet(ctx){
   return {id:g.id,title:g.title,ready,reasons};
  });
  const totalGames=Number(total?.count||0);
- return json({checked_at:stamp,ready:publicIds.size,blocked:Math.max(0,totalGames-publicIds.size),total:totalGames,shown:contests.length,truncated:totalGames>contests.length,contests});
+ const staged={total:Number(research?.total||0),candidates:Number(research?.candidates||0),excluded:Number(research?.excluded||0)};
+ // Separate source-research volume from approved public entries; these are
+ // different tables. A source record never counts as a published game.
+ const blockers={missing_editorial:0,missing_form:0,missing_link:0};
+ for(const c of contests){
+  if(c.ready)continue;
+  if(c.reasons.some(reason=>/Redaktionelle Freigabe|manuelle Prüfpunkte/.test(reason)))blockers.missing_editorial++;
+  if(c.reasons.some(reason=>/Formular|Datenschutz-Adresse|Adventstürchen/.test(reason)))blockers.missing_form++;
+  if(c.reasons.some(reason=>/Original-Link/.test(reason)))blockers.missing_link++;
+ }
+ return json({checked_at:stamp,ready:publicIds.size,blocked:Math.max(0,totalGames-publicIds.size),total:totalGames,shown:contests.length,truncated:totalGames>contests.length,research:staged,blockers,contests});
 }
