@@ -702,6 +702,48 @@
       "finding": "NICHT FREIGEBEN: auffindbare Teilnahmebedingungen aus 2025, neue 2026-Regeln nicht belegt.",
       "reviewer": "assistant-research",
       "license_note": "Link und eigene kurze Zusammenfassung, kein Volltext übernommen"
+    },
+    {
+      "candidate_id": "connect-2026",
+      "source_url": "https://spiele.connect.de/adventskalender/",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Originale 2026-Seite nennt tägliche Quizze und optionale Newsletter-Extra-Lose; Glücksspiel-Los-Prämie nur bei kostenpflichtigem Jahreslos.",
+      "reviewer": "assistant-research",
+      "license_note": "Link und eigene kurze Zusammenfassung, kein Volltext übernommen"
+    },
+    {
+      "candidate_id": "urlaubsguru-2026",
+      "source_url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Originale 2026-Seite nennt App-Pflicht und Tagesfenster nur 00:00 bis 00:59 Uhr mit E-Mail-Bestätigung.",
+      "reviewer": "assistant-research",
+      "license_note": "Link und eigene kurze Zusammenfassung, kein Volltext übernommen"
+    },
+    {
+      "candidate_id": "gewinnarena-2026",
+      "source_url": "https://www.gewinnarena.de/preise/adventskalender-gewinnspiele/",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Offizielle 2026-Ankündigung enthält 24 separate Tagesgewinnspiele; Datenformular noch offen.",
+      "reviewer": "assistant-research",
+      "license_note": "Link und eigene kurze Zusammenfassung, kein Volltext übernommen"
     }
   ]
 }
