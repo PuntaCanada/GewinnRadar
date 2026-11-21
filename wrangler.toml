@@ -5,4 +5,4 @@ compatibility_date = "2026-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "gewinnradar-familie"
-database_id = "REPLACE_WITH_NEW_D1_DATABASE_ID"
+database_id = "3a5a20dd-9447-4260-ac44-9b6accc571fb"
