@@ -199,6 +199,38 @@
       "required_data": "Kostenloses Smyths-Toys-Kundenkonto mit gültiger E-Mail; während 20.–29.11. Wunschliste mit EXAKTEM Titel 'GEWINNE DEINE WUNSCHLISTE' anlegen; maximal 10 Artikel und maximal 1.000 €; verfügbare Produkte, keine Gutscheine/Vorbestellungen",
       "marketing_requirements": "Kein Kauf und keine Newsletter-/Marketing-Einwilligung für die Gewinnspielteilnahme. Konto und gespeicherte Wunschliste sind Pflicht; eventuelle Gewinnernennung nur mit gesonderter freiwilliger Zustimmung.",
       "note": "Aktuelle Originalbedingungen 2026 und Smyths-Toys-Datenschutz geprüft. Die Wunschliste zählt bei korrektem Titel automatisch als Teilnahme; kein separates Gewinnspielformular. Der Login-/Wunschlistenablauf selbst wurde nicht ausgeführt. Gilt für Deutschland, Österreich und Schweiz; ab 18. Originalbedingungen sind zugleich die Anleitungsseite."
+    },
+    {
+      "id": "aida-november-cruise-2026",
+      "organizer": "AIDA Cruises – German Branch of Costa Crociere S.p.A.",
+      "title": "4.000 € AIDA-Reisegutschein gewinnen",
+      "prize": "1 AIDA-Reisegutschein über 4.000 €; übersteigende Reisekosten selbst zu tragen",
+      "url": "https://aida.de/buchung/aktionen/gewinnspiele/monatsgewinnspiel",
+      "terms_url": "https://aida.de/content/dam/aida/de/medien/kreuzfahrt/campaign/gewinnspiele/monatsgewinnspiel2026/TNB_november2.pdf",
+      "privacy_url": "https://aida.de/unternehmen/datenschutz",
+      "starts_at": "2026-11-01T00:01:00+01:00",
+      "ends_at": "2026-12-01T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "web_form",
+      "required_data": "Freitext-Gewinnspielfrage (max. 100 Zeichen), Anrede, Vorname, Nachname, Geburtsdatum, E-Mail-Adresse, Bestätigung der Teilnahmebedingungen und Kenntnisnahme der Datenschutzbestimmungen",
+      "marketing_requirements": "Die Newsletter-Einwilligung ist auf der offiziellen Formularseite separat aufgeführt und nicht als Pflichtfeld gekennzeichnet; keine Kauf- oder Buchungspflicht. Gewinnername und Wohnort erscheinen verkürzt auf AIDA-Webseite.",
+      "note": "Offizielles November-2026-Formular, dreiseitige Originalbedingungen und Datenschutz am 21.11.2026 eingesehen. Kostenlos, ab 18, eine Teilnahme. Teilnahmeende 30.11.2026 23:59 Uhr. Der Reisegutschein ist nach Ausstellung drei Jahre nach Verfügbarkeit einlösbar; Mehrkosten über 4.000 € zahlt der Gewinner. Ein reales Absenden oder eine Bestätigung wurden nicht durchgeführt."
+    },
+    {
+      "id": "db-bibi-tina-musical-2026",
+      "organizer": "DB Fernverkehr AG",
+      "title": "Familientickets für „Weihnachten mit Bibi & Tina“ gewinnen",
+      "prize": "1 Familienbesuch für bis zu vier Personen im Berliner Theater des Westens (Spielzeit bis 03.01.2027)",
+      "url": "https://www.bahn.de/service/individuelle-reise/kinder/gewinnspiel-bibi-tina",
+      "terms_url": "https://www.bahn.de/service/individuelle-reise/kinder/gewinnspiel-bibi-tina/teilnahmebedingungen",
+      "privacy_url": "https://www.bahn.de/service/individuelle-reise/kinder/gewinnspiel-bibi-tina/datenschutz",
+      "starts_at": "2026-11-21T00:00:00+01:00",
+      "ends_at": "2026-12-04T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "web_form",
+      "required_data": "Vorname, Nachname, E-Mail-Adresse sowie Zustimmung zu Teilnahmebedingungen und Gewinnspiel-Datenschutzhinweisen im Originalformular",
+      "marketing_requirements": "Kein Kauf oder Bahn-Ticket erforderlich. Werbliche Nutzung der Daten laut Originalformular nur mit gesonderter freiwilliger Einwilligung; die sichtbare Pflichtbestätigung betrifft die Abwicklung des Gewinnspiels.",
+      "note": "Ab 21.11.2026 als sicher laufend belegbar (genauer Aktionsbeginn nicht genannt). Originales Gewinnspielformular, datierte 2026-Teilnahmebedingungen und separate aktuelle Datenschutzhinweise am 21.11.2026 geprüft. Ab 18 und mit festem Wohnsitz in Deutschland; nur einmalige Teilnahme. Familienbesuch für bis zu vier Personen in Berlin, Termin nach Wahl und Verfügbarkeit innerhalb der Spielzeit bis 03.01.2027. Die Webseite stellt in der auslesbaren Darstellung gleichzeitig Fehler- und Erfolgstexte bereit; eine reale Formularabsendung wurde NICHT vorgenommen und ein erfolgreicher Abschluss NICHT nachgewiesen."
     }
   ],
   "preview": [
