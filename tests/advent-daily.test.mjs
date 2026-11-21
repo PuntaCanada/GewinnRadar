@@ -31,6 +31,7 @@ test('daily deadline only enforced when independently supported, never invented'
  assert.equal(dailyState(joska,at('2026-12-01T08:00:00+01:00')),'today');
  assert.equal(dailyState(joska,at('2026-12-01T17:01:00+01:00')),'deadline-passed');
  assert.equal(dailyState(agravis,at('2026-12-03T23:59:00+01:00')),'today');
+ assert.equal(dailyState(agravis,at('2026-12-03T23:59:30+01:00')),'today');
  assert.equal(dailyState(agravis,at('2026-12-04T00:00:00+01:00')),'today');
  assert.equal(dailyState(sz,at('2026-12-03T23:59:00+01:00')),'today');
  assert.equal(dailyState(online,at('2026-12-03T23:59:30+01:00')),'today','t-online cutoff not officially specified');
