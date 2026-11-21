@@ -22,8 +22,12 @@ test('public source links are genuine separately reviewed entries, no D1 approva
  assert.ok(data.active.every(g=>g.source_audit?.checked_on==='2026-11-21'&&new URL(g.source_audit?.evidence_url).protocol==='https:'));
  assert.deepEqual(new Set(data.active.map(g=>g.source_audit.status)),new Set(['confirmed','partial','blocked','unconfirmed']));
  assert.ok(data.active.every(g=>g.reviewed_on==='2026-11-21'),'historische Prüfdatumsangaben bleiben unverändert');
- assert.equal(data.preview.length,3);
- assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,45);
+ assert.equal(data.preview.length,4);
+ const bingo=data.preview.find(x=>x.id==='great-body-xmas-bingo-2026');
+ assert.ok(bingo&&bingo.starts_on==='2026-12-01'&&bingo.ends_on==='2026-12-24');
+ assert.match(bingo.note,/ohne Kauf ausschließlich im Great Body Store/);
+ assert.equal(data.active.some(x=>x.id===bingo.id),false);
+ assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,46);
  for(const e of [...data.active,...data.preview]){
   for(const k of ['url','terms_url'])assert.equal(new URL(e[k]).protocol,'https:');
  }
@@ -32,7 +36,7 @@ test('public source links are genuine separately reviewed entries, no D1 approva
 test('live link expires automatically and previews never become clickable participation cards',()=>{
  const before=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00'));
  assert.equal(before.live.length,42);
- assert.equal(before.future.length,3);
+ assert.equal(before.future.length,4);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,38)
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).live.length,0);
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).future.length,0);
