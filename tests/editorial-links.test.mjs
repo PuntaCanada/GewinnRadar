@@ -91,8 +91,10 @@ test('live actions show nearest deadlines first, independent of source order',()
  assert.equal(ordered[0].id,'partner-wera-social-2026'); // 24 Nov
  assert.equal(ordered[1].id,'bayern-digitalradio-2026'); // tie on 25 Nov, title A-Z
  assert.equal(ordered[2].id,'cloetta-candyking-instagram-2026');
- assert.equal(ordered[3].id,'stilbruch-registration-2026'); // 29 Nov
- assert.equal(ordered[4].id,'falken-bulls-bikes-2026'); // 30 Nov 18:00
+ assert.equal(ordered[3].id,'gesundde-register-win-2026'); // 25 Nov
+ assert.equal(ordered[4].id,'stilbruch-registration-2026'); // 29 Nov
+ assert.equal(ordered[5].id,'smyths-wishlist-2026'); // 29 Nov
+ assert.equal(ordered[6].id,'falken-bulls-bikes-2026'); // 30 Nov 18:00
  // A distinct draw ending earlier on the same date outranks a later one.
  const withSameDay=structuredClone(list);
  withSameDay.active.find(g=>g.id==='stryve-christmas-social-2026').ends_at='2026-11-30T17:00:00+01:00';
