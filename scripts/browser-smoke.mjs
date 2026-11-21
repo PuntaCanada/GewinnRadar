@@ -12,7 +12,7 @@ const server=createServer(async(req,res)=>{
   const safe=resolve(root,'.'+pathname);
   if(!(safe===root||safe.startsWith(root+sep))){res.writeHead(403);res.end();return;}
   try{
-    const file=pathname.endsWith('/')?safe+'index.html':safe;
+    const file=pathname.endsWith('/')?resolve(safe,'index.html'):safe;
     const data=await readFile(file);
     res.writeHead(200,{'content-type':types[extname(file)]||'text/plain'});res.end(data);
   }catch{res.writeHead(404);res.end();}
