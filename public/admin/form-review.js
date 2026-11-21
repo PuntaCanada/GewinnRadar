@@ -10,6 +10,7 @@ form?.addEventListener('submit',async event=>{
   entry_method:String(data.get('entry_method')||'web_form'),
   email_recipient:String(data.get('email_recipient')||'').trim(),
   email_subject:String(data.get('email_subject')||'').trim(),
+  email_subject_confirmed_today:data.get('email_subject_confirmed_today')==='on',
   game_id:String(data.get('game_id')||'').trim(),
   form_url:String(data.get('form_url')||'').trim(),
   privacy_url:String(data.get('privacy_url')||'').trim(),

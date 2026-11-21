@@ -163,10 +163,12 @@ try{
   assert.equal(await adminPage.locator('#emailEntryFields').isVisible(),true);
   await adminPage.locator('#verRecipient').fill('marketing@pilotpen.de');
   await adminPage.locator('#verSubject').fill('Live bestätigter Tagesbetreff');
+  await adminPage.locator('#verSubjectToday').check();
   await adminPage.locator('#verifiedSave').click();
   await adminPage.getByText(/Noch keine Gewinnspiel-Freigabe und keine Erinnerungen/).waitFor();
   assert.equal(savedForm.entry_method,'email');
   assert.equal(savedForm.email_subject,'Live bestätigter Tagesbetreff');
+  assert.equal(savedForm.email_subject_confirmed_today,true);
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
