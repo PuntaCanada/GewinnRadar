@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-11-21",
+  "approval_policy": "Research only. No user-facing approved contest until live participation mechanism, date-specific conditions, privacy and required data are separately checked.",
+  "entries": [
+    {
+      "candidate_id": "wdr3-2026",
+      "organizer": "WDR 3",
+      "source_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "source_updated_on": "2026-11-13",
+      "event_dates": "2026-12-01 through 2026-12-24",
+      "source_confirmed": [
+        "24 daily WDR 3 packages announced",
+        "Music-title solution can be submitted by email, telephone or ARD Sounds",
+        "Name, postal address, telephone and email are processed for running the contest",
+        "Terms state no additional advertising use and deletion after completion"
+      ],
+      "still_unverified": [
+        "Daily music clip and exact answer not yet published",
+        "Exact daily close time not stated in checked special terms",
+        "Availability and practical flow of each daily participation channel not checked"
+      ],
+      "form_checked": false,
+      "newsletter_checked": true,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false
+    },
+    {
+      "candidate_id": "pilot-2026",
+      "organizer": "PILOT Pen Deutschland",
+      "source_url": "https://www.pilotpen.de/TNB-Adventskalender",
+      "privacy_url": "https://www.pilotpen.de/Datenschutzhinweise/",
+      "event_dates": "2026-12-01,03,05,09,16,19,22,24",
+      "eligible_non_newsletter_dates": [
+        1,
+        3,
+        5,
+        9,
+        16,
+        19,
+        24
+      ],
+      "excluded_dates": [
+        22
+      ],
+      "source_confirmed": [
+        "Adults 18+ residing in Germany or Austria",
+        "On 7 specified dates free entry via email with the subject from the daily door; no purchase required",
+        "The December 22 action requires a newsletter subscription and is excluded from our recommendation",
+        "Each action starts 00:00 and ends 23:59 German time; specific prize only appears in the respective door",
+        "Personal data used for prize processing; shipping address requested from winners when needed"
+      ],
+      "still_unverified": [
+        "Per-day subject and displayed prize cannot be checked ahead of opening the door",
+        "Exact live email-entry instructions for each eligible day must be checked",
+        "Privacy notices and consent language presented in the live door must be inspected"
+      ],
+      "form_checked": false,
+      "newsletter_checked": true,
+      "germany_eligible_checked": true,
+      "daily_mechanic_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false
+    }
+  ]
+}
