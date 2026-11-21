@@ -5,6 +5,14 @@ const line=(tag,value,cls)=>{const n=document.createElement(tag);n.textContent=v
 function outbound(label,url,primary=false){
  const a=document.createElement('a');a.textContent=label;a.href=url;a.target='_blank';a.rel='noopener noreferrer';if(primary)a.className='btn';return a;
 }
+function issueLink(game,category='verdacht'){
+ // GitHub's public issue form requires a GitHub login; never collect reports
+ // directly on GewinnRadar without storage/abuse and privacy protections.
+ const u=new URL('https://github.com/PuntaCanada/GewinnRadar/issues/new');
+ u.searchParams.set('template','gewinnspiel-melden.yml');
+ u.searchParams.set('title',(category==='freigabe'?'Prüfvorschlag: ':'Verdachtsmeldung: ')+String(game.title||game.id).slice(0,95));
+ return u.href;
+}
 function sourceUrl(value){
  try{const u=new URL(value);return u.protocol==='https:'&&u.username===''&&u.password===''?u.href:null}catch{return null}
 }
@@ -17,15 +25,17 @@ export function editorialDeadline(exclusiveEnd){
 }
 export function eligibleEditorialLinks(data,now=new Date()){
  if(!data||data.schema_version!==1||!Array.isArray(data.active)||!Array.isArray(data.preview))throw Error('Ungültige Quellenliste');
+ // A blocked ID or exact HTTPS URL is never shown as an active action.
+ const blocked=new Set(Array.isArray(data.blacklist)?data.blacklist.filter(b=>b&&b.verified===true).flatMap(b=>[b.id,b.url].filter(Boolean)):[]);
  const live=data.active.filter(g=>{
   const start=Date.parse(g.starts_at),end=Date.parse(g.ends_at);
-  return Number.isFinite(start)&&Number.isFinite(end)&&start<=now.getTime()&&now.getTime()<end&&
+  return !blocked.has(g.id)&&!blocked.has(g.url)&&Number.isFinite(start)&&Number.isFinite(end)&&start<=now.getTime()&&now.getTime()<end&&
     /^\d{4}-\d{2}-\d{2}$/.test(g.reviewed_on)&&
     Date.parse(g.reviewed_on+'T00:00:00Z')<=now.getTime()&&
     now.getTime()-Date.parse(g.reviewed_on+'T00:00:00Z')<=8*86400000&&
     [g.url,g.terms_url,g.privacy_url].every(sourceUrl);
  });
- const future=data.preview.filter(g=>g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
+ const future=data.preview.filter(g=>!blocked.has(g.id)&&!blocked.has(g.url)&&g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
   [g.url,g.terms_url].every(sourceUrl));
  return {live,future};
 }
@@ -47,7 +57,9 @@ export function renderEditorialLinks(data,now=new Date()){
   card.append(line('p',g.note,'notes'));
   const links=line('div',null,'action');
   links.append(outbound('Jetzt beim Veranstalter teilnehmen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
-  card.append(links);liveRoot.append(card);
+  card.append(links);
+  const report=outbound('Problem oder Betrugsverdacht melden (GitHub)',issueLink(g));
+  report.className='small';card.append(report);liveRoot.append(card);
  }
  if(!live.length)liveRoot.append(line('p','Derzeit kein noch laufender, separat geprüfter Direktlink. Neue Aktionen werden nach Einzelprüfung ergänzt.','small'));
  for(const g of future){
@@ -57,6 +69,22 @@ export function renderEditorialLinks(data,now=new Date()){
   card.append(line('p','Geplanter Start: '+new Date(g.starts_on+'T12:00:00Z').toLocaleDateString('de-DE')+' · geplantes Ende: '+new Date(g.ends_on+'T12:00:00Z').toLocaleDateString('de-DE'),'meta'),line('p',g.note,'notes'));
   const links=line('div',null,'action');links.append(outbound('Offizielle Informationsseite',g.url),outbound('Teilnahmebedingungen',g.terms_url));
   card.append(links);futureRoot.append(card);
+ }
+ const reviewRoot=$('editorialReview');
+ if(reviewRoot){
+  reviewRoot.replaceChildren();
+  const all=Array.isArray(data.review_candidates)?data.review_candidates:[];
+  const blocked=new Set(Array.isArray(data.blacklist)?data.blacklist.filter(b=>b&&b.verified===true).map(b=>b.id):[]);
+  for(const g of all.filter(e=>!blocked.has(e.id))){
+   const box=line('article',null,'game');
+   box.append(line('span','Noch nicht zur Teilnahme freigegeben','pill warn'));
+   box.append(line('h3',g.title),line('p','Veranstalter: '+g.organizer));
+   box.append(line('p','Prüfgrund: '+g.reason,'notes'));
+   const actions=line('div',null,'action');
+   actions.append(outbound('Offizielle Bedingungen prüfen',g.terms_url));
+   actions.append(outbound('Prüfung/Freigabe vorschlagen (GitHub)',issueLink(g,'freigabe')));
+   box.append(actions);reviewRoot.append(box);
+  }
  }
  status.textContent='Zuletzt anhand der Originalquellen recherchiert: '+data.reviewed_on+
   '. Direkte Links sind keine D1-Administratorenfreigaben. Tagesaktionen müssen bei Öffnung erneut geprüft werden.';
@@ -68,7 +96,7 @@ export async function loadEditorialLinks(){
   if(!res.ok)throw Error('Quellenliste vorübergehend nicht verfügbar');
   renderEditorialLinks(await res.json());
  }catch{
-  $('editorialLive')?.replaceChildren();$('adventPreview')?.replaceChildren();
+  $('editorialLive')?.replaceChildren();$('adventPreview')?.replaceChildren();$('editorialReview')?.replaceChildren();
   document.body.dataset.editorialLiveCount='0';
   document.dispatchEvent(new Event('editorialLinksUpdated'));
   if($('editorialCount'))$('editorialCount').textContent='0 derzeit überprüfbare Direktlinks';
