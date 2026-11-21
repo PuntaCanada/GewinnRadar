@@ -4,7 +4,16 @@ test('form review requires separate authenticated admin and all seven live check
  const sql=setup();sql.prepare("INSERT INTO users(id,email,display_name,role,email_verified) VALUES ('a','admin@example.invalid','Admin','admin',1)").run();
  const token='e'.repeat(64);sql.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,?,?)").run(await hash(token),'a','2099-01-01T00:00:00Z');
  sql.prepare("INSERT INTO games(id,organizer,title,prize,url,terms_url,privacy_url,starts_at,ends_at,daily,required_data,status) VALUES ('test','Example','Test Calendar','Prize','https://www.br.de/g','https://www.br.de/terms','https://www.br.de/privacy','2026-01-01T00:00:00Z','2099-01-01T00:00:00Z',1,'email','review')").run();
- const db={prepare(query){return {bind(...args){return{first:async()=>sql.prepare(query).get(...args)||null,run:async()=>{const r=sql.prepare(query).run(...args);return{meta:{changes:Number(r.changes)}}}}}}};
+ const db={
+  prepare(query){
+   return {bind(...args){
+    return {
+     first:async()=>sql.prepare(query).get(...args)||null,
+     run:async()=>{const x=sql.prepare(query).run(...args);return{meta:{changes:Number(x.changes)}}}
+    };
+   }};
+  }
+ };
  const body={game_id:'test',form_url:'https://www.br.de/g',privacy_url:'https://www.br.de/privacy',required_fields:'Email address only',notes:'Confirmed the real 2026 entry form without required marketing consent.',form_observed:true,correct_year:true,german_residents:true,no_marketing_required:true,no_purchase_required:true,no_account_or_app_obligation:true,no_unresolved_deadline_conflict:true};
  const send=async(data,authenticated=true)=>formPost({request:new Request('https://example.org/api/admin/form-verification',{method:'POST',headers:{origin:'https://example.org','content-type':'application/json',...(authenticated?{cookie:'gr_session='+token}:{})},body:JSON.stringify(data)}),env:{DB:db}});
  assert.equal((await send(body,false)).status,403);
