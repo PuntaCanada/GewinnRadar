@@ -947,6 +947,28 @@
         "evidence_url": "https://www.snapfrog.de/gewinnspiel/keeprix-all-in-one-downloader-gewinnspiel",
         "summary": "Veranstalterseite bestätigt 30 Jahreslizenzen, kostenloses E-Mail-Gewinnspielformular und getrennte AGB-Alternative ohne Newsletter bis 31.12.2026; keine E-Mail gesendet."
       }
+    },
+    {
+      "id": "biomassehof-allgaeu-pelletlieferung-2026",
+      "organizer": "Biomassehof Allgäu eG",
+      "title": "Biomassehof Allgäu – kostenlose Pelletlieferung gewinnen",
+      "prize": "Eine lose Holzpelletlieferung zum einmaligen Auffüllen des eigenen Pelletbunkers, höchstens 6 Tonnen, nur im Liefergebiet",
+      "url": "https://www.biomassehof.de/gewinnspiel/",
+      "terms_url": "https://www.biomassehof.de/gewinnspiel/",
+      "privacy_url": "https://www.biomassehof.de/datenschutz/",
+      "starts_at": "2025-01-01T00:01:00+01:00",
+      "ends_at": "2027-01-01T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "web_form",
+      "required_data": "Onlineformular mit Vor- und Nachname, E-Mail, Telefon, Adresse/PLZ und Pelletbunker-Größe; Deutschland, mindestens 14 Jahre (bei Minderjährigen Zustimmung). Gewinn nur in Teilen Bayerns/Baden-Württembergs lieferbar und nur mit geeignetem Pelletbunker sinnvoll.",
+      "marketing_requirements": "Laut Originalbedingungen kostenlos und ohne Produktkauf oder Mitgliedschaft; kein Pflicht-Newsletter im Teilnahmeformular. Gewinner-Name und Wohnort dürfen nach Veranstalterbedingungen in Werbemedien veröffentlicht werden.",
+      "note": "Veranstalter-Seite und dort integrierte Teilnahme-/Datenschutzbedingungen am 21.11.2026 geprüft. Teilnahmeschluss 31.12.2026. Das Werbeversprechen einer monatlichen Ziehung weicht von den sehr allgemein formulierten Bedingungen zur Gewinnerauswahl ab; kein Anspruch auf eine bestimmte Monatsverlosung. Nur bei vorhandenem Bunker im angegebenen Liefergebiet sinnvoll.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.biomassehof.de/gewinnspiel/",
+        "summary": "Originale kostenlose Registrierung mit Formular, Teilnahmebedingungen (01.01.2025–31.12.2026), Liefergebiets- und Bunker-Einschränkungen samt Namensveröffentlichung lesbar; kein Formular abgesendet."
+      }
     }
   ],
   "preview": [
