@@ -95,3 +95,24 @@ test('login opt-in disabled: cannot send emails even with database and account',
   assert.equal(called,0);
  }finally{globalThis.fetch=old;sqlite.close()}
 });
+
+test('rate-limited magic link requests: maximum three emails per user/hour',async()=>{
+ const {db,sqlite}=dbAdapter();
+ sqlite.prepare("INSERT INTO users(id,email,display_name,role) VALUES('mother','mom@example.invalid','Mama','member')").run();
+ const old=globalThis.fetch;
+ let sends=0;
+ globalThis.fetch=async(url,opts)=>{assert.equal(String(url),'https://api.brevo.com/v3/smtp/email');sends++;const payload=JSON.parse(opts.body);assert.equal(payload.to[0].email,'mom@example.invalid');return new Response(JSON.stringify({messageId:'test-'+sends}),{status:201,headers:{'content-type':'application/json'}})};
+ const env={DB:db,LOGIN_MAIL_ENABLED:'true',LOGIN_RATE_SALT:'s'.repeat(48),BREVO_API_KEY:'mock-only-not-a-real-key',SENDER_EMAIL:'test@example.invalid'};
+ try{
+  for(let i=0;i<5;i++){
+   const response=await login({request:request('/api/login','POST',{email:'mom@example.invalid'}),env});
+   assert.equal(response.status,200);
+   assert.match((await response.json()).message,/Falls ein freigeschaltetes Konto/);
+  }
+  assert.equal(sends,3);
+  assert.equal(sqlite.prepare('SELECT count(*) AS n FROM login_tokens').get().n,3);
+  const unknown=await login({request:request('/api/login','POST',{email:'nonexistent@example.invalid'}),env});
+  assert.equal(unknown.status,200);
+  assert.equal(sends,3);
+ } finally{globalThis.fetch=old;sqlite.close()}
+});
