@@ -980,7 +980,8 @@
       "terms_url": "https://www.aldiventskalender.de/teilnahmebedingungen",
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24",
-      "note": "Tagesfrage und E-Mail. App-Pflicht am 6., 13. und 20. Dezember; Kassenbonverlosung ist eine getrennte Kaufaktion. Tagesformular vor Teilnahme prüfen."
+      "note": "Tagesfrage und E-Mail. App-Pflicht am 6., 13. und 20. Dezember; Kassenbonverlosung ist eine getrennte Kaufaktion. Tagesformular vor Teilnahme prüfen.",
+      "promoted_to": "aldi-nord-advent-2026"
     },
     {
       "id": "agravis-2026",
@@ -990,7 +991,8 @@
       "terms_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24",
-      "note": "Kostenlose Tagesaktionen laut Veranstalter. Spiele und erforderliche Angaben erst am jeweiligen Tag kontrollieren."
+      "note": "Kostenlose Tagesaktionen laut Veranstalter. Spiele und erforderliche Angaben erst am jeweiligen Tag kontrollieren.",
+      "promoted_to": "agravis-advent-2026"
     },
     {
       "id": "wdr3-2026",
@@ -1000,7 +1002,8 @@
       "terms_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24",
-      "note": "Tägliches Musikrätsel. Tagesfrist und Teilnahmeweg noch vor Öffnung prüfen."
+      "note": "Tägliches Musikrätsel. Tagesfrist und Teilnahmeweg noch vor Öffnung prüfen.",
+      "promoted_to": "wdr3-advent-2026"
     },
     {
       "id": "great-body-xmas-bingo-2026",

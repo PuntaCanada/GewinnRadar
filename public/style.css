@@ -52,3 +52,12 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 
 /* Keep the empty private D1 catalogue out of the public visitor view. */
 body:not(.has-user) #d1CatalogHeading,body:not(.has-user) #d1CatalogHeading + p,body:not(.has-user) .toolbar,body:not(.has-user) #resultCount,body:not(.has-user) #cards{display:none!important}
+
+/* Advent daily: clear source status, large tap targets, no account or D1 coupling. */
+#adventDaily{margin:24px 0 32px;padding:18px;border:2px solid #aacfb4;border-radius:16px;background:#f7fcf7}
+#adventDaily .cards{min-width:0;grid-template-columns:minmax(0,1fr)}
+#adventDaily .advent-card{border-left:5px solid #1a7443}
+#adventDaily .advent-card h3{margin:10px 0 6px;line-height:1.35;overflow-wrap:anywhere}
+#adventDaily .action a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+#adventDaily .guest-progress{margin-bottom:16px}
+@media(max-width:600px){#adventDaily{padding:12px;margin:14px 0 22px}#adventDaily .action{flex-direction:column;align-items:stretch}#adventDaily .action a{width:100%}}

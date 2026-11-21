@@ -1,0 +1,52 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from '../public/advent-daily.js';
+const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
+const at=(s)=>new Date(s);
+test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
+ assert.equal(data.confirmed.length,21);
+ assert.match(data.confirmed.find(x=>x.id==='mueller-app-advent-2026').requirements,/nicht jeder Tag ist eine Verlosung/);
+ assert.match(data.confirmed.find(x=>x.id==='supernurse-advent-2026').note,/Gesamtverlosung/);
+ const aldi=data.confirmed.find(x=>x.id==='aldi-nord-advent-2026');
+ assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
+ const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
+ assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
+ assert.equal(data.review_candidates.length,2);
+ assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
+ assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
+ assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
+ assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,21);
+ assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
+});
+test('Berlin day respects midnight independently of browser timezone',()=>{
+ assert.equal(berlinDay(at('2026-11-30T23:30:00Z')),'2026-12-01');
+ assert.equal(berlinDay(at('2026-12-01T23:30:00Z')),'2026-12-02');
+});
+test('daily deadline only enforced when independently supported, never invented',()=>{
+ const agravis=data.confirmed.find(g=>g.id==='agravis-advent-2026');
+ const joska=data.confirmed.find(g=>g.id==='joska-advent-2026');
+ const sz=data.confirmed.find(g=>g.id==='sz-advent-2026');
+ const online=data.confirmed.find(g=>g.id==='t-online-advent-2026');
+ assert.equal(dailyState(joska,at('2026-12-01T07:59:00+01:00')),'not-open-yet');
+ assert.equal(dailyState(joska,at('2026-12-01T08:00:00+01:00')),'today');
+ assert.equal(dailyState(joska,at('2026-12-01T17:01:00+01:00')),'deadline-passed');
+ assert.equal(dailyState(agravis,at('2026-12-03T23:59:00+01:00')),'today');
+ assert.equal(dailyState(agravis,at('2026-12-03T23:59:30+01:00')),'today');
+ assert.equal(dailyState(agravis,at('2026-12-04T00:00:00+01:00')),'today');
+ assert.equal(dailyState(sz,at('2026-12-03T23:59:00+01:00')),'today');
+ assert.equal(dailyState(online,at('2026-12-03T23:59:30+01:00')),'today','t-online cutoff not officially specified');
+});
+test('today marks are local, day-isolated, erasable, and cannot create arbitrary keys',()=>{
+ const m=new Map(),store={getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k)};
+ assert.equal(writeDayDone(store,'joska-advent-2026','2026-12-01',true),true);
+ assert.equal(readDayDone(store,'joska-advent-2026','2026-12-01'),true);
+ assert.equal(readDayDone(store,'joska-advent-2026','2026-12-02'),false);
+ assert.equal(readDayDone(store,'agravis-advent-2026','2026-12-01'),false);
+ assert.equal(writeDayDone(store,'../api/admin','2026-12-01',true),false);
+ assert.equal(writeDayDone(store,'joska-advent-2026','2026-12-25',true),false);
+ assert.equal(m.size,1);
+ assert.equal(writeDayDone(store,'joska-advent-2026','2026-12-01',false),true);
+ assert.equal(m.size,0);
+});

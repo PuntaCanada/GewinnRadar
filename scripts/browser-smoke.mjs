@@ -40,6 +40,11 @@ try{
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
+    await page.locator('#adventToday .advent-card').first().waitFor();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),21);
+    assert.equal(await page.locator('#adventCandidates .game').count(),2);
+    assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
+    assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);
     assert.equal(await page.locator('#editorialReview .game').count(),3);
     await page.locator('#editorialReview').getByRole('heading',{name:/Berghaus/}).waitFor();
@@ -108,7 +113,7 @@ try{
     assert.equal(await page.locator('#editorialLive').getByText('Facebook oder Instagram erforderlich').count(),3);
     assert.equal(await page.locator('#editorialLive').getByText('WhatsApp-Kanal + eigene E-Mail').count(),1);
     assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),28);
-    assert.equal(await page.locator('#adventPreview .game').count(),4);
+    assert.equal(await page.locator('#adventPreview .game').count(),1);
     assert.match(await page.locator('#editorialCount').innerText(),/42 recherchierte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
