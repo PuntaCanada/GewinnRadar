@@ -31,7 +31,6 @@ def check(db):
 def main():
  db=sqlite3.connect(':memory:')
  db.execute('PRAGMA foreign_keys=ON')
- check(db) if False else None
  apply(db)
  check(db)
  apply(db)  # CREATE IF NOT EXISTS; harmless when the schema already matches
