@@ -1,0 +1,22 @@
+name: GewinnRadar public production diagnostics
+on:
+  pull_request:
+    paths:
+      - 'scripts/production-readonly-probe.mjs'
+      - '.github/workflows/production-readonly.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  read-only-public-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect public Pages APIs without credentials or writes
+        run: node scripts/production-readonly-probe.mjs
