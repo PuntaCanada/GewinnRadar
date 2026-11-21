@@ -198,7 +198,7 @@ try{
   assert.equal(savedLink.checked_no_redirect,true);
   // Desktop admin inputs must stack instead of running into neighbouring labels.
   const adminInput=adminPage.locator('#newForm input[name="organizer"]');
-  const adminLabel=adminPage.locator('#newForm label').filter({has:adminInput});
+  const adminLabel=adminInput.locator('xpath=..');
   const inputBox=await adminInput.boundingBox(),labelBox=await adminLabel.boundingBox();
   assert.ok(inputBox.width>350,'admin text fields should have usable width on desktop');
   assert.ok(inputBox.y>labelBox.y+15,'field must sit below its label rather than inline');
