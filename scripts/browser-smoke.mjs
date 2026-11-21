@@ -41,7 +41,7 @@ try{
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
     await page.locator('#adventToday .advent-card').first().waitFor();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),19);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),21);
     assert.equal(await page.locator('#adventCandidates .game').count(),2);
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
