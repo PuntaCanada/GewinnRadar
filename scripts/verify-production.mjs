@@ -4,13 +4,22 @@
 // Never treat a failed fetch as proof of an up-to-date deployment.
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 const path = 'public/editorial-links-2026.json';
 const url = 'https://gewinnradar.pages.dev/editorial-links-2026.json';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const stamp = new Date().toISOString();
-const local = await readFile(path);
+// PR checks intentionally compare the production site with the current main,
+// not with the unmerged PR branch. On main pushes compare the checked-out file.
+const compareMain = process.env.PRODUCTION_COMPARE_MAIN === '1';
+const local = compareMain
+  ? execFileSync('git',['show','origin/main:'+path],{maxBuffer:4*1024*1024})
+  : await readFile(path);
+const baselineCommit=compareMain
+  ? execFileSync('git',['rev-parse','origin/main'],{encoding:'utf8'}).trim()
+  : process.env.GITHUB_SHA || null;
 const result = {
-  verified_at: stamp, source: url, github_sha: process.env.GITHUB_SHA || null,
+  verified_at: stamp, source: url, github_sha: baselineCommit, baseline:compareMain?'github-main-on-pr':'main-checkout',
   local_file: path, local_sha256: hash(local), local_bytes: local.length,
   remote_sha256: null, remote_bytes: null, http_status: null,
   status: 'UNVERIFIED', reason: 'Anfrage wurde nicht abgeschlossen'
@@ -46,7 +55,8 @@ await writeFile('production-verification.json',JSON.stringify(result,null,2)+'\n
 const msg = [
   '### GewinnRadar – externer Production-Dateivergleich',
   '- Ergebnis: **' + result.status + '**',
-  '- GitHub-Commit: ' + (result.github_sha || 'lokaler Checkout'),
+  '- Vergleichs-Commit: ' + (result.github_sha || 'lokaler Checkout'),
+  '- Vergleichsart: ' + result.baseline,
   '- URL: ' + url,
   '- Lokale SHA-256: ' + result.local_sha256,
   '- Öffentliche SHA-256: ' + (result.remote_sha256 || 'nicht ermittelbar'),
