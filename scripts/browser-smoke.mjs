@@ -207,6 +207,14 @@ try{
   await adminPage.getByRole('heading',{name:'Ersten Admin-Zugang einrichten'}).waitFor();
   assert.equal(await adminPage.locator('#setupKey').getAttribute('type'),'password');
   assert.equal(await adminPage.locator('#setupKey').getAttribute('maxlength'),'64');
+  await adminPage.goto(base+'/admin/recovery/');
+  await adminPage.getByRole('heading',{name:'Vorhandenes Administratorkonto wiederherstellen'}).waitFor();
+  assert.equal(await adminPage.locator('#recoverySecret').getAttribute('type'),'password');
+  assert.equal(await adminPage.locator('#recoverySecret').getAttribute('maxlength'),'64');
+  await adminPage.locator('#recoverySecret').fill('a'.repeat(64));
+  await adminPage.getByRole('button',{name:'Vorhandenes Admin-Konto einmalig wiederherstellen'}).click();
+  await adminPage.getByText(/Wiederherstellung verweigert/).waitFor();
+  assert.equal(await adminPage.locator('#recoverySecret').inputValue(),'','The secret is cleared immediately after a denied request');
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
