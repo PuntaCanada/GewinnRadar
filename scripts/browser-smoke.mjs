@@ -215,6 +215,19 @@ try{
   await adminPage.getByRole('button',{name:'Vorhandenes Admin-Konto einmalig wiederherstellen'}).click();
   await adminPage.getByText(/Wiederherstellung verweigert/).waitFor();
   assert.equal(await adminPage.locator('#recoverySecret').inputValue(),'','The secret is cleared immediately after a denied request');
+  // This mock exercises the success UI only. Actual database and API recovery
+  // are covered by the separate SQLite tests; Chromium does NOT touch D1.
+  let submittedRecovery=null;
+  await adminPage.route('**/api/admin/recover',async route=>{
+    submittedRecovery=JSON.parse(route.request().postData());
+    await route.fulfill({status:201,contentType:'application/json',
+      body:JSON.stringify({ok:true,recovered_existing_admin:true,mail_sent:false})});
+  });
+  await adminPage.locator('#recoverySecret').fill('b'.repeat(64));
+  await adminPage.getByRole('button',{name:'Vorhandenes Admin-Konto einmalig wiederherstellen'}).click();
+  await adminPage.waitForURL(base+'/admin/');
+  assert.deepEqual(submittedRecovery,{recovery_secret:'b'.repeat(64)});
+
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
