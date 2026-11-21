@@ -6,7 +6,7 @@ const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
  assert.equal(data.confirmed.length,19);
- assert.match(data.confirmed.find(x=>x.id==='mueller-app-advent-2026').note,/nicht jeder Tag ist eine Verlosung/);
+ assert.match(data.confirmed.find(x=>x.id==='mueller-app-advent-2026').requirements,/nicht jeder Tag ist eine Verlosung/);
  assert.match(data.confirmed.find(x=>x.id==='supernurse-advent-2026').note,/Gesamtverlosung/);
  const aldi=data.confirmed.find(x=>x.id==='aldi-nord-advent-2026');
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
