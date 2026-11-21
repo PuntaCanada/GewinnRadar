@@ -106,6 +106,7 @@ try{
     const url=new URL(route.request().url()),path=url.pathname;
     const response=(object,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(object)});
     if(path==='/api/admin/contests')return response({contests:[]});
+    if(path==='/api/admin/readiness')return response({checked_at:'2026-11-21T12:00:00Z',ready:0,blocked:1,contests:[{id:'pending',title:'Ungeprüfter Testkalender',ready:false,reasons:['Aktuelles Adventstürchen heute noch nicht geprüft']}]});
     if(path==='/api/admin/form-verification'&&route.request().method()==='POST'){
       const b=JSON.parse(route.request().postData());
       if(!['form_observed','correct_year','german_residents','no_marketing_required','no_purchase_required','no_account_or_app_obligation','no_unresolved_deadline_conflict'].every(k=>b[k]===true))return response({error:'Nicht alle Bedingungen erfüllt'},409);
@@ -122,6 +123,9 @@ try{
   });
   await adminPage.goto(base+'/admin/');
   await adminPage.getByRole('heading',{name:'Quellenhistorie 2026'}).waitFor();
+  await adminPage.getByRole('button',{name:'Freigabereife prüfen'}).click();
+  await adminPage.getByText('0 freigabereif · 1 mit offenen Voraussetzungen. Keine automatische Veröffentlichung.').waitFor();
+  await adminPage.getByText('Aktuelles Adventstürchen heute noch nicht geprüft').waitFor();
   await adminPage.locator('#evidenceCandidate').fill('wdr3-2026');
   await adminPage.locator('#evidenceUrl').fill('https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html');
   await adminPage.locator('#evidenceFinding').fill('Der offizielle WDR nennt das Kalenderjahr 2026, aber das Formular ist noch nicht geprüft.');

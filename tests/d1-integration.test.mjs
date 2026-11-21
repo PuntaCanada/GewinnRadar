@@ -6,6 +6,7 @@ import {hash} from '../functions/_lib/core.js';
 import {onRequestPost as addContest,onRequestGet as listAdmin} from '../functions/api/admin/contests.js';
 import {onRequestPost as review} from '../functions/api/admin/review.js';
 import {onRequestGet as games} from '../functions/api/games.js';
+import {onRequestGet as readiness} from '../functions/api/admin/readiness.js';
 import {onRequestPost as progress} from '../functions/api/progress.js';
 import {onRequestGet as previewLogin,onRequestPost as verifyLogin} from '../functions/api/verify.js';
 import {onRequestPost as login} from '../functions/api/login.js';
@@ -50,6 +51,15 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  const added=await call(addContest,'/api/admin/contests','POST',candidate(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
  assert.equal(added.status,201);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'review');
+ const check=async(session)=>(await (await call(readiness,'/api/admin/readiness','GET',undefined,session)).json());
+ const adminToken='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+ assert.equal((await call(readiness,'/api/admin/readiness','GET')).status,403);
+ assert.equal((await call(readiness,'/api/admin/readiness','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,403);
+ const before=await check(adminToken);
+ assert.equal(before.ready,0);
+ assert.equal(before.blocked,1);
+ assert.ok(before.contests[0].reasons.includes('Redaktionelle Freigabe fehlt'));
+ assert.ok(before.contests[0].reasons.includes('Original-Link nicht bestätigt'));
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0);
  const incomplete=approval();incomplete.privacy_checked=false;
  assert.equal((await call(review,'/api/admin/review','POST',incomplete,'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,400);
@@ -65,6 +75,10 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  // and must also block progress changes, even when status and link_state still say verified.
  const guest=async()=>(await (await call(games,'/api/games','GET')).json()).games.length;
  assert.equal(await guest(),1);
+ const verified=await check(adminToken);
+ assert.equal(verified.ready,1,'Admin diagnostics and public gate must agree');
+ assert.equal(verified.contests[0].reasons.length,0);
+
  sqlite.prepare("UPDATE form_verifications SET no_marketing_required=0 WHERE game_id=?").run('advent-2026-check');
  assert.equal(await guest(),0,'Revoked marketing compliance must remove public listing');
  assert.equal((await call(progress,'/api/progress','POST',{id:'advent-2026-check',action:'favorite',value:true},'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,404);
