@@ -42,7 +42,6 @@ for(const path of paths){
     entry.production_excerpt=html.slice(Math.max(0,entry.first_difference_offset-70),entry.first_difference_offset+110);
     entry.github_excerpt=expected.slice(Math.max(0,entry.first_difference_offset-70),entry.first_difference_offset+110);
    }
-   entry.status=actual.equals(bytes)?'MATCH':'MISMATCH';
    // Cloudflare Pages may inject its Analytics script immediately before </body>.
    // Do not claim byte equality: only admit the exact known injection and require
    // the complete remaining HTML to match GitHub byte for byte.
