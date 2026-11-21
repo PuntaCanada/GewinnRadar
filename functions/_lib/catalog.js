@@ -28,7 +28,7 @@ export function validateResearch(entry){
  for(const k of ['organizer','title','prize','required_data','review_note'])if(!ascii(entry[k],1000))return {error:'Text fehlt: '+k};
  for(const k of ['url','terms_url','source_url'])if(!publicContestUrl(entry[k]))return {error:'Unsichere oder fehlende URL: '+k};
  if(!/^\d{4}-\d\d-\d\d$/.test(entry.starts_on)||!/^\d{4}-\d\d-\d\d$/.test(entry.ends_on))return {error:'Datumsformat ungültig'};
- if([entry.starts_on,entry.ends_on].some(s=>new Date(s+'T12:00:00Z').toISOString().slice(0,10)!==s))return {error:'Ungültiges Kalenderdatum'};
+ if([entry.starts_on,entry.ends_on].some(s=>{const d=new Date(s+'T12:00:00Z');return !Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==s;}))return {error:'Ungültiges Kalenderdatum'};
  if(entry.starts_on>entry.ends_on || !entry.starts_on.startsWith(String(entry.year)))return {error:'Zeitraum widersprüchlich'};
  if(entry.cadence==='specific_dates'&&(!Array.isArray(entry.eligible_dates)||!entry.eligible_dates.length||entry.eligible_dates.some(x=>!Number.isInteger(x)||x<1||x>31)))return {error:'Teilnahmetage fehlen'};
  return {value:entry,key:catalogKey(entry)};
