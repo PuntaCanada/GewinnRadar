@@ -20,6 +20,7 @@ for(const path of paths){
    const actual=Buffer.from(await r.arrayBuffer());
    entry.production_sha256=hash(actual);
    entry.expected_bytes=bytes.length;entry.production_bytes=actual.length;
+    entry.status=actual.equals(bytes)?'MATCH':'MISMATCH';
    if(path==='public/index.html'&&entry.status==='MISMATCH'){
     const trailing=actual.subarray(bytes.length).toString('utf8');
     entry.prefix_byte_identical=actual.length>=bytes.length&&actual.subarray(0,bytes.length).equals(bytes);
