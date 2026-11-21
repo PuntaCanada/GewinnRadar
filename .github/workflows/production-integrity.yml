@@ -5,12 +5,20 @@ on:
     branches: [main]
     paths:
       - public/editorial-links-2026.json
+      - public/advent-calendars-2026.json
+      - public/advent-daily.js
+      - public/index.html
+      - scripts/verify-advent-production.mjs
       - scripts/verify-production.mjs
       - .github/workflows/production-integrity.yml
   push:
     branches: [main]
     paths:
       - public/editorial-links-2026.json
+      - public/advent-calendars-2026.json
+      - public/advent-daily.js
+      - public/index.html
+      - scripts/verify-advent-production.mjs
       - scripts/verify-production.mjs
       - .github/workflows/production-integrity.yml
 permissions:
@@ -32,11 +40,17 @@ jobs:
         env:
           PRODUCTION_COMPARE_MAIN: ${{ github.event_name == 'pull_request' && '1' || '0' }}
         run: node scripts/verify-production.mjs
+      - name: Independent Advent catalogue and UI deployment integrity
+        env:
+          PRODUCTION_COMPARE_MAIN: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+        run: node scripts/verify-advent-production.mjs
       - name: Save audit result (including UNVERIFIED)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gewinnradar-production-proof
-          path: production-verification.json
+          path: |
+            production-verification.json
+            advent-production-verification.json
           if-no-files-found: warn
           retention-days: 7
