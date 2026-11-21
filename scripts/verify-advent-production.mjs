@@ -22,50 +22,30 @@ for(const path of paths){
    entry.expected_bytes=bytes.length;entry.production_bytes=actual.length;
     entry.status=actual.equals(bytes)?'MATCH':'MISMATCH';
    if(path==='public/index.html'&&entry.status==='MISMATCH'){
-    const trailing=actual.subarray(bytes.length).toString('utf8');
-    entry.prefix_byte_identical=actual.length>=bytes.length&&actual.subarray(0,bytes.length).equals(bytes);
-    entry.trailing_bytes=Buffer.byteLength(trailing);
-    entry.trailing_has_analytics=trailing.includes('static.cloudflareinsights.com/beacon.min.js');
-    entry.trailing_has_close=trailing.includes('</body></html>');
-    const suffix=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js' data-cf-beacon='[^']*'><\/script><!-- Cloudflare Pages Analytics --><\/body><\/html>\s*$/;
-    if(entry.prefix_byte_identical&&suffix.test(trailing)){
-      entry.status='MATCH_WITH_PLATFORM_INJECTION';
-      entry.platform_injection='HTML content exact prefix plus appended Cloudflare Analytics snippet and closing tags';
-    }
-   }
-   if(path==='public/index.html'&&!actual.equals(bytes)){
-    const html=actual.toString('utf8');const expected=bytes.toString('utf8');
+    const html=actual.toString('utf8'),expected=bytes.toString('utf8');
     entry.production_has_advent_section=html.includes('id="adventDaily"');
     entry.production_has_advent_script=html.includes('src="/advent-daily.js"');
-    entry.github_has_advent_section=expected.includes('id="adventDaily"');
-    entry.first_difference_offset=[...Array(Math.min(actual.length,bytes.length)).keys()].find(i=>actual[i]!==bytes[i])??Math.min(actual.length,bytes.length);
-    entry.production_excerpt=html.slice(Math.max(0,entry.first_difference_offset-70),entry.first_difference_offset+110);
-    entry.github_excerpt=expected.slice(Math.max(0,entry.first_difference_offset-70),entry.first_difference_offset+110);
-   }
-    // Cloudflare Pages Analytics may append a well-known script next to closing HTML.
-    // This is not raw byte identity: permit only one exact, narrow platform-generated
-    // segment, and require ALL remaining content to equal the GitHub version.
-    if(path==='public/index.html'&&entry.status==='MISMATCH'){
-     const html=actual.toString('utf8');
-     const startToken="<script defer src='https://static.cloudflareinsights.com/beacon.min.js'";
-     const endToken='<!-- Cloudflare Pages Analytics -->';
-     const start=html.indexOf(startToken);
-     const end=start<0?-1:html.indexOf(endToken,start);
-     if(start>=0&&end>=0&&html.lastIndexOf(startToken)===start){
-      const script=html.slice(start,end+endToken.length);
-      entry.injected_html_bytes=Buffer.byteLength(script);
-      const allowed=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js'[^>]*><\/script>\s*<!-- Cloudflare Pages Analytics -->$/;
-      if(script.length<600&&allowed.test(script)){
-       const normalized=Buffer.from(html.slice(0,start)+html.slice(end+endToken.length),'utf8');
-       entry.normalized_sha256=hash(normalized);
-       if(normalized.equals(bytes)){
-        entry.status='MATCH_WITH_PLATFORM_INJECTION';
-        entry.platform_injection='Cloudflare Pages Analytics injected; original HTML is otherwise exactly the GitHub bytes';
-       }
-      }
+    const startTag="<script defer src='https://static.cloudflareinsights.com/beacon.min.js'";
+    const marker='<!-- Cloudflare Pages Analytics -->';
+    const start=html.indexOf(startTag),mark=start<0?-1:html.indexOf(marker,start);
+    entry.injection_start=start;
+    entry.injection_marker=mark;
+    if(start>=0&&mark>=0&&html.lastIndexOf(startTag)===start&&html.lastIndexOf(marker)===mark){
+     const injection=html.slice(start,mark+marker.length);
+     const rule=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js' data-cf-beacon='\{"token": "[0-9a-f]{32}"\}'><\/script><!-- Cloudflare Pages Analytics -->$/;
+     entry.injection_bytes=Buffer.byteLength(injection);
+     entry.exact_injection_format=rule.test(injection);
+     const normalized=html.slice(0,start)+html.slice(mark+marker.length);
+     entry.normalized_sha256=hash(Buffer.from(normalized));
+     entry.normalized_length=Buffer.byteLength(normalized);
+     entry.normalized_first_diff=Array.from({length:Math.min(normalized.length,expected.length)},(_,i)=>i).find(i=>normalized[i]!==expected[i])??Math.min(normalized.length,expected.length);
+     entry.normalized_ends_like_source=normalized.slice(-85)===expected.slice(-85);
+     if(rule.test(injection)&&Buffer.from(normalized).equals(bytes)){
+      entry.status='MATCH_WITH_PLATFORM_INJECTION';
+      entry.platform_injection='Verified one exact Cloudflare Pages Analytics beacon; all original HTML bytes unchanged';
      }
     }
-
+   }
    if(path.endsWith('advent-calendars-2026.json')){
     const d=JSON.parse(actual.toString('utf8'));
     if(d.schema_version!==1||!Array.isArray(d.confirmed))entry.status='MISMATCH';
@@ -78,7 +58,7 @@ for(const path of paths){
  if(entry.status==='UNVERIFIED'&&audit.status!=='MISMATCH')audit.status='UNVERIFIED';
 }
 await writeFile('advent-production-verification.json',JSON.stringify(audit,null,2)+'\n');
-const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','- Ergebnis: **'+audit.status+'**','- GitHub-Commit: '+commit,'- Zeitpunkt: '+audit.timestamp,...audit.files.map(e=>'- '+e.path+': **'+e.status+'**, HTTP '+(e.http_status??'keine Antwort')+', GitHub SHA-256 '+e.expected_sha256+', Production SHA-256 '+(e.production_sha256??'unbekannt')+', Prefix identisch: '+(e.prefix_byte_identical??'n/a')+', Extra Bytes: '+(e.trailing_bytes??'n/a')+', Analytics-Anhang: '+(e.trailing_has_analytics??'n/a')+', HTML script vorhanden: '+(e.production_has_advent_script??'n/a')+', HTML Bereich vorhanden: '+(e.production_has_advent_section??'n/a')+', erste Abweichung: '+(e.first_difference_offset??'n/a')+', remote-Auszug: '+(e.production_excerpt??'n/a')+', GitHub-Auszug: '+(e.github_excerpt??'n/a'))];
+const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','- Ergebnis: **'+audit.status+'**','- GitHub-Commit: '+commit,'- Zeitpunkt: '+audit.timestamp,...audit.files.map(e=>'- '+e.path+': **'+e.status+'**, HTTP '+(e.http_status??'keine Antwort')+', GitHub SHA-256 '+e.expected_sha256+', Production SHA-256 '+(e.production_sha256??'unbekannt')+', Prefix identisch: '+(e.prefix_byte_identical??'n/a')+', Extra Bytes: '+(e.trailing_bytes??'n/a')+', Analytics-Anhang: '+(e.trailing_has_analytics??'n/a')+', HTML script vorhanden: '+(e.production_has_advent_script??'n/a')+', HTML Bereich vorhanden: '+(e.production_has_advent_section??'n/a')+', erste Abweichung: '+(e.first_difference_offset??'n/a')+', remote-Auszug: '+(e.production_excerpt??'n/a')+', Normalized hash: '+(e.normalized_sha256??'n/a')+', normalized length: '+(e.normalized_length??'n/a')+', injected bytes: '+(e.injection_bytes??'n/a')+', injection format: '+(e.exact_injection_format??'n/a')+', normalized first diff: '+(e.normalized_first_diff??'n/a')+', ending unchanged: '+(e.normalized_ends_like_source??'n/a'))];
 console.log(lines.join('\n'));
 if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,lines.join('\n')+'\n');
 if(audit.status==='MISMATCH')process.exitCode=2;
