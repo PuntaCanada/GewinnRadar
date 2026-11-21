@@ -2,7 +2,7 @@ import {json,viewer,protectMutation} from '../../_lib/core.js';
 import {safeAdmin} from '../../_lib/contest-review.js';
 import {publicContestUrl} from '../../_lib/urls.js';
 import {canonicalContestUrl} from '../../_lib/catalog.js';
-import {encodeEmailEntry} from '../../_lib/email-entry.js';
+import {encodeEmailEntry,EMAIL_PREFIX} from '../../_lib/email-entry.js';
 const yearsInPath=(url)=>[...new URL(url).pathname.matchAll(/(?:^|[^0-9])(?:20[12][0-9])(?=[^0-9]|$)/g)].map(match=>Number(match[0].match(/20[12][0-9]/)[0]));
 const fields=['form_observed','correct_year','german_residents','no_marketing_required','no_purchase_required','no_account_or_app_obligation','no_unresolved_deadline_conflict'];
 export async function onRequestPost(ctx) {
@@ -17,8 +17,11 @@ export async function onRequestPost(ctx) {
  const mentionedYears=yearsInPath(b.form_url);
  if(mentionedYears.length && mentionedYears.some(year=>year!==sourceYear))return json({error:'Formular-URL verweist ausdrücklich auf ein anderes Jahr – keine Freigabe'},409);
  let requiredFields=b.required_fields.trim();
+ // Never allow Web-form fields to impersonate approved E-mail instructions.
+ if(b.entry_method!=='email'&&requiredFields.startsWith(EMAIL_PREFIX))return json({error:'E-Mail-Anweisungen nur im geprüften E-Mail-Modus'},409);
  if(b.entry_method!==undefined && !['email','web_form'].includes(b.entry_method))return json({error:'Unbekannter Teilnahmeweg'},400);
  if(b.entry_method==='email'){
+  if(Date.parse(game.starts_at)>Date.now())return json({error:'Tagesbetreff kann vor dem Aktionsbeginn nicht bestätigt werden'},409);
   if(![game.url,game.terms_url].some(url=>canonicalContestUrl(url)===canonicalContestUrl(b.form_url)))return json({error:'E-Mail-Anleitung muss auf der offiziellen Original- oder Bedingungsseite stehen'},409);
   const checked=encodeEmailEntry(b,b.form_url);
   if(checked.error)return json({error:checked.error},409);
