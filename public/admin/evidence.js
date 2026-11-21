@@ -35,7 +35,7 @@ $('evidenceForm').onsubmit=async e=>{
  const submit=$('evidenceSave');submit.disabled=true;
  try{
   const result=await request('/api/admin/source-evidence',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
-  status.textContent=result.approved===false?'Quellenbeleg gespeichert. Gewinnspiel bleibt ungeprüft und wird nicht versendet.':'Prüfergebnis gespeichert.';
   await history();
+  status.textContent=result.approved===false?'Quellenbeleg gespeichert. Gewinnspiel bleibt ungeprüft und wird nicht versendet.':'Prüfergebnis gespeichert.';
  }catch(err){status.textContent=err.message}finally{submit.disabled=false}
 };
