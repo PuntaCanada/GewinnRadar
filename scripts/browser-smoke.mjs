@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 import assert from 'node:assert/strict';
 
@@ -53,7 +53,26 @@ try{
     assert.equal(await link.getAttribute('rel'),'noopener noreferrer');
     const scrollWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
     assert.ok(scrollWidth <= width+2,'No horizontal overflow on '+width+'px device');
+    await mkdir('test-artifacts',{recursive:true});
+    await page.screenshot({path:'test-artifacts/senior-'+width+'.png',fullPage:true});
     await ctx.close();
   }
-  console.log('Chromium senior/mobile+desktop dashboard and progress interactions: PASS');
+  const guest=await browser.newContext({viewport:{width:390,height:850}});
+  const guestPage=await guest.newPage();
+  await guestPage.route('**/api/**',route=>{
+    const path=new URL(route.request().url()).pathname;
+    const body=path==='/api/me'?{user:null}:{error:path==='/api/login'?'Der Familien-Login ist noch nicht freigeschaltet.':'Nicht erlaubt'};
+    return route.fulfill({status:path==='/api/me'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
+  });
+  await guestPage.goto(base+'/');
+  await guestPage.getByRole('heading',{name:'Willkommen! ❤️'}).waitFor();
+  assert.equal(await guestPage.locator('#dashboard').isVisible(),false);
+  await guestPage.locator('#email').fill('test@example.invalid');
+  await guestPage.getByRole('button',{name:'Anmeldelink anfordern'}).click();
+  await guestPage.getByText('Der Familien-Login ist noch nicht freigeschaltet.').waitFor();
+  await guestPage.goto(base+'/admin/');
+  await guestPage.getByText(/Keine Admin-Berechtigung/).waitFor();
+  assert.equal(await guestPage.locator('#list').locator('.game').count(),0);
+  await guest.close();
+  console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
