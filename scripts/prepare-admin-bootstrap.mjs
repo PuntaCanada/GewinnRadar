@@ -7,8 +7,9 @@ import {emailAddress} from '../functions/_lib/login-safety.js';
 
 export function createBootstrapSql({email,name,id=randomUUID()}){
  const e=emailAddress(email);
+ const badName=typeof name!=='string'||/[\u0000-\u001f\u007f]/.test(name);
  const display=typeof name==='string'?name.trim():'';
- if(!e||display.length<2||display.length>80||/[\u0000-\u001f]/.test(display))throw Error('Valid email and display name are required');
+ if(!e||badName||display.length<2||display.length>80)throw Error('Valid email and display name are required');
  if(!/^[0-9a-f-]{36}$/.test(id))throw Error('Invalid generated ID');
  const quote=s=>"'"+s.replaceAll("'","''")+"'";
  return [
