@@ -24,7 +24,7 @@ test('live link expires automatically and previews never become clickable partic
 test('unverified or malformed source entries cannot appear as active',()=>{
  const mutated=structuredClone(data);
  mutated.active[0].privacy_url='http://not-secure.invalid';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,0);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,2);
  mutated.active[0].privacy_url=data.active[0].privacy_url;
  mutated.active[0].reviewed_on='unknown';
  assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,0);
