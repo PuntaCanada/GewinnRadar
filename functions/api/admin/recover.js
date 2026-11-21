@@ -10,7 +10,7 @@ export async function onRequestPost(ctx){
  const email=emailAddress(env.ADMIN_BOOTSTRAP_EMAIL);
  const secret=env.ADMIN_BOOTSTRAP_SECRET;
  if(env.ADMIN_RECOVERY_ENABLED!=='true'||env.ADMIN_BOOTSTRAP_ENABLED!=='false'||
-  env.LOGIN_MAIL_ENABLED==='true'||!email||typeof secret!=='string'||
+  env.LOGIN_MAIL_ENABLED!=='false'||!email||typeof secret!=='string'||
   !/^[0-9a-f]{64}$/.test(secret)||!env.DB?.batch)
   return json({error:'Admin-Wiederherstellung deaktiviert'},403);
  if(!/^application\/json(?:\s*;|$)/i.test(ctx.request.headers.get('content-type')||''))
