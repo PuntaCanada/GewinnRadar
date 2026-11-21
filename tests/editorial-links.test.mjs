@@ -181,7 +181,7 @@ test('official AVerMedia and wed2b actions retain exact timezone and honest veri
 test('three new December entries disclose mandatory participation and precise/unknown end time',()=>{
  const k=data.active.find(g=>g.id==='kreiller-advent-instagram-2026');
  const e=data.active.find(g=>g.id==='evh-halplus-christmas-lights-2026');
- const t=data.active.find(g=>g.id==='techniktipp-find-error-2026');
+ const t=data.active.find(g=>g.id==='radio-brocken-familienquiz-2026');
  assert.ok(k&&e&&t);
  assert.equal(k.ends_at,'2026-12-15T14:00:00+01:00');
  assert.match(k.deadline_label,/13:59 Uhr/);
@@ -190,8 +190,9 @@ test('three new December entries disclose mandatory participation and precise/un
  assert.equal(e.ends_at,'2026-12-15T00:00:00+01:00');
  assert.match(e.marketing_requirements,/unbeschränkte Bildnutzungsrechte/);
  assert.match(e.required_data,/Kindes/);
- assert.equal(t.deadline_label,'31.12.2026 · Uhrzeit nicht angegeben');
- assert.match(t.note,/nicht unabhängig geprüft/);
+ assert.equal(t.ends_at,'2026-12-15T18:00:00+01:00');
+ assert.match(t.marketing_requirements,/aufgezeichnete/);
+ assert.match(t.note,/drei Fragen in 30 Sekunden/);
  const ranked=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live;
  const times=ranked.map(g=>Date.parse(g.ends_at));
  assert.deepEqual(times,[...times].sort((a,b)=>a-b));
