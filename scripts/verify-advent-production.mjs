@@ -40,6 +40,10 @@ for(const path of paths){
      entry.normalized_length=Buffer.byteLength(normalized);
      entry.normalized_first_diff=Array.from({length:Math.min(normalized.length,expected.length)},(_,i)=>i).find(i=>normalized[i]!==expected[i])??Math.min(normalized.length,expected.length);
      entry.normalized_ends_like_source=normalized.slice(-85)===expected.slice(-85);
+     entry.github_end=expected.slice(-180);
+     entry.normalized_end=normalized.slice(-250);
+     entry.first_difference_expected=expected.slice(Math.max(0,entry.normalized_first_diff-90),entry.normalized_first_diff+130);
+     entry.first_difference_live=normalized.slice(Math.max(0,entry.normalized_first_diff-90),entry.normalized_first_diff+130);
      if(rule.test(injection)&&Buffer.from(normalized).equals(bytes)){
       entry.status='MATCH_WITH_PLATFORM_INJECTION';
       entry.platform_injection='Verified one exact Cloudflare Pages Analytics beacon; all original HTML bytes unchanged';
