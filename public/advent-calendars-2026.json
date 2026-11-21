@@ -257,6 +257,154 @@
         "checked_on": "2026-11-21",
         "evidence_url": "https://athletesblood.com/pages/teilnahmebedingungen-adventskalender"
       }
+    },
+    {
+      "id": "supernurse-advent-2026",
+      "organizer": "SuperNurse / GWP",
+      "title": "SuperNurse – tägliches Pflege-Quiz",
+      "url": "https://advent.supernurse.de/",
+      "terms_url": "https://advent.supernurse.de/teilnahmebedingungen",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf, 18+, Wohnsitz Deutschland; täglich drei Pflegequizfragen. Pro richtig beantworteter Frage ein Los.",
+      "note": "WICHTIG: Die richtigen Antworten sammeln Lose für eine Gesamtverlosung am 05.01.2027, nicht 24 garantierte Tagespreis-Auslosungen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://advent.supernurse.de/teilnahmebedingungen"
+      }
+    },
+    {
+      "id": "az-advent-2026",
+      "organizer": "Abendzeitung München",
+      "title": "AZ – tägliche Verlosung hinter dem Türchen",
+      "url": "https://www.abendzeitung-muenchen.de/adventskalender",
+      "terms_url": "https://www.abendzeitung-muenchen.de/mehr/vorteilswelt/gewinnen/teilnahmebedingungen-adventskalender-2026-art-771163",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenloses Konto notwendig, 18+, jeden Tag auf „Teilnehmen“ drücken; AZ+ Abonnenten erhalten dreifache Gewinnchance, aber kostenloses Konto reicht laut Teilnahmebedingungen.",
+      "note": "Tägliche Tagespreise; im Text keine exakte Tages-Uhrzeit über die jeweilige Türchen-Laufzeit hinaus gesondert bestätigt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.abendzeitung-muenchen.de/mehr/vorteilswelt/gewinnen/teilnahmebedingungen-adventskalender-2026-art-771163"
+      }
+    },
+    {
+      "id": "infra-fuerth-advent-2026",
+      "organizer": "infra fürth unternehmensgruppe",
+      "title": "infra Fürth – tägliches Quiz gewinnen",
+      "url": "https://www.infra-fuerth.de/teilnahmebedingungen-adventskalender",
+      "terms_url": "https://www.infra-fuerth.de/teilnahmebedingungen-adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos auch für Nichtkunden, Deutschland, 18+, jeden Tag Frage beantworten und sich anmelden.",
+      "note": "Tagesgewinner per Zufall, 23. und 24.12. werden gemeinsam am 28.12. gezogen. Genaue Tagesfrist nicht genannt; Originalseite kontrollieren.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.infra-fuerth.de/teilnahmebedingungen-adventskalender"
+      }
+    },
+    {
+      "id": "daddyhero-advent-2026",
+      "organizer": "DADDYHERO.de",
+      "title": "DADDYHERO – täglich kostenloses Türchen",
+      "url": "https://www.daddyhero.de/gwta/",
+      "terms_url": "https://www.daddyhero.de/gwta/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "open_time": "00:01",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 14, Wohnsitz Deutschland. Täglich Quiz/Aufgabe über Website und je nach Türchen App; Newsletter laut Regeln freiwillig.",
+      "note": "Pro Tag 00:01–23:59 Uhr; zusätzliche Tagesbedingungen oder App-Erfordernis vor Teilnahme kontrollieren.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.daddyhero.de/gwta/"
+      }
+    },
+    {
+      "id": "pld24-advent-2026",
+      "organizer": "pauldirekt GmbH / PLD24",
+      "title": "PLD24 – Instagram-Adventskalender",
+      "url": "https://pld24.de/adventskalender-teilnahmebedingungen",
+      "terms_url": "https://pld24.de/adventskalender-teilnahmebedingungen",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 18, Deutschland; öffentliches Instagram-Profil, @pld24.de folgen, im Tagespost kommentieren und jemanden markieren.",
+      "note": "Tagesrunde 00:00–23:59. Gewinne als Sachpreisgutscheincode; zur Einlösung ist ein kostenloses PLD24-Shopkonto nötig, Versand übernimmt PLD24. Insgesamt maximal ein Gewinn pro Person.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://pld24.de/adventskalender-teilnahmebedingungen"
+      }
+    },
+    {
+      "id": "fitseveneleven-advent-2026",
+      "organizer": "FITSEVENELEVEN / Fritz Foundation GmbH",
+      "title": "FITSEVENELEVEN – tägliche Instagram-Gewinne",
+      "url": "https://fitseveneleven.de/adventskalender-2026/",
+      "terms_url": "https://fitseveneleven.de/adventskalender-2026/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 14, Deutschland; Tagespost auf Instagram und darin genannte Aufgaben erledigen.",
+      "note": "ACHTUNG: Jeder Post ist ab Veröffentlichung 7 Tage teilnehmbar (nicht nur bis Mitternacht). Preise nach Post, Abholung in Schwalbach oder Versand laut Veranstalter.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://fitseveneleven.de/adventskalender-2026/"
+      }
+    },
+    {
+      "id": "mueller-app-advent-2026",
+      "organizer": "Müller Handels GmbH",
+      "title": "Müller App – täglich Coupon ODER Gewinnchance",
+      "url": "https://www.mueller.de/service/app/teilnahmebedingungen-app-aktion/",
+      "terms_url": "https://www.mueller.de/service/app/teilnahmebedingungen-app-aktion/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Nur kostenlose Müller-App mit Kundenkonto, 18+, Deutschland. Jedes Türchen enthält einen Coupon ODER ein Gewinnspiel – nicht jeder Tag ist eine Verlosung.",
+      "note": "ACHTUNG: Gewinnspiele haben ab ihrem Öffnungstag laut Grundbedingungen bis zu 7 Tage Laufzeit und eigene Regeln. Kein Kauf für das Öffnen nötig; Coupons können nur beim Einkauf eingelöst werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.mueller.de/service/app/teilnahmebedingungen-app-aktion/"
+      }
     }
   ],
   "review_candidates": [
