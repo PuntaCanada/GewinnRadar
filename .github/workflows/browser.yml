@@ -5,6 +5,7 @@ on:
       - feature/admin-review-login-hardening-v03
       - feature/advent-catalog-quality-v04
       - feature/advent-source-evidence-v05
+      - feature/verified-form-and-deadline-guards-v06
   pull_request:
 permissions:
   contents: read
