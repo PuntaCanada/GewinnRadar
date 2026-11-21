@@ -5,8 +5,10 @@ export function simpleParticipation(game){
  if(/telefon|handy|mobile|phone|anschrift|adresse|address|konto|account|app|instagram|facebook|whatsapp|social|registrierung|ausweis|zahlung/.test(data))return false;
  return /(e-mail|email|mail|name|formular)/.test(data);
 }
-export function visibleGames(games,{status='all',dailyOnly=false,simpleOnly=false}={}){
+export function visibleGames(games,{status='all',dailyOnly=false,simpleOnly=false,query=''}={}){
+ const needle=String(query).trim().toLocaleLowerCase('de-DE');
  return games.filter(g=>{
+  if(needle&&!['title','organizer','prize'].some(field=>String(g[field]||'').toLocaleLowerCase('de-DE').includes(needle)))return false;
   if(status==='favorite'&&!g.favorite)return false;
   if(status==='todo'&&g.completed)return false;
   if(status==='done'&&!g.completed)return false;
