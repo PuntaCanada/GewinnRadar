@@ -5,9 +5,9 @@ import {eligibleEditorialLinks,editorialDeadline,readGuestCompleted,writeGuestCo
 const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json',import.meta.url),'utf8'));
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
- assert.equal(data.active.length,20);
+ assert.equal(data.active.length,25);
  assert.equal(data.preview.length,3);
- assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,23);
+ assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,28);
  for(const e of [...data.active,...data.preview]){
   for(const k of ['url','terms_url'])assert.equal(new URL(e[k]).protocol,'https:');
  }
@@ -15,19 +15,19 @@ test('public source links are genuine separately reviewed entries, no D1 approva
 });
 test('live link expires automatically and previews never become clickable participation cards',()=>{
  const before=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00'));
- assert.equal(before.live.length,20);
+ assert.equal(before.live.length,25);
  assert.equal(before.future.length,3);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,16)
+ assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,21)
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).live.length,0);
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).future.length,0);
 });
 test('unverified or malformed source entries cannot appear as active',()=>{
  const mutated=structuredClone(data);
  mutated.active[0].privacy_url='http://not-secure.invalid';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,19);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,24);
  mutated.active[0].privacy_url=data.active[0].privacy_url;
  mutated.active[0].reviewed_on='unknown';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,19);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,24);
 });
 
 test('deadline shows the last eligible date, not exclusive expiry or review date',()=>{
@@ -37,8 +37,8 @@ test('deadline shows the last eligible date, not exclusive expiry or review date
 });
 test('a future daily research review is allowed, but stale or future-dated evidence is rejected',()=>{
  const next=structuredClone(data);next.active[0].reviewed_on='2026-11-23';
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,20);
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,19);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,25);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,24);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
 });
 
@@ -46,16 +46,16 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
  const now=new Date('2026-11-21T12:00:00+01:00');
  const safe=structuredClone(data);
  safe.blacklist=[{id:'bergzeit-la-sportiva-2026',verified:false,reason:'user reported'}];
- assert.equal(eligibleEditorialLinks(safe,now).live.length,20);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,25);
  safe.blacklist[0].verified=true;
- assert.equal(eligibleEditorialLinks(safe,now).live.length,19);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,24);
  assert.ok(!eligibleEditorialLinks(safe,now).live.some(g=>g.id==='bergzeit-la-sportiva-2026'));
  assert.equal(data.review_candidates.length,3);
 });
 
 test('social and messenger draws carry distinct disclosure metadata and still expire',()=>{
  const social=data.active.filter(g=>['instagram','social','whatsapp_email'].includes(g.participation_type));
- assert.equal(social.length,6);
+ assert.equal(social.length,9);
  for(const item of social){
   assert.ok(['instagram','social','whatsapp_email'].includes(item.participation_type));
   assert.match(item.marketing_requirements,/Konto|WhatsApp|Instagram|Social/);
@@ -85,16 +85,17 @@ test('live actions show nearest deadlines first, independent of source order',()
  const list=structuredClone(data);
  list.active.reverse();
  const ordered=eligibleEditorialLinks(list,when).live;
- assert.equal(ordered.length,20);
+ assert.equal(ordered.length,25);
  const endTimes=ordered.map(g=>Date.parse(g.ends_at));
  assert.deepEqual(endTimes,[...endTimes].sort((a,b)=>a-b));
  assert.equal(ordered[0].id,'partner-wera-social-2026'); // 24 Nov
  assert.equal(ordered[1].id,'bayern-digitalradio-2026'); // tie on 25 Nov, title A-Z
  assert.equal(ordered[2].id,'cloetta-candyking-instagram-2026');
  assert.equal(ordered[3].id,'gesundde-register-win-2026'); // 25 Nov
- assert.equal(ordered[4].id,'stilbruch-registration-2026'); // 29 Nov
- assert.equal(ordered[5].id,'smyths-wishlist-2026'); // 29 Nov
- assert.equal(ordered[6].id,'falken-bulls-bikes-2026'); // 30 Nov 18:00
+ assert.equal(ordered[4].id,'kanzi-power-search-2026'); // 28 Nov
+ assert.equal(ordered[5].id,'stilbruch-registration-2026'); // 29 Nov
+ assert.equal(ordered[6].id,'smyths-wishlist-2026'); // 29 Nov
+ assert.equal(ordered[7].id,'falken-bulls-bikes-2026'); // 30 Nov 18:00
  // A distinct draw ending earlier on the same date outranks a later one.
  const withSameDay=structuredClone(list);
  withSameDay.active.find(g=>g.id==='stryve-christmas-social-2026').ends_at='2026-11-30T17:00:00+01:00';
@@ -196,4 +197,31 @@ test('three new December entries disclose mandatory participation and precise/un
  const ranked=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live;
  const times=ranked.map(g=>Date.parse(g.ends_at));
  assert.deepEqual(times,[...times].sort((a,b)=>a-b));
+});
+
+test('five late-2026 source entries have explicit privacy disclosures and eligibility limits',()=>{
+ const ids=['pilot-frixion-monthly-2026','world-of-dice-winterscene-2026','steinbach-simple-spa-2026','edeka-kuhlmann-ps5-reel-2026','kanzi-power-search-2026'];
+ const entries=ids.map(id=>data.active.find(g=>g.id===id));
+ assert.ok(entries.every(Boolean));
+ for(const g of entries){
+  assert.ok(g.marketing_requirements.length>40);
+  assert.ok(g.required_data.length>50);
+  assert.ok(g.note.length>90);
+  assert.equal(new URL(g.terms_url).protocol,'https:');
+  assert.equal(new URL(g.privacy_url).protocol,'https:');
+ }
+ assert.match(entries[0].marketing_requirements,/Newsletter.*separat/);
+ assert.equal(entries[0].ends_at,'2027-01-01T00:00:00+01:00');
+ assert.match(entries[1].note,/keine tägliche Türchen|Keine tägliche Türchen/i);
+ assert.equal(entries[1].ends_at,'2027-01-01T00:00:00+01:00');
+ assert.equal(entries[2].ends_at,'2026-12-04T12:00:00+01:00');
+ assert.match(entries[2].required_data,/weitere Person markieren/);
+ assert.match(entries[3].marketing_requirements,/KEIN Versand/);
+ assert.equal(entries[3].ends_at,'2026-12-16T00:00:00+01:00');
+ assert.match(entries[4].note,/Quellenabweichung/);
+ assert.equal(entries[4].ends_at,'2026-11-29T00:00:00+01:00');
+ const pre=eligibleEditorialLinks(data,new Date('2026-11-28T23:59:59+01:00')).live;
+ assert.ok(pre.some(g=>g.id==='kanzi-power-search-2026'));
+ const post=eligibleEditorialLinks(data,new Date('2026-11-29T00:00:00+01:00')).live;
+ assert.ok(!post.some(g=>g.id==='kanzi-power-search-2026'));
 });
