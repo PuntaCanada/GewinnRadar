@@ -16,7 +16,7 @@
 2. Vor dem Eingriff auf den exakten D1-Namen und die oben angegebene ID achten.
 3. In der D1-Console nur die Abfrage aus [scripts/d1-readonly-preflight.sql](../scripts/d1-readonly-preflight.sql) ausführen. Die Abfrage ist **nur lesend** und zeigt vorhandene Tabellen/Trigger.
 4. Wenn bereits Nutzertabellen, andere Produkte, unbekannte Strukturen oder echte Daten existieren: **STOPP**; niemals Tabellen löschen, nie automatisch migrieren. Erst Struktur und Backup klären.
-5. Falls die Datenbank leer ist (nur interne sqlite-Tabellen), kann nach einem Backup-/Wiederherstellungscheck jede Migration der Reihe nach ausgeführt werden. Eine leere Datenbank hat kein zu erhaltendes Anwendungsschema; ein Remote-Betrieb erfordert dennoch bewusste Bestätigung.
+5. Falls die Datenbank leer ist (nur interne sqlite-Tabellen), können nach bewusster Freigabe jede Migration der Reihe nach ausgeführt werden. Wenn bereits echte Daten vorhanden sind, vorher Export-/Wiederherstellungsplan klären. Eine leere Datenbank hat kein zu erhaltendes Anwendungsschema; ein Remote-Betrieb erfordert dennoch bewusste Bestätigung.
 
 ## 2. Migrationen in exakter Reihenfolge (erst nach Freigabe)
 
