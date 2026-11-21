@@ -51,3 +51,32 @@ test('Stilbruch is researched but a two-step entry is not approved as a simple i
  assert.match(item.review_note,/15\.12\.2026/);
  assert.match(item.review_note,/nicht end-to-end geprüft/i);
 });
+
+test('original 2026 exclusions and contradictory deadlines cannot be treated as approvals',()=>{
+ const by=id=>catalog.entries.find(e=>e.id===id);
+ const van=by('berghaus-vanlife-2026'),falken=by('falken-bulls-bikes-2026'),ndac=by('ndac-marketing-2026');
+ assert.ok(van&&falken&&ndac);
+ assert.equal(van.state,'candidate');
+ assert.match(van.review_note,/26\.02\.2027/);
+ assert.match(van.review_note,/28\.02\.2027/);
+ assert.match(van.review_note,/KEINE|Keine Genehmigung/);
+ assert.equal(van.human_approved,false);
+ assert.equal(falken.human_approved,false);
+ assert.match(falken.review_note,/nicht lesbar/);
+ assert.equal(ndac.state,'excluded');
+ assert.equal(ndac.privacy_tier,'blocked');
+ assert.equal(eligibleToday(ndac,'2026-11-21'),false);
+ for(const e of [van,falken,ndac]){
+  assert.equal(e.allowed_for_reminders,false);
+  assert.equal(e.verified_at,null);
+ }
+});
+test('Mosel, Pfalz and Kala have distinct explicitly unconfirmed form evidence',()=>{
+ const mosel=catalog.entries.find(e=>e.id==='mosel-weinwochenende-2026');
+ const pfalz=catalog.entries.find(e=>e.id==='pfalz-dwi-genussreise-2026');
+ const kala=catalog.entries.find(e=>e.id==='kala-art-giesspulver-2026');
+ assert.match(mosel.review_note,/Steile Weinberge/);
+ assert.match(pfalz.review_note,/Die Deutsche Weinstraße/);
+ assert.match(kala.review_note,/KEIN nachgewiesenes aktives Eingabeformular/);
+ assert.ok([mosel,pfalz,kala].every(e=>e.human_approved===false));
+});
