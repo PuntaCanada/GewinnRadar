@@ -28,8 +28,9 @@ test('anonymous guests can read only public approved contests with no personal d
  assert.match(statement,/human_verified=1/);
  assert.match(statement,/g.status='verified'/);
  assert.doesNotMatch(statement,/favorites|participations|sessions/);
- assert.equal(bindings.length,4);
+ assert.equal(bindings.length,5);
  assert.match(statement,/form_verifications/);
  assert.match(statement,/no_mandatory_marketing=1/);
  assert.match(statement,/fv.no_marketing_required=1/);
+ assert.match(statement,/g.daily=0 OR fv.checked_at>=/);
 });

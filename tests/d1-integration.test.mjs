@@ -72,6 +72,10 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal(await guest(),0,'Stale live form proof must fail closed');
  sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date().toISOString(),'advent-2026-check');
  assert.equal(await guest(),1,'Current verified form restores visibility without changing admin status');
+ sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date(Date.now()-26*3600000).toISOString(),'advent-2026-check');
+ assert.equal(await guest(),0,'Previous-day door must not stay public');
+ sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date().toISOString(),'advent-2026-check');
+ assert.equal(await guest(),1,'Fresh same-day check restores visibility');
  sqlite.prepare("UPDATE contest_evidence SET privacy_checked=0 WHERE game_id=?").run('advent-2026-check');
  assert.equal(await guest(),0,'Revoked human privacy evidence must fail closed');
  sqlite.prepare("UPDATE contest_evidence SET privacy_checked=1 WHERE game_id=?").run('advent-2026-check');
