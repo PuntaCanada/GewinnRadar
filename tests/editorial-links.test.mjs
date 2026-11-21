@@ -3,6 +3,19 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {eligibleEditorialLinks,editorialDeadline,readGuestCompleted,writeGuestCompleted} from '../public/editorial-links.js';
 const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json',import.meta.url),'utf8'));
+test('all 16 previously limited sources have a fresh, source-specific attempt without inventing a new reviewed_on',()=>{
+ const limitedIds=["cloetta-candyking-instagram-2026","falken-bulls-bikes-2026","gesundde-register-win-2026","smyths-wishlist-2026","avermedia-elena-console-2026","wed2b-black-friday-dress-2026","radio-brocken-familienquiz-2026","steinbach-simple-spa-2026","edeka-kuhlmann-ps5-reel-2026","suelzle-wimmelbild-ballonfahrt-2027","robby-bubble-spiel-dich-schlau-2027","deg-heimspiel-tickets-2027","topps-match-attax-cl-finale-2027","littlejohnbikes-cannondale-newsletter-2026","sommer-ipad-newsletter-2027","techniktipp-finde-den-fehler-2026"];
+ for(const id of limitedIds){
+  const g=data.active.find(x=>x.id===id);
+  assert.ok(g&&g.source_audit?.attempt_on==='2026-11-21',id);
+  assert.equal(g.source_audit.attempt_url,g.terms_url,id);
+  assert.ok(g.source_audit.summary.length>45,id);
+  assert.equal(g.reviewed_on,'2026-11-21',id);
+ }
+ const counts=Object.fromEntries(['confirmed','partial','blocked','unconfirmed'].map(status=>[status,data.active.filter(g=>g.source_audit?.status===status).length]));
+ assert.deepEqual(counts,{confirmed:25,partial:10,blocked:2,unconfirmed:3});
+});
+
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
  assert.equal(data.active.length,40);
