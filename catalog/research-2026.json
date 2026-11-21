@@ -1354,6 +1354,27 @@
       "privacy_tier": "blocked",
       "required_data": "Pflicht: aktives Newsletter-Abonnement",
       "review_note": "Offizielle Bedingungen: Newsletter-Abonnement ausdrücklich Voraussetzung. Nicht für werbefreie, einfache Teilnahme geeignet."
+    },
+    {
+      "id": "pfalz-dwi-genussreise-2026",
+      "year": 2026,
+      "organizer": "Deutsches Weininstitut GmbH",
+      "title": "Pfalz-Genussreise für zwei Personen 2026",
+      "prize": "Zwei Übernachtungen mit Frühstück, zwei Abendessen und Weinprobe für zwei Personen (ca. 2.000 EUR; Anreise nicht enthalten)",
+      "url": "https://www.deinmoment-deinwein.de/weine-aus-rheinland-pfalz/pfalz/gewinnspiel",
+      "terms_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/pfalz",
+      "source_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/pfalz",
+      "starts_on": "2026-11-01",
+      "ends_on": "2026-12-31",
+      "cadence": "single",
+      "eligible_dates": null,
+      "required_data": "Vorname (Pflicht), Nachname (Pflicht), E-Mail (Pflicht), Alters-/Teilnahmebedingungs-Zustimmung (Pflicht), richtige Antwort auf Quizfrage (Pflicht)",
+      "privacy_tier": "medium",
+      "review_note": "Originale Gewinnspiel-Landingpage und 2026-Bedingungen sind derzeit abrufbar. Sichtbares Onlineformular zeigt Vorname, Nachname und E-Mail als Pflichtfelder, Quizfrage und eine Zustimmung zu Teilnahmebedingungen/Alter; keine Pflicht zur Newsletteranmeldung. Veranstalter DWI, Abwicklung HOPSCOTCH, mögliche Drittanbieter-Verarbeitung: Datenschutz und aktiven echten Browser-Formularfluss einschließlich eventueller versteckter Pflichtfelder und Einwilligungen vor redaktioneller Freigabe unabhängig bestätigen. Teilnahme 1.11.–31.12.2026, 23:59 Ortszeit, ab 18 mit Wohnsitz Deutschland, kostenlos. Nicht automatisch freigeben.",
+      "state": "candidate",
+      "human_approved": false,
+      "verified_at": null,
+      "allowed_for_reminders": false
     }
   ]
 }

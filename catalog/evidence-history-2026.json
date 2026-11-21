@@ -898,6 +898,20 @@
       "finding": "Offizielle Bedingungen: Newsletter-Abonnement ausdrücklich Voraussetzung. Nicht für werbefreie, einfache Teilnahme geeignet.",
       "reviewer": "assistant-research",
       "license_note": "Originalquelle verlinkt, eigene knappe Zusammenfassung; keine vollständigen Teilnahmebedingungen übernommen"
+    },
+    {
+      "candidate_id": "pfalz-dwi-genussreise-2026",
+      "source_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/pfalz",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Pfalz-Veranstalter nennt 2026, kostenlose Teilnahme bis 31.12., Onlineformular sichtbar mit Vorname/Nachname/E-Mail, Quizantwort und Alters-/Teilnahmebedingungen-Checkbox; keine Newsletterpflicht. Kein Formular abgeschickt; technische Funktion/Datenschutz noch zu prüfen.",
+      "reviewer": "assistant-research",
+      "license_note": "Originallink und eigene kurze Zusammenfassung; keine Originalbedingungen vollständig übernommen"
     }
   ]
 }

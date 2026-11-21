@@ -80,6 +80,9 @@ try{
     return route.fulfill({status:path==='/api/me'||path==='/api/games'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
   });
   await guestPage.goto(base+'/');
+  const catalogueStatusLink=guestPage.getByRole('link',{name:/Live-Katalogstatus \(D1\) prüfen/});
+  assert.equal(await catalogueStatusLink.getAttribute('href'),'/api/catalog-status');
+  // The diagnostic must remain a public GET without login or user data.
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
   await guestPage.getByText(/Teilnahmeschluss:/).waitFor();
