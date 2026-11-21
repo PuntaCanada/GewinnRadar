@@ -1,0 +1,2 @@
+import {json,hash,cookies,protectMutation} from '../_lib/core.js';
+export async function onRequestPost(ctx){if(!protectMutation(ctx.request))return json({error:'Ungültiger Ursprung'},403);const token=cookies(ctx.request).gr_session;if(token)await ctx.env.DB.prepare('DELETE FROM sessions WHERE token_hash=?').bind(await hash(token)).run();return new Response(JSON.stringify({ok:true}),{headers:{'content-type':'application/json','set-cookie':'gr_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0','cache-control':'no-store'}})}
