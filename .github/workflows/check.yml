@@ -27,3 +27,5 @@ jobs:
         run: node scripts/audit-editorial.mjs
       - name: Offline SQLite migrations and isolation
         run: python3 scripts/test_schema.py
+      - name: Verify all five D1 migrations, repeated application and empty state
+        run: python3 scripts/check_d1_migrations.py
