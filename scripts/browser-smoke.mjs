@@ -39,6 +39,9 @@ try{
     await page.goto(base+'/');
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
+    await page.getByText(/Kalender-Ende:/).waitFor();
+    await page.getByText(/Die Frist für das heutige Türchen kann früher liegen/).waitFor();
+    await page.getByText(/Tagesaktion – heutiges Türchen prüfen/).waitFor();
     const read=await page.locator('body').evaluate(el=>getComputedStyle(el).fontSize);
     assert.equal(read,'21px','Large-type senior mode');
     assert.equal(await page.locator('#progressBar').getAttribute('max'),'1');
@@ -79,6 +82,8 @@ try{
   await guestPage.goto(base+'/');
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
+  await guestPage.getByText(/Teilnahmeschluss:/).waitFor();
+  assert.equal(await guestPage.getByText(/Kalender-Ende:/).count(),0,'One-time contests must retain their own closing time');
   await guestPage.locator('#searchGames').fill('testpreis');
   assert.equal(await guestPage.locator('.game').count(),1);
   await guestPage.locator('#searchGames').fill('nicht-vorhanden');
