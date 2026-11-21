@@ -18,6 +18,7 @@ test('append-only source evidence stays isolated from approvals and rejects alie
  assert.equal(sqlite.prepare('SELECT count(*) AS n FROM source_evidence_history').get().n,1);
  assert.equal(sqlite.prepare('SELECT count(*) AS n FROM games').get().n,0);
  assert.throws(()=>sqlite.prepare("UPDATE source_evidence_history SET finding='tampered' WHERE id=1").run(),/append only/);
- assert.throws(()=>sqlite.prepare('DELETE FROM source_evidence_history WHERE id=1').run(),/append only/);
+ sqlite.prepare("DELETE FROM users WHERE id='admin'").run();
+ assert.equal(sqlite.prepare('SELECT count(*) AS n FROM source_evidence_history').get().n,0,'Privacy erasure must cascade');
  sqlite.close();
 });
