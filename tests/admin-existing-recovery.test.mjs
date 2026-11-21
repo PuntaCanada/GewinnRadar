@@ -41,6 +41,7 @@ test('recovery stays locked without explicit independent switch and exact config
  const {sql,DB}=fixture();user(sql);
  for(const x of [{ADMIN_RECOVERY_ENABLED:'false'},{ADMIN_RECOVERY_ENABLED:undefined},
  {ADMIN_BOOTSTRAP_ENABLED:'true'},{LOGIN_MAIL_ENABLED:'true'},
+ {LOGIN_MAIL_ENABLED:undefined},{LOGIN_MAIL_ENABLED:''},{LOGIN_MAIL_ENABLED:'TRUE'},
  {ADMIN_BOOTSTRAP_SECRET:''},{ADMIN_BOOTSTRAP_EMAIL:''}])
   assert.equal((await request(env(DB,x))).status,403);
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
