@@ -8,7 +8,7 @@ test('Both GewinnRadar D1 bindings contain the same real UUID, never placeholder
   const ids=files.map(file=>{
     const content=readFileSync(new URL('../'+file,import.meta.url),'utf8');
     assert.doesNotMatch(content,/REPLACE_WITH|YOUR_DATABASE|00000000-0000-0000-0000-000000000000/);
-    assert.match(content,/database_name\s*=\s*"gewinnradar-familie"/);
+    assert.match(content,/database_name\s*=\s*"gewinnradar"/);
     assert.match(content,/binding\s*=\s*"DB"/);
     const match=content.match(uuidPattern);
     assert.ok(match, file+' does not contain a valid UUID');
