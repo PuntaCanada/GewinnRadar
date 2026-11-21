@@ -46,9 +46,9 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
  const now=new Date('2026-11-21T12:00:00+01:00');
  const safe=structuredClone(data);
  safe.blacklist=[{id:'bergzeit-la-sportiva-2026',verified:false,reason:'user reported'}];
- assert.equal(eligibleEditorialLinks(safe,now).live.length,6);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,9);
  safe.blacklist[0].verified=true;
- assert.equal(eligibleEditorialLinks(safe,now).live.length,5);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,8);
  assert.ok(!eligibleEditorialLinks(safe,now).live.some(g=>g.id==='bergzeit-la-sportiva-2026'));
  assert.equal(data.review_candidates.length,3);
 });
