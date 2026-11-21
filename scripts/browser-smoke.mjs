@@ -41,6 +41,8 @@ try{
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
     assert.equal(await page.locator('#editorialLive .game').count(),4);
+    await page.locator('#editorialLive .game').first().getByText(/Teilnahmeschluss: 25\.11\.2026.*23:59 Uhr/).waitFor();
+    await page.locator('#editorialLive .game').first().getByText('Zuletzt geprüft: 21.11.2026').waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Pfalz-Genussreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Mosel/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/kostenlose Übernachtung/}).waitFor();
