@@ -13,9 +13,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax
+      - name: JavaScript syntax
         run: |
           set -eu
-          find . -name '*.js' -o -name '*.mjs' | while read -r f; do node --check "$f"; done
-      - name: Tests
+          find . \( -name '*.js' -o -name '*.mjs' \) -type f -print0 | xargs -0 -r -n 1 node --check
+      - name: Unit and API boundary tests
         run: npm test
+      - name: Offline SQLite migrations and isolation
+        run: python3 scripts/test_schema.py

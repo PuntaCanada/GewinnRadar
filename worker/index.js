@@ -4,13 +4,25 @@ const berlin=(date=new Date())=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europ
 const berlinHour=(date=new Date())=>Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Berlin',hour:'2-digit',hourCycle:'h23'}).format(date));
 const validUrl=publicContestUrl;
 const nowISO=()=>new Date().toISOString();
+// Untrusted URLs may resolve to private IPs even when their text looks public.
+// Do not make outbound HTTP requests until an operator has explicitly enabled
+// checking AND independently allowlisted each expected original hostname.
+const checkTarget=(url,env)=>{
+ if(env.LINK_CHECK_ENABLED!=='true')return false;
+ if(!validUrl(url))return false;
+ const names=String(env.LINK_CHECK_ALLOWED_HOSTS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
+ const host=new URL(url).hostname.toLowerCase().replace(/\.$/,'');
+ return names.includes(host) && names.length>0;
+};
 async function checkGames(env){
  const now=nowISO();
  await env.DB.prepare("UPDATE games SET status='ended',updated_at=? WHERE status IN ('verified','review') AND ends_at<=?").bind(now,now).run();
+ if(env.LINK_CHECK_ENABLED!=='true')return {skipped:'disabled'};
  const games=(await env.DB.prepare("SELECT id,url FROM games WHERE status='verified' AND ends_at>? ORDER BY COALESCE(last_checked_at,'') ASC LIMIT 80").bind(now).all()).results||[];
  for(const g of games){
   let state='review',code=null,note='';
   if(!validUrl(g.url)){state='broken';note='Invalid URL'}
+  else if(!checkTarget(g.url,env)){state='review';note='Host not explicitly allowlisted'}
   else try{
    const res=await fetch(g.url,{method:'GET',redirect:'manual',headers:{'user-agent':'GewinnRadar-LinkCheck/0.2 (+manual-review-required)'},signal:AbortSignal.timeout(9000)});
    code=res.status;res.body?.cancel();
@@ -47,4 +59,4 @@ async function sendDigest(env){
  return {sent};
 }
 export default {async scheduled(event,env,ctx){ctx.waitUntil((async()=>{await checkGames(env);if(berlinHour()===8)await sendDigest(env)})())}};
-export {berlin,berlinHour,validUrl};
+export {berlin,berlinHour,validUrl,checkTarget,checkGames};

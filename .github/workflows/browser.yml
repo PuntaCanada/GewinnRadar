@@ -1,0 +1,31 @@
+name: GewinnRadar Chromium senior UI
+on:
+  push:
+    branches:
+      - feature/admin-review-login-hardening-v03
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test-only Chromium dependency
+        run: |
+          npm install --no-save playwright@1.65.1
+          npx playwright install --with-deps chromium
+      - name: Exercise senior view, mobile layout, status persistence requests
+        run: node scripts/browser-smoke.mjs
+      - name: Preserve test screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gewinnradar-senior-chromium
+          path: test-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
