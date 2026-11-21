@@ -43,3 +43,9 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 .game.joined-completed{border-color:#7fb295;background:#f6fbf6}
 .game.joined-completed .guest-checkrow{background:#d6efdb}
 @media(max-width:600px){.guest-progress{padding:12px}.guest-checkrow,.guest-filter{align-items:flex-start}}
+
+/* Prevent long prize names and legal notes from widening the page on small phones. */
+.cards{grid-template-columns:minmax(0,1fr)}
+.cards>.game{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.cards>.game .action{min-width:0}
+.cards>.game .action>*{max-width:100%;overflow-wrap:anywhere}
