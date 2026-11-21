@@ -60,7 +60,7 @@ try{
     const scrollWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
     if(scrollWidth>width+2) {
       const offenders=await page.locator('body *').evaluateAll((nodes,width)=>nodes.map(n=>({tag:n.tagName,cls:n.className,txt:(n.textContent||'').slice(0,70),right:Math.round(n.getBoundingClientRect().right),width:Math.round(n.getBoundingClientRect().width)})).filter(x=>x.right>width+2).slice(0,20),width);
-      console.log('Horizontal overflow',width,scrollWidth,JSON.stringify(offenders));
+      const diagnostics=await page.locator('body *').evaluateAll(nodes=>nodes.map(n=>({tag:n.tagName,id:n.id,cls:typeof n.className==='string'?n.className:'',sw:n.scrollWidth,cw:n.clientWidth,left:Math.round(n.getBoundingClientRect().left),right:Math.round(n.getBoundingClientRect().right)})).filter(n=>n.sw>n.cw+2||n.left < -2||n.right>innerWidth+2).slice(0,25));console.log('Horizontal overflow',width,scrollWidth,JSON.stringify(offenders),JSON.stringify(diagnostics));
     }
     assert.ok(scrollWidth <= width+2,'No horizontal overflow on '+width+'px device');
     await mkdir('test-artifacts',{recursive:true});
