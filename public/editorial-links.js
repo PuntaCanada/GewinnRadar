@@ -58,7 +58,7 @@ export function renderEditorialLinks(data,now=new Date()){
   const links=line('div',null,'action');
   links.append(outbound('Jetzt beim Veranstalter teilnehmen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
   card.append(links);
-  const report=outbound('Problem oder Betrugsverdacht melden (GitHub)',issueLink(g));
+  const report=outbound('Problem oder Betrugsverdacht melden','/melden/?id='+encodeURIComponent(g.id));
   report.className='small';card.append(report);liveRoot.append(card);
  }
  if(!live.length)liveRoot.append(line('p','Derzeit kein noch laufender, separat geprüfter Direktlink. Neue Aktionen werden nach Einzelprüfung ergänzt.','small'));
@@ -82,7 +82,7 @@ export function renderEditorialLinks(data,now=new Date()){
    box.append(line('p','Prüfgrund: '+g.reason,'notes'));
    const actions=line('div',null,'action');
    actions.append(outbound('Offizielle Bedingungen prüfen',g.terms_url));
-   actions.append(outbound('Prüfung/Freigabe vorschlagen (GitHub)',issueLink(g,'freigabe')));
+   actions.append(outbound('Prüfung/Freigabe vorschlagen','/melden/?id='+encodeURIComponent(g.id)));
    box.append(actions);reviewRoot.append(box);
   }
  }
