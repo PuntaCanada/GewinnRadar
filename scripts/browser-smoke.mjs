@@ -233,6 +233,14 @@ try{
   await adminPage.getByRole('button',{name:'Vorhandenes Admin-Konto einmalig wiederherstellen'}).click();
   await adminPage.getByText(/Wiederherstellung verweigert/).waitFor();
   assert.equal(await adminPage.locator('#recoverySecret').inputValue(),'','The secret is cleared immediately after a denied request');
+  // Disabled anonymous reporting must remain a clear non-submitting fallback.
+  const reportPage=await browser.newPage();
+  await reportPage.goto(base+'/melden/?id=bayern-digitalradio-2026');
+  await reportPage.getByRole('heading',{name:'Gewinnspiel melden'}).waitFor();
+  assert.equal(await reportPage.locator('#reportForm').isVisible(),false);
+  await reportPage.getByText(/GitHub benutzen/).waitFor();
+  assert.match(await reportPage.locator('#githubReport').getAttribute('href'),/bayern-digitalradio-2026/);
+  await reportPage.close();
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
