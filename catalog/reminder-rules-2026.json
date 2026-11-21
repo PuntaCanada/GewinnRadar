@@ -88,6 +88,30 @@
       "source_url": "https://teilnahmebedingungen.swmh.de/SZ-Adventskalender",
       "rule": null,
       "notes": "Official rules require agreement to publisher offers/marketing. Never include in no-marketing family default."
+    },
+    {
+      "id": "landwirtschaft-2026",
+      "year": 2026,
+      "status": "conditions_checked",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://www.magdochjeder.de/service/gewinnspiel",
+      "rule": {
+        "open": "00:01",
+        "close": "23:59",
+        "close_day_offset": 0
+      },
+      "notes": "Terms confirmed; actual daily form and regional prize conditions must be independently verified first."
+    },
+    {
+      "id": "yellowchair-2026",
+      "year": 2026,
+      "status": "prize_dates_unknown",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://diekreidefarbe.de/pages/teilnahmebedingungen-adventskalender",
+      "rule": null,
+      "notes": "Only some doors contain giveaways, so no blanket daily mail. Door 24 closes 27.12. at 23:59; separate verification necessary."
     }
   ]
 }
