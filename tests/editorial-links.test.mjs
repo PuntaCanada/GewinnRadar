@@ -5,9 +5,9 @@ import {eligibleEditorialLinks,editorialDeadline,readGuestCompleted,writeGuestCo
 const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json',import.meta.url),'utf8'));
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
- assert.equal(data.active.length,17);
+ assert.equal(data.active.length,20);
  assert.equal(data.preview.length,3);
- assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,20);
+ assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,23);
  for(const e of [...data.active,...data.preview]){
   for(const k of ['url','terms_url'])assert.equal(new URL(e[k]).protocol,'https:');
  }
@@ -15,19 +15,19 @@ test('public source links are genuine separately reviewed entries, no D1 approva
 });
 test('live link expires automatically and previews never become clickable participation cards',()=>{
  const before=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00'));
- assert.equal(before.live.length,17);
+ assert.equal(before.live.length,20);
  assert.equal(before.future.length,3);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,13)
+ assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,16)
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).live.length,0);
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).future.length,0);
 });
 test('unverified or malformed source entries cannot appear as active',()=>{
  const mutated=structuredClone(data);
  mutated.active[0].privacy_url='http://not-secure.invalid';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,16);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,19);
  mutated.active[0].privacy_url=data.active[0].privacy_url;
  mutated.active[0].reviewed_on='unknown';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,16);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,19);
 });
 
 test('deadline shows the last eligible date, not exclusive expiry or review date',()=>{
@@ -37,8 +37,8 @@ test('deadline shows the last eligible date, not exclusive expiry or review date
 });
 test('a future daily research review is allowed, but stale or future-dated evidence is rejected',()=>{
  const next=structuredClone(data);next.active[0].reviewed_on='2026-11-23';
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,17);
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,16);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,20);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,19);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
 });
 
@@ -46,16 +46,16 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
  const now=new Date('2026-11-21T12:00:00+01:00');
  const safe=structuredClone(data);
  safe.blacklist=[{id:'bergzeit-la-sportiva-2026',verified:false,reason:'user reported'}];
- assert.equal(eligibleEditorialLinks(safe,now).live.length,17);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,20);
  safe.blacklist[0].verified=true;
- assert.equal(eligibleEditorialLinks(safe,now).live.length,16);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,19);
  assert.ok(!eligibleEditorialLinks(safe,now).live.some(g=>g.id==='bergzeit-la-sportiva-2026'));
  assert.equal(data.review_candidates.length,3);
 });
 
 test('social and messenger draws carry distinct disclosure metadata and still expire',()=>{
  const social=data.active.filter(g=>['instagram','social','whatsapp_email'].includes(g.participation_type));
- assert.equal(social.length,5);
+ assert.equal(social.length,6);
  for(const item of social){
   assert.ok(['instagram','social','whatsapp_email'].includes(item.participation_type));
   assert.match(item.marketing_requirements,/Konto|WhatsApp|Instagram|Social/);
@@ -85,7 +85,7 @@ test('live actions show nearest deadlines first, independent of source order',()
  const list=structuredClone(data);
  list.active.reverse();
  const ordered=eligibleEditorialLinks(list,when).live;
- assert.equal(ordered.length,17);
+ assert.equal(ordered.length,20);
  const endTimes=ordered.map(g=>Date.parse(g.ends_at));
  assert.deepEqual(endTimes,[...endTimes].sort((a,b)=>a-b));
  assert.equal(ordered[0].id,'partner-wera-social-2026'); // 24 Nov
@@ -176,4 +176,23 @@ test('official AVerMedia and wed2b actions retain exact timezone and honest veri
  assert.match(a.note,/nicht unabhängig sichtbar/);
  assert.match(w.note,/nicht unabhängig geöffnet/);
  assert.ok(eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live.some(g=>g.id===a.id));
+});
+
+test('three new December entries disclose mandatory participation and precise/unknown end time',()=>{
+ const k=data.active.find(g=>g.id==='kreiller-advent-instagram-2026');
+ const e=data.active.find(g=>g.id==='evh-halplus-christmas-lights-2026');
+ const t=data.active.find(g=>g.id==='techniktipp-find-error-2026');
+ assert.ok(k&&e&&t);
+ assert.equal(k.ends_at,'2026-12-15T14:00:00+01:00');
+ assert.match(k.deadline_label,/13:59 Uhr/);
+ assert.equal(k.participation_type,'instagram');
+ assert.match(k.marketing_requirements,/freiwillig/i);
+ assert.equal(e.ends_at,'2026-12-15T00:00:00+01:00');
+ assert.match(e.marketing_requirements,/unbeschränkte Bildnutzungsrechte/);
+ assert.match(e.required_data,/Kindes/);
+ assert.equal(t.deadline_label,'31.12.2026 · Uhrzeit nicht angegeben');
+ assert.match(t.note,/nicht unabhängig geprüft/);
+ const ranked=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live;
+ const times=ranked.map(g=>Date.parse(g.ends_at));
+ assert.deepEqual(times,[...times].sort((a,b)=>a-b));
 });
