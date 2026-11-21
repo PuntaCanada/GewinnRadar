@@ -62,7 +62,7 @@ test('original 2026 exclusions and contradictory deadlines cannot be treated as 
  assert.match(van.review_note,/KEINE|Keine Genehmigung/);
  assert.equal(van.human_approved,false);
  assert.equal(falken.human_approved,false);
- assert.match(falken.review_note,/nicht lesbar/);
+ assert.match(falken.review_note,/Direktabruf nicht auswertbar/);
  assert.equal(ndac.state,'excluded');
  assert.equal(ndac.privacy_tier,'blocked');
  assert.equal(eligibleToday(ndac,'2026-11-21'),false);
