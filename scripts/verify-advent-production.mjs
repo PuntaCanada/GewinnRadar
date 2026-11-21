@@ -70,4 +70,27 @@ const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','
 console.log(lines.join('\n'));
 if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,lines.join('\n')+'\n');
 if(audit.status==='MISMATCH')process.exitCode=2;
-else if(audit.status==='UNVERIFIED')process.exitCode=3;
+else if(audit.status==='UNVERIFIED')process.exitCode=3;    // Cloudflare Pages Analytics may append a well-known script next to closing HTML.
+    // This is not raw byte identity: permit only one exact, narrow platform-generated
+    // segment, and require ALL remaining content to equal the GitHub version.
+    if(path==='public/index.html'&&entry.status==='MISMATCH'){
+     const html=actual.toString('utf8');
+     const startToken="<script defer src='https://static.cloudflareinsights.com/beacon.min.js'";
+     const endToken='<!-- Cloudflare Pages Analytics -->';
+     const start=html.indexOf(startToken);
+     const end=start<0?-1:html.indexOf(endToken,start);
+     if(start>=0&&end>=0&&html.lastIndexOf(startToken)===start){
+      const script=html.slice(start,end+endToken.length);
+      entry.injected_html_bytes=Buffer.byteLength(script);
+      const allowed=/^<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js'[^>]*><\/script>\s*<!-- Cloudflare Pages Analytics -->$/;
+      if(script.length<600&&allowed.test(script)){
+       const normalized=Buffer.from(html.slice(0,start)+html.slice(end+endToken.length),'utf8');
+       entry.normalized_sha256=hash(normalized);
+       if(normalized.equals(bytes)){
+        entry.status='MATCH_WITH_PLATFORM_INJECTION';
+        entry.platform_injection='Cloudflare Pages Analytics injected; original HTML is otherwise exactly the GitHub bytes';
+       }
+      }
+     }
+    }
+
