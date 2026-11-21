@@ -82,14 +82,18 @@ export function renderEditorialLinks(data,now=new Date()){
  if(!liveRoot||!futureRoot||!status)return;
  const {live,future}=eligibleEditorialLinks(data,now);
  document.body.dataset.editorialLiveCount=String(live.length);
+ document.body.dataset.editorialConfirmedCount=String(live.filter(g=>g.source_audit?.status==='confirmed').length);
  document.dispatchEvent(new Event('editorialLinksUpdated'));
  liveRoot.replaceChildren();futureRoot.replaceChildren();
- $('editorialCount').textContent=live.length+' aktuell geprüfte Originalaktion'+(live.length===1?'':'en');
+ $('editorialCount').textContent=live.length+' recherchierte Originalaktion'+(live.length===1?'':'en')+' · '+live.filter(g=>g.source_audit?.status==='confirmed').length+' anhand der Bedingungen bestätigt';
  for(const g of live){
   const card=line('article',null,'game');
   const type=g.participation_type||'web_form';
   const kinds={web_form:'Onlineformular',external_form:'Externes Formular – noch selbst prüfen',instagram:'Instagram-Konto erforderlich',social:'Facebook oder Instagram erforderlich',whatsapp_email:'WhatsApp-Kanal + eigene E-Mail',instagram_tiktok:'Instagram oder TikTok erforderlich',newsletter:'Werbe-Newsletter verpflichtend',offline_qr:'QR-Code im Geschäft erforderlich',email_photo:'Eigenes Foto und E-Mail erforderlich',postal_newsletter:'Postkarte oder Newsletter + Code',email:'Eigene E-Mail erforderlich',app_account:'App und neues Konto erforderlich',account:'Kostenloses Kundenkonto erforderlich'};
   card.append(line('span',kinds[type]||'Teilnahmeweg prüfen','pill'));
+  const audit=g.source_audit;
+  const auditNames={confirmed:'Teilnahmebedingungen bestätigt',partial:'Teilweise prüfbar',blocked:'Zugriff gesperrt',unconfirmed:'Aktuell nicht bestätigt'};
+  if(audit){card.append(line('p','Quellenstatus: '+(auditNames[audit.status]||'Unbekannt')+' · '+audit.checked_on,'meta'));card.append(line('p',audit.summary,'notes'));}
   card.append(line('p','Teilnahmeschluss: '+(g.deadline_label||editorialDeadline(g.ends_at)),'meta'));
   card.append(line('p','Zuletzt geprüft: '+new Date(g.reviewed_on+'T12:00:00Z').toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'meta'));
   card.append(line('h2',g.title),line('p','Veranstalter: '+g.organizer+' · Gewinne: '+g.prize));
@@ -97,7 +101,7 @@ export function renderEditorialLinks(data,now=new Date()){
   if(g.marketing_requirements)card.append(line('p','Werbung & Datenschutz: '+g.marketing_requirements,'notes'));
   card.append(line('p',g.note,'notes'));
   const links=line('div',null,'action');
-  links.append(outbound(type==='web_form'?'Jetzt beim Veranstalter teilnehmen':'Offiziellen Teilnahmeweg prüfen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
+  links.append(outbound(type==='web_form'&&audit?.status==='confirmed'?'Jetzt beim Veranstalter teilnehmen':'Offiziellen Teilnahmeweg prüfen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
   card.append(links);
   const joinedLabel=line('label',null,'guest-checkrow');
   const joinedBox=document.createElement('input');
@@ -153,6 +157,7 @@ export async function loadEditorialLinks(){
  }catch{
   $('editorialLive')?.replaceChildren();$('adventPreview')?.replaceChildren();$('editorialReview')?.replaceChildren();
   document.body.dataset.editorialLiveCount='0';
+  document.body.dataset.editorialConfirmedCount='0';
   document.dispatchEvent(new Event('editorialLinksUpdated'));
   if($('editorialCount'))$('editorialCount').textContent='0 derzeit überprüfbare Direktlinks';
   if(status)status.textContent='Quellenliste derzeit nicht verfügbar. Alte Links wurden aus Sicherheitsgründen ausgeblendet.';
