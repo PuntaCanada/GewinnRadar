@@ -13,7 +13,7 @@ import {onRequestPost as login} from '../functions/api/login.js';
 function dbAdapter(){
  const sqlite=new DatabaseSync(':memory:');
  sqlite.exec('PRAGMA foreign_keys=ON');
- for(const file of ['0001_initial.sql','0002_review_security.sql'])
+ for(const file of ['0001_initial.sql','0002_review_security.sql','0003_catalog_staging.sql','0004_source_evidence.sql','0005_form_and_reminders.sql'])
    sqlite.exec(readFileSync(new URL('../migrations/'+file,import.meta.url),'utf8'));
  return {
   sqlite,
@@ -54,6 +54,8 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  const incomplete=approval();incomplete.privacy_checked=false;
  assert.equal((await call(review,'/api/admin/review','POST',incomplete,'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,400);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'review');
+ assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,409,'No live-form proof must block approval');
+ sqlite.prepare("INSERT INTO form_verifications(game_id,reviewer_id,checked_at,form_url,privacy_url,required_fields,form_observed,correct_year,german_residents,no_marketing_required,no_purchase_required,no_account_or_app_obligation,no_unresolved_deadline_conflict,notes) VALUES (?,?,?,?,?,?,1,1,1,1,1,1,1,?)").run('advent-2026-check','admin',new Date().toISOString(),'https://www.br.de/gewinnspiel','https://www.br.de/datenschutz','Name, E-Mail','Live-Formular 2026 und Pflichtdaten nachgewiesen');
  assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,200);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'verified');
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0,'Unknown link should not appear');
