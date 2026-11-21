@@ -68,18 +68,3 @@ export async function onRequestPost(ctx){
   }
  });
 }
-) END AS verified").bind(admin.id,claim,admin.id,email,admin.id,await hash(token),admin.id,admin.id)
-  ]);
-  if(changes.length!==3||changes.some(x=>Number(x.meta?.changes)!==1))
-   return json({error:'Wiederherstellung bereits verwendet oder Zustand geändert'},409);
- }catch{return json({error:'Wiederherstellung abgebrochen: D1-Prüfung fehlgeschlagen'},503)}
- return new Response(JSON.stringify({ok:true,recovered_existing_admin:true,mail_sent:false}),{
-  status:201,headers:{
-   'content-type':'application/json; charset=utf-8',
-   'cache-control':'no-store, private',
-   'referrer-policy':'no-referrer',
-   'x-content-type-options':'nosniff',
-   'set-cookie':`gr_session=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000`
-  }
- });
-}
