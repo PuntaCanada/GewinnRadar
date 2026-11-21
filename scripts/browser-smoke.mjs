@@ -48,6 +48,12 @@ try{
     assert.equal(actions.length,1);
     assert.equal(actions[0].action,'completed');
     await page.getByText('1 von 1 erledigt').waitFor();
+    await page.locator('#dailyOnly').check();
+    assert.equal(await page.locator('.game').count(),1);
+    await page.locator('#simpleOnly').check();
+    assert.equal(await page.locator('.game').count(),1);
+    await page.locator('#simpleOnly').uncheck();
+    await page.locator('#dailyOnly').uncheck();
     assert.equal(await page.locator('#progressBar').getAttribute('value'),'1');
     const link=page.getByRole('link',{name:/Jetzt am Gewinnspiel teilnehmen/});
     assert.equal(await link.getAttribute('rel'),'noopener noreferrer');
