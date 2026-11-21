@@ -48,7 +48,7 @@ export function validateEvidence(input) {
   const checkedAt = clean(input.checked_at, 30);
   if (!ISO.test(checkedAt) || !Number.isFinite(Date.parse(checkedAt))) return { error: 'Prüfzeitpunkt fehlt' };
   const stamp = Date.parse(checkedAt);
-  if (Math.abs(Date.now() - stamp) > 48*60*60*1000) return { error: 'Prüfung ist zu alt' };
+  if (stamp > Date.now() + 5*60*1000 || stamp < Date.now() - 48*60*60*1000) return { error: 'Prüfzeitpunkt liegt in der Zukunft oder ist zu alt' };
   return { value: { id, action: input.action, note, checked_at: checkedAt, original_checked: 1, terms_checked: 1, privacy_checked: 1, germany_eligible: 1, no_mandatory_marketing: 1, no_payment_required: 1, human_verified: 1 } };
 }
 export function safeAdmin(user) { return !!user && user.role === 'admin' && user.email_verified === 1; }
