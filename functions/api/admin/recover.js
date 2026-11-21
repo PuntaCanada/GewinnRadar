@@ -35,14 +35,15 @@ export async function onRequestPost(ctx){
  const expiry=new Date(Date.now()+30*86400000).toISOString();
  try{
   // D1.batch rolls back on SQL errors, NOT on successful zero-row writes.
-  // The final guard deliberately raises a SQLite error if a preceding
-  // conditional write was skipped; this prevents committing a partial claim.
+  // Each dependent write requires exactly one change from its predecessor.
+  // The final guard raises SQLite error when any postcondition is absent,
+  // preventing even successful zero-row writes from committing partial claims.
   const changes=await env.DB.batch([
    // Claim first: even if another actor changed the account between our
    // read and the batch, no unclaimed email verification can take place.
    env.DB.prepare("INSERT INTO admin_bootstrap(slot,admin_id,claim_id,used_at) SELECT 1,?,?,? WHERE (SELECT COUNT(*) FROM users WHERE role='admin')=1 AND EXISTS(SELECT 1 FROM users WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0) AND NOT EXISTS(SELECT 1 FROM admin_bootstrap) AND NOT EXISTS(SELECT 1 FROM sessions WHERE user_id=?) AND NOT EXISTS(SELECT 1 FROM login_tokens WHERE user_id=?)").bind(admin.id,claim,now,admin.id,email,admin.id,admin.id),
-   env.DB.prepare("UPDATE users SET email_verified=1 WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0 AND EXISTS(SELECT 1 FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)").bind(admin.id,email,admin.id,claim),
-   env.DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) SELECT ?,admin_id,? FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?").bind(await hash(token),expiry,admin.id,claim),
+   env.DB.prepare("UPDATE users SET email_verified=1 WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0 AND changes()=1 AND EXISTS(SELECT 1 FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)").bind(admin.id,email,admin.id,claim),
+   env.DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) SELECT ?,admin_id,? FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=? AND changes()=1").bind(await hash(token),expiry,admin.id,claim),
    // SQLite evaluates only the chosen CASE arm. Invalid JSON forces an
    // exception/rollback if *any* expected postcondition is absent.
    env.DB.prepare(`SELECT CASE WHEN
