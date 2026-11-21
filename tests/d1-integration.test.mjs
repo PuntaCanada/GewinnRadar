@@ -58,6 +58,8 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  const before=await check(adminToken);
  assert.equal(before.ready,0);
  assert.equal(before.blocked,1);
+ assert.equal(before.truncated,false);
+ assert.equal(before.total,1);
  assert.ok(before.contests[0].reasons.includes('Redaktionelle Freigabe fehlt'));
  assert.ok(before.contests[0].reasons.includes('Original-Link nicht bestätigt'));
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0);
@@ -81,10 +83,12 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal(await guest(),1);
  const verified=await check(adminToken);
  assert.equal(verified.ready,1,'Admin diagnostics and public gate must agree');
+ assert.equal((await (await call(games,'/api/games','GET')).json()).games.length,verified.ready,'Real public and private endpoint counts agree');
  assert.equal(verified.contests[0].reasons.length,0);
 
  sqlite.prepare("UPDATE form_verifications SET no_marketing_required=0 WHERE game_id=?").run('advent-2026-check');
  assert.equal(await guest(),0,'Revoked marketing compliance must remove public listing');
+ assert.equal((await check(adminToken)).ready,0,'Private readiness must use the same SQL gate after marketing proof revoked');
  assert.equal((await call(progress,'/api/progress','POST',{id:'advent-2026-check',action:'favorite',value:true},'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,404);
  sqlite.prepare("UPDATE form_verifications SET no_marketing_required=1,checked_at='2020-01-01T00:00:00Z' WHERE game_id=?").run('advent-2026-check');
  assert.equal(await guest(),0,'Stale live form proof must fail closed');
