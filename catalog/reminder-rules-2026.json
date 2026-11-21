@@ -1,0 +1,93 @@
+{
+  "reviewed_on": "2026-11-21",
+  "timezone": "Europe/Berlin",
+  "verified_user_reminders": 0,
+  "entries": [
+    {
+      "id": "pilot-2026",
+      "year": 2026,
+      "status": "conditions_checked",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://www.pilotpen.de/TNB-Adventskalender",
+      "rule": {
+        "open": "00:00",
+        "close": "23:59",
+        "close_day_offset": 0,
+        "days": [
+          1,
+          3,
+          5,
+          9,
+          16,
+          19,
+          24
+        ]
+      },
+      "notes": "Seven free e-mail entries. Day 22 requires newsletter, excluded. Email subject only appears in day door. Do not enable reminders until each subject is confirmed."
+    },
+    {
+      "id": "agravis-2026",
+      "year": 2026,
+      "status": "conditions_checked",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "rule": {
+        "open": "00:00",
+        "close": "23:59",
+        "close_day_offset": 0
+      },
+      "notes": "24 daily; exact first-time form fields not available before opening, no automated participation."
+    },
+    {
+      "id": "aldi-nord-2026",
+      "year": 2026,
+      "status": "conditions_checked",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://www.aldiventskalender.de/teilnahmebedingungen",
+      "rule": {
+        "open": "00:00",
+        "close": "23:59",
+        "close_day_offset": 0,
+        "skip_days": [
+          6,
+          13,
+          20
+        ]
+      },
+      "notes": "Web only 21 days. App-only 06,13,20 excluded from senior-web reminders. Keep purchase-receipt and spend-gated instant coupons out."
+    },
+    {
+      "id": "wdr3-2026",
+      "year": 2026,
+      "status": "deadline_unverified",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html",
+      "rule": null,
+      "notes": "Original confirms music puzzle and data handling; daily submission deadline not explicitly proven."
+    },
+    {
+      "id": "urlaubsguru-2026",
+      "year": 2026,
+      "status": "deadline_conflict",
+      "reminders_allowed": false,
+      "conflict": true,
+      "source_url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "rule": null,
+      "notes": "Same original source states daily cutoff 00:59:59 and elsewhere 23:59:59. No reminder until resolved; app and confirmation mail required."
+    },
+    {
+      "id": "sz-2026",
+      "year": 2026,
+      "status": "excluded",
+      "reminders_allowed": false,
+      "conflict": false,
+      "source_url": "https://teilnahmebedingungen.swmh.de/SZ-Adventskalender",
+      "rule": null,
+      "notes": "Official rules require agreement to publisher offers/marketing. Never include in no-marketing family default."
+    }
+  ]
+}
