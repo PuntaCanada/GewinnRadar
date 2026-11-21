@@ -86,7 +86,7 @@ try{
     await page.locator('#editorialLive').getByText(/WICHTIGE Quellenabweichung/).waitFor();
     await page.locator('#editorialLive').getByText(/unbeschränkte Bildnutzungsrechte/).waitFor();
     await page.locator('#editorialLive').getByText(/aufgezeichnete und ausgestrahlte/).waitFor();
-    assert.equal(await page.locator('#editorialLive').getByText('Externes Formular – noch selbst prüfen').count(),4);
+    assert.equal(await page.locator('#editorialLive').getByText('Externes Formular – noch selbst prüfen').count(),5);
     assert.equal(await page.locator('#editorialLive').getByText('App und neues Konto erforderlich').count(),2);
     assert.equal(await page.locator('#editorialLive').getByText('Kostenloses Kundenkonto erforderlich').count(),3);
     const sortedIds=await page.locator('#editorialLive .game h2').allTextContents();
