@@ -44,6 +44,20 @@
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, E-Mail, Bestätigung der Teilnahmebedingungen und Gewinnspielfrage",
       "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht enthalten. Keine D1-Adminfreigabe."
+    },
+    {
+      "id": "dynamic-earth-free-night-2026",
+      "organizer": "Dynamic Earth",
+      "title": "Eine kostenlose Übernachtung gewinnen",
+      "prize": "Eine Übernachtung für eine Person in einem künftigen Partnerhaus (Buchungsplattform noch nicht gestartet)",
+      "url": "https://www.dynamic-earth.eu/gewinnspiel",
+      "terms_url": "https://www.dynamic-earth.eu/gewinnspiel-teilnahmebedingungen",
+      "privacy_url": "https://www.dynamic-earth.eu/datenschutz",
+      "starts_at": "2026-11-21T00:00:00+01:00",
+      "ends_at": "2027-01-01T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "required_data": "Vorname, Nachname, Geburtsdatum, E-Mail sowie Einwilligung in Gewinnspielabwicklung; Instagram-Name freiwillig",
+      "note": "Am 21.11.2026 tatsächlich sichtbares Originalformular und separate Bedingungen geprüft. Teilnahme ab 16 Jahren mit Wohnsitz in Deutschland (unter 18 mit Zustimmung der Erziehungsberechtigten), ohne Kauf und ohne Pflicht zu Instagram oder Werbung. WICHTIG: Der Gewinn ist erst einlösbar, wenn die Buchungsplattform des Veranstalters startet; Reisetermin und Haus noch unbestimmt. Kein D1-Admin-Freigabeeintrag."
     }
   ],
   "preview": [
