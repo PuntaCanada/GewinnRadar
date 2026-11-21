@@ -18,7 +18,11 @@ test('anonymous guests see only reviewed, active, verified public contests; no p
  assert.match(query,/g.link_state='ok'/);
  assert.match(query,/g.verified_at IS NOT NULL/);
  assert.doesNotMatch(query,/favorites|participations|users|sessions/i);
- assert.equal(params.length,2);
+ assert.equal(params.length,4);
+ assert.match(query,/form_verifications/);
+ assert.match(query,/e.privacy_checked=1/);
+ assert.match(query,/fv.no_marketing_required=1/);
+ assert.match(query,/fv.checked_at>=\\?/);
 });
 test('homepage exposes catalogue without login while preserving account-only controls',()=>{
  const html=readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
