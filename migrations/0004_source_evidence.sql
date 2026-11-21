@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS source_evidence_history (
  id INTEGER PRIMARY KEY AUTOINCREMENT,
  candidate_id TEXT NOT NULL REFERENCES research_candidates(id) ON DELETE CASCADE,
- actor_id TEXT NOT NULL REFERENCES users(id),
+ actor_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
  source_url TEXT NOT NULL,
  observed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
  evidence_kind TEXT NOT NULL CHECK(evidence_kind IN ('original_2026_page_seen','terms_checked','privacy_checked','form_checked','recheck_needed','excluded')),
