@@ -41,6 +41,8 @@ try{
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
     assert.equal(await page.locator('#editorialLive .game').count(),4);
+    await page.locator('#editorialLive .game').first().getByText(/Teilnahmeschluss: 25\.11\.2026.*23:59 Uhr/).waitFor();
+    await page.locator('#editorialLive .game').first().getByText('Zuletzt geprüft: 21.11.2026').waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Pfalz-Genussreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Mosel/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/kostenlose Übernachtung/}).waitFor();
@@ -94,7 +96,7 @@ try{
   // The diagnostic must remain a public GET without login or user data.
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
-  await guestPage.getByText(/Teilnahmeschluss:/).waitFor();
+  await guestPage.locator('#cards').getByText(/Teilnahmeschluss:/).waitFor();
   assert.equal(await guestPage.getByText(/Kalender-Ende:/).count(),0,'One-time contests must retain their own closing time');
   await guestPage.locator('#searchGames').fill('testpreis');
   assert.equal(await guestPage.locator('#cards .game').count(),1);

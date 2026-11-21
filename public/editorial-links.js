@@ -8,12 +8,22 @@ function outbound(label,url,primary=false){
 function sourceUrl(value){
  try{const u=new URL(value);return u.protocol==='https:'&&u.username===''&&u.password===''?u.href:null}catch{return null}
 }
+export function editorialDeadline(exclusiveEnd){
+ const instant=Date.parse(exclusiveEnd);
+ if(!Number.isFinite(instant))return null;
+ // JSON end timestamps are exclusive: midnight 01.01 means 31.12, 23:59.
+ const minute=new Date(instant-1);
+ return minute.toLocaleString('de-DE',{timeZone:'Europe/Berlin',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).replace(',', ' ·')+' Uhr';
+}
 export function eligibleEditorialLinks(data,now=new Date()){
  if(!data||data.schema_version!==1||!Array.isArray(data.active)||!Array.isArray(data.preview))throw Error('Ungültige Quellenliste');
  const live=data.active.filter(g=>{
   const start=Date.parse(g.starts_at),end=Date.parse(g.ends_at);
   return Number.isFinite(start)&&Number.isFinite(end)&&start<=now.getTime()&&now.getTime()<end&&
-    g.reviewed_on==='2026-11-21'&&[g.url,g.terms_url,g.privacy_url].every(sourceUrl);
+    /^\d{4}-\d{2}-\d{2}$/.test(g.reviewed_on)&&
+    Date.parse(g.reviewed_on+'T00:00:00Z')<=now.getTime()&&
+    now.getTime()-Date.parse(g.reviewed_on+'T00:00:00Z')<=8*86400000&&
+    [g.url,g.terms_url,g.privacy_url].every(sourceUrl);
  });
  const future=data.preview.filter(g=>g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
   [g.url,g.terms_url].every(sourceUrl));
@@ -29,7 +39,9 @@ export function renderEditorialLinks(data,now=new Date()){
  $('editorialCount').textContent=live.length+' aktuell geprüfte Originalaktion'+(live.length===1?'':'en');
  for(const g of live){
   const card=line('article',null,'game');
-  card.append(line('span','Originalquelle und Teilnahmeformular geprüft · '+new Date(g.ends_at).toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'pill'));
+  card.append(line('span','Teilnahmeformular geprüft','pill'));
+  card.append(line('p','Teilnahmeschluss: '+editorialDeadline(g.ends_at),'meta'));
+  card.append(line('p','Zuletzt geprüft: '+new Date(g.reviewed_on+'T12:00:00Z').toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'meta'));
   card.append(line('h2',g.title),line('p','Veranstalter: '+g.organizer+' · Gewinne: '+g.prize));
   card.append(line('p','Benötigt: '+g.required_data,'meta'));
   card.append(line('p',g.note,'notes'));
@@ -42,7 +54,7 @@ export function renderEditorialLinks(data,now=new Date()){
   const card=line('article',null,'game');
   card.append(line('span','Vorschau – nicht zur Teilnahme freigegeben','pill warn'));
   card.append(line('h2',g.title),line('p','Veranstalter: '+g.organizer));
-  card.append(line('p','Geplanter Zeitraum: '+g.starts_on+' bis '+g.ends_on,'meta'),line('p',g.note,'notes'));
+  card.append(line('p','Geplanter Start: '+new Date(g.starts_on+'T12:00:00Z').toLocaleDateString('de-DE')+' · geplantes Ende: '+new Date(g.ends_on+'T12:00:00Z').toLocaleDateString('de-DE'),'meta'),line('p',g.note,'notes'));
   const links=line('div',null,'action');links.append(outbound('Offizielle Informationsseite',g.url),outbound('Teilnahmebedingungen',g.terms_url));
   card.append(links);futureRoot.append(card);
  }
