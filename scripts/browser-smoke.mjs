@@ -96,7 +96,7 @@ try{
   // The diagnostic must remain a public GET without login or user data.
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
-  await guestPage.getByText(/Teilnahmeschluss:/).waitFor();
+  await guestPage.locator('#cards').getByText(/Teilnahmeschluss:/).waitFor();
   assert.equal(await guestPage.getByText(/Kalender-Ende:/).count(),0,'One-time contests must retain their own closing time');
   await guestPage.locator('#searchGames').fill('testpreis');
   assert.equal(await guestPage.locator('#cards .game').count(),1);
