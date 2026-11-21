@@ -40,11 +40,12 @@ try{
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
-    assert.equal(await page.locator('#editorialLive .game').count(),3);
+    assert.equal(await page.locator('#editorialLive .game').count(),4);
     await page.locator('#editorialLive').getByRole('heading',{name:/Pfalz-Genussreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Mosel/}).waitFor();
+    await page.locator('#editorialLive').getByRole('heading',{name:/kostenlose Übernachtung/}).waitFor();
     assert.equal(await page.locator('#adventPreview .game').count(),3);
-    assert.match(await page.locator('#editorialCount').innerText(),/3 aktuell geprüfte Originalaktionen/);
+    assert.match(await page.locator('#editorialCount').innerText(),/4 aktuell geprüfte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     await page.getByText(/Kalender-Ende:/).waitFor();
