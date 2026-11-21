@@ -15,7 +15,13 @@
       "ends_at": "2026-11-26T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "Name, Anschrift, E-Mail, Gewinnspielfrage und Bestätigung der Teilnahmebedingungen",
-      "note": "Originales Teilnahmeformular und Teilnahmebedingungen am 21.11.2026 eingesehen. Kostenlos, 18+, Hauptwohnsitz Deutschland, eine Teilnahme pro Haushalt. Kein Newsletter-Pflichtfeld im sichtbaren Teilnahmeformular. Kein D1-Admin-Freigabeeintrag."
+      "note": "Originales Teilnahmeformular und Teilnahmebedingungen am 21.11.2026 eingesehen. Kostenlos, 18+, Hauptwohnsitz Deutschland, eine Teilnahme pro Haushalt. Kein Newsletter-Pflichtfeld im sichtbaren Teilnahmeformular. Kein D1-Admin-Freigabeeintrag.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.bayerndigitalradio.de/advent-2026-teilnahmebedingungen/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "pfalz-dwi-genussreise-2026",
@@ -29,7 +35,13 @@
       "ends_at": "2027-01-01T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, E-Mail, Bestätigung der Teilnahmebedingungen und Gewinnspielfrage",
-      "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht im Gewinn enthalten. Keine D1-Adminfreigabe."
+      "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht im Gewinn enthalten. Keine D1-Adminfreigabe.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/pfalz",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "mosel-weinwochenende-2026",
@@ -43,7 +55,13 @@
       "ends_at": "2027-01-01T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, E-Mail, Bestätigung der Teilnahmebedingungen und Gewinnspielfrage",
-      "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht enthalten. Keine D1-Adminfreigabe."
+      "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht enthalten. Keine D1-Adminfreigabe.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/mosel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "dynamic-earth-free-night-2026",
@@ -57,7 +75,13 @@
       "ends_at": "2027-01-01T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, Geburtsdatum, E-Mail sowie Einwilligung in Gewinnspielabwicklung; Instagram-Name freiwillig",
-      "note": "Am 21.11.2026 tatsächlich sichtbares Originalformular und separate Bedingungen geprüft. Teilnahme ab 16 Jahren mit Wohnsitz in Deutschland (unter 18 mit Zustimmung der Erziehungsberechtigten), ohne Kauf und ohne Pflicht zu Instagram oder Werbung. WICHTIG: Der Gewinn ist erst einlösbar, wenn die Buchungsplattform des Veranstalters startet; Reisetermin und Haus noch unbestimmt. Kein D1-Admin-Freigabeeintrag."
+      "note": "Am 21.11.2026 tatsächlich sichtbares Originalformular und separate Bedingungen geprüft. Teilnahme ab 16 Jahren mit Wohnsitz in Deutschland (unter 18 mit Zustimmung der Erziehungsberechtigten), ohne Kauf und ohne Pflicht zu Instagram oder Werbung. WICHTIG: Der Gewinn ist erst einlösbar, wenn die Buchungsplattform des Veranstalters startet; Reisetermin und Haus noch unbestimmt. Kein D1-Admin-Freigabeeintrag.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.dynamic-earth.eu/gewinnspiel-teilnahmebedingungen",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "bergzeit-la-sportiva-2026",
@@ -71,7 +95,13 @@
       "ends_at": "2026-12-15T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, E-Mail, richtige Quizantwort, Zustimmung zu Bedingungen/Datenschutz und zur Veröffentlichung des abgekürzten Gewinnernamens",
-      "note": "Originalformular am 21.11.2026 geöffnet: direkte Quizteilnahme ohne Instagram; kostenlos, DE/AT/CH, ab 18, kein Kauf. Achtung: Einwilligung zur Nennung von Vorname und Nachnamensinitial im Gewinnfall ist im Formular als Pflichtfeld dargestellt. Angaben müssen vor dem Absenden selbst geprüft werden."
+      "note": "Originalformular am 21.11.2026 geöffnet: direkte Quizteilnahme ohne Instagram; kostenlos, DE/AT/CH, ab 18, kein Kauf. Achtung: Einwilligung zur Nennung von Vorname und Nachnamensinitial im Gewinnfall ist im Formular als Pflichtfeld dargestellt. Angaben müssen vor dem Absenden selbst geprüft werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.bergzeit.at/magazin/la-sportiva-lumina-jacke-bergzeit-glueckspilz/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "stilbruch-registration-2026",
@@ -85,7 +115,13 @@
       "ends_at": "2026-11-30T00:00:00+01:00",
       "reviewed_on": "2026-11-21",
       "required_data": "E-Mail-Adresse zur Erstregistrierung; vom 30.11. bis 15.12. separate Lösungsabgabe mit derselben E-Mail",
-      "note": "WICHTIG: Zweistufig! Jetzt nur registrieren (bis 29.11.2026, 23:59 Uhr); anschließend Lösung zwischen 30.11. und 15.12. einreichen. Kostenlos, DE, ab 18, keine Kauf- oder Newsletterpflicht. Die Zweitphase ist für die Gewinnchance zwingend. Originalseite/Datenschutz am 21.11.2026 geprüft."
+      "note": "WICHTIG: Zweistufig! Jetzt nur registrieren (bis 29.11.2026, 23:59 Uhr); anschließend Lösung zwischen 30.11. und 15.12. einreichen. Kostenlos, DE, ab 18, keine Kauf- oder Newsletterpflicht. Die Zweitphase ist für die Gewinnchance zwingend. Originalseite/Datenschutz am 21.11.2026 geprüft.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://stilbruch-mode.de/pages/gewinnspiel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "cloetta-candyking-instagram-2026",
@@ -101,7 +137,13 @@
       "participation_type": "instagram",
       "required_data": "Instagram-Konto, offizielles Profil folgen, Gewinnspielbeitrag liken und kommentieren, mit wem man teilen würde; Gewinner schicken später Name, E-Mail und Versandadresse per Direktnachricht",
       "marketing_requirements": "Kein Newsletter/Kauf erforderlich; öffentlich sichtbarer Kommentar und Instagram-Folge/Liken sind Teilnahmevoraussetzungen. Gewinnerprofilname kann veröffentlicht werden.",
-      "note": "Originale Teilnahmebedingungen vom Veranstalter geprüft. Aktion 18.–25.11.2026, Deutschland, ab 18. Der Instagram-Gewinnspielbeitrag selbst ist nicht unabhängig direkt geöffnet; daher über den offiziellen Veranstalter-Account und den datierten Beitrag vom 18.11. gehen. Keine automatische Teilnahme."
+      "note": "Originale Teilnahmebedingungen vom Veranstalter geprüft. Aktion 18.–25.11.2026, Deutschland, ab 18. Der Instagram-Gewinnspielbeitrag selbst ist nicht unabhängig direkt geöffnet; daher über den offiziellen Veranstalter-Account und den datierten Beitrag vom 18.11. gehen. Keine automatische Teilnahme.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.cloettadeutschland.de/candyking-adventskalender2026/",
+        "summary": "Offizielle Instagram-Regeln lesbar, konkreter Post/aktive Teilnahme auf Instagram nicht unabhängig geöffnet."
+      }
     },
     {
       "id": "partner-wera-social-2026",
@@ -117,7 +159,13 @@
       "participation_type": "social",
       "required_data": "Facebook- oder Instagram-Konto; im offiziellen Gewinnspielbeitrag den Satz 'Ich möchte den Wera-Adventskalender gewinnen, weil …' vervollständigen. Story/Repost und Markierungen freiwillig; Gewinner teilen Versandadresse per Direktnachricht.",
       "marketing_requirements": "Kein Kauf, Newsletter, Repost oder Markieren anderer Personen erforderlich; öffentlich sichtbarer Kommentar und Social-Media-Konto nötig.",
-      "note": "Offizielle Bedingungen 14.–24.11.2026 23:59 MEZ, Deutschland, ab 18. Je eine Teilnahme auf Facebook und Instagram erlaubt. Direkter Social-Media-Gewinnspielpost nicht separat verifiziert; auf der offiziellen Veranstalterseite zum jeweiligen Profil wechseln. Keine automatisierte Teilnahme."
+      "note": "Offizielle Bedingungen 14.–24.11.2026 23:59 MEZ, Deutschland, ab 18. Je eine Teilnahme auf Facebook und Instagram erlaubt. Direkter Social-Media-Gewinnspielpost nicht separat verifiziert; auf der offiziellen Veranstalterseite zum jeweiligen Profil wechseln. Keine automatisierte Teilnahme.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "prym-handicraft-whatsapp-2026",
@@ -133,7 +181,13 @@
       "participation_type": "whatsapp_email",
       "required_data": "WhatsApp-Kanal von Handicraft by Prym abonnieren; dort veröffentlichte Frage/Aufgabe per eigener E-Mail an die in offiziellen Bedingungen genannte Adresse beantworten; einmalige Teilnahme. Gewinner geben später Name und Postanschrift an.",
       "marketing_requirements": "WhatsApp-Konto und Kanal-Follow sind verpflichtend; kein Kauf und nach Bedingungen keine weitere Marketing-Einwilligung erforderlich. Veranstalter verarbeitet Teilnehmer-E-Mail zur Gewinnabwicklung.",
-      "note": "Offizielle Bedingungen bis 22.12.2026 23:59 Uhr; ab 16, Wohnsitz Deutschland. Die aktuelle Aufgabe ist nur im WhatsApp-Kanal zu sehen und wurde nicht unabhängig geprüft. Eine einzige Gewinnspielteilnahme, kein täglicher Adventskalender. Keine automatische E-Mail/Teilnahme."
+      "note": "Offizielle Bedingungen bis 22.12.2026 23:59 Uhr; ab 16, Wohnsitz Deutschland. Die aktuelle Aufgabe ist nur im WhatsApp-Kanal zu sehen und wurde nicht unabhängig geprüft. Eine einzige Gewinnspielteilnahme, kein täglicher Adventskalender. Keine automatische E-Mail/Teilnahme.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://de.handicraft.com/pages/gewinnspiel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "falken-bulls-bikes-2026",
@@ -150,7 +204,13 @@
       "participation_type": "web_form",
       "required_data": "Vorname, Nachname, E-Mail-Adresse, Fahrradwahl, Wohnsitz in Deutschland sowie Bestätigung von Teilnahmebedingungen und Datenschutzerklärung; Anschriftfelder ohne Pflichtstern",
       "marketing_requirements": "Kein Kauf von FALKEN-Reifen und kein Newsletter oder Social-Media-Konto erforderlich. Einwilligung zur Datenverarbeitung für die Durchführung des Gewinnspiels ist verpflichtend.",
-      "note": "Offizielles, geöffnetes Originalformular mit Angaben zu vier Fahrradgewinnen, kostenloser Teilnahme und FAQ am 21.11.2026 geprüft. Veranstalter SOKRATIV GmbH in Witten; volljährig, Wohnsitz Deutschland, maximal eine Teilnahme pro Person. Bedingungen und Datenschutzhinweise öffnen sich als Schaltflächen auf derselben Originalseite; vollständiger eingeblendeter Text und Formularabsendung wurden nicht unabhängig ausgeführt. Es handelt sich ausdrücklich um das kostenlose Zusatzgewinnspiel, nicht um die kaufgebundene Reifen-Hauptkampagne."
+      "note": "Offizielles, geöffnetes Originalformular mit Angaben zu vier Fahrradgewinnen, kostenloser Teilnahme und FAQ am 21.11.2026 geprüft. Veranstalter SOKRATIV GmbH in Witten; volljährig, Wohnsitz Deutschland, maximal eine Teilnahme pro Person. Bedingungen und Datenschutzhinweise öffnen sich als Schaltflächen auf derselben Originalseite; vollständiger eingeblendeter Text und Formularabsendung wurden nicht unabhängig ausgeführt. Es handelt sich ausdrücklich um das kostenlose Zusatzgewinnspiel, nicht um die kaufgebundene Reifen-Hauptkampagne.",
+      "source_audit": {
+        "status": "unconfirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
+        "summary": "Aktionsseite lieferte keine auswertbaren Inhalte; Kaufunabhängigkeit und aktive Eingabemaske nicht erneut bestätigt."
+      }
     },
     {
       "id": "stryve-christmas-social-2026",
@@ -166,7 +226,13 @@
       "participation_type": "social",
       "required_data": "Facebook- oder Instagram-Konto, öffentlich sichtbarer Kommentar unter einem der offiziellen STRYVE-Gewinnspielbeiträge oder -Anzeigen; im Gewinnfall Name und Lieferadresse innerhalb von 48 Stunden per Direktnachricht mitteilen",
       "marketing_requirements": "Kein Kauf, Newsletter-Abonnement oder verpflichtendes Teilen/Folgen laut veröffentlichten Bedingungen; Social-Media-Konto und öffentlicher Kommentar sind nötig. Profilname/Kommentar werden für Auslosung verarbeitet.",
-      "note": "Offizielle 2026-Bedingungen und Datenschutz am 21.11.2026 direkt geprüft. Kostenlos, Deutschland, ab 18; ein Los pro Person auch bei mehreren Kommentaren. Die aktuelle Social-Media-Anzeige bzw. der einzelne Gewinnspielpost wurde nicht separat geöffnet. Bitte auf den offiziellen STRYVE-Profilen nach der laufenden Aktion suchen; niemals Zahlungsdaten zur angeblichen Gewinnauszahlung angeben."
+      "note": "Offizielle 2026-Bedingungen und Datenschutz am 21.11.2026 direkt geprüft. Kostenlos, Deutschland, ab 18; ein Los pro Person auch bei mehreren Kommentaren. Die aktuelle Social-Media-Anzeige bzw. der einzelne Gewinnspielpost wurde nicht separat geöffnet. Bitte auf den offiziellen STRYVE-Profilen nach der laufenden Aktion suchen; niemals Zahlungsdaten zur angeblichen Gewinnauszahlung angeben.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://stryve.de/pages/gewinnspiel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "gesundde-register-win-2026",
@@ -182,7 +248,13 @@
       "participation_type": "app_account",
       "required_data": "Erstmals die gesund.de App installieren, neues kostenloses Konto eröffnen, Gewinnspielteilnahme ausdrücklich bestätigen und E-Mail-Adresse verifizieren; Bestandskonten sind ausgeschlossen",
       "marketing_requirements": "Kein Kauf erforderlich. Newsletter- und Push-Werbung sind laut §5 Absatz 4 ausdrücklich freiwillig. Eine neue App-Registrierung samt E-Mail-Bestätigung ist verpflichtend.",
-      "note": "Offizielle 2026-Bedingungen, eigene Gewinnspiel-Datenschutzerklärung und aktuelle App-Werbung geprüft. Die tatsächliche Registrierung innerhalb der App wurde nicht durchgeführt; für Teilnahme den offiziellen App-Link der gesund.de-Seite nutzen. Nur neue Konten (30.10.–25.11.2026), DE, ab 18, eine Teilnahme."
+      "note": "Offizielle 2026-Bedingungen, eigene Gewinnspiel-Datenschutzerklärung und aktuelle App-Werbung geprüft. Die tatsächliche Registrierung innerhalb der App wurde nicht durchgeführt; für Teilnahme den offiziellen App-Link der gesund.de-Seite nutzen. Nur neue Konten (30.10.–25.11.2026), DE, ab 18, eine Teilnahme.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.gesund.de/gewinnspiel-teilnahmebedingungen",
+        "summary": "Veranstalterinformation lesbar, aber konkreter Teilnahmeweg oder Datenschutzdetail nicht vollständig unabhängig überprüfbar."
+      }
     },
     {
       "id": "smyths-wishlist-2026",
@@ -198,7 +270,13 @@
       "participation_type": "account",
       "required_data": "Kostenloses Smyths-Toys-Kundenkonto mit gültiger E-Mail; während 20.–29.11. Wunschliste mit EXAKTEM Titel 'GEWINNE DEINE WUNSCHLISTE' anlegen; maximal 10 Artikel und maximal 1.000 €; verfügbare Produkte, keine Gutscheine/Vorbestellungen",
       "marketing_requirements": "Kein Kauf und keine Newsletter-/Marketing-Einwilligung für die Gewinnspielteilnahme. Konto und gespeicherte Wunschliste sind Pflicht; eventuelle Gewinnernennung nur mit gesonderter freiwilliger Zustimmung.",
-      "note": "Aktuelle Originalbedingungen 2026 und Smyths-Toys-Datenschutz geprüft. Die Wunschliste zählt bei korrektem Titel automatisch als Teilnahme; kein separates Gewinnspielformular. Der Login-/Wunschlistenablauf selbst wurde nicht ausgeführt. Gilt für Deutschland, Österreich und Schweiz; ab 18. Originalbedingungen sind zugleich die Anleitungsseite."
+      "note": "Aktuelle Originalbedingungen 2026 und Smyths-Toys-Datenschutz geprüft. Die Wunschliste zählt bei korrektem Titel automatisch als Teilnahme; kein separates Gewinnspielformular. Der Login-/Wunschlistenablauf selbst wurde nicht ausgeführt. Gilt für Deutschland, Österreich und Schweiz; ab 18. Originalbedingungen sind zugleich die Anleitungsseite.",
+      "source_audit": {
+        "status": "blocked",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.smythstoys.com/de/de-de/wunschlisten-gewinnspiel-tnb",
+        "summary": "Veranstalterseite blockiert externe Prüfzugriffe mit HTTP 403; keine Aussage über Ablauf oder Betrug."
+      }
     },
     {
       "id": "aida-november-cruise-2026",
@@ -214,7 +292,13 @@
       "participation_type": "web_form",
       "required_data": "Freitext-Gewinnspielfrage (max. 100 Zeichen), Anrede, Vorname, Nachname, Geburtsdatum, E-Mail-Adresse, Bestätigung der Teilnahmebedingungen und Kenntnisnahme der Datenschutzbestimmungen",
       "marketing_requirements": "Die Newsletter-Einwilligung ist auf der offiziellen Formularseite separat aufgeführt und nicht als Pflichtfeld gekennzeichnet; keine Kauf- oder Buchungspflicht. Gewinnername und Wohnort erscheinen verkürzt auf AIDA-Webseite.",
-      "note": "Offizielles November-2026-Formular, dreiseitige Originalbedingungen und Datenschutz am 21.11.2026 eingesehen. Kostenlos, ab 18, eine Teilnahme. Teilnahmeende 30.11.2026 23:59 Uhr. Der Reisegutschein ist nach Ausstellung drei Jahre nach Verfügbarkeit einlösbar; Mehrkosten über 4.000 € zahlt der Gewinner. Ein reales Absenden oder eine Bestätigung wurden nicht durchgeführt."
+      "note": "Offizielles November-2026-Formular, dreiseitige Originalbedingungen und Datenschutz am 21.11.2026 eingesehen. Kostenlos, ab 18, eine Teilnahme. Teilnahmeende 30.11.2026 23:59 Uhr. Der Reisegutschein ist nach Ausstellung drei Jahre nach Verfügbarkeit einlösbar; Mehrkosten über 4.000 € zahlt der Gewinner. Ein reales Absenden oder eine Bestätigung wurden nicht durchgeführt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://aida.de/content/dam/aida/de/medien/kreuzfahrt/campaign/gewinnspiele/monatsgewinnspiel2026/TNB_november2.pdf",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "db-bibi-tina-musical-2026",
@@ -230,7 +314,13 @@
       "participation_type": "web_form",
       "required_data": "Vorname, Nachname, E-Mail-Adresse sowie Zustimmung zu Teilnahmebedingungen und Gewinnspiel-Datenschutzhinweisen im Originalformular",
       "marketing_requirements": "Kein Kauf oder Bahn-Ticket erforderlich. Werbliche Nutzung der Daten laut Originalformular nur mit gesonderter freiwilliger Einwilligung; die sichtbare Pflichtbestätigung betrifft die Abwicklung des Gewinnspiels.",
-      "note": "Ab 21.11.2026 als sicher laufend belegbar (genauer Aktionsbeginn nicht genannt). Originales Gewinnspielformular, datierte 2026-Teilnahmebedingungen und separate aktuelle Datenschutzhinweise am 21.11.2026 geprüft. Ab 18 und mit festem Wohnsitz in Deutschland; nur einmalige Teilnahme. Familienbesuch für bis zu vier Personen in Berlin, Termin nach Wahl und Verfügbarkeit innerhalb der Spielzeit bis 03.01.2027. Die Webseite stellt in der auslesbaren Darstellung gleichzeitig Fehler- und Erfolgstexte bereit; eine reale Formularabsendung wurde NICHT vorgenommen und ein erfolgreicher Abschluss NICHT nachgewiesen."
+      "note": "Ab 21.11.2026 als sicher laufend belegbar (genauer Aktionsbeginn nicht genannt). Originales Gewinnspielformular, datierte 2026-Teilnahmebedingungen und separate aktuelle Datenschutzhinweise am 21.11.2026 geprüft. Ab 18 und mit festem Wohnsitz in Deutschland; nur einmalige Teilnahme. Familienbesuch für bis zu vier Personen in Berlin, Termin nach Wahl und Verfügbarkeit innerhalb der Spielzeit bis 03.01.2027. Die Webseite stellt in der auslesbaren Darstellung gleichzeitig Fehler- und Erfolgstexte bereit; eine reale Formularabsendung wurde NICHT vorgenommen und ein erfolgreicher Abschluss NICHT nachgewiesen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.bahn.de/service/individuelle-reise/kinder/gewinnspiel-bibi-tina/teilnahmebedingungen",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "avermedia-elena-console-2026",
@@ -247,7 +337,13 @@
       "participation_type": "external_form",
       "required_data": "Laut offiziellen Bedingungen Name, gültige E-Mail-Adresse und Wohnsitzland/Region im Teilnahmeformular auf der deutschen AVerMedia-Seite; maximal eine Teilnahme",
       "marketing_requirements": "Kein Kauf erforderlich. Marketing-Mitteilungen laut offiziellen Bedingungen freiwillig; keine verpflichtende Newsletter-Anmeldung. Teilnahme ab 18, auch aus Deutschland.",
-      "note": "Offizielle deutschsprachige Aktionsseite, 2026-Teilnahmebedingungen und Datenschutzerklärung am 21.11.2026 geprüft. Das tatsächlich bedienbare Formular war in der auslesbaren Originalseite nicht unabhängig sichtbar; daher Teilnahmeweg vor Eingabe prüfen und keine angebliche Formular-/Absendeverifikation. Der weltweite Preis wird unter allen zugelassenen Ländern verlost."
+      "note": "Offizielle deutschsprachige Aktionsseite, 2026-Teilnahmebedingungen und Datenschutzerklärung am 21.11.2026 geprüft. Das tatsächlich bedienbare Formular war in der auslesbaren Originalseite nicht unabhängig sichtbar; daher Teilnahmeweg vor Eingabe prüfen und keine angebliche Formular-/Absendeverifikation. Der weltweite Preis wird unter allen zugelassenen Ländern verlost.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.avermedia.com/event/best-game-capture-card/de/giveaway-rules.html",
+        "summary": "Teilnahmebedingungen und Endtermin lesbar, externes Teilnahmeformular selbst nicht unabhängig geöffnet."
+      }
     },
     {
       "id": "wed2b-black-friday-dress-2026",
@@ -264,7 +360,13 @@
       "participation_type": "instagram",
       "required_data": "Persönliches öffentliches Instagram-Konto, @wed2b folgen, offiziellen Black-Friday-Post liken und dort kommentieren; Follow muss bis zur Auslosung bestehen",
       "marketing_requirements": "Kostenlos und ohne Kauf, Freundemarkierung freiwillig; kein Newsletter bei Teilnahme. Öffentliches Instagram-Profil und Kommentar erforderlich. Bei Annahme des Gewinns ist eine angemessene werbliche Namens-/Profil-/Erfahrungsnutzung vorgesehen.",
-      "note": "Originale Black-Friday-Sonderbedingungen 2026 auf der offiziellen wed2b-Website geprüft; Teilnahme für Erwachsene auch mit Wohnsitz Deutschland. Einzelner Instagram-Gewinnspielbeitrag nicht unabhängig geöffnet: offizielles Konto @wed2b und Black-Friday-Beitrag suchen. Das Sondergewinnspiel ist vom monatlichen Newsletter-Gewinnspiel ausdrücklich getrennt; keine automatische Teilnahme."
+      "note": "Originale Black-Friday-Sonderbedingungen 2026 auf der offiziellen wed2b-Website geprüft; Teilnahme für Erwachsene auch mit Wohnsitz Deutschland. Einzelner Instagram-Gewinnspielbeitrag nicht unabhängig geöffnet: offizielles Konto @wed2b und Black-Friday-Beitrag suchen. Das Sondergewinnspiel ist vom monatlichen Newsletter-Gewinnspiel ausdrücklich getrennt; keine automatische Teilnahme.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.wed2b.com/de-de/competition",
+        "summary": "Originalseite lesbar, konkrete Social-Media-Teilnahme nicht unabhängig durchgespielt."
+      }
     },
     {
       "id": "kreiller-advent-instagram-2026",
@@ -281,7 +383,13 @@
       "participation_type": "instagram",
       "required_data": "Instagram-Konto, offiziellem @kreiller_fachhandel-Profil folgen, Gewinnspielbeitrag liken und darunter kommentieren, mit wem du das erste Bob-Rennen machst; bei Gewinn Versandanschrift per Direktnachricht",
       "marketing_requirements": "Kostenlos, keine Kauf- oder Newsletterpflicht. Instagram-Follow, öffentlich sichtbares Like und Kommentar sind Pflicht; freiwilliges Teilen in einer Story bringt laut Bedingungen keine zusätzliche Gewinnchance.",
-      "note": "Originale 2026-Teilnahmebedingungen und darin integrierte Datenschutzangaben geprüft: Teilnahme ab 18, Wohnsitz Deutschland; Einmalkommentar, 17.11.14 Uhr bis 15.12.14 Uhr MEZ. Der konkrete einzelne Instagram-Beitrag wurde nicht unabhängig geöffnet: bitte auf der Veranstalterseite den offiziellen Instagram-Weg prüfen. Kein täglicher Online-Adventskalender, sondern eine einmalige Verlosung u. a. eines Kalenders."
+      "note": "Originale 2026-Teilnahmebedingungen und darin integrierte Datenschutzangaben geprüft: Teilnahme ab 18, Wohnsitz Deutschland; Einmalkommentar, 17.11.14 Uhr bis 15.12.14 Uhr MEZ. Der konkrete einzelne Instagram-Beitrag wurde nicht unabhängig geöffnet: bitte auf der Veranstalterseite den offiziellen Instagram-Weg prüfen. Kein täglicher Online-Adventskalender, sondern eine einmalige Verlosung u. a. eines Kalenders.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://kreiller.de/infos/gewinnspiel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "evh-halplus-christmas-lights-2026",
@@ -297,7 +405,13 @@
       "participation_type": "external_form",
       "required_data": "Onlineformular mit selbst gemaltem, gebasteltem oder fotografiertem Weihnachtslicht-Bild eines Kindes, Kontaktdaten und Teilnahmebestätigung; pro Kind nur ein Bild; ggf. Einwilligung abgebildeter Personen nötig",
       "marketing_requirements": "Kostenlos, kein Kauf und kein Besuch der Weihnachtsrevue notwendig. WICHTIG: Durch Teilnahme gewährt der Einsender dem Veranstalter umfassende, zeitlich und räumlich unbeschränkte Bildnutzungsrechte; bei erkennbaren Personen sind deren Einwilligungen nötig, bei Kindern die elterliche. Kein Newsletterzwang in den veröffentlichten Bedingungen.",
-      "note": "Offizielle EVH-Aktionsseite samt Teilnahmebedingungen und Datenschutz geprüft; Endtermin 14.12.2026 23:59 MEZ, Wohnsitz Deutschland. Das Onlineformular ist offiziell verlinkt, wurde aber nicht abgeschickt und seine Pflichtfelder wurden nicht einzeln inspiziert. Zum Schutz der Privatsphäre besser nur selbst gebastelte Lichtmotive ohne erkennbare Gesichter einreichen. Nicht bloß ein normales E-Mail-Gewinnspiel."
+      "note": "Offizielle EVH-Aktionsseite samt Teilnahmebedingungen und Datenschutz geprüft; Endtermin 14.12.2026 23:59 MEZ, Wohnsitz Deutschland. Das Onlineformular ist offiziell verlinkt, wurde aber nicht abgeschickt und seine Pflichtfelder wurden nicht einzeln inspiziert. Zum Schutz der Privatsphäre besser nur selbst gebastelte Lichtmotive ohne erkennbare Gesichter einreichen. Nicht bloß ein normales E-Mail-Gewinnspiel.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://evh.de/vorteils-und-wissenswelt/aktionen/winter-weihnachten/gewinnspiel-halplus-weihnachtsleuchten",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "radio-brocken-familienquiz-2026",
@@ -314,7 +428,13 @@
       "participation_type": "web_form",
       "required_data": "Vor-/Nachname, vollständige Anschrift, E-Mail, Telefonnummer; nach offiziellen Bedingungen auch im Haushalt lebende Familienmitglieder; Pflichtbestätigung von Bedingungen, Radioanrufen und Datenschutz. Newsletter-Checkbox separat freiwillig.",
       "marketing_requirements": "Keine Teilnahmegebühr oder Kaufpflicht; Newsletter optional. ACHTUNG: Radioanrufe, aufgezeichnete und ausgestrahlte Familienquiz-Telefonate sowie eine mögliche Namens-/Bildveröffentlichung gehören ausdrücklich zu den Bedingungen. Nur geeignet, wenn man damit einverstanden ist.",
-      "note": "Offizielles 2026-Anmeldeformular und spezifische Teilnahmebedingungen am 21.11.2026 überprüft; Anmeldefrist bis 15.12.2026 18:00 Uhr. Nicht bereits die Anmeldung gewinnt: Veranstalter ruft ausgewählte Teilnehmer an, mindestens ein Familienmitglied ab 16 muss beim Quiz anwesend sein; drei Fragen in 30 Sekunden richtig beantworten. Wochenpreise wechseln, aktuell beworbene Familientickets können sich ändern. Keine Anmeldung abgesendet, kein Teilnahmeerfolg behauptet."
+      "note": "Offizielles 2026-Anmeldeformular und spezifische Teilnahmebedingungen am 21.11.2026 überprüft; Anmeldefrist bis 15.12.2026 18:00 Uhr. Nicht bereits die Anmeldung gewinnt: Veranstalter ruft ausgewählte Teilnehmer an, mindestens ein Familienmitglied ab 16 muss beim Quiz anwesend sein; drei Fragen in 30 Sekunden richtig beantworten. Wochenpreise wechseln, aktuell beworbene Familientickets können sich ändern. Keine Anmeldung abgesendet, kein Teilnahmeerfolg behauptet.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.radiobrocken.de/informationen/Teilnahmebedingungen-mit-Datenschutzhinweisen-f%C3%BCr-die-Gewinnspielreihe-%E2%80%9ERadio-Brocken-Familienquiz%E2%80%9C-id1596321.html",
+        "summary": "Offizielle Quizseite erreichbar, tatsächliche Anruf-/Spielteilnahme nicht selbst durchgeführt."
+      }
     },
     {
       "id": "pilot-frixion-monthly-2026",
@@ -330,7 +450,13 @@
       "participation_type": "web_form",
       "required_data": "Anrede, Vorname, Nachname, Straße, PLZ, Ort, Land und E-Mail; Datenschutz- und Teilnahmebedingungen bestätigen. Für 16- und 17-Jährige Einwilligung der gesetzlichen Vertretung.",
       "marketing_requirements": "Keine Kaufpflicht; Newsletter-Zustimmung im Originalformular separat und ohne Pflichtstern. Adresse ist für möglichen Preisversand schon im Teilnahmeformular erforderlich.",
-      "note": "Originalformular mit Sternchen-Pflichtfeldern und getrennt freiwilligem Newsletter am 21.11.2026 sichtbar. Eine Teilnahme pro Person und Monat, zehn Pakete pro Monatsziehung; 01.01.–31.12.2026, DE/AT, ab 16 mit Elternzustimmung unter 18. Das separate Cashback-Angebot auf derselben Seite ist beendet, das FriXion-Gewinnspiel ausdrücklich nicht. Keine Anmeldung abgesendet."
+      "note": "Originalformular mit Sternchen-Pflichtfeldern und getrennt freiwilligem Newsletter am 21.11.2026 sichtbar. Eine Teilnahme pro Person und Monat, zehn Pakete pro Monatsziehung; 01.01.–31.12.2026, DE/AT, ab 16 mit Elternzustimmung unter 18. Das separate Cashback-Angebot auf derselben Seite ist beendet, das FriXion-Gewinnspiel ausdrücklich nicht. Keine Anmeldung abgesendet.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.pilotpen.de/FriXion-das-Original-Gewinnspiel-tnb",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "world-of-dice-winterscene-2026",
@@ -346,7 +472,13 @@
       "participation_type": "instagram_tiktok",
       "required_data": "Eigenes winterliches Würfel- oder Adventskalendermotiv als öffentliches Instagram-Bild/Reel/Story mit @worldofdice oder auf TikTok posten; nach Gewinn E-Mail für Gutscheincode. Posts müssen bis zur Auslosung erreichbar bleiben.",
       "marketing_requirements": "Kein Kauf, kein Pflicht-Follow, kein Markieren anderer Personen und keine Newsletterpflicht. Öffentlicher Beitrag oder Story und Instagram- oder TikTok-Konto erforderlich; Story wird für die Auslosung gescreenshottet. Werbliche Weiternutzung nur mit gesonderter Zustimmung.",
-      "note": "Veranstalterbedingungen inkl. spezifischer DSGVO-Hinweise am 21.11.2026 geprüft. Keine tägliche Türchen-Aktion trotz Titel 'Adventskalender Gewinnspiel': Eine einzige 250-€-Gutscheinverlosung nach dem 31.12.2026; nur ein Los pro Person insgesamt, auch bei Plattformwechsel. Originale Social-Posts nicht separat geöffnet. Deutschland, ab 18."
+      "note": "Veranstalterbedingungen inkl. spezifischer DSGVO-Hinweise am 21.11.2026 geprüft. Keine tägliche Türchen-Aktion trotz Titel 'Adventskalender Gewinnspiel': Eine einzige 250-€-Gutscheinverlosung nach dem 31.12.2026; nur ein Los pro Person insgesamt, auch bei Plattformwechsel. Originale Social-Posts nicht separat geöffnet. Deutschland, ab 18.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://worldofdice.de/pages/gewinnspiel2026",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "steinbach-simple-spa-2026",
@@ -363,7 +495,13 @@
       "participation_type": "social",
       "required_data": "Eigenes Facebook- oder Instagram-Konto, offiziellen Account @steinbachpools folgen, aktuellen Gewinnspielbeitrag liken und darunter kommentieren UND eine weitere Person markieren. Bei Gewinn Lieferangaben per Direktnachricht.",
       "marketing_requirements": "Kostenlos, keine Warenbestellung oder Newsletterpflicht. Social-Media-Follow, Like, Kommentar UND Personenmarkierung sind verbindliche Teilnahmehandlungen; öffentlicher Kommentar sichtbar.",
-      "note": "Offizielle 2026-Aktionsbedingungen 20.11.12 Uhr bis 04.12.12 Uhr, ab 16, DE/AT und eigenständige Datenschutzseite geprüft. Die vollständige Social-Post-URL konnte nicht unabhängig geöffnet werden; auf der Originalseite zu den offiziellen Accounts wechseln. Kein Kommentar oder Like automatisiert gesetzt."
+      "note": "Offizielle 2026-Aktionsbedingungen 20.11.12 Uhr bis 04.12.12 Uhr, ab 16, DE/AT und eigenständige Datenschutzseite geprüft. Die vollständige Social-Post-URL konnte nicht unabhängig geöffnet werden; auf der Originalseite zu den offiziellen Accounts wechseln. Kein Kommentar oder Like automatisiert gesetzt.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.steinbach-group.com/de/rechtliches/teilnahmebedingungen-social-media-gewinnspiel/",
+        "summary": "Teilnahmebedingungen erreichbar; konkretes aktuelles Social-Media-Posting nicht unabhängig verifiziert."
+      }
     },
     {
       "id": "edeka-kuhlmann-ps5-reel-2026",
@@ -379,7 +517,13 @@
       "participation_type": "instagram",
       "required_data": "Instagram-Konto, offiziellen EDEKA-Kuhlmann-Account folgen, Gewinnspiel-Reel liken und kommentieren. Gewinner müssen innerhalb von 48 Stunden auf die Direktnachricht reagieren. Gewinn nur persönlich nach Termin im Geschäft abzuholen.",
       "marketing_requirements": "Kostenlos und ohne Einkauf oder Newsletterpflicht. Instagram-Follow/Like/öffentlicher Kommentar erforderlich; KEIN Versand: Selbstabholung in der Filiale, in der das Reel gedreht wurde, eigene Anreisekosten.",
-      "note": "Dreiseitige originale PDF-Teilnahmebedingungen inklusive eigenständiger Gewinnspiel-Datenschutzinformation am 21.11.2026 überprüft. Ab 18, Wohnsitz Deutschland, Frist 15.12.2026 23:59 MEZ. Die genaue Abholfiliale wird dem Gewinner mitgeteilt (Veranstalter in Wallenhorst); der einzelne Instagram-Reel-Link wurde nicht unabhängig gefunden. Öffentlich sichtbare Kommentare, kein öffentlicher Gewinnername laut PDF."
+      "note": "Dreiseitige originale PDF-Teilnahmebedingungen inklusive eigenständiger Gewinnspiel-Datenschutzinformation am 21.11.2026 überprüft. Ab 18, Wohnsitz Deutschland, Frist 15.12.2026 23:59 MEZ. Die genaue Abholfiliale wird dem Gewinner mitgeteilt (Veranstalter in Wallenhorst); der einzelne Instagram-Reel-Link wurde nicht unabhängig gefunden. Öffentlich sichtbare Kommentare, kein öffentlicher Gewinnername laut PDF.",
+      "source_audit": {
+        "status": "unconfirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://edeka-kuhlmann.de/wp-content/uploads/2026/11/Teilnahmebedingungen_Datenschutz_PS5_Gewinnspiel_EDEKA_Kuhlmann.pdf",
+        "summary": "Originalquelle ist ein PDF; dessen Seiteninhalt wurde in diesem Prüflauf nicht unabhängig inspiziert."
+      }
     },
     {
       "id": "kanzi-power-search-2026",
@@ -395,7 +539,13 @@
       "participation_type": "web_form",
       "required_data": "Im interaktiven Suchbild mindestens drei Motive antippen und dann E-Mail im freigeschalteten Formular eingeben; Teilnahmebedingungen bestätigen. Wer den Joker findet, erhält zusätzlich ein Los auf 5.000 €.",
       "marketing_requirements": "Kostenlos ohne Kauf oder Newsletterpflicht. Die optionale Werbeeinwilligung ist laut Originalbedingungen nicht erforderlich. Eine verkürzte Gewinnerveröffentlichung (Vorname/Preis) wird laut Regeln mit der Teilnahme akzeptiert; bei Gewinn für Zusendung Adressangaben, bei Jokergewinn Bankverbindung nötig.",
-      "note": "Originales spielbares Suchbild als offizielle Seite, 2026-Teilnahmebedingungen und Datenschutz am 21.11.2026 geprüft, Wohnsitz Deutschland, ab 18. WICHTIGE Quellenabweichung: Aktionsseite nennt Bose QuietComfort SC, die Teilnahmebedingungen Bose QuietComfort Ultra (2. Gen.); daher Modell nicht als gesichert darstellen. Der Spielknopf ist sichtbar, Suchspiel/Formular wurden nicht automatisiert gespielt oder abgesendet. Keine täglichen Advent-Türchen; kostenloses Suchbild-Gewinnspiel."
+      "note": "Originales spielbares Suchbild als offizielle Seite, 2026-Teilnahmebedingungen und Datenschutz am 21.11.2026 geprüft, Wohnsitz Deutschland, ab 18. WICHTIGE Quellenabweichung: Aktionsseite nennt Bose QuietComfort SC, die Teilnahmebedingungen Bose QuietComfort Ultra (2. Gen.); daher Modell nicht als gesichert darstellen. Der Spielknopf ist sichtbar, Suchspiel/Formular wurden nicht automatisiert gespielt oder abgesendet. Keine täglichen Advent-Türchen; kostenloses Suchbild-Gewinnspiel.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.kanziapple.com/de/legal/teilnahmebedingungen-kanzi-gewinnspiel-finden-und-gewinnen-2026/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "suelzle-wimmelbild-ballonfahrt-2027",
@@ -411,7 +561,13 @@
       "participation_type": "external_form",
       "required_data": "Drei gesuchte Motive im offiziellen SÜLZLE-Wimmelbild markieren und anschließend Kontaktformular mit erreichbarer E-Mail und erforderlichen Kontaktdaten absenden",
       "marketing_requirements": "Keine Kaufpflicht oder Marketing-Anmeldung in den speziellen 2026-Bedingungen ausgewiesen. Allgemeine SÜLZLE-Gewinnspiel-Datenschutzhinweise sehen möglicherweise eine Namens-/Fotoveröffentlichung vor, soweit nicht widersprochen wird – Details selbst prüfen.",
-      "note": "Aktuelle Originalbedingungen und gesonderte Gewinnspiel-Datenschutzhinweise am 21.11.2026 überprüft. Schluss 31.01.2027, 23:59 Uhr; Gewinn per E-Mail, Rückmeldung innerhalb nur ZWEIER Tage nötig. Der konkrete bedienbare Wimmelbild-Beitrag und die Formularabsendung waren nicht unabhängig bestätigt; deshalb ausschließlich neutraler Teilnahmeweg-Link auf die Regeln. Keine erfundene erfolgreiche Teilnahme."
+      "note": "Aktuelle Originalbedingungen und gesonderte Gewinnspiel-Datenschutzhinweise am 21.11.2026 überprüft. Schluss 31.01.2027, 23:59 Uhr; Gewinn per E-Mail, Rückmeldung innerhalb nur ZWEIER Tage nötig. Der konkrete bedienbare Wimmelbild-Beitrag und die Formularabsendung waren nicht unabhängig bestätigt; deshalb ausschließlich neutraler Teilnahmeweg-Link auf die Regeln. Keine erfundene erfolgreiche Teilnahme.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://suelzle-gruppe.de/teilnahmebedingungen-gewinnspiel-wimmelbild/",
+        "summary": "Bedingungen erreichbar, Formular und Veröffentlichungserfordernisse nicht selbst durchlaufen."
+      }
     },
     {
       "id": "savencia-le-rustique-raclette-2027",
@@ -427,7 +583,13 @@
       "participation_type": "account",
       "required_data": "Kostenloses Ich-liebe-Käse-Konto (auch über Chatbot), im Chat eine Frage beantworten, Vorname, Nachname, Geburtsdatum und E-Mail angeben, Gewinnspiel- und Kontobedingungen akzeptieren. Maximal einmal täglich erneut teilnehmen.",
       "marketing_requirements": "Kein Kauf, keine Gebühren und keine versteckten Folgekosten laut Originalbedingungen. Newsletter und zusätzliche Marketing-Kommunikation werden im Chat lediglich freiwillig angeboten und beeinflussen die Teilnahme nicht.",
-      "note": "Offizielle aktuelle Aktionsseite, ausführliche 2026/2027-Teilnahmebedingungen und Datenschutz am 21.11.2026 eingesehen. 25 Grills, ab 18, Wohnsitz Deutschland; 02.11.2026 09:00 bis 03.01.2027 23:59. Chatbot-Bedienweg und ein tatsächlich erfolgreicher Absendevorgang wurden nicht unabhängig ausgeführt. Bei Gewinn muss die Postanschrift innerhalb von sieben Tagen per E-Mail bestätigt werden."
+      "note": "Offizielle aktuelle Aktionsseite, ausführliche 2026/2027-Teilnahmebedingungen und Datenschutz am 21.11.2026 eingesehen. 25 Grills, ab 18, Wohnsitz Deutschland; 02.11.2026 09:00 bis 03.01.2027 23:59. Chatbot-Bedienweg und ein tatsächlich erfolgreicher Absendevorgang wurden nicht unabhängig ausgeführt. Bei Gewinn muss die Postanschrift innerhalb von sieben Tagen per E-Mail bestätigt werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://ich-liebe-kaese.de/kaesemarken/le-rustique/raclette/raclette-gewinnspiel/raclette-gewinnspiel-tnb/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "meine-mvg-deutschlandticket-2027",
@@ -443,7 +605,13 @@
       "participation_type": "app_account",
       "required_data": "Kostenlose App 'Meine MVG' installieren, Kundenkonto registrieren und ein gültiges Zahlungsmittel hinterlegen und bis zur Stichtagskontrolle behalten. Automatische Teilnahme mit den Voraussetzungen ab 18 und Wohnsitz DE; fünf Ziehungs-Stichtage 30.11., 31.12., 31.01., 28.02., 31.03.",
       "marketing_requirements": "Teilnahme selbst kostenlos, keine Fahrkartenbuchung und keine unmittelbare Zahlung. ACHTUNG: Hinterlegung eines Zahlungsmittels VERPFLICHTEND. Gewonnenes Deutschlandticket läuft nach 12 Monaten als kostenpflichtiges, monatlich kündbares Abo weiter, falls nicht rechtzeitig gekündigt. Freiwilliger Fototermin und Namensnennung nur mit gesonderter Einwilligung; Widerspruch gegen automatische Auslosung möglich.",
-      "note": "Originale 2026/2027-Bedingungen, aktueller Veranstalterartikel und eigens ausgewiesene Gewinnspiel-Datenschutzhinweise am 21.11.2026 geprüft. Fünf Monatsziehungen mit jeweiligem Stichtag und ohne neue Anmeldung zu einzelnen Ziehungen, kein normales Formular. Der angezeigte Endtermin 31.03.2027 ist der LETZTE Teilnahmestichtag. Nach dem Gewinn erfolgt die Bereitstellung ausschließlich digital in der App. Kein Konto angelegt oder Zahlungsmittel hinzugefügt."
+      "note": "Originale 2026/2027-Bedingungen, aktueller Veranstalterartikel und eigens ausgewiesene Gewinnspiel-Datenschutzhinweise am 21.11.2026 geprüft. Fünf Monatsziehungen mit jeweiligem Stichtag und ohne neue Anmeldung zu einzelnen Ziehungen, kein normales Formular. Der angezeigte Endtermin 31.03.2027 ist der LETZTE Teilnahmestichtag. Nach dem Gewinn erfolgt die Bereitstellung ausschließlich digital in der App. Kein Konto angelegt oder Zahlungsmittel hinzugefügt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.mvg-online.de/teilnahmebedingungen-fuer-deutschlandticket-gewinnspiel-meine-mvg/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "krone-fisch-hurtigruten-2027",
@@ -459,7 +627,13 @@
       "participation_type": "web_form",
       "required_data": "Sichtbares Originalformular: Anrede, Vorname, Nachname, Land und E-Mail verpflichtend; Anschriftfelder vorhanden, teilweise ohne Pflichtstern. Teilnahmebedingungen/Datenschutz bestätigen. Einmalige Teilnahme.",
       "marketing_requirements": "Keine Kaufpflicht und keine Pflicht zum Newsletter. Die Einwilligungen für Hurtigruten- und TINEMA-Werbemails sind im Formular getrennt und freiwillig; Gewinnername und Bundesland werden nur mit gesonderter Zustimmung veröffentlicht.",
-      "note": "2026-Originalformular, ausführliche Teilnahmebedingungen, spezifischer Gewinnspiel-Datenschutz und beide freiwilligen Werbefelder am 21.11.2026 selbst eingesehen. DE ab 18, Ende 31.01.2027 23:59. Reise für zwei Personen ab Hamburg; Anreise nach Hamburg, Reiseversicherung, Ausflüge und sonstige Extras nicht im Gewinn enthalten. Reise nur im vorgegebenen Zeitraum 20.09.2027–31.03.2028 nach Verfügbarkeit, zusätzliche Buchungsbedingungen. Formular wurde nicht abgesendet; im Quelltext gleichzeitig vorhandene Erfolgs- und Fehlertexte sind kein Teilnahmebeleg."
+      "note": "2026-Originalformular, ausführliche Teilnahmebedingungen, spezifischer Gewinnspiel-Datenschutz und beide freiwilligen Werbefelder am 21.11.2026 selbst eingesehen. DE ab 18, Ende 31.01.2027 23:59. Reise für zwei Personen ab Hamburg; Anreise nach Hamburg, Reiseversicherung, Ausflüge und sonstige Extras nicht im Gewinn enthalten. Reise nur im vorgegebenen Zeitraum 20.09.2027–31.03.2028 nach Verfügbarkeit, zusätzliche Buchungsbedingungen. Formular wurde nicht abgesendet; im Quelltext gleichzeitig vorhandene Erfolgs- und Fehlertexte sind kein Teilnahmebeleg.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.krone-fisch.de/teilnahmebedingungen/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "robby-bubble-spiel-dich-schlau-2027",
@@ -476,7 +650,13 @@
       "participation_type": "web_form",
       "required_data": "Erziehungsberechtigte müssen Angaben zu sich und ihrem Kind eingeben: Vor- und Nachname und Geburtsdatum des Kindes sowie Name, postalische Adresse und E-Mail der/des Erziehungsberechtigten. Pflichtbestätigung von Teilnahmebedingungen und Datenschutz.",
       "marketing_requirements": "Kostenlos und ohne Kauf. Nach spezifischen Gewinnspielbedingungen keine Weitergabe der Daten zu fremden Werbezwecken. Daten des Kindes werden für die Auslosung und Gewinnabwicklung verarbeitet; Kinder dürfen nicht selbst teilnehmen.",
-      "note": "Aktuelles offizielles Formular einschließlich Pflichtfeldmarkierungen, 2026-Bedingungen und allgemeiner Datenschutzseite am 21.11.2026 geprüft. Teilnahmeberechtigt ausschließlich volljährige Sorgeberechtigte mit Wohnsitz DE für ein angegebenes Kind. Laufender offizieller Formulareintrag beobachtet, genauer Gewinnspielbeginn nicht veröffentlicht. Bis 31.01.2027, genaue Schlussuhrzeit nicht genannt; keine Uhrzeit erfunden. Formular zeigt auch einen statischen Erfolgshinweis, der KEINE erfolgreiche Teilnahme belegt. Keine Einsendung erfolgt."
+      "note": "Aktuelles offizielles Formular einschließlich Pflichtfeldmarkierungen, 2026-Bedingungen und allgemeiner Datenschutzseite am 21.11.2026 geprüft. Teilnahmeberechtigt ausschließlich volljährige Sorgeberechtigte mit Wohnsitz DE für ein angegebenes Kind. Laufender offizieller Formulareintrag beobachtet, genauer Gewinnspielbeginn nicht veröffentlicht. Bis 31.01.2027, genaue Schlussuhrzeit nicht genannt; keine Uhrzeit erfunden. Formular zeigt auch einen statischen Erfolgshinweis, der KEINE erfolgreiche Teilnahme belegt. Keine Einsendung erfolgt.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.robby-bubble.de/eo/cms?_aktion=detail&_bereich=artikel&idartikel=184271",
+        "summary": "Teilnahmebedingungen vorhanden; echtes Online-Eingabeformular nicht selbst abgesendet."
+      }
     },
     {
       "id": "wicklein-lebkuchenstart-2026",
@@ -492,7 +672,13 @@
       "participation_type": "email",
       "required_data": "Eigene E-Mail mit Antwort auf die Gewinnspielfrage an gewinnspiel@wicklein.de, Betreff „Wicklein Gewinnspiel 2026“; 18+, Wohnsitz DE/AT",
       "marketing_requirements": "Kein Kauf und keine Werbeeinwilligung erforderlich. E-Mail und Antwort nur für Gewinnabwicklung; Anschrift erst im Gewinnfall. An- und Abreise nach Nürnberg nicht enthalten.",
-      "note": "Originalbedingungen am 21.11.2026 geprüft: kostenlos, einmal pro Person, Einsendeschluss 31.12.2026 23:59 Uhr. E-Mail bitte eigenständig verschicken; GewinnRadar versendet keine Teilnahme-E-Mails."
+      "note": "Originalbedingungen am 21.11.2026 geprüft: kostenlos, einmal pro Person, Einsendeschluss 31.12.2026 23:59 Uhr. E-Mail bitte eigenständig verschicken; GewinnRadar versendet keine Teilnahme-E-Mails.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.web-wicklein.de/highlights/gewinnspiel-zum-wicklein-lebkuchenstart",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "ferrero-go-futbol-2026",
@@ -508,7 +694,13 @@
       "participation_type": "web_form",
       "required_data": "E-Mail-Adresse im offiziellen Teilnahmeformular; 18+, Wohnsitz Deutschland; nur eine Teilnahme pro Person",
       "marketing_requirements": "Kostenlos ohne Warenkauf. Daten nur für Gewinnspiel, sofern nicht gesondert einer Werbeeinwilligung zugestimmt wird; Gewinnerdaten für die Abwicklung an beauftragte Agentur.",
-      "note": "Originalbedingungen am 21.11.2026 geprüft: Teilnahmeschluss 31.12.2026, 23:59 Uhr. Bei Istanbul-Reise sind Kosten außerhalb der im Gutschein enthaltenen Leistungen möglich."
+      "note": "Originalbedingungen am 21.11.2026 geprüft: Teilnahmeschluss 31.12.2026, 23:59 Uhr. Bei Istanbul-Reise sind Kosten außerhalb der im Gutschein enthaltenen Leistungen möglich.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.go-futbol.de/teilnahmebedingungen",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "deg-heimspiel-tickets-2027",
@@ -524,7 +716,13 @@
       "participation_type": "offline_qr",
       "required_data": "QR-Code auf DEG-Werbeaufsteller in teilnehmendem Supermarkt scannen; auf verlinkter Landingpage Vorname, Nachname und E-Mail eingeben; ab 16, Wohnsitz Deutschland",
       "marketing_requirements": "Kein Kauf nötig. Werbung/Newsletter ausschließlich nach zusätzlicher gesonderter Einwilligung. Kein allgemein zugängliches Onlineformular auf der Bedingungen-Seite nachgewiesen.",
-      "note": "Offizielle DEG-Bedingungen am 21.11.2026 eingesehen. Alle 14 Tage neue Ziehung, einmal pro Person pro Auslosungsintervall. Endtermin 28.02.2027; Zugang nur über QR-Code im Laden. Ticketreise nicht enthalten."
+      "note": "Offizielle DEG-Bedingungen am 21.11.2026 eingesehen. Alle 14 Tage neue Ziehung, einmal pro Person pro Auslosungsintervall. Endtermin 28.02.2027; Zugang nur über QR-Code im Laden. Ticketreise nicht enthalten.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.deg-eishockey.de/teilnahmebedingungen/",
+        "summary": "Offizielle Regeln lesbar, Teilnahme nur mit QR-Code im Supermarkt; QR-Ziel nicht unabhängig geprüft."
+      }
     },
     {
       "id": "2kreuzfahrer-marulio-holland-2026",
@@ -540,7 +738,13 @@
       "participation_type": "account",
       "required_data": "Kostenlose 2Kreuzfahrer-Mitgliedschaft und Teilnahmeformular; mindestens 18 Jahre, Wohnsitz Deutschland; eine Teilnahme pro Person",
       "marketing_requirements": "Kein Kauf und keine Buchung. Newsletter optional, nicht Teilnahmebedingung. Gewinnerdaten für die Reiseübergabe an marulio GmbH; An-/Abreise zum Hafen selbst zahlen.",
-      "note": "Original-Teilnahmebedingungen am 21.11.2026 eingesehen. Frist 31.12.2026 23:59 Uhr, Gewinnreise im März 2027. Kostenfreie Registrierung notwendig; keine Anmeldung von GewinnRadar durchgeführt."
+      "note": "Original-Teilnahmebedingungen am 21.11.2026 eingesehen. Frist 31.12.2026 23:59 Uhr, Gewinnreise im März 2027. Kostenfreie Registrierung notwendig; keine Anmeldung von GewinnRadar durchgeführt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://2kreuzfahrer.de/gewinnspiele/flussreise-durch-holland/teilnahmebedingungen/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "topps-match-attax-cl-finale-2027",
@@ -556,7 +760,13 @@
       "participation_type": "external_form",
       "required_data": "Einmaliges externes Jotform-Teilnahmeformular, auf Originalbedingungen verlinkt; E-Mail-Adresse für Gewinnbenachrichtigung; 18+, Wohnsitz Deutschland",
       "marketing_requirements": "Kein Kauf und keine Teilnahmegebühr. Keine Werbeeinwilligung als Bedingung in den Bedingungen genannt; Daten für Abwicklung, getrennte Zustimmung für Marketing. Reise, Unterkunft und Verpflegung zum Finale NICHT enthalten.",
-      "note": "Originalregeln vom 21.11.2026 geprüft: 01.09.2026–31.01.2027; Ziehung 05.02.2027. Der externe Formularinhalt selbst konnte nicht unabhängig verifiziert werden; unbedingt vor Eingabe prüfen."
+      "note": "Originalregeln vom 21.11.2026 geprüft: 01.09.2026–31.01.2027; Ziehung 05.02.2027. Der externe Formularinhalt selbst konnte nicht unabhängig verifiziert werden; unbedingt vor Eingabe prüfen.",
+      "source_audit": {
+        "status": "blocked",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://de.topps.com/pages/teilnahmebedingungen-gewinnspiel-topps-ucc-match-attax-2026-27-f-r-deutschland",
+        "summary": "Quellseite zeitweise als HTML gelesen, später HTTP 403; externer Jotform-Link nicht geprüft."
+      }
     },
     {
       "id": "checkforpet-santa-selfie-2027",
@@ -572,7 +782,13 @@
       "participation_type": "email_photo",
       "required_data": "Selbst aufgenommenes Foto mit XXL-SantaDog- oder SantaCat-Kalender, Link/Screenshot beziehungsweise Foto per eigener E-Mail an Veranstalter; 18+, Wohnsitz Deutschland",
       "marketing_requirements": "Kein Kauf des Kalenders nötig. Eingereichte Bilder dürfen vom Veranstalter im Gewinnspielkontext veröffentlicht werden; Widerruf für die Zukunft. Preis ist ein Rabattgutschein mit 100-€-Mindestbestellwert, kein frei einlösbares Guthaben.",
-      "note": "Offizielle Regeln am 21.11.2026 geprüft, Ende 15.01.2027 23:59 Uhr. Original nennt Social-Post ODER Foto direkt per E-Mail; Bild mit Kalender bleibt nötig. Pro Person einmal, unabhängig von Dog/Cat."
+      "note": "Offizielle Regeln am 21.11.2026 geprüft, Ende 15.01.2027 23:59 Uhr. Original nennt Social-Post ODER Foto direkt per E-Mail; Bild mit Kalender bleibt nötig. Pro Person einmal, unabhängig von Dog/Cat.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.checkforpet.de/go/santa/",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     },
     {
       "id": "littlejohnbikes-cannondale-newsletter-2026",
@@ -588,7 +804,13 @@
       "participation_type": "newsletter",
       "required_data": "Neue Registrierung zum PERSONALISIERTEN Little John Bikes Newsletter samt Bestätigung per Double-Opt-in; Wohnsitz Deutschland, ab 18",
       "marketing_requirements": "Pflicht zum personalisierten Werbe-Newsletter! Kein Warenkauf nötig. Ohne bestätigte Newsletteranmeldung keine Teilnahme; Datenschutzhinweise des Veranstalters beachten.",
-      "note": "Offizielles Teilnahmeformular und Bedingungen am 21.11.2026 geprüft. Ende 31.12.2026; nur für vollständig neu angemeldete Newsletterempfänger. Keine Newsletteranmeldung durch GewinnRadar."
+      "note": "Offizielles Teilnahmeformular und Bedingungen am 21.11.2026 geprüft. Ende 31.12.2026; nur für vollständig neu angemeldete Newsletterempfänger. Keine Newsletteranmeldung durch GewinnRadar.",
+      "source_audit": {
+        "status": "unconfirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://littlejohnbikes.de/fahrradleasing/gewinnspiel-mavaro-neo-sl-1",
+        "summary": "Offizielle Veranstalterseite mit diesem Zugriff nicht erreichbar; bestehende Angaben nicht erneut verifiziert."
+      }
     },
     {
       "id": "sommer-ipad-newsletter-2027",
@@ -604,7 +826,13 @@
       "participation_type": "newsletter",
       "required_data": "Neue Anmeldung zum SOMMER-Newsletter im Websiteformular oder Pop-up und Double-Opt-in; Deutschland, 18+, nur einmal",
       "marketing_requirements": "Newsletter ist PFLICHT; kein Kauf nötig. Newsletter-E-Mail wird auch für Werbung verarbeitet, Widerruf über Abmeldelink möglich. Versand des Gewinns innerhalb Deutschlands kostenlos.",
-      "note": "Originalbedingungen vom 21.11.2026 geprüft. Frist 31.01.2027 23:59 Uhr. Der Link führt zur offiziellen Bedingungen-Seite mit Newsletterformular; keine Anmeldung durch GewinnRadar."
+      "note": "Originalbedingungen vom 21.11.2026 geprüft. Frist 31.01.2027 23:59 Uhr. Der Link führt zur offiziellen Bedingungen-Seite mit Newsletterformular; keine Anmeldung durch GewinnRadar.",
+      "source_audit": {
+        "status": "unconfirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.sommer-gmbh.de/teilnahmebedingungen-ipad-verlosung",
+        "summary": "Zeitüberschreitung beim Laden der offiziellen Teilnahmebedingungen; keine aktuelle Bestätigung."
+      }
     },
     {
       "id": "techniktipp-finde-den-fehler-2026",
@@ -620,7 +848,13 @@
       "participation_type": "email",
       "required_data": "Eigene Meldung eines tatsächlich gefundenen Fehlers auf einer TechnikTipp-Seite per E-Mail nach den jeweiligen Aktionshinweisen; 18+; eine Teilnahme",
       "marketing_requirements": "Kein Kauf, keine Werbenutzung außerhalb des Gewinnspiels laut spezieller Datenschutzerklärung. Konkrete gültige Fehlermeldung statt bloßer Anmeldung erforderlich.",
-      "note": "Originalbedingungen und integrierte Datenschutzinformationen am 21.11.2026 geöffnet. Frist 31.12.2026; eine separate aktuelle Aufgabe/Empfangsadresse wurde nicht eigenständig bestätigt, daher vor Teilnahme auf Veranstalterseite prüfen."
+      "note": "Originalbedingungen und integrierte Datenschutzinformationen am 21.11.2026 geöffnet. Frist 31.12.2026; eine separate aktuelle Aufgabe/Empfangsadresse wurde nicht eigenständig bestätigt, daher vor Teilnahme auf Veranstalterseite prüfen.",
+      "source_audit": {
+        "status": "partial",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://techniktipp.de/teilnahmebedingungen/",
+        "summary": "Rahmenbedingungen für Fehler-Einsendungen lesbar, aber aktuelle konkrete Aufgabe/E-Mail nicht separat bestätigt."
+      }
     },
     {
       "id": "skatewiz-skateboard-2026",
@@ -636,7 +870,13 @@
       "participation_type": "postal_newsletter",
       "required_data": "Online: kostenlos anforderbarer Gewinncode und bestätigte E-Mail plus verpflichtender Newsletter. ALTERNATIV Postkarte mit Vor-/Nachname und Kontaktmöglichkeit an Veranstalter; mindestens 18, EU-Wohnsitz",
       "marketing_requirements": "Kein Produktkauf nötig. Online ist der Newsletter Pflicht, postalisch ohne Newsletter, aber eigenes Kartenporto fällt an. Pro Phase nur eine gültige Teilnahme; keine automatische Anmeldung.",
-      "note": "Offizielle Bedingungen am 21.11.2026 geprüft: November/Dezember endet 31.12.2026 23:59 Uhr. Online-Teilnahme benötigt Gewinncode (per E-Mail gratis anforderbar). Bedingungen sehen auch weitere Quartalsaktionen ab 2027 vor; hier nur laufende Phase erfasst."
+      "note": "Offizielle Bedingungen am 21.11.2026 geprüft: November/Dezember endet 31.12.2026 23:59 Uhr. Online-Teilnahme benötigt Gewinncode (per E-Mail gratis anforderbar). Bedingungen sehen auch weitere Quartalsaktionen ab 2027 vor; hier nur laufende Phase erfasst.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://shop.skatewiz.de/pages/gewinnspiel",
+        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
     }
   ],
   "preview": [
