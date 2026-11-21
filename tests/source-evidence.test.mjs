@@ -1,0 +1,24 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {DatabaseSync} from 'node:sqlite';import {hash} from '../functions/_lib/core.js';
+import {onRequestPost as post} from '../functions/api/admin/source-evidence.js';
+const migrationNames=['0001_initial.sql','0002_review_security.sql','0003_catalog_staging.sql','0004_source_evidence.sql'];
+test('append-only source evidence stays isolated from approvals and rejects alien sources',async()=>{
+ const sqlite=new DatabaseSync(':memory:');sqlite.exec('PRAGMA foreign_keys=ON');
+ for(const name of migrationNames)sqlite.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));
+ sqlite.prepare("INSERT INTO users(id,email,display_name,role,email_verified) VALUES('admin','test@example.invalid','Admin','admin',1)").run();
+ const token='f'.repeat(64);
+ sqlite.prepare('INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,?,?)').run(await hash(token),'admin','2099-01-01T00:00:00Z');
+ sqlite.prepare("INSERT INTO research_candidates(id,year,canonical_key,organizer,title,prize,url,terms_url,source_url,starts_on,ends_on,cadence,required_data,privacy_tier,review_note,research_state) VALUES('test-2026',2026,'2026:https://example.org/a','Test','Calendar','Prize','https://example.org/a','https://example.org/terms','https://example.org/a','2026-12-01','2026-12-24','daily','email','low','Check conditions','candidate')").run();
+ const d={prepare(sql){return{bind(...args){return{first:async()=>sqlite.prepare(sql).get(...args)||null,all:async()=>({results:sqlite.prepare(sql).all(...args)}),run:async()=>{const r=sqlite.prepare(sql).run(...args);return{meta:{changes:Number(r.changes)}}}}}}}};
+ const send=async (body,session=token)=>post({request:new Request('https://example.org/api/admin/source-evidence',{method:'POST',headers:{origin:'https://example.org','content-type':'application/json',cookie:session?'gr_session='+session:''},body:JSON.stringify(body)}),env:{DB:d}});
+ const base={candidate_id:'test-2026',source_url:'https://example.org/a',evidence_kind:'original_2026_page_seen',finding:'Die Aktion 2026 wurde auf der Originalseite gefunden.',verdict:'source_only',source_year:2026};
+ assert.equal((await send(base,'')).status,403);
+ assert.equal((await send({...base,source_url:'https://evil.example/a'})).status,400);
+ assert.equal((await send({...base,source_year:2025})).status,400);
+ assert.equal((await send(base)).status,201);
+ assert.equal(sqlite.prepare('SELECT count(*) AS n FROM source_evidence_history').get().n,1);
+ assert.equal(sqlite.prepare('SELECT count(*) AS n FROM games').get().n,0);
+ assert.throws(()=>sqlite.prepare("UPDATE source_evidence_history SET finding='tampered' WHERE id=1").run(),/append only/);
+ sqlite.prepare("DELETE FROM users WHERE id='admin'").run();
+ assert.equal(sqlite.prepare('SELECT count(*) AS n FROM source_evidence_history').get().n,0,'Privacy erasure must cascade');
+ sqlite.close();
+});

@@ -84,5 +84,33 @@ try{
   await guestPage.getByText(/Keine Admin-Berechtigung/).waitFor();
   assert.equal(await guestPage.locator('#list').locator('.game').count(),0);
   await guest.close();
+  const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const adminPage=await adminContext.newPage();
+  let savedEvidence=null;
+  await adminPage.route('**/api/admin/**',route=>{
+    const url=new URL(route.request().url()),path=url.pathname;
+    const response=(object,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(object)});
+    if(path==='/api/admin/contests')return response({contests:[]});
+    if(path==='/api/admin/source-evidence'){
+      if(route.request().method()==='POST'){
+        savedEvidence=JSON.parse(route.request().postData());
+        return response({ok:true,approved:false,reminders_enabled:false},201);
+      }
+      return response({events:savedEvidence?[{id:1,observed_at:'2026-11-21T08:00:00Z',...savedEvidence}]:[]});
+    }
+    return response({error:'Nicht erlaubt'},403);
+  });
+  await adminPage.goto(base+'/admin/');
+  await adminPage.getByRole('heading',{name:'Quellenhistorie 2026'}).waitFor();
+  await adminPage.locator('#evidenceCandidate').fill('wdr3-2026');
+  await adminPage.locator('#evidenceUrl').fill('https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html');
+  await adminPage.locator('#evidenceFinding').fill('Der offizielle WDR nennt das Kalenderjahr 2026, aber das Formular ist noch nicht geprüft.');
+  await adminPage.locator('#evidenceSave').click();
+  await adminPage.getByText(/Gewinnspiel bleibt ungeprüft/).waitFor();
+  assert.equal(savedEvidence.candidate_id,'wdr3-2026');
+  assert.equal(savedEvidence.verdict,'pending');
+  assert.equal(savedEvidence.source_year,2026);
+  assert.equal(await adminPage.locator('#evidenceEvents li').count(),1);
+  await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
