@@ -77,7 +77,7 @@ try{
     await page.locator('#editorialLive').getByRole('heading',{name:/Meine MVG/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Hurtigruten-Nordkapreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Zehn PlayStation-5-Pakete für Familien/}).waitFor();
-    assert.equal(await page.locator('#counter').innerText(),'0 von 1 erledigt');
+    assert.equal(await page.locator('#counter').innerText(),'32 geprüfte Gewinnspiele');
     assert.equal(await page.locator('#counter').innerText().then(s=>s.includes('D1')),false);
     await page.locator('#editorialLive').getByText(/kostenpflichtiges, monatlich kündbares Abo weiter/).waitFor();
     await page.locator('#editorialLive').getByText(/nur ZWEIER Tage/).waitFor();
