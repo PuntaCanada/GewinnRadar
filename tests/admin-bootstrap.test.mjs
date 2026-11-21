@@ -10,7 +10,7 @@ test('offline first-admin SQL creates exactly one unverified admin without mail 
  const statement=createBootstrapSql({email:'  test@example.invalid  ',name:"Test O'Neil",id:'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee'});
  db.exec(statement);
  const user=db.prepare('SELECT id,email,display_name,role,senior_mode,daily_email,email_verified,consent_at FROM users').get();
- assert.deepEqual(user,{id:'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',email:'test@example.invalid',display_name:"Test O'Neil",role:'admin',senior_mode:1,daily_email:0,email_verified:0,consent_at:null});
+ assert.deepEqual({...user},{id:'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',email:'test@example.invalid',display_name:"Test O'Neil",role:'admin',senior_mode:1,daily_email:0,email_verified:0,consent_at:null});
  db.exec(statement);assert.equal(db.prepare('SELECT count(*) n FROM users').get().n,1);
  for(const table of ['sessions','login_tokens','email_log'])assert.equal(db.prepare('SELECT count(*) n FROM '+table).get().n,0);
  db.close();
