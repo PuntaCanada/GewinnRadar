@@ -6,9 +6,9 @@ export async function onRequestPost(ctx){
  let data;try{data=await ctx.request.json()}catch{return json({error:'Ungültige Anfrage'},400)}
  if(!data||typeof data.id!=='string'||!['favorite','completed'].includes(data.action)||typeof data.value!=='boolean')return json({error:'Ungültige Eingabe'},400);
  const now=new Date().toISOString();
- const [formFrom,formUntil]=formReviewWindow(new Date(now));
+ const [formFrom,formUntil,dayStart]=formReviewWindow(new Date(now));
  const g=await ctx.env.DB.prepare("SELECT g.id,g.daily FROM games g"+verifiedJoins+" WHERE g.id=? AND g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions)
- .bind(data.id,now,now,formFrom,formUntil).first();
+ .bind(data.id,now,now,formFrom,formUntil,dayStart).first();
  if(!g)return json({error:'Nicht verfügbar'},404);
  const day=g.daily?dayKey():'once';
  if(data.action==='favorite'){
