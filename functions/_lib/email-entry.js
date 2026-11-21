@@ -4,6 +4,7 @@ export const EMAIL_PREFIX='EMAIL_ENTRY_V1:';
 const email=/^[a-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,}$/i;
 export function encodeEmailEntry(input,source){
  if(input.entry_method!=='email')return {error:'Kein E-Mail-Teilnahmeweg'};
+ if(input.email_subject_confirmed_today!==true)return {error:'Der exakte Betreff muss im aktuellen Tages-Türchen bestätigt sein'};
  const to=typeof input.email_recipient==='string'?input.email_recipient.trim().toLowerCase():'';
  const subject=typeof input.email_subject==='string'?input.email_subject.trim():'';
  const fields=typeof input.required_fields==='string'?input.required_fields.trim():'';
