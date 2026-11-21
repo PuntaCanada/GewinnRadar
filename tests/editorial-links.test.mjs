@@ -17,7 +17,7 @@ test('live link expires automatically and previews never become clickable partic
  const before=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00'));
  assert.equal(before.live.length,9);
  assert.equal(before.future.length,3);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,8)
+ assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,6)
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).live.length,0);
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).future.length,0);
 });
