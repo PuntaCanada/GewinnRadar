@@ -40,7 +40,7 @@ try{
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
-    assert.equal(await page.locator('#editorialLive .game').count(),28);
+    assert.equal(await page.locator('#editorialLive .game').count(),30);
     assert.equal(await page.locator('#editorialReview .game').count(),3);
     await page.locator('#editorialReview').getByRole('heading',{name:/Berghaus/}).waitFor();
     await page.locator('#editorialReview').getByRole('heading',{name:/Saal-Digital/}).waitFor();
@@ -75,6 +75,10 @@ try{
     await page.locator('#editorialLive').getByRole('heading',{name:/SÜLZLE Wimmelbild/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Le Rustique/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Meine MVG/}).waitFor();
+    await page.locator('#editorialLive').getByRole('heading',{name:/15-tägige Hurtigruten-Nordkapreise/}).waitFor();
+    await page.locator('#editorialLive').getByRole('heading',{name:/Zehn PlayStation-5-Pakete für Familien/}).waitFor();
+    assert.equal(await page.locator('#counter').innerText(),'30 aktuelle Gewinnspiele');
+    assert.equal(await page.locator('#counter').innerText().then(s=>s.includes('D1')),false);
     await page.locator('#editorialLive').getByText(/kostenpflichtiges, monatlich kündbares Abo weiter/).waitFor();
     await page.locator('#editorialLive').getByText(/nur ZWEIER Tage/).waitFor();
     assert.equal(await page.locator('#editorialLive').getByText('Instagram oder TikTok erforderlich').count(),1);
@@ -105,7 +109,7 @@ try{
     assert.equal(await page.locator('#editorialLive').getByText('WhatsApp-Kanal + eigene E-Mail').count(),1);
     assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),16);
     assert.equal(await page.locator('#adventPreview .game').count(),3);
-    assert.match(await page.locator('#editorialCount').innerText(),/28 aktuell geprüfte Originalaktionen/);
+    assert.match(await page.locator('#editorialCount').innerText(),/30 aktuell geprüfte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     await page.getByText(/Kalender-Ende:/).waitFor();
@@ -149,7 +153,7 @@ try{
     return route.fulfill({status:path==='/api/me'||path==='/api/games'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
   });
   await guestPage.goto(base+'/');
-  const catalogueStatusLink=guestPage.getByRole('link',{name:/Live-Katalogstatus \(D1\) prüfen/});
+  const catalogueStatusLink=guestPage.getByRole('link',{name:'Technischen Katalogstatus prüfen'});
   assert.equal(await catalogueStatusLink.getAttribute('href'),'/api/catalog-status');
   // The diagnostic must remain a public GET without login or user data.
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
@@ -195,12 +199,14 @@ try{
   await guestPage.goto(base+'/');
   const guestCards=guestPage.locator('#editorialLive .game');
   await guestCards.first().waitFor();
-  assert.equal(await guestCards.count(),28);
+  assert.equal(await guestCards.count(),30);
+  assert.equal(await guestPage.locator('#counter').innerText(),'30 aktuelle Gewinnspiele');
+  assert.equal(await guestPage.getByText(/davon .*D1/).count(),0);
   const firstMark=guestCards.first().locator('input[data-joined-contest]');
   assert.equal(await firstMark.isChecked(),false);
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 28/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 30/);
   await firstMark.check();
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/1 von 28/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/1 von 30/);
   assert.equal(await guestCards.first().evaluate(x=>x.classList.contains('joined-completed')),true);
   await guestPage.reload();
   await guestCards.first().waitFor();
@@ -213,7 +219,7 @@ try{
   await guestPage.reload();
   await guestCards.first().waitFor();
   assert.equal(await guestCards.first().locator('input[data-joined-contest]').isChecked(),false);
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 28/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 30/);
   const guestStorageKeys=await guestPage.evaluate(()=>Object.keys(localStorage));
   assert.ok(guestStorageKeys.every(k=>k.startsWith('gewinnradar:guest:completed:v1:')));
   await guest.close();
