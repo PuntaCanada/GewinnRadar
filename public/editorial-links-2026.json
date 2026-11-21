@@ -86,6 +86,54 @@
       "reviewed_on": "2026-11-21",
       "required_data": "E-Mail-Adresse zur Erstregistrierung; vom 30.11. bis 15.12. separate Lösungsabgabe mit derselben E-Mail",
       "note": "WICHTIG: Zweistufig! Jetzt nur registrieren (bis 29.11.2026, 23:59 Uhr); anschließend Lösung zwischen 30.11. und 15.12. einreichen. Kostenlos, DE, ab 18, keine Kauf- oder Newsletterpflicht. Die Zweitphase ist für die Gewinnchance zwingend. Originalseite/Datenschutz am 21.11.2026 geprüft."
+    },
+    {
+      "id": "cloetta-candyking-instagram-2026",
+      "organizer": "Cloetta Deutschland GmbH",
+      "title": "Fünf CandyKing Adventskalender gewinnen",
+      "prize": "5 × 1 CandyKing Adventskalender",
+      "url": "https://www.instagram.com/candyking_de/",
+      "terms_url": "https://www.cloettadeutschland.de/candyking-adventskalender2026/",
+      "privacy_url": "https://www.cloettadeutschland.de/datenschutzerklaerung/",
+      "starts_at": "2026-11-18T00:00:00+01:00",
+      "ends_at": "2026-11-26T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "instagram",
+      "required_data": "Instagram-Konto, offizielles Profil folgen, Gewinnspielbeitrag liken und kommentieren, mit wem man teilen würde; Gewinner schicken später Name, E-Mail und Versandadresse per Direktnachricht",
+      "marketing_requirements": "Kein Newsletter/Kauf erforderlich; öffentlich sichtbarer Kommentar und Instagram-Folge/Liken sind Teilnahmevoraussetzungen. Gewinnerprofilname kann veröffentlicht werden.",
+      "note": "Originale Teilnahmebedingungen vom Veranstalter geprüft. Aktion 18.–25.11.2026, Deutschland, ab 18. Der Instagram-Gewinnspielbeitrag selbst ist nicht unabhängig direkt geöffnet; daher über den offiziellen Veranstalter-Account und den datierten Beitrag vom 18.11. gehen. Keine automatische Teilnahme."
+    },
+    {
+      "id": "partner-wera-social-2026",
+      "organizer": "Handelskontor Seevetal GmbH – Partner für Technik",
+      "title": "Fünf Wera-Adventskalender gewinnen",
+      "prize": "5 × Wera Adventskalender 2026 (je 46,35 € netto)",
+      "url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
+      "terms_url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
+      "privacy_url": "https://partnerfuertechnik.de/unternehmensgruppe/datenschutz.html",
+      "starts_at": "2026-11-14T00:00:00+01:00",
+      "ends_at": "2026-11-25T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "social",
+      "required_data": "Facebook- oder Instagram-Konto; im offiziellen Gewinnspielbeitrag den Satz 'Ich möchte den Wera-Adventskalender gewinnen, weil …' vervollständigen. Story/Repost und Markierungen freiwillig; Gewinner teilen Versandadresse per Direktnachricht.",
+      "marketing_requirements": "Kein Kauf, Newsletter, Repost oder Markieren anderer Personen erforderlich; öffentlich sichtbarer Kommentar und Social-Media-Konto nötig.",
+      "note": "Offizielle Bedingungen 14.–24.11.2026 23:59 MEZ, Deutschland, ab 18. Je eine Teilnahme auf Facebook und Instagram erlaubt. Direkter Social-Media-Gewinnspielpost nicht separat verifiziert; auf der offiziellen Veranstalterseite zum jeweiligen Profil wechseln. Keine automatisierte Teilnahme."
+    },
+    {
+      "id": "prym-handicraft-whatsapp-2026",
+      "organizer": "Prym Consumer Europe GmbH",
+      "title": "Drei Prym DIY-Adventskalender gewinnen",
+      "prize": "3 × Prym DIY Adventskalender 2026",
+      "url": "https://de.handicraft.com/pages/gewinnspiel",
+      "terms_url": "https://de.handicraft.com/pages/gewinnspiel",
+      "privacy_url": "https://de.handicraft.com/policies/privacy-policy",
+      "starts_at": "2026-11-21T00:00:00+01:00",
+      "ends_at": "2026-12-23T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "whatsapp_email",
+      "required_data": "WhatsApp-Kanal von Handicraft by Prym abonnieren; dort veröffentlichte Frage/Aufgabe per eigener E-Mail an die in offiziellen Bedingungen genannte Adresse beantworten; einmalige Teilnahme. Gewinner geben später Name und Postanschrift an.",
+      "marketing_requirements": "WhatsApp-Konto und Kanal-Follow sind verpflichtend; kein Kauf und nach Bedingungen keine weitere Marketing-Einwilligung erforderlich. Veranstalter verarbeitet Teilnehmer-E-Mail zur Gewinnabwicklung.",
+      "note": "Offizielle Bedingungen bis 22.12.2026 23:59 Uhr; ab 16, Wohnsitz Deutschland. Die aktuelle Aufgabe ist nur im WhatsApp-Kanal zu sehen und wurde nicht unabhängig geprüft. Eine einzige Gewinnspielteilnahme, kein täglicher Adventskalender. Keine automatische E-Mail/Teilnahme."
     }
   ],
   "preview": [
@@ -147,15 +195,6 @@
       "terms_url": "https://kala-art.de/pages/100-kg",
       "reason": "Bedingungen: kostenloses E-Mail-Formular, Newsletter freiwillig, Ende 04.12.2026. Das tatsächliche Teilnahmeformular war in der überprüfbaren Seitenfassung jedoch nicht sichtbar. Keine Behauptung über ein geprüftes Formular.",
       "category": "form_not_observed"
-    },
-    {
-      "id": "partner-wera-2026",
-      "title": "Fünf Wera-Adventskalender – Partner für Technik",
-      "organizer": "Handelskontor Seevetal GmbH",
-      "url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
-      "terms_url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
-      "reason": "Kostenlos, seriöser deutscher Veranstalter, aber Teilnahme nur durch Kommentar auf Instagram oder Facebook; kein Direktformular. Ende 24.11.2026.",
-      "category": "social_only"
     }
   ],
   "blacklist": [],

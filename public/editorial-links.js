@@ -49,14 +49,17 @@ export function renderEditorialLinks(data,now=new Date()){
  $('editorialCount').textContent=live.length+' aktuell geprüfte Originalaktion'+(live.length===1?'':'en');
  for(const g of live){
   const card=line('article',null,'game');
-  card.append(line('span','Teilnahmeformular geprüft','pill'));
+  const type=g.participation_type||'web_form';
+  const kinds={web_form:'Onlineformular',instagram:'Instagram-Konto erforderlich',social:'Facebook oder Instagram erforderlich',whatsapp_email:'WhatsApp-Kanal + eigene E-Mail'};
+  card.append(line('span',kinds[type]||'Teilnahmeweg prüfen','pill'));
   card.append(line('p','Teilnahmeschluss: '+editorialDeadline(g.ends_at),'meta'));
   card.append(line('p','Zuletzt geprüft: '+new Date(g.reviewed_on+'T12:00:00Z').toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'meta'));
   card.append(line('h2',g.title),line('p','Veranstalter: '+g.organizer+' · Gewinne: '+g.prize));
   card.append(line('p','Benötigt: '+g.required_data,'meta'));
+  if(g.marketing_requirements)card.append(line('p','Werbung & Datenschutz: '+g.marketing_requirements,'notes'));
   card.append(line('p',g.note,'notes'));
   const links=line('div',null,'action');
-  links.append(outbound('Jetzt beim Veranstalter teilnehmen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
+  links.append(outbound(type==='web_form'?'Jetzt beim Veranstalter teilnehmen':'Offiziellen Teilnahmeweg prüfen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
   card.append(links);
   const report=outbound('Problem oder Betrugsverdacht melden','/melden/?id='+encodeURIComponent(g.id));
   report.className='small';card.append(report);liveRoot.append(card);
