@@ -81,8 +81,13 @@ try{
   assert.equal(await guestPage.locator('.game').count(),1);
   await guestPage.locator('#searchGames').fill('nicht-vorhanden');
   assert.equal(await guestPage.locator('.game').count(),0);
+  await guestPage.getByText('0 von 1 Gewinnspielen angezeigt').waitFor();
+  await guestPage.getByRole('button',{name:'Suche und Filter zurücksetzen'}).click();
+  assert.equal(await guestPage.locator('#searchGames').inputValue(),'');
+  await guestPage.locator('#sortGames').selectOption('title');
   await guestPage.locator('#searchGames').fill('');
   assert.equal(await guestPage.locator('.game').count(),1);
+  assert.ok(await guestPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'Guest mobile has no horizontal scroll');
   assert.equal(await guestPage.locator('#dashboard').isVisible(),true);
   assert.equal(await guestPage.getByRole('checkbox',{name:/Teilnahme als erledigt markieren/}).count(),0);
   assert.equal(await guestPage.locator('#saveSettings').isVisible(),false);
