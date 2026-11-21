@@ -54,10 +54,10 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
 });
 
 test('social and messenger draws carry distinct disclosure metadata and still expire',()=>{
- const social=data.active.filter(g=>['instagram','social','whatsapp_email'].includes(g.participation_type));
+ const social=data.active.filter(g=>['instagram','social','whatsapp_email','instagram_tiktok'].includes(g.participation_type));
  assert.equal(social.length,9);
  for(const item of social){
-  assert.ok(['instagram','social','whatsapp_email'].includes(item.participation_type));
+  assert.ok(['instagram','social','whatsapp_email','instagram_tiktok'].includes(item.participation_type));
   assert.match(item.marketing_requirements,/Konto|WhatsApp|Instagram|Social/);
   assert.ok(item.required_data.length>45);
   assert.ok(item.note.includes('nicht')||item.note.includes('Keine'));
