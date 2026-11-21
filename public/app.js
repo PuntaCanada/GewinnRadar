@@ -25,7 +25,8 @@ function refreshOnResume(){
  if(!lastLoadedAt||berlinDay()!==lastLoadedDay||Date.now()-lastLoadedAt>5*60*1000)refresh();
 }
 function render(){let filter=$('filter').value;let list=visibleGames(games,{status:filter,dailyOnly:$('dailyOnly').checked,simpleOnly:$('simpleOnly').checked,query:$('searchGames').value,sort:$('sortGames').value});const completed=games.filter(g=>g.completed).length;
-$('counter').textContent=user?completed+' von '+games.length+' erledigt':games.length+' Gewinnspiele';
+const reviewedLinks=Number(document.body.dataset.editorialLiveCount||0);
+$('counter').textContent=user?completed+' von '+games.length+' D1-Einträgen erledigt':(games.length+reviewedLinks)+' geprüfte Aktionen (davon '+games.length+' D1)';
 const progress=document.querySelector('#progressBar');
 if(progress){progress.max=Math.max(games.length,1);progress.value=completed;progress.setAttribute('aria-label',completed+' von '+games.length+' Gewinnspielen erledigt')}
 const hint=document.querySelector('#progressHint');
@@ -36,6 +37,7 @@ if(entry&&typeof entry.to==='string'&&typeof entry.subject==='string'&&typeof en
 c.append(actions);const notes=el('p',null,'notes'),terms=el('a','Teilnahmebedingungen');terms.href=g.terms_url;terms.target='_blank';terms.rel='noopener noreferrer';const privacy=el('a','Datenschutz');privacy.href=g.privacy_url;privacy.target='_blank';privacy.rel='noopener noreferrer';notes.append(terms,document.createTextNode(' · '),privacy,document.createTextNode(' · Zuletzt geprüft: '+(g.verified_at?new Date(g.verified_at).toLocaleDateString('de-DE'):'unbekannt')));c.append(notes);root.append(c)}}
 async function toggle(g,action,value,input){input.disabled=true;try{await api('progress',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:g.id,action,value})});g[action]=+value;render()}catch(e){const msg=$('actionMessage');if(msg){msg.textContent='Änderung nicht gespeichert: '+e.message;msg.focus()}input.checked=!value;refresh()}finally{input.disabled=false}}
 $('searchGames').addEventListener('input',render);$('sortGames').addEventListener('change',render);$('filter').addEventListener('change',render);$('dailyOnly').addEventListener('change',render);$('simpleOnly').addEventListener('change',render);$('refresh').onclick=refresh;
+document.addEventListener('editorialLinksUpdated',render);
 document.addEventListener('visibilitychange',refreshOnResume);
 window.addEventListener('focus',refreshOnResume);
 $('loginForm').onsubmit=async e=>{e.preventDefault();$('loginMessage').textContent='Prüfe deine Anfrage …';try{let d=await api('login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:$('email').value})});$('loginMessage').textContent=d.message}catch(err){$('loginMessage').textContent=err.message}};
