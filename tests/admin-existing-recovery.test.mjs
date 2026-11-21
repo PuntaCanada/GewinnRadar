@@ -94,3 +94,34 @@ test('without migration the recovery fails without changing the existing account
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0);sql.close();
 });
+
+test('transaction rolls back when conditional verification or session insert is silently skipped',async()=>{
+ for(const mode of ['skip-verification','skip-session']){
+  const {sql,DB}=fixture();user(sql);
+  if(mode==='skip-verification')sql.exec("CREATE TRIGGER skip_verification BEFORE UPDATE OF email_verified ON users BEGIN SELECT RAISE(IGNORE); END");
+  else sql.exec("CREATE TRIGGER skip_session BEFORE INSERT ON sessions BEGIN SELECT RAISE(IGNORE); END");
+  assert.equal((await request(env(DB))).status,503,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0,mode+' must roll back singleton');
+  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0,mode);
+  sql.close();
+ }
+});
+test('state change between preflight and atomic batch never consumes recovery claim',async()=>{
+ for(const mode of ['new-session','new-token','verified','second-admin']){
+  const {sql,DB}=fixture();user(sql);
+  const batch=DB.batch;
+  DB.batch=async statements=>{
+   if(mode==='new-session')sql.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES('other-session','old-admin','2027-01-01T00:00:00Z')").run();
+   if(mode==='new-token')sql.prepare("INSERT INTO login_tokens(token_hash,user_id,expires_at) VALUES('other-token','old-admin','2027-01-01T00:00:00Z')").run();
+   if(mode==='verified')sql.prepare("UPDATE users SET email_verified=1 WHERE id='old-admin'").run();
+   if(mode==='second-admin')user(sql,'second@example.invalid','admin',0,'second-admin');
+   return batch(statements);
+  };
+  assert.equal((await request(env(DB))).status,503,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,mode==='new-session'?1:0);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,mode==='second-admin'?2:1);
+  sql.close();
+ }
+});
