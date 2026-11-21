@@ -1,12 +1,14 @@
 import {json,viewer,dayKey,protectMutation} from '../_lib/core.js';
+import {verifiedJoins,verifiedConditions,formReviewWindow} from '../_lib/publication-gate.js';
 export async function onRequestPost(ctx){
  if(!protectMutation(ctx.request))return json({error:'Ungültiger Ursprung'},403);
  const u=await viewer(ctx);if(!u)return json({error:'Bitte anmelden'},401);
  let data;try{data=await ctx.request.json()}catch{return json({error:'Ungültige Anfrage'},400)}
  if(!data||typeof data.id!=='string'||!['favorite','completed'].includes(data.action)||typeof data.value!=='boolean')return json({error:'Ungültige Eingabe'},400);
  const now=new Date().toISOString();
- const g=await ctx.env.DB.prepare("SELECT g.id,g.daily FROM games g JOIN contest_evidence e ON e.game_id=g.id AND e.human_verified=1 WHERE g.id=? AND g.status='verified' AND g.link_state='ok' AND g.starts_at<=? AND g.ends_at>?")
- .bind(data.id,now,now).first();
+ const [formFrom,formUntil]=formReviewWindow(new Date(now));
+ const g=await ctx.env.DB.prepare("SELECT g.id,g.daily FROM games g"+verifiedJoins+" WHERE g.id=? AND g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions)
+ .bind(data.id,now,now,formFrom,formUntil).first();
  if(!g)return json({error:'Nicht verfügbar'},404);
  const day=g.daily?dayKey():'once';
  if(data.action==='favorite'){
