@@ -5,9 +5,9 @@ import {eligibleEditorialLinks,editorialDeadline,readGuestCompleted,writeGuestCo
 const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json',import.meta.url),'utf8'));
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
- assert.equal(data.active.length,15);
+ assert.equal(data.active.length,17);
  assert.equal(data.preview.length,3);
- assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,18);
+ assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,20);
  for(const e of [...data.active,...data.preview]){
   for(const k of ['url','terms_url'])assert.equal(new URL(e[k]).protocol,'https:');
  }
@@ -15,19 +15,19 @@ test('public source links are genuine separately reviewed entries, no D1 approva
 });
 test('live link expires automatically and previews never become clickable participation cards',()=>{
  const before=eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00'));
- assert.equal(before.live.length,15);
+ assert.equal(before.live.length,17);
  assert.equal(before.future.length,3);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,11)
+ assert.equal(eligibleEditorialLinks(data,new Date('2026-11-26T00:00:00+01:00')).live.length,13)
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).live.length,0);
  assert.equal(eligibleEditorialLinks(data,new Date('2027-01-01T00:00:00+01:00')).future.length,0);
 });
 test('unverified or malformed source entries cannot appear as active',()=>{
  const mutated=structuredClone(data);
  mutated.active[0].privacy_url='http://not-secure.invalid';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,14);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,16);
  mutated.active[0].privacy_url=data.active[0].privacy_url;
  mutated.active[0].reviewed_on='unknown';
- assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,14);
+ assert.equal(eligibleEditorialLinks(mutated,new Date('2026-11-21T12:00:00+01:00')).live.length,16);
 });
 
 test('deadline shows the last eligible date, not exclusive expiry or review date',()=>{
@@ -37,8 +37,8 @@ test('deadline shows the last eligible date, not exclusive expiry or review date
 });
 test('a future daily research review is allowed, but stale or future-dated evidence is rejected',()=>{
  const next=structuredClone(data);next.active[0].reviewed_on='2026-11-23';
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,15);
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,14);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,17);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,16);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
 });
 
@@ -46,16 +46,16 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
  const now=new Date('2026-11-21T12:00:00+01:00');
  const safe=structuredClone(data);
  safe.blacklist=[{id:'bergzeit-la-sportiva-2026',verified:false,reason:'user reported'}];
- assert.equal(eligibleEditorialLinks(safe,now).live.length,15);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,17);
  safe.blacklist[0].verified=true;
- assert.equal(eligibleEditorialLinks(safe,now).live.length,14);
+ assert.equal(eligibleEditorialLinks(safe,now).live.length,16);
  assert.ok(!eligibleEditorialLinks(safe,now).live.some(g=>g.id==='bergzeit-la-sportiva-2026'));
  assert.equal(data.review_candidates.length,3);
 });
 
 test('social and messenger draws carry distinct disclosure metadata and still expire',()=>{
  const social=data.active.filter(g=>['instagram','social','whatsapp_email'].includes(g.participation_type));
- assert.equal(social.length,4);
+ assert.equal(social.length,5);
  for(const item of social){
   assert.ok(['instagram','social','whatsapp_email'].includes(item.participation_type));
   assert.match(item.marketing_requirements,/Konto|WhatsApp|Instagram|Social/);
@@ -85,7 +85,7 @@ test('live actions show nearest deadlines first, independent of source order',()
  const list=structuredClone(data);
  list.active.reverse();
  const ordered=eligibleEditorialLinks(list,when).live;
- assert.equal(ordered.length,15);
+ assert.equal(ordered.length,17);
  const endTimes=ordered.map(g=>Date.parse(g.ends_at));
  assert.deepEqual(endTimes,[...endTimes].sort((a,b)=>a-b));
  assert.equal(ordered[0].id,'partner-wera-social-2026'); // 24 Nov
@@ -161,4 +161,19 @@ test('AIDA and DB official forms and conditions supply distinct, time-bound entr
  assert.match(db.note,/NICHT nachgewiesen/);
  assert.match(db.marketing_requirements,/kein/i);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live.filter(x=>[aida.id,db.id].includes(x.id)).length,2);
+});
+
+test('official AVerMedia and wed2b actions retain exact timezone and honest verification notes',()=>{
+ const a=data.active.find(g=>g.id==='avermedia-elena-console-2026');
+ const w=data.active.find(g=>g.id==='wed2b-black-friday-dress-2026');
+ assert.ok(a&&w);
+ assert.equal(a.ends_at,'2026-12-03T17:00:00+01:00');
+ assert.equal(w.ends_at,'2026-12-01T01:00:00+01:00');
+ assert.match(a.deadline_label,/16:59 Uhr/);
+ assert.match(w.deadline_label,/00:59 Uhr/);
+ assert.equal(a.participation_type,'external_form');
+ assert.equal(w.participation_type,'instagram');
+ assert.match(a.note,/nicht unabhängig sichtbar/);
+ assert.match(w.note,/nicht unabhängig geöffnet/);
+ assert.ok(eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live.some(g=>g.id===a.id));
 });
