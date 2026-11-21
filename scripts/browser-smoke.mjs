@@ -66,9 +66,9 @@ try{
     assert.match(sortedIds[4],/BULLS Fahrräder/);
     await page.locator('#editorialLive').getByText(/Teilnahmeschluss: 30\.11\.2026 · 18:00 Uhr/).waitFor();
     assert.equal(await page.locator('#editorialLive').getByText('Instagram-Konto erforderlich').count(),1);
-    assert.equal(await page.locator('#editorialLive').getByText('Facebook oder Instagram erforderlich').count(),1);
+    assert.equal(await page.locator('#editorialLive').getByText('Facebook oder Instagram erforderlich').count(),2);
     assert.equal(await page.locator('#editorialLive').getByText('WhatsApp-Kanal + eigene E-Mail').count(),1);
-    assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),3);
+    assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),4);
     assert.equal(await page.locator('#adventPreview .game').count(),3);
     assert.match(await page.locator('#editorialCount').innerText(),/11 aktuell geprüfte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
