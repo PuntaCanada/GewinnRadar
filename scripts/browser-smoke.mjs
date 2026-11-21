@@ -86,11 +86,16 @@ try{
   await guest.close();
   const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
   const adminPage=await adminContext.newPage();
-  let savedEvidence=null;
+  let savedEvidence=null,savedForm=null;
   await adminPage.route('**/api/admin/**',route=>{
     const url=new URL(route.request().url()),path=url.pathname;
     const response=(object,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(object)});
     if(path==='/api/admin/contests')return response({contests:[]});
+    if(path==='/api/admin/form-verification'&&route.request().method()==='POST'){
+      const b=JSON.parse(route.request().postData());
+      if(!['form_observed','correct_year','german_residents','no_marketing_required','no_purchase_required','no_account_or_app_obligation','no_unresolved_deadline_conflict'].every(k=>b[k]===true))return response({error:'Nicht alle Bedingungen erfüllt'},409);
+      savedForm=b;return response({ok:true,form_review_recorded:true,contest_approved:false,reminder_approved:false},201);
+    }
     if(path==='/api/admin/source-evidence'){
       if(route.request().method()==='POST'){
         savedEvidence=JSON.parse(route.request().postData());
@@ -111,6 +116,19 @@ try{
   assert.equal(savedEvidence.verdict,'pending');
   assert.equal(savedEvidence.source_year,2026);
   assert.equal(await adminPage.locator('#evidenceEvents li').count(),1);
+  await adminPage.locator('#verGame').fill('sample-2026');
+  await adminPage.locator('#verForm').fill('https://www.br.de/gewinnspiel');
+  await adminPage.locator('#verPrivacy').fill('https://www.br.de/datenschutz');
+  await adminPage.locator('#verData').fill('E-Mail only');
+  await adminPage.locator('#verNotes').fill('Ein echter Formularnachweis wird nur nach manueller Prüfung gespeichert.');
+  await adminPage.locator('#verifiedSave').click();
+  await adminPage.getByText(/Nicht gespeichert: Nicht alle Bedingungen erfüllt/).waitFor();
+  assert.equal(savedForm,null);
+  for(const input of await adminPage.locator('#verifiedForm fieldset input[type=checkbox]').all())await input.check();
+  await adminPage.locator('#verifiedSave').click();
+  await adminPage.getByText(/Noch keine Gewinnspiel-Freigabe und keine Erinnerungen/).waitFor();
+  assert.equal(savedForm.game_id,'sample-2026');
+  assert.equal(savedForm.no_marketing_required,true);
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
