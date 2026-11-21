@@ -25,5 +25,11 @@ jobs:
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0003_catalog_staging.sql
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0004_source_evidence.sql
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0005_form_and_reminders.sql
+          # Recovery migration is applied only to an isolated CI-local database, never Production.
+          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0006_admin_bootstrap.sql
+          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0006_admin_bootstrap.sql
+          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "SELECT CASE WHEN (SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='admin_bootstrap')=1 AND (SELECT COUNT(*) FROM admin_bootstrap)=0 THEN 1 ELSE json_extract('invalid-json',char(36)) END AS migration_0006_ok;"
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "PRAGMA foreign_key_check;"
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','games','contest_evidence','admin_audit','login_limits','research_candidates','research_import_log') ORDER BY name;"
+      - name: Exercise real local Pages Recovery API against isolated D1 (no mocks, no remote)
+        run: node scripts/recovery-pages-d1-integration.mjs

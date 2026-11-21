@@ -10,7 +10,7 @@ export async function onRequestPost(ctx){
  const email=emailAddress(env.ADMIN_BOOTSTRAP_EMAIL);
  const secret=env.ADMIN_BOOTSTRAP_SECRET;
  if(env.ADMIN_RECOVERY_ENABLED!=='true'||env.ADMIN_BOOTSTRAP_ENABLED!=='false'||
-  env.LOGIN_MAIL_ENABLED==='true'||!email||typeof secret!=='string'||
+  env.LOGIN_MAIL_ENABLED!=='false'||!email||typeof secret!=='string'||
   !/^[0-9a-f]{64}$/.test(secret)||!env.DB?.batch)
   return json({error:'Admin-Wiederherstellung deaktiviert'},403);
  if(!/^application\/json(?:\s*;|$)/i.test(ctx.request.headers.get('content-type')||''))
@@ -32,18 +32,33 @@ export async function onRequestPost(ctx){
    return json({error:'Vorhandene Sitzungen, Token oder bereits verbrauchte Wiederherstellung'},409);
  }catch{return json({error:'Wiederherstellung nicht verfügbar: D1-Struktur prüfen'},503)}
  const claim=randomToken(),token=randomToken(),now=new Date().toISOString();
- const expiry=new Date(Date.now()+30*86400000).toISOString();
+ const expiry=new Date(Date.now()+86400000).toISOString();
  try{
-  // Entire claim is atomic. Every statement is conditional, and every row
-  // change must be exactly one for success. Subsequent attempts yield 409.
+  // D1.batch rolls back on SQL errors, NOT on successful zero-row writes.
+  // Each dependent write requires exactly one change from its predecessor.
+  // The final guard raises SQLite error when any postcondition is absent,
+  // preventing even successful zero-row writes from committing partial claims.
   const changes=await env.DB.batch([
    // Claim first: even if another actor changed the account between our
    // read and the batch, no unclaimed email verification can take place.
    env.DB.prepare("INSERT INTO admin_bootstrap(slot,admin_id,claim_id,used_at) SELECT 1,?,?,? WHERE (SELECT COUNT(*) FROM users WHERE role='admin')=1 AND EXISTS(SELECT 1 FROM users WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0) AND NOT EXISTS(SELECT 1 FROM admin_bootstrap) AND NOT EXISTS(SELECT 1 FROM sessions WHERE user_id=?) AND NOT EXISTS(SELECT 1 FROM login_tokens WHERE user_id=?)").bind(admin.id,claim,now,admin.id,email,admin.id,admin.id),
-   env.DB.prepare("UPDATE users SET email_verified=1 WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0 AND EXISTS(SELECT 1 FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)").bind(admin.id,email,admin.id,claim),
-   env.DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) SELECT ?,admin_id,? FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?").bind(await hash(token),expiry,admin.id,claim)
+   env.DB.prepare("UPDATE users SET email_verified=1 WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=0 AND changes()=1 AND EXISTS(SELECT 1 FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)").bind(admin.id,email,admin.id,claim),
+   env.DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) SELECT ?,admin_id,? FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=? AND changes()=1").bind(await hash(token),expiry,admin.id,claim),
+   // SQLite evaluates only the chosen CASE arm. A mismatched predecessor
+   // changes() counter or a missing postcondition raises a database error.
+   // Invalid JSON forces an
+   // exception/rollback if *any* expected postcondition is absent.
+   env.DB.prepare(`SELECT CASE WHEN changes()=1
+     AND (SELECT COUNT(*) FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)=1
+     AND (SELECT COUNT(*) FROM users WHERE role='admin')=1
+     AND (SELECT COUNT(*) FROM users WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=1)=1
+     AND (SELECT COUNT(*) FROM sessions WHERE user_id=? AND token_hash=?)=1
+     AND (SELECT COUNT(*) FROM sessions WHERE user_id=?)=1
+     AND (SELECT COUNT(*) FROM login_tokens WHERE user_id=?)=0
+     THEN 1 ELSE json_extract('invalid-json',char(36)) END AS verified`).bind(
+       admin.id,claim,admin.id,email,admin.id,await hash(token),admin.id,admin.id)
   ]);
-  if(changes.length!==3||changes.some(x=>Number(x.meta?.changes)!==1))
+  if(changes.length!==4||changes.slice(0,3).some(x=>Number(x.meta?.changes)!==1))
    return json({error:'Wiederherstellung bereits verwendet oder Zustand geändert'},409);
  }catch{return json({error:'Wiederherstellung abgebrochen: D1-Prüfung fehlgeschlagen'},503)}
  return new Response(JSON.stringify({ok:true,recovered_existing_admin:true,mail_sent:false}),{
@@ -52,7 +67,7 @@ export async function onRequestPost(ctx){
    'cache-control':'no-store, private',
    'referrer-policy':'no-referrer',
    'x-content-type-options':'nosniff',
-   'set-cookie':`gr_session=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=2592000`
+   'set-cookie':`gr_session=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=86400`
   }
  });
 }

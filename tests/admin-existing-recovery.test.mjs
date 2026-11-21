@@ -19,7 +19,7 @@ function fixture(){
    run:async()=>{const z=sql.prepare(q).run(...args);return{meta:{changes:Number(z.changes)}}}
   }}}},
   async batch(stmts){sql.exec('BEGIN');try{
-   const results=stmts.map(s=>{const z=sql.prepare(s._q).run(...s._args);return{meta:{changes:Number(z.changes)}}});
+   const results=stmts.map(s=>{const stmt=sql.prepare(s._q);if(/^\s*SELECT\b/i.test(s._q)){const row=stmt.get(...s._args);return{results:row?[row]:[],meta:{changes:0}}}const z=stmt.run(...s._args);return{meta:{changes:Number(z.changes)}}});
    sql.exec('COMMIT');return results;
   }catch(e){sql.exec('ROLLBACK');throw e}}
  };
@@ -41,6 +41,7 @@ test('recovery stays locked without explicit independent switch and exact config
  const {sql,DB}=fixture();user(sql);
  for(const x of [{ADMIN_RECOVERY_ENABLED:'false'},{ADMIN_RECOVERY_ENABLED:undefined},
  {ADMIN_BOOTSTRAP_ENABLED:'true'},{LOGIN_MAIL_ENABLED:'true'},
+ {LOGIN_MAIL_ENABLED:undefined},{LOGIN_MAIL_ENABLED:''},{LOGIN_MAIL_ENABLED:'TRUE'},
  {ADMIN_BOOTSTRAP_SECRET:''},{ADMIN_BOOTSTRAP_EMAIL:''}])
   assert.equal((await request(env(DB,x))).status,403);
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
@@ -57,11 +58,16 @@ test('single existing admin recovered once with admin-only cookie, no duplicate 
  assert.deepEqual(await first.json(),{ok:true,recovered_existing_admin:true,mail_sent:false});
  const cookie=first.headers.get('set-cookie');
  assert.match(cookie,/HttpOnly/);assert.match(cookie,/Secure/);assert.match(cookie,/SameSite=Strict/);
+ assert.match(cookie,/Max-Age=86400(?:;|$)/,'emergency session must last only 24 hours');
+ assert.doesNotMatch(cookie,/Domain=/i,'recovery cookie must be host-only');
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,1);
  assert.equal(sql.prepare("SELECT id,email,role,email_verified FROM users").get().id,'old-admin');
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,1);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,1);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,1);
+ const expiry=sql.prepare("SELECT expires_at FROM sessions WHERE user_id='old-admin'").get().expires_at;
+ const remaining=Date.parse(expiry)-Date.now();
+ assert.ok(remaining>23*3600000&&remaining<=24*3600000,'session expiry must be within 24 hours');
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM login_tokens').get().n,0);
  const current=await me({env:env(DB),request:req('/api/me','GET',undefined,origin,cookie.split(';')[0])});
  assert.equal((await current.json()).user.role,'admin');
@@ -92,4 +98,55 @@ test('without migration the recovery fails without changing the existing account
  assert.equal((await request(env(DB))).status,503);
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0);sql.close();
+});
+
+test('transaction rolls back when conditional verification or session insert is silently skipped',async()=>{
+ for(const mode of ['skip-verification','skip-session']){
+  const {sql,DB}=fixture();user(sql);
+  if(mode==='skip-verification')sql.exec("CREATE TRIGGER skip_verification BEFORE UPDATE OF email_verified ON users BEGIN SELECT RAISE(IGNORE); END");
+  else sql.exec("CREATE TRIGGER skip_session BEFORE INSERT ON sessions BEGIN SELECT RAISE(IGNORE); END");
+  assert.equal((await request(env(DB))).status,503,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0,mode+' must roll back singleton');
+  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0,mode);
+  sql.close();
+ }
+});
+test('state change between preflight and atomic batch never consumes recovery claim',async()=>{
+ for(const mode of ['new-session','new-token','verified','second-admin']){
+  const {sql,DB}=fixture();user(sql);
+  const batch=DB.batch;
+  DB.batch=async statements=>{
+   if(mode==='new-session')sql.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES('other-session','old-admin','2027-01-01T00:00:00Z')").run();
+   if(mode==='new-token')sql.prepare("INSERT INTO login_tokens(token_hash,user_id,expires_at) VALUES('other-token','old-admin','2027-01-01T00:00:00Z')").run();
+   if(mode==='verified')sql.prepare("UPDATE users SET email_verified=1 WHERE id='old-admin'").run();
+   if(mode==='second-admin')user(sql,'second@example.invalid','admin',0,'second-admin');
+   return batch(statements);
+  };
+  assert.equal((await request(env(DB))).status,503,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0,mode);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,mode==='new-session'?1:0);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,mode==='second-admin'?2:1);
+  sql.close();
+ }
+});
+
+test('concurrent recovery requests yield one session and one permanently consumed singleton',async()=>{
+ const {sql,DB}=fixture();user(sql);
+ const responses=await Promise.all(Array.from({length:6},()=>request(env(DB))));
+ assert.equal(responses.filter(r=>r.status===201).length,1);
+ assert.equal(responses.filter(r=>r.status!==201).length,5);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,1);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,1);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,1);
+ sql.close();
+});
+test('a trigger that changes verification while skipping original UPDATE cannot consume recovery',async()=>{
+ const {sql,DB}=fixture();user(sql);
+ sql.exec("CREATE TRIGGER alter_and_skip BEFORE UPDATE OF email_verified ON users BEGIN UPDATE users SET email_verified=1 WHERE id=NEW.id; SELECT RAISE(IGNORE); END");
+ assert.equal((await request(env(DB))).status,503);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0);
+ assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0);
+ sql.close();
 });
