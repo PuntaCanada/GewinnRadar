@@ -6,7 +6,7 @@ import sqlite3
 db = sqlite3.connect(":memory:")
 db.execute("PRAGMA foreign_keys=ON")
 root = Path(__file__).resolve().parents[1]
-for name in ("0001_initial.sql", "0002_review_security.sql", "0003_catalog_staging.sql", "0004_source_evidence.sql"):
+for name in ("0001_initial.sql", "0002_review_security.sql", "0003_catalog_staging.sql", "0004_source_evidence.sql", "0005_form_and_reminders.sql"):
     db.executescript((root / "migrations" / name).read_text(encoding="utf-8"))
 
 db.execute("INSERT INTO users(id,email,display_name,role) VALUES ('m','mother@example.invalid','Testperson','member')")
