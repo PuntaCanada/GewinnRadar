@@ -39,7 +39,7 @@ try{
     await page.goto(base+'/');
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
-    await page.locator('#editorialLive .game').waitFor();
+    await page.locator('#editorialLive .game').first().waitFor();
     assert.equal(await page.locator('#editorialLive .game').count(),3);
     await page.locator('#editorialLive').getByRole('heading',{name:/Pfalz-Genussreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Mosel/}).waitFor();
