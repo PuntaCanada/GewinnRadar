@@ -1,0 +1,33 @@
+name: GewinnRadar independent Production SHA-256
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - public/editorial-links-2026.json
+      - scripts/verify-production.mjs
+      - .github/workflows/production-integrity.yml
+permissions:
+  contents: read
+jobs:
+  production_integrity:
+    name: External Pages file versus main checkout
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent Cloudflare HTTPS read and SHA-256 comparison
+        run: node scripts/verify-production.mjs
+      - name: Save audit result (including UNVERIFIED)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gewinnradar-production-proof
+          path: production-verification.json
+          if-no-files-found: warn
+          retention-days: 7

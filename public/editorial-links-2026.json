@@ -142,7 +142,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.cloettadeutschland.de/candyking-adventskalender2026/",
-        "summary": "2026er Veranstalterbedingungen sind lesbar und nennen 18.–25.11. sowie Instagram-Pflichten; der konkrete Instagram-Post blieb in dieser Prüfung ungelesen.",
+        "summary": "Cloetta-Bedingungen erneut lesbar: kostenlos, 18.–25.11.2026, Follow, Like und Kommentar auf Instagram; konkreter Instagram-Gewinnspielpost nicht unabhängig abrufbar.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.cloettadeutschland.de/candyking-adventskalender2026/",
         "attempt_result": "partial"
@@ -212,7 +212,7 @@
         "status": "unconfirmed",
         "checked_on": "2026-11-21",
         "evidence_url": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
-        "summary": "Original-FALKEN-Landingpage erneut abgerufen, aber ohne lesbare Teilnahmebedingungen bzw. Formularinhalt. Frühere Angaben nicht neu bestätigt.",
+        "summary": "FALKEN-Aktionsseite erneut geöffnet: HTML ohne auslesbaren Inhalt, Teilnahmeformular und Kaufunabhängigkeit bleiben unbestätigt.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
         "attempt_result": "unconfirmed"
@@ -259,7 +259,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.gesund.de/gewinnspiel-teilnahmebedingungen",
-        "summary": "2026er Bedingungen bestätigen kostenlose Erstregistrierung in der App bis 25.11.; App-Registrierungsdialog nicht unabhängig getestet.",
+        "summary": "Veranstalterbedingungen bestätigen kostenlose Erstregistrierung in der gesund.de-App und Frist 25.11.2026; App-Registrierungsmaske nicht selbst durchlaufen.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.gesund.de/gewinnspiel-teilnahmebedingungen",
         "attempt_result": "partial"
@@ -284,7 +284,7 @@
         "status": "blocked",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.smythstoys.com/de/de-de/wunschlisten-gewinnspiel-tnb",
-        "summary": "Original-Smyths-Teilnahmebedingungen erneut HTTP 403. Zugriffsblock kein Beweis einer beendeten oder betrügerischen Aktion.",
+        "summary": "Smyths-Originalseite erneut HTTP 403; keine inhaltliche Neuprüfung möglich.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.smythstoys.com/de/de-de/wunschlisten-gewinnspiel-tnb",
         "attempt_result": "blocked"
@@ -354,7 +354,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.avermedia.com/event/best-game-capture-card/de/giveaway-rules.html",
-        "summary": "Offizielle Landes-Landingpage und 2026-Regeln bestätigen die Konsolenverlosung, Deutschlandberechtigung, kein Kauf sowie Frist in GMT+8; das dynamische Formular selbst nicht unabhängig ausgefüllt.",
+        "summary": "AVerMedia-Originalbedingungen für PS5/Nintendo Switch 2 vom 12.11.–03.12. (GMT+8), Deutschland, kostenlos, ohne Kauf und Onlineformular lesbar; tatsächliches Formular nicht unabhängig abgesendet.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.avermedia.com/event/best-game-capture-card/de/giveaway-rules.html",
         "attempt_result": "partial"
@@ -380,7 +380,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.wed2b.com/de-de/competition",
-        "summary": "WED2B-Gewinnspielseite erneut lesbar; externe Instagram-Aktion nicht unabhängig eingesehen.",
+        "summary": "WED2B-Originalseite erreichbar; tatsächlichen Social-Media-Gewinnspielpost nicht unabhängig geprüft.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.wed2b.com/de-de/competition",
         "attempt_result": "partial"
@@ -521,7 +521,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.steinbach-group.com/de/rechtliches/teilnahmebedingungen-social-media-gewinnspiel/",
-        "summary": "Offizielle Bedingungen vom 20.11.–04.12.2026 mit Social-Media-Folge/Like/Kommentar und kostenloser Teilnahme lesbar; konkreter Social-Post nicht unabhängig verifiziert.",
+        "summary": "Steinbach-Originalbedingungen bestätigen kostenlosen Whirlpool-Gewinn bis 04.12.2026, Instagram/Facebook-Like und Kommentar; konkreten Originalpost nicht eigenständig geöffnet.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.steinbach-group.com/de/rechtliches/teilnahmebedingungen-social-media-gewinnspiel/",
         "attempt_result": "partial"
@@ -546,7 +546,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://edeka-kuhlmann.de/wp-content/uploads/2026/11/Teilnahmebedingungen_Datenschutz_PS5_Gewinnspiel_EDEKA_Kuhlmann.pdf",
-        "summary": "Alle 3 Seiten des offiziellen PDF vom 06.11.2026 einschließlich Datenschutz visuell geprüft: kostenlos ohne Kauf, Instagram folgen, Reel liken und kommentieren, Abholung statt Versand. Das konkrete Instagram-Reel selbst nicht geöffnet.",
+        "summary": "Originales 3-seitiges EDEKA-Kuhlmann-PDF einschließlich Instagram-Teilnahmeregeln, Datenschutz und Frist visuell geprüft; das konkrete Instagram-Reel weiterhin nicht unabhängig geöffnet.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://edeka-kuhlmann.de/wp-content/uploads/2026/11/Teilnahmebedingungen_Datenschutz_PS5_Gewinnspiel_EDEKA_Kuhlmann.pdf",
         "attempt_result": "partial"
@@ -593,7 +593,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://suelzle-gruppe.de/teilnahmebedingungen-gewinnspiel-wimmelbild/",
-        "summary": "Offizielle Bedingungen bestätigen drei Motive im Wimmelbild plus Kontaktdatenformular bis 31.01.2027; konkreten Posting-/Formularweg nicht selbst getestet.",
+        "summary": "SÜLZLE-Teilnahmebedingungen mit Wimmelbild (3 Motive), Kontaktdatenformular, kostenfreier Auslosung und Frist 31.01.2027 lesbar; konkretes Formular nicht ausgefüllt.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://suelzle-gruppe.de/teilnahmebedingungen-gewinnspiel-wimmelbild/",
         "attempt_result": "partial"
@@ -685,7 +685,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.robby-bubble.de/eo/cms?_aktion=detail&_bereich=artikel&idartikel=184271",
-        "summary": "Offizielle 2026-Regeln bestätigen kostenlose Elternteilnahme, Kindgeburtsdatum und Onlinealternative zur Karte bis 31.01.2027; Onlineformular nicht selbst abgesendet.",
+        "summary": "Robby-Bubble-Originalbedingungen bestätigen kostenlose Online-Alternative, Eltern-/Kinddaten, PS5-Gewinn und 31.01.2027; Teilnahmeformular nicht selbst abgeschickt.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.robby-bubble.de/eo/cms?_aktion=detail&_bereich=artikel&idartikel=184271",
         "attempt_result": "partial"
@@ -754,7 +754,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://www.deg-eishockey.de/teilnahmebedingungen/",
-        "summary": "DEG-Teilnahmebedingungen erneut geladen; QR-Code-Ziel und Zugangsweg am Supermarkt-Aufsteller nicht unabhängig getestet.",
+        "summary": "DEG-Teilnahmebedingungen lesbar; QR-Code vom Marktaufsteller als notwendiger Zugangsweg nicht unabhängig geöffnet.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://www.deg-eishockey.de/teilnahmebedingungen/",
         "attempt_result": "partial"
@@ -801,7 +801,7 @@
         "status": "blocked",
         "checked_on": "2026-11-21",
         "evidence_url": "https://de.topps.com/pages/teilnahmebedingungen-gewinnspiel-topps-ucc-match-attax-2026-27-f-r-deutschland",
-        "summary": "Offizielle Topps-Regelseite erneut HTTP 403. Kein Schluss auf Ablauf oder Betrug; Jotform-Teilnahmeseite weiterhin nicht kontrolliert.",
+        "summary": "Topps-Originalseite erneut mit HTTP 403 gesperrt; externes Jotform nicht unabhängig geprüft.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://de.topps.com/pages/teilnahmebedingungen-gewinnspiel-topps-ucc-match-attax-2026-27-f-r-deutschland",
         "attempt_result": "blocked"
@@ -845,13 +845,13 @@
       "marketing_requirements": "Pflicht zum personalisierten Werbe-Newsletter! Kein Warenkauf nötig. Ohne bestätigte Newsletteranmeldung keine Teilnahme; Datenschutzhinweise des Veranstalters beachten.",
       "note": "Offizielles Teilnahmeformular und Bedingungen am 21.11.2026 geprüft. Ende 31.12.2026; nur für vollständig neu angemeldete Newsletterempfänger. Keine Newsletteranmeldung durch GewinnRadar.",
       "source_audit": {
-        "status": "unconfirmed",
+        "status": "confirmed",
         "checked_on": "2026-11-21",
-        "evidence_url": "https://littlejohnbikes.de/fahrradleasing/gewinnspiel-mavaro-neo-sl-1",
-        "summary": "Original Little-John-Bikes-Landingpage erneut nicht erreichbar; Newsletterpflicht und Teilnahmeschluss daher nicht neu bestätigt.",
+        "evidence_url": "https://littlejohnbikes.de/bikeleasing/gewinnspiel-mavaro-neo-sl-1",
+        "summary": "Offizielle Little-John-Bikes-Landingpage mit auslesbaren Bedingungen, Live-Newsletterformular, Double-Opt-in, kostenfreier Teilnahme und Frist 31.12.2026 bestätigt. Pflicht-Werbenewsletter ausdrücklich erforderlich.",
         "attempt_on": "2026-11-21",
-        "attempt_url": "https://littlejohnbikes.de/fahrradleasing/gewinnspiel-mavaro-neo-sl-1",
-        "attempt_result": "unconfirmed"
+        "attempt_url": "https://littlejohnbikes.de/bikeleasing/gewinnspiel-mavaro-neo-sl-1",
+        "attempt_result": "confirmed"
       }
     },
     {
@@ -870,13 +870,13 @@
       "marketing_requirements": "Newsletter ist PFLICHT; kein Kauf nötig. Newsletter-E-Mail wird auch für Werbung verarbeitet, Widerruf über Abmeldelink möglich. Versand des Gewinns innerhalb Deutschlands kostenlos.",
       "note": "Originalbedingungen vom 21.11.2026 geprüft. Frist 31.01.2027 23:59 Uhr. Der Link führt zur offiziellen Bedingungen-Seite mit Newsletterformular; keine Anmeldung durch GewinnRadar.",
       "source_audit": {
-        "status": "unconfirmed",
+        "status": "confirmed",
         "checked_on": "2026-11-21",
-        "evidence_url": "https://www.sommer-gmbh.de/teilnahmebedingungen-ipad-verlosung",
-        "summary": "Offizielle SOMMER-Gewinnspielseite erneut mit Timeout; inhaltliche 2026/27-Neubestätigung nicht möglich.",
+        "evidence_url": "https://www.sommer-gmbh.de/en/teilnahmebedingungen-ipad-verlosung",
+        "summary": "SOMMER-Originalbedingungen einschließlich Newsletterformular auf erreichbarer /en/-Sprachversion überprüft: kostenlos, Newsletter mit Double-Opt-in Pflicht, Ende 31.01.2027; keine Anmeldung durchgeführt.",
         "attempt_on": "2026-11-21",
-        "attempt_url": "https://www.sommer-gmbh.de/teilnahmebedingungen-ipad-verlosung",
-        "attempt_result": "unconfirmed"
+        "attempt_url": "https://www.sommer-gmbh.de/en/teilnahmebedingungen-ipad-verlosung",
+        "attempt_result": "confirmed"
       }
     },
     {
@@ -898,7 +898,7 @@
         "status": "partial",
         "checked_on": "2026-11-21",
         "evidence_url": "https://techniktipp.de/teilnahmebedingungen/",
-        "summary": "Originalbedingungen 01.07.–31.12.2026, 50-€-Amazon-Gutschein und kostenlose Fehlermeldung per E-Mail bestätigt; konkrete aktuelle Fehleraufgabe nicht unabhängig verifiziert.",
+        "summary": "TechnikTipp-Originalbedingungen bestätigen kostenlose Fehleraktion bis 31.12.2026 und Amazon-Gutschein; die konkrete aktuelle Fehleraufgabe bleibt nicht unabhängig nachgewiesen.",
         "attempt_on": "2026-11-21",
         "attempt_url": "https://techniktipp.de/teilnahmebedingungen/",
         "attempt_result": "partial"
@@ -924,6 +924,28 @@
         "checked_on": "2026-11-21",
         "evidence_url": "https://shop.skatewiz.de/pages/gewinnspiel",
         "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+      }
+    },
+    {
+      "id": "snapfrog-keeprix-license-2026",
+      "organizer": "OnDireX UG (snapfrog.de)",
+      "title": "SnapFrog – 30 Keeprix-Jahreslizenzen gewinnen",
+      "prize": "30 Jahreslizenzen Keeprix All-in-One Downloader für Windows/Mac (je 1 Gerät)",
+      "url": "https://www.snapfrog.de/gewinnspiel/keeprix-all-in-one-downloader-gewinnspiel",
+      "terms_url": "https://www.snapfrog.de/gewinnspiel/keeprix-all-in-one-downloader-gewinnspiel",
+      "privacy_url": "https://www.snapfrog.de/datenschutz/",
+      "starts_at": "2026-11-18T00:00:00+01:00",
+      "ends_at": "2027-01-01T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "participation_type": "external_form",
+      "required_data": "Einmalige Teilnahme mit E-Mail und Bestätigungslink (Double-Opt-in); ab 16 Jahren, Wohnsitz Deutschland/Österreich/Schweiz.",
+      "marketing_requirements": "Kein Kauf nötig. Newsletter ist ausdrücklich NICHT Pflicht; alternative Teilnahme ohne Newsletter über den AGB-Link auf der Veranstalterseite. Externes Formular nicht abgesendet.",
+      "note": "Offizielle Originalbedingungen, Datenschutzhinweise und die Alternative ohne Newsletter am 21.11.2026 nachvollzogen. Die Software ist ein Downloader; Nutzungsbedingungen und Urheberrechte bei späterer Verwendung beachten.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.snapfrog.de/gewinnspiel/keeprix-all-in-one-downloader-gewinnspiel",
+        "summary": "Veranstalterseite bestätigt 30 Jahreslizenzen, kostenloses E-Mail-Gewinnspielformular und getrennte AGB-Alternative ohne Newsletter bis 31.12.2026; keine E-Mail gesendet."
       }
     }
   ],

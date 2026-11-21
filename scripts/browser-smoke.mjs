@@ -40,7 +40,7 @@ try{
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
-    assert.equal(await page.locator('#editorialLive .game').count(),40);
+    assert.equal(await page.locator('#editorialLive .game').count(),41);
     assert.equal(await page.locator('#editorialReview .game').count(),3);
     await page.locator('#editorialReview').getByRole('heading',{name:/Berghaus/}).waitFor();
     await page.locator('#editorialReview').getByRole('heading',{name:/Saal-Digital/}).waitFor();
@@ -77,7 +77,7 @@ try{
     await page.locator('#editorialLive').getByRole('heading',{name:/Meine MVG/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Hurtigruten-Nordkapreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Zehn PlayStation-5-Pakete für Familien/}).waitFor();
-    assert.equal(await page.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
+    assert.equal(await page.locator('#counter').innerText(),'41 Originalaktionen · 28 Bedingungen bestätigt');
     assert.equal(await page.locator('#counter').innerText().then(s=>s.includes('D1')),false);
     await page.locator('#editorialLive').getByText(/kostenpflichtiges, monatlich kündbares Abo weiter/).waitFor();
     await page.locator('#editorialLive').getByText(/nur ZWEIER Tage/).waitFor();
@@ -86,7 +86,7 @@ try{
     await page.locator('#editorialLive').getByText(/WICHTIGE Quellenabweichung/).waitFor();
     await page.locator('#editorialLive').getByText(/unbeschränkte Bildnutzungsrechte/).waitFor();
     await page.locator('#editorialLive').getByText(/aufgezeichnete und ausgestrahlte/).waitFor();
-    assert.equal(await page.locator('#editorialLive').getByText('Externes Formular – noch selbst prüfen').count(),4);
+    assert.equal(await page.locator('#editorialLive').getByText('Externes Formular – noch selbst prüfen').count(),5);
     assert.equal(await page.locator('#editorialLive').getByText('App und neues Konto erforderlich').count(),2);
     assert.equal(await page.locator('#editorialLive').getByText('Kostenloses Kundenkonto erforderlich').count(),3);
     const sortedIds=await page.locator('#editorialLive .game h2').allTextContents();
@@ -107,9 +107,9 @@ try{
     assert.equal(await page.locator('#editorialLive').getByText('Instagram-Konto erforderlich').count(),4);
     assert.equal(await page.locator('#editorialLive').getByText('Facebook oder Instagram erforderlich').count(),3);
     assert.equal(await page.locator('#editorialLive').getByText('WhatsApp-Kanal + eigene E-Mail').count(),1);
-    assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),27);
+    assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),28);
     assert.equal(await page.locator('#adventPreview .game').count(),3);
-    assert.match(await page.locator('#editorialCount').innerText(),/40 recherchierte Originalaktionen/);
+    assert.match(await page.locator('#editorialCount').innerText(),/41 recherchierte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     await page.getByText(/Kalender-Ende:/).waitFor();
@@ -158,8 +158,8 @@ try{
   // The diagnostic must remain a public GET without login or user data.
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.locator('#editorialLive .game').first().waitFor();
-  assert.equal(await guestPage.locator('#editorialLive .game').count(),40);
-  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
+  assert.equal(await guestPage.locator('#editorialLive .game').count(),41);
+  assert.equal(await guestPage.locator('#counter').innerText(),'41 Originalaktionen · 28 Bedingungen bestätigt');
   assert.equal(await guestPage.locator('#d1CatalogHeading').isVisible(),false,'Private database technical section hidden for guests');
   assert.equal(await guestPage.locator('#cards').isVisible(),false,'Private catalogue is not a second empty public catalogue');
   assert.equal(await guestPage.locator('#searchGames').isVisible(),false);
@@ -181,14 +181,14 @@ try{
   await guestPage.goto(base+'/');
   const guestCards=guestPage.locator('#editorialLive .game');
   await guestCards.first().waitFor();
-  assert.equal(await guestCards.count(),40);
-  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
+  assert.equal(await guestCards.count(),41);
+  assert.equal(await guestPage.locator('#counter').innerText(),'41 Originalaktionen · 28 Bedingungen bestätigt');
   assert.equal(await guestPage.getByText(/davon .*D1/).count(),0);
   const firstMark=guestCards.first().locator('input[data-joined-contest]');
   assert.equal(await firstMark.isChecked(),false);
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 40/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 41/);
   await firstMark.check();
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/1 von 40/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/1 von 41/);
   assert.equal(await guestCards.first().evaluate(x=>x.classList.contains('joined-completed')),true);
   await guestPage.reload();
   await guestCards.first().waitFor();
@@ -201,7 +201,7 @@ try{
   await guestPage.reload();
   await guestCards.first().waitFor();
   assert.equal(await guestCards.first().locator('input[data-joined-contest]').isChecked(),false);
-  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 40/);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 41/);
   const guestStorageKeys=await guestPage.evaluate(()=>Object.keys(localStorage));
   assert.ok(guestStorageKeys.every(k=>k.startsWith('gewinnradar:guest:completed:v1:')));
   await guest.close();
