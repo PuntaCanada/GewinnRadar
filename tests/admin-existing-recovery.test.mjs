@@ -58,11 +58,16 @@ test('single existing admin recovered once with admin-only cookie, no duplicate 
  assert.deepEqual(await first.json(),{ok:true,recovered_existing_admin:true,mail_sent:false});
  const cookie=first.headers.get('set-cookie');
  assert.match(cookie,/HttpOnly/);assert.match(cookie,/Secure/);assert.match(cookie,/SameSite=Strict/);
+ assert.match(cookie,/Max-Age=86400(?:;|$)/,'emergency session must last only 24 hours');
+ assert.doesNotMatch(cookie,/Domain=/i,'recovery cookie must be host-only');
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,1);
  assert.equal(sql.prepare("SELECT id,email,role,email_verified FROM users").get().id,'old-admin');
  assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,1);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,1);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,1);
+ const expiry=sql.prepare("SELECT expires_at FROM sessions WHERE user_id='old-admin'").get().expires_at;
+ const remaining=Date.parse(expiry)-Date.now();
+ assert.ok(remaining>23*3600000&&remaining<=24*3600000,'session expiry must be within 24 hours');
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM login_tokens').get().n,0);
  const current=await me({env:env(DB),request:req('/api/me','GET',undefined,origin,cookie.split(';')[0])});
  assert.equal((await current.json()).user.role,'admin');
