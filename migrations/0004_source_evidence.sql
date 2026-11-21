@@ -12,4 +12,5 @@ CREATE TABLE IF NOT EXISTS source_evidence_history (
 );
 CREATE INDEX IF NOT EXISTS idx_source_evidence_history_candidate ON source_evidence_history(candidate_id,observed_at DESC);
 CREATE TRIGGER IF NOT EXISTS prevent_source_evidence_update BEFORE UPDATE ON source_evidence_history BEGIN SELECT RAISE(ABORT,'append only'); END;
-CREATE TRIGGER IF NOT EXISTS prevent_source_evidence_delete BEFORE DELETE ON source_evidence_history BEGIN SELECT RAISE(ABORT,'append only'); END;
+-- No DELETE trigger: foreign-key cascades must permit erasure of administrator account data.
+-- The authenticated API intentionally offers no DELETE or UPDATE route for evidence.
