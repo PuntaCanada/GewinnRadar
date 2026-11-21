@@ -37,7 +37,7 @@ try{
       return response({error:'unhandled'},404);
     });
     await page.goto(base+'/');
-    await page.getByRole('heading',{name:/Guten Morgen, Mama/}).waitFor();
+    await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     const read=await page.locator('body').evaluate(el=>getComputedStyle(el).fontSize);
     assert.equal(read,'21px','Large-type senior mode');
@@ -71,12 +71,16 @@ try{
   const guestPage=await guest.newPage();
   await guestPage.route('**/api/**',route=>{
     const path=new URL(route.request().url()).pathname;
-    const body=path==='/api/me'?{user:null}:{error:path==='/api/login'?'Der Familien-Login ist noch nicht freigeschaltet.':'Nicht erlaubt'};
-    return route.fulfill({status:path==='/api/me'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
+    const body=path==='/api/me'?{user:null}:path==='/api/games'?{games:[{id:'public-test',title:'Öffentlich geprüfter Testeintrag',organizer:'Testveranstalter',prize:'Testpreis',url:'https://www.br.de/',terms_url:'https://www.br.de/',privacy_url:'https://www.br.de/',ends_at:'2099-12-24T00:00:00Z',daily:0,required_data:'Name und E-Mail',verified_at:'2026-11-21T09:00:00Z'}]}:{error:path==='/api/login'?'Der Familien-Login ist noch nicht freigeschaltet.':'Nicht erlaubt'};
+    return route.fulfill({status:path==='/api/me'||path==='/api/games'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
   });
   await guestPage.goto(base+'/');
-  await guestPage.getByRole('heading',{name:'Willkommen! ❤️'}).waitFor();
-  assert.equal(await guestPage.locator('#dashboard').isVisible(),false);
+  await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
+  await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
+  assert.equal(await guestPage.locator('#dashboard').isVisible(),true);
+  assert.equal(await guestPage.getByRole('checkbox',{name:/Teilnahme als erledigt markieren/}).count(),0);
+  assert.equal(await guestPage.locator('#saveSettings').isVisible(),false);
+  await guestPage.locator('#loginPanel summary').click();
   await guestPage.locator('#email').fill('test@example.invalid');
   await guestPage.getByRole('button',{name:'Anmeldelink anfordern'}).click();
   await guestPage.getByText('Der Familien-Login ist noch nicht freigeschaltet.').waitFor();
