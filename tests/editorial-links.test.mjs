@@ -73,6 +73,9 @@ test('FALKEN bike giveaway has a verified cutoff of precisely 18:00 and no tire 
  assert.equal(game.ends_at,'2026-11-30T18:00:00+01:00');
  assert.match(game.marketing_requirements,/Kein Kauf/);
  assert.match(game.note,/Zusatzgewinnspiel/);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-30T17:59:59+01:00')).live.some(x=>x.id===game.id),true);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-11-30T18:00:00+01:00')).live.some(x=>x.id===game.id),false);
+ // Isolate the deadline from the independent eight-day re-verification guard.
+ const rechecked=structuredClone(data);
+ rechecked.active.find(x=>x.id===game.id).reviewed_on='2026-11-30';
+ assert.equal(eligibleEditorialLinks(rechecked,new Date('2026-11-30T17:59:59+01:00')).live.some(x=>x.id===game.id),true);
+ assert.equal(eligibleEditorialLinks(rechecked,new Date('2026-11-30T18:00:00+01:00')).live.some(x=>x.id===game.id),false);
 });
