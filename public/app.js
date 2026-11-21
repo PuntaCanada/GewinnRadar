@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);let user=null;let games=[];let lastLoade
 const berlinDay=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 async function api(path,options){const r=await fetch('/api/'+path,{credentials:'same-origin',...options});const v=await r.json();if(!r.ok)throw Error(v.error||'Verbindung fehlgeschlagen');return v}
 function el(tag,text,className){const e=document.createElement(tag);if(text!=null)e.textContent=text;if(className)e.className=className;return e}
-function loadDashboard(){document.body.classList.toggle('senior',Boolean(user.senior_mode));$('loginPanel').classList.add('hidden');$('logout').classList.remove('hidden');document.querySelectorAll('.personalOnly').forEach(n=>n.classList.remove('hidden'));$('greeting').textContent='Willkommen, '+user.display_name+'! 🍀';$('daily').checked=Boolean(user.daily_email);$('senior').checked=Boolean(user.senior_mode);refresh()}
+function loadDashboard(){document.body.classList.add('has-user');document.body.classList.toggle('senior',Boolean(user.senior_mode));$('loginPanel').classList.add('hidden');$('logout').classList.remove('hidden');document.querySelectorAll('.personalOnly').forEach(n=>n.classList.remove('hidden'));$('greeting').textContent='Willkommen, '+user.display_name+'! 🍀';$('daily').checked=Boolean(user.daily_email);$('senior').checked=Boolean(user.senior_mode);refresh()}
 function refresh(){
  if(inflight)return inflight;
  inflight=(async()=>{
@@ -26,7 +26,7 @@ function refreshOnResume(){
 }
 function render(){let filter=$('filter').value;let list=visibleGames(games,{status:filter,dailyOnly:$('dailyOnly').checked,simpleOnly:$('simpleOnly').checked,query:$('searchGames').value,sort:$('sortGames').value});const completed=games.filter(g=>g.completed).length;
 const reviewedLinks=Number(document.body.dataset.editorialLiveCount||0);
-$('counter').textContent=reviewedLinks+' aktuelle Gewinnspiele';
+$('counter').textContent=reviewedLinks+' geprüfte Gewinnspiele';
 const progress=document.querySelector('#progressBar');
 if(progress){progress.max=Math.max(games.length,1);progress.value=completed;progress.setAttribute('aria-label',completed+' von '+games.length+' Gewinnspielen erledigt')}
 const hint=document.querySelector('#progressHint');

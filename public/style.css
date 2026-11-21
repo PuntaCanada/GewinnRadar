@@ -49,3 +49,6 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 .cards>.game{min-width:0;max-width:100%;overflow-wrap:anywhere}
 .cards>.game .action{min-width:0}
 .cards>.game .action>*{max-width:100%;overflow-wrap:anywhere}
+
+/* Keep the empty private D1 catalogue out of the public visitor view. */
+body:not(.has-user) #d1CatalogHeading,body:not(.has-user) #d1CatalogHeading + p,body:not(.has-user) .toolbar,body:not(.has-user) #resultCount,body:not(.has-user) #cards{display:none!important}
