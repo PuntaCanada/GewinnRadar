@@ -6,7 +6,7 @@ const report=JSON.parse(read('../catalog/source-audit-2026-11-21.json'));
 test('reviewed primary-source candidates remain unapproved and mail-free',()=>{
  assert.ok(report.entries.length>=2,'Existing source audits must remain present');
  for(const entry of report.entries){
-  assert.equal(entry.approval,'pending');
+  assert.ok(['pending','blocked_pending_correction'].includes(entry.approval));
   assert.equal(entry.form_checked,false);
   assert.equal(entry.reminders_enabled,false);
   assert.ok(entry.source_url.startsWith('https://'));
