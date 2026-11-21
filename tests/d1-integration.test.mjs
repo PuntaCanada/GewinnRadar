@@ -7,7 +7,7 @@ import {onRequestPost as addContest,onRequestGet as listAdmin} from '../function
 import {onRequestPost as review} from '../functions/api/admin/review.js';
 import {onRequestGet as games} from '../functions/api/games.js';
 import {onRequestPost as progress} from '../functions/api/progress.js';
-import {onRequestGet as verifyLogin} from '../functions/api/verify.js';
+import {onRequestGet as previewLogin,onRequestPost as verifyLogin} from '../functions/api/verify.js';
 import {onRequestPost as login} from '../functions/api/login.js';
 
 function dbAdapter(){
@@ -76,11 +76,15 @@ test('one-time magic link: consumed atomically and cannot be reused',async()=>{
  const token='a'.repeat(64);
  sqlite.prepare('INSERT INTO login_tokens(token_hash,user_id,expires_at) VALUES(?,?,?)').run(await hash(token),'mother','2099-01-01T00:00:00Z');
  const ctx={request:request('/api/verify?token='+token),env:{DB:db}};
- const first=await verifyLogin(ctx);
+ const preview=await previewLogin(ctx);
+ assert.equal(preview.status,200);
+ assert.equal(sqlite.prepare('SELECT used_at FROM login_tokens').get().used_at,null);
+ const confirm=()=>({request:new Request(address+'/api/verify',{method:'POST',headers:{origin:address,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({token})}),env:{DB:db}});
+ const first=await verifyLogin(confirm());
  assert.equal(first.status,303);
  assert.match(first.headers.get('set-cookie')||'',/HttpOnly; Secure; SameSite=Lax/);
  assert.equal(sqlite.prepare('SELECT email_verified FROM users').get().email_verified,1);
- const replay=await verifyLogin(ctx);
+ const replay=await verifyLogin(confirm());
  assert.equal(replay.status,303);
  assert.match(replay.headers.get('location'),/login=invalid/);
  assert.equal(sqlite.prepare('SELECT count(*) AS count FROM sessions').get().count,1);
