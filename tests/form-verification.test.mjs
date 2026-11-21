@@ -22,6 +22,6 @@ test('form review requires separate authenticated admin and all seven live check
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,0);
  assert.equal((await send(body)).status,201);
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,1);
- assert.equal(sql.prepare('SELECT count(*) AS n FROM games WHERE status="verified"').get().n,0);
+ assert.equal(sql.prepare("SELECT count(*) AS n FROM games WHERE status='verified'").get().n,0);
  sql.close();
 });
