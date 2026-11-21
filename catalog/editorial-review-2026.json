@@ -73,7 +73,7 @@
       "calendar_year": 2026,
       "original_source": "https://www.abendzeitung-muenchen.de/mehr/vorteilswelt/gewinnen/teilnahmebedingungen-adventskalender-2026-art-771163",
       "checked_on": "2026-11-21",
-      "review_state": "pending_form_check",
+      "review_state": "excluded",
       "terms_2026_verified": false,
       "privacy_terms_checked": false,
       "live_form_verified": false,
@@ -82,7 +82,7 @@
       "same_day_window_proven": false,
       "reminder_approved": false,
       "manual_review_required": true,
-      "notes": "Kostenloses Benutzerkonto notwendig; keine zwingende Abo-Pflicht, AZ+ erhöht lediglich Gewinnchance. Registrierungsbedingungen erneut prüfen."
+      "notes": "Account compulsory; AZ general online usage contract provides personalized advertising. Not suitable for no-ad family default; physical pickup of prizes required."
     },
     {
       "id": "stadtgaertner-2026",
@@ -105,16 +105,16 @@
       "calendar_year": 2026,
       "original_source": "https://ahoi-leipzig.de/advent/",
       "checked_on": "2026-11-21",
-      "review_state": "pending_form_check",
-      "terms_2026_verified": false,
-      "privacy_terms_checked": false,
+      "review_state": "conditions_checked",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": true,
       "live_form_verified": false,
       "marketing_optional_proven": false,
       "germany_eligibility_proven": false,
       "same_day_window_proven": false,
       "reminder_approved": false,
       "manual_review_required": true,
-      "notes": "Kostenloses Tagesquiz, Daten laut Bedingungen ausschließlich Gewinnabwicklung und Löschung; einzelne Preise können regionale Einlösung verlangen."
+      "notes": "Original says only winner processing, but daily entry form and local prizes unverified."
     },
     {
       "id": "adac-social-2026",
@@ -185,8 +185,8 @@
       "calendar_year": 2026,
       "original_source": "https://www.infra-fuerth.de/teilnahmebedingungen-adventskalender",
       "checked_on": "2026-11-21",
-      "review_state": "pending_form_check",
-      "terms_2026_verified": false,
+      "review_state": "conditions_checked",
+      "terms_2026_verified": true,
       "privacy_terms_checked": false,
       "live_form_verified": false,
       "marketing_optional_proven": false,
@@ -194,7 +194,7 @@
       "same_day_window_proven": false,
       "reminder_approved": false,
       "manual_review_required": true,
-      "notes": "Original bestätigt kostenlose bundesweite tägliche Quizteilnahme; Anschrift erst im Gewinnfall, Antwortfrist 48 Stunden."
+      "notes": "Original 2026 proves free daily quiz and eligibility, not actual required contact-form fields."
     },
     {
       "id": "hager-2026",
@@ -409,32 +409,32 @@
       "calendar_year": 2026,
       "original_source": "https://diekreidefarbe.de/pages/teilnahmebedingungen-adventskalender",
       "checked_on": "2026-11-21",
-      "review_state": "pending_form_check",
-      "terms_2026_verified": false,
-      "privacy_terms_checked": false,
+      "review_state": "conditions_checked",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": true,
       "live_form_verified": false,
       "marketing_optional_proven": false,
       "germany_eligibility_proven": false,
       "same_day_window_proven": false,
       "reminder_approved": false,
       "manual_review_required": true,
-      "notes": "Originalbedingungen: kostenloses Formular statt Social, Newsletter freiwillig."
+      "notes": "Original 2026: optional newsletter, name/email form, only SOME days are giveaways; no live day form checked."
     },
     {
       "id": "landwirtschaft-2026",
       "calendar_year": 2026,
       "original_source": "https://www.magdochjeder.de/service/gewinnspiel",
       "checked_on": "2026-11-21",
-      "review_state": "pending_form_check",
-      "terms_2026_verified": false,
-      "privacy_terms_checked": false,
+      "review_state": "conditions_checked",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": true,
       "live_form_verified": false,
       "marketing_optional_proven": false,
       "germany_eligibility_proven": false,
       "same_day_window_proven": false,
       "reminder_approved": false,
       "manual_review_required": true,
-      "notes": "Original 2026, tägliche Formulare; kein Bot/Automatisierung zulässig."
+      "notes": "Original details daily 00:01–23:59 and data passing to prize-giving farmers; actual form unverified."
     },
     {
       "id": "pincamp-2026",
