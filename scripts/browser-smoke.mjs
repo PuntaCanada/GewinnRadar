@@ -54,7 +54,7 @@ try{
     await page.locator('#editorialLive').getByRole('heading',{name:/La Sportiva/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/10 Preise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/CandyKing Adventskalender/}).waitFor();
-    await page.locator('#editorialLive').getByRole('heading',{name:/Wera-Adventskalender/}).waitFor();
+    await page.locator('#editorialLive').getByRole('heading',{name:'Fünf Wera-Adventskalender gewinnen',exact:true}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Prym DIY-Adventskalender/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Vier BULLS Fahrräder gewinnen/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Zehn STRYVE Weihnachtspakete/}).waitFor();
