@@ -12,7 +12,7 @@ export function editorialDeadline(exclusiveEnd){
  const instant=Date.parse(exclusiveEnd);
  if(!Number.isFinite(instant))return null;
  // JSON end timestamps are exclusive: midnight 01.01 means 31.12, 23:59.
- const minute=new Date(instant-60000);
+ const minute=new Date(instant-1);
  return minute.toLocaleString('de-DE',{timeZone:'Europe/Berlin',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).replace(',', ' ·')+' Uhr';
 }
 export function eligibleEditorialLinks(data,now=new Date()){
