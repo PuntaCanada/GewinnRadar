@@ -52,6 +52,10 @@ try{
     const link=page.getByRole('link',{name:/Jetzt am Gewinnspiel teilnehmen/});
     assert.equal(await link.getAttribute('rel'),'noopener noreferrer');
     const scrollWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
+    if(scrollWidth>width+2) {
+      const offenders=await page.locator('body *').evaluateAll(nodes=>nodes.map(n=>({tag:n.tagName,cls:n.className,txt:(n.textContent||'').slice(0,70),right:Math.round(n.getBoundingClientRect().right),width:Math.round(n.getBoundingClientRect().width)})).filter(x=>x.right>width+2).slice(0,20));
+      console.log('Horizontal overflow',width,scrollWidth,JSON.stringify(offenders));
+    }
     assert.ok(scrollWidth <= width+2,'No horizontal overflow on '+width+'px device');
     await mkdir('test-artifacts',{recursive:true});
     await page.screenshot({path:'test-artifacts/senior-'+width+'.png',fullPage:true});
