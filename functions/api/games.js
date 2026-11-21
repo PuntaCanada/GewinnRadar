@@ -4,7 +4,7 @@ export async function onRequestGet(ctx){
  const u=await viewer(ctx);
  const now=new Date().toISOString(),day=dayKey();
  const [formFrom,formUntil,dayStart]=formReviewWindow(new Date(now));
- const fields="g.id,g.organizer,g.title,g.prize,g.url,g.terms_url,g.privacy_url,g.starts_at,g.ends_at,g.daily,g.required_data,g.solution,g.verified_at,g.link_state,g.verification_note";
+ const fields="g.id,g.organizer,g.title,g.prize,g.url,g.terms_url,g.privacy_url,g.starts_at,g.ends_at,g.daily,g.required_data,g.solution,g.verified_at,g.link_state,g.verification_note,CASE WHEN substr(fv.required_fields,1,15)='EMAIL_ENTRY_V1:' THEN fv.required_fields ELSE NULL END AS email_entry";
  const base=" FROM games g"+verifiedJoins;
  const where=" WHERE g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions;
  // Never join private user tables for guests or reveal user-specific data in public responses.
