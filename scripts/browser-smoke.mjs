@@ -117,7 +117,7 @@ try{
   await guest.close();
   const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
   const adminPage=await adminContext.newPage();
-  let savedEvidence=null,savedForm=null;
+  let savedEvidence=null,savedForm=null,savedLink=null;
   await adminPage.route('**/api/admin/**',route=>{
     const url=new URL(route.request().url()),path=url.pathname;
     const response=(object,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(object)});
@@ -127,6 +127,10 @@ try{
       const b=JSON.parse(route.request().postData());
       if(!['form_observed','correct_year','german_residents','no_marketing_required','no_purchase_required','no_account_or_app_obligation','no_unresolved_deadline_conflict'].every(k=>b[k]===true))return response({error:'Nicht alle Bedingungen erfüllt'},409);
       savedForm=b;return response({ok:true,form_review_recorded:true,contest_approved:false,reminder_approved:false},201);
+    }
+    if(path==='/api/admin/link-confirmation'&&route.request().method()==='POST'){
+      const body=JSON.parse(route.request().postData());savedLink=body;
+      return response({ok:true,link_confirmed:true,contest_approved:false},201);
     }
     if(path==='/api/admin/source-evidence'){
       if(route.request().method()==='POST'){
@@ -174,6 +178,16 @@ try{
   assert.equal(savedForm.entry_method,'email');
   assert.equal(savedForm.email_subject,'Live bestätigter Tagesbetreff');
   assert.equal(savedForm.email_subject_confirmed_today,true);
+  await adminPage.locator('#linkConfirmId').fill('sample-2026');
+  await adminPage.locator('#linkConfirmUrl').fill('https://www.br.de/gewinnspiel');
+  await adminPage.locator('#linkConfirmNote').fill('Originalseite und ihren aktuellen Formularteil mit sämtlichen Prüfbedingungen separat kontrolliert.');
+  await adminPage.locator('#linkConfirmationForm input[name=opened_original]').check();
+  await adminPage.locator('#linkConfirmationForm input[name=checked_no_redirect]').check();
+  await adminPage.locator('#linkConfirmationForm input[name=checked_live_entry]').check();
+  await adminPage.locator('#linkConfirmSave').click();
+  await adminPage.getByText(/Original-Link bestätigt und protokolliert/).waitFor();
+  assert.equal(savedLink.game_id,'sample-2026');
+  assert.equal(savedLink.checked_no_redirect,true);
   await adminContext.close();
   console.log('Chromium senior/mobile+desktop, private login and denied admin UI: PASS');
 }finally{await browser.close();await new Promise(ok=>server.close(ok))}
