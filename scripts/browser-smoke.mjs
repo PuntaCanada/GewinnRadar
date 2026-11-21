@@ -77,7 +77,7 @@ try{
     await page.locator('#editorialLive').getByRole('heading',{name:/Meine MVG/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Hurtigruten-Nordkapreise/}).waitFor();
     await page.locator('#editorialLive').getByRole('heading',{name:/Zehn PlayStation-5-Pakete für Familien/}).waitFor();
-    assert.equal(await page.locator('#counter').innerText(),'40 Originalaktionen · 24 Bedingungen bestätigt');
+    assert.equal(await page.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
     assert.equal(await page.locator('#counter').innerText().then(s=>s.includes('D1')),false);
     await page.locator('#editorialLive').getByText(/kostenpflichtiges, monatlich kündbares Abo weiter/).waitFor();
     await page.locator('#editorialLive').getByText(/nur ZWEIER Tage/).waitFor();
@@ -159,7 +159,7 @@ try{
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.locator('#editorialLive .game').first().waitFor();
   assert.equal(await guestPage.locator('#editorialLive .game').count(),40);
-  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 24 Bedingungen bestätigt');
+  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
   assert.equal(await guestPage.locator('#d1CatalogHeading').isVisible(),false,'Private database technical section hidden for guests');
   assert.equal(await guestPage.locator('#cards').isVisible(),false,'Private catalogue is not a second empty public catalogue');
   assert.equal(await guestPage.locator('#searchGames').isVisible(),false);
@@ -182,7 +182,7 @@ try{
   const guestCards=guestPage.locator('#editorialLive .game');
   await guestCards.first().waitFor();
   assert.equal(await guestCards.count(),40);
-  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 24 Bedingungen bestätigt');
+  assert.equal(await guestPage.locator('#counter').innerText(),'40 Originalaktionen · 25 Bedingungen bestätigt');
   assert.equal(await guestPage.getByText(/davon .*D1/).count(),0);
   const firstMark=guestCards.first().locator('input[data-joined-contest]');
   assert.equal(await firstMark.isChecked(),false);
