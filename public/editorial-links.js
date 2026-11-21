@@ -55,7 +55,13 @@ export async function loadEditorialLinks(){
   const res=await fetch('/editorial-links-2026.json',{cache:'no-store'});
   if(!res.ok)throw Error('Quellenliste vorübergehend nicht verfügbar');
   renderEditorialLinks(await res.json());
- }catch{if(status)status.textContent='Quellenliste derzeit nicht verfügbar. Es werden keine ungeprüften Links angezeigt.'}
+ }catch{
+  $('editorialLive')?.replaceChildren();$('adventPreview')?.replaceChildren();
+  document.body.dataset.editorialLiveCount='0';
+  document.dispatchEvent(new Event('editorialLinksUpdated'));
+  if($('editorialCount'))$('editorialCount').textContent='0 derzeit überprüfbare Direktlinks';
+  if(status)status.textContent='Quellenliste derzeit nicht verfügbar. Alte Links wurden aus Sicherheitsgründen ausgeblendet.';
+ }
 }
 if(typeof document!=='undefined'&&$('editorialLive')){
  loadEditorialLinks();
