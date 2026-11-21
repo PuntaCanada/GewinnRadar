@@ -45,7 +45,16 @@ export async function onRequestPost(ctx){
    env.DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) SELECT ?,admin_id,? FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?").bind(await hash(token),expiry,admin.id,claim),
    // SQLite evaluates only the chosen CASE arm. Invalid JSON forces an
    // exception/rollback if *any* expected postcondition is absent.
-   env.DB.prepare("SELECT CASE WHEN (SELECT COUNT(*) FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)=1 AND (SELECT COUNT(*) FROM users WHERE role='admin')=1 AND (SELECT COUNT(*) FROM users WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=1)=1 AND (SELECT COUNT(*) FROM sessions WHERE user_id=? AND token_hash=?)=1 AND (SELECT COUNT(*) FROM sessions WHERE user_id=?)=1 AND (SELECT COUNT(*) FROM login_tokens WHERE user_id=?)=0 THEN 1 ELSE json_extract('invalid-json','
+   env.DB.prepare(`SELECT CASE WHEN
+     (SELECT COUNT(*) FROM admin_bootstrap WHERE slot=1 AND admin_id=? AND claim_id=?)=1
+     AND (SELECT COUNT(*) FROM users WHERE role='admin')=1
+     AND (SELECT COUNT(*) FROM users WHERE id=? AND email=? COLLATE NOCASE AND role='admin' AND email_verified=1)=1
+     AND (SELECT COUNT(*) FROM sessions WHERE user_id=? AND token_hash=?)=1
+     AND (SELECT COUNT(*) FROM sessions WHERE user_id=?)=1
+     AND (SELECT COUNT(*) FROM login_tokens WHERE user_id=?)=0
+     THEN 1 ELSE json_extract('invalid-json',char(36)) END AS verified`).bind(
+       admin.id,claim,admin.id,email,admin.id,await hash(token),admin.id,admin.id)
+  ]);
   if(changes.length!==4||changes.slice(0,3).some(x=>Number(x.meta?.changes)!==1))
    return json({error:'Wiederherstellung bereits verwendet oder Zustand geändert'},409);
  }catch{return json({error:'Wiederherstellung abgebrochen: D1-Prüfung fehlgeschlagen'},503)}
