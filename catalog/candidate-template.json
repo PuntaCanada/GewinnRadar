@@ -1,0 +1,16 @@
+{
+  "id": "beispiel-nicht-importieren",
+  "organizer": "Beispielveranstalter – nur Vorlage",
+  "title": "Adventskalender (Vorlage, kein echtes Gewinnspiel)",
+  "prize": "Noch unbekannt",
+  "url": "https://example.org/contest",
+  "terms_url": "https://example.org/rules",
+  "privacy_url": "https://example.org/privacy",
+  "starts_at": "2026-12-01T00:00:00Z",
+  "ends_at": "2026-12-24T23:59:59Z",
+  "daily": true,
+  "required_data": "E-Mail-Adresse (noch zu prüfen)",
+  "solution": null,
+  "status": "review",
+  "verification_note": "Nur Beispiel – niemals ohne Originalprüfung freigeben"
+}
