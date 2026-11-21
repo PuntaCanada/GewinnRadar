@@ -19,7 +19,14 @@ test('nonadmins cannot access admin listings',async()=>{
  const r=await adminGet(ctx(request('/api/admin/contests','GET')));
  assert.equal(r.status,403);
 });
-test('anonymous users cannot read private contest catalog',async()=>{
- const r=await gamesGet(ctx(request('/api/games','GET')));
- assert.equal(r.status,401);
+test('anonymous guests can read only public approved contests with no personal data',async()=>{
+ let statement='', bindings=[];
+ const db={prepare(sql){statement=sql;return {bind(...args){bindings=args;return {async all(){return {results:[]}}}}}}};
+ const r=await gamesGet({request:request('/api/games','GET'),env:{DB:db}});
+ assert.equal(r.status,200);
+ assert.deepEqual((await r.json()).games,[]);
+ assert.match(statement,/human_verified=1/);
+ assert.match(statement,/g.status='verified'/);
+ assert.doesNotMatch(statement,/favorites|participations|sessions/);
+ assert.equal(bindings.length,2);
 });
