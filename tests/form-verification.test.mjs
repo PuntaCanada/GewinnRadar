@@ -19,6 +19,7 @@ test('form review requires separate authenticated admin and all seven live check
  assert.equal((await send(body,false)).status,403);
  assert.equal((await send({...body,no_marketing_required:false})).status,409);
  assert.equal((await send({...body,privacy_url:'https://evil.example/pp'})).status,400);
+ assert.equal((await send({...body,form_url:'https://www.br.de/adventskalender-2025'})).status,409,'explicit wrong-year URL must not pass');
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,0);
  assert.equal((await send(body)).status,201);
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,1);
