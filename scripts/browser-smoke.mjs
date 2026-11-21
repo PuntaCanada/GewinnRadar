@@ -77,6 +77,12 @@ try{
   await guestPage.goto(base+'/');
   await guestPage.getByRole('heading',{name:/Aktuelle Gewinnspiele/}).waitFor();
   await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
+  await guestPage.locator('#searchGames').fill('testpreis');
+  assert.equal(await guestPage.locator('.game').count(),1);
+  await guestPage.locator('#searchGames').fill('nicht-vorhanden');
+  assert.equal(await guestPage.locator('.game').count(),0);
+  await guestPage.locator('#searchGames').fill('');
+  assert.equal(await guestPage.locator('.game').count(),1);
   assert.equal(await guestPage.locator('#dashboard').isVisible(),true);
   assert.equal(await guestPage.getByRole('checkbox',{name:/Teilnahme als erledigt markieren/}).count(),0);
   assert.equal(await guestPage.locator('#saveSettings').isVisible(),false);
