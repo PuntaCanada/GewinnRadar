@@ -28,7 +28,7 @@ export async function onRequestGet(ctx){
  ...live.map(k=>'fv.'+k+' AS f_'+k),
  'fv.checked_at AS f_checked_at','fv.privacy_url AS f_privacy_url'];
  const q='SELECT '+selects.join(',')+' FROM games g LEFT JOIN contest_evidence e ON e.game_id=g.id LEFT JOIN form_verifications fv ON fv.game_id=g.id ORDER BY g.updated_at DESC LIMIT 300';
- const result=await ctx.env.DB.prepare(q).all();
+ const result=await ctx.env.DB.prepare(q).bind().all();
  const now=new Date();
  const contests=(result.results||[]).map(g=>{const reasons=readinessReasons(g,now);return {id:g.id,title:g.title,ready:reasons.length===0,reasons};});
  return json({checked_at:now.toISOString(),ready:contests.filter(x=>x.ready).length,blocked:contests.filter(x=>!x.ready).length,contests});
