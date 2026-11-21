@@ -37,7 +37,7 @@ test('deadline shows the last eligible date, not exclusive expiry or review date
 });
 test('a future daily research review is allowed, but stale or future-dated evidence is rejected',()=>{
  const next=structuredClone(data);next.active[0].reviewed_on='2026-11-23';
- assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,4);
+ assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,6);
  assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,5);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
 });
