@@ -1,0 +1,29 @@
+name: GewinnRadar original-source status (research only)
+on:
+  schedule:
+    - cron: '25 7 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gewinnradar-research-status
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit researched original sources without modifying data
+        run: |
+          node scripts/catalog-audit.mjs
+          node scripts/source-monitor.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gewinnradar-original-source-checks
+          path: test-artifacts/source-status.json
+          if-no-files-found: error
+          retention-days: 7
