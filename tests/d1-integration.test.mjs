@@ -61,6 +61,22 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0,'Unknown link should not appear');
  sqlite.prepare("UPDATE games SET link_state='ok' WHERE id=?").run('advent-2026-check');
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,1);
+ // A stale or revoked form review must immediately hide the contest from guests and members,
+ // and must also block progress changes, even when status and link_state still say verified.
+ const guest=async()=>(await (await call(games,'/api/games','GET')).json()).games.length;
+ assert.equal(await guest(),1);
+ sqlite.prepare("UPDATE form_verifications SET no_marketing_required=0 WHERE game_id=?").run('advent-2026-check');
+ assert.equal(await guest(),0,'Revoked marketing compliance must remove public listing');
+ assert.equal((await call(progress,'/api/progress','POST',{id:'advent-2026-check',action:'favorite',value:true},'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,404);
+ sqlite.prepare("UPDATE form_verifications SET no_marketing_required=1,checked_at='2020-01-01T00:00:00Z' WHERE game_id=?").run('advent-2026-check');
+ assert.equal(await guest(),0,'Stale live form proof must fail closed');
+ sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date().toISOString(),'advent-2026-check');
+ assert.equal(await guest(),1,'Current verified form restores visibility without changing admin status');
+ sqlite.prepare("UPDATE contest_evidence SET privacy_checked=0 WHERE game_id=?").run('advent-2026-check');
+ assert.equal(await guest(),0,'Revoked human privacy evidence must fail closed');
+ sqlite.prepare("UPDATE contest_evidence SET privacy_checked=1 WHERE game_id=?").run('advent-2026-check');
+ assert.equal(await guest(),1);
+
  assert.equal((await call(progress,'/api/progress','POST',{id:'advent-2026-check',action:'completed',value:true},'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,200);
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games[0].completed,1);
  assert.equal((await (await call(games,'/api/games','GET',undefined,'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')).json()).games[0].completed,0);
