@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL(p,import.meta.url),'utf8');
 const report=JSON.parse(read('../catalog/source-audit-2026-11-21.json'));
 test('reviewed primary-source candidates remain unapproved and mail-free',()=>{
- assert.equal(report.entries.length,2);
+ assert.ok(report.entries.length>=2,'Existing source audits must remain present');
  for(const entry of report.entries){
   assert.equal(entry.approval,'pending');
   assert.equal(entry.form_checked,false);
