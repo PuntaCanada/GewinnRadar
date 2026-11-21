@@ -1,0 +1,44 @@
+name: Gewinnspiel melden oder Prüfung vorschlagen
+description: Problem, mögliche Täuschung oder Prüfung eines bislang gesperrten Gewinnspiels melden. Bitte KEINE persönlichen Daten angeben.
+title: "[Gewinnspiel] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für den Hinweis! Meldungen werden geprüft, aber nicht automatisch als Betrug gewertet. Bitte keine persönlichen Daten, Screenshots von Ausweisen, Zugangsdaten oder private E-Mails veröffentlichen.
+  - type: dropdown
+    id: art
+    attributes:
+      label: Art des Hinweises
+      options:
+        - Verdacht auf Betrug oder unseriöse Abwicklung
+        - Teilnahmebedingungen stimmen nicht
+        - Link defekt oder abgelaufen
+        - Datenschutz oder verpflichtende Werbung
+        - Freigabe eines Kandidaten vorschlagen
+        - Sonstige Korrektur
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Offizielle Gewinnspiel-URL
+      placeholder: https://veranstalter.example/gewinnspiel
+    validations:
+      required: true
+  - type: textarea
+    id: nachweis
+    attributes:
+      label: Begründung und öffentlich prüfbare Belege
+      description: Beschreibe den konkreten Befund. Eine einzelne Meldung sperrt keine Organisation.
+      placeholder: Was ist problematisch? Auf welcher offiziellen Seite steht das?
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Datenschutz
+      options:
+        - label: Ich habe keine persönlichen Daten, Kennwörter oder privaten Nachrichten beigefügt.
+          required: true
