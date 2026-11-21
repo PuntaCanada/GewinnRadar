@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/admin-review-login-hardening-v03
+      - feature/advent-catalog-quality-v04
   pull_request:
 permissions:
   contents: read
@@ -19,5 +20,6 @@ jobs:
         run: |
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0001_initial.sql
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0002_review_security.sql
+          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --file migrations/0003_catalog_staging.sql
           npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "PRAGMA foreign_key_check;"
-          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','games','contest_evidence','admin_audit','login_limits') ORDER BY name;"
+          npx --yes wrangler@4 d1 execute gewinnradar-ci-only --local --config scripts/wrangler-ci.toml --command "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','games','contest_evidence','admin_audit','login_limits','research_candidates','research_import_log') ORDER BY name;"
