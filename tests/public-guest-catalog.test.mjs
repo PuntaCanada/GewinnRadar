@@ -17,6 +17,7 @@ test('anonymous guests see only reviewed, active, verified public contests; no p
  assert.match(query,/g.status='verified'/);
  assert.match(query,/g.link_state='ok'/);
  assert.match(query,/g.verified_at IS NOT NULL/);
+ assert.doesNotMatch(query,/g\.verification_note/,'Internal redaction notes must never be selected publicly');
  assert.doesNotMatch(query,/favorites|participations|users|sessions/i);
  assert.equal(params.length,5);
  assert.match(query,/form_verifications/);
