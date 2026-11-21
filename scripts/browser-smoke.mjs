@@ -69,8 +69,10 @@ try{
   }
   const guest=await browser.newContext({viewport:{width:390,height:850}});
   const guestPage=await guest.newPage();
+  let failGuestCatalog=false;
   await guestPage.route('**/api/**',route=>{
     const path=new URL(route.request().url()).pathname;
+    if(path==='/api/games'&&failGuestCatalog)return route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Katalog vorübergehend nicht erreichbar'})});
     const body=path==='/api/me'?{user:null}:path==='/api/games'?{games:[{id:'public-test',title:'Öffentlich geprüfter Testeintrag',organizer:'Testveranstalter',prize:'Testpreis',url:'https://www.br.de/',terms_url:'https://www.br.de/',privacy_url:'https://www.br.de/',ends_at:'2099-12-24T00:00:00Z',daily:0,required_data:'Name und E-Mail',verified_at:'2026-11-21T09:00:00Z'}]}:{error:path==='/api/login'?'Der Familien-Login ist noch nicht freigeschaltet.':'Nicht erlaubt'};
     return route.fulfill({status:path==='/api/me'||path==='/api/games'?200:path==='/api/login'?503:403,contentType:'application/json',body:JSON.stringify(body)});
   });
@@ -91,6 +93,13 @@ try{
   assert.equal(await guestPage.locator('#dashboard').isVisible(),true);
   assert.equal(await guestPage.getByRole('checkbox',{name:/Teilnahme als erledigt markieren/}).count(),0);
   assert.equal(await guestPage.locator('#saveSettings').isVisible(),false);
+  failGuestCatalog=true;
+  await guestPage.locator('#refresh').click();
+  await guestPage.getByText(/Katalog vorübergehend nicht erreichbar/).waitFor();
+  assert.equal(await guestPage.locator('.game').count(),0,'Failed public refresh must revoke all old clickable cards');
+  failGuestCatalog=false;
+  await guestPage.locator('#refresh').click();
+  await guestPage.getByRole('heading',{name:'Öffentlich geprüfter Testeintrag'}).waitFor();
   await guestPage.locator('#loginPanel summary').click();
   await guestPage.locator('#email').fill('test@example.invalid');
   await guestPage.getByRole('button',{name:'Anmeldelink anfordern'}).click();
