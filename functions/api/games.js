@@ -1,6 +1,8 @@
 import {json,viewer,dayKey} from '../_lib/core.js';
 import {verifiedJoins,verifiedConditions,formReviewWindow} from '../_lib/publication-gate.js';
 export async function onRequestGet(ctx){
+ if(!ctx.env?.DB?.prepare)return json({error:'Gewinnspiel-Datenbank vorübergehend nicht verfügbar'},503);
+ try{
  const u=await viewer(ctx);
  const now=new Date().toISOString(),day=dayKey();
  const [formFrom,formUntil,dayStart]=formReviewWindow(new Date(now));
@@ -12,4 +14,8 @@ export async function onRequestGet(ctx){
   ?await ctx.env.DB.prepare("SELECT "+fields+",CASE WHEN f.user_id IS NULL THEN 0 ELSE 1 END AS favorite,CASE WHEN p.user_id IS NULL THEN 0 ELSE 1 END AS completed"+base+" LEFT JOIN favorites f ON f.user_id=? AND f.game_id=g.id LEFT JOIN participations p ON p.user_id=? AND p.game_id=g.id AND p.day=CASE WHEN g.daily=1 THEN ? ELSE 'once' END"+where+" ORDER BY favorite DESC,g.ends_at ASC LIMIT 500").bind(u.id,u.id,day,now,now,formFrom,formUntil,dayStart).all()
   :await ctx.env.DB.prepare("SELECT "+fields+base+where+" ORDER BY g.ends_at ASC LIMIT 500").bind(now,now,formFrom,formUntil,dayStart).all();
  return json({games:rows.results||[],day});
+ }catch{
+  // Never report an incomplete D1 query as an empty or approved catalogue.
+  return json({error:'Gewinnspiel-Datenbank vorübergehend nicht verfügbar'},503);
+ }
 }
