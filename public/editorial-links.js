@@ -88,7 +88,7 @@ export function renderEditorialLinks(data,now=new Date()){
  for(const g of live){
   const card=line('article',null,'game');
   const type=g.participation_type||'web_form';
-  const kinds={web_form:'Onlineformular',external_form:'Externes Formular – noch selbst prüfen',instagram:'Instagram-Konto erforderlich',social:'Facebook oder Instagram erforderlich',whatsapp_email:'WhatsApp-Kanal + eigene E-Mail',instagram_tiktok:'Instagram oder TikTok erforderlich',app_account:'App und neues Konto erforderlich',account:'Kostenloses Kundenkonto erforderlich'};
+  const kinds={web_form:'Onlineformular',external_form:'Externes Formular – noch selbst prüfen',instagram:'Instagram-Konto erforderlich',social:'Facebook oder Instagram erforderlich',whatsapp_email:'WhatsApp-Kanal + eigene E-Mail',instagram_tiktok:'Instagram oder TikTok erforderlich',newsletter:'Werbe-Newsletter verpflichtend',offline_qr:'QR-Code im Geschäft erforderlich',email_photo:'Eigenes Foto und E-Mail erforderlich',postal_newsletter:'Postkarte oder Newsletter + Code',email:'Eigene E-Mail erforderlich',app_account:'App und neues Konto erforderlich',account:'Kostenloses Kundenkonto erforderlich'};
   card.append(line('span',kinds[type]||'Teilnahmeweg prüfen','pill'));
   card.append(line('p','Teilnahmeschluss: '+(g.deadline_label||editorialDeadline(g.ends_at)),'meta'));
   card.append(line('p','Zuletzt geprüft: '+new Date(g.reviewed_on+'T12:00:00Z').toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'meta'));
