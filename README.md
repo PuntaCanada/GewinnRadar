@@ -43,3 +43,9 @@ Mit Node.js 22 `npm test`. JavaScript kann zusätzlich per `node --check` geprü
 Zuerst Sicherheits-/Rechtstexte und Tests ergänzen, dann isolierte neue Cloudflare-D1 und Preview-Website einrichten; einzeln verifizierte Originalgewinnspiele aufnehmen. Schließlich nach Einwilligung der Familienmitglieder einen E-Mail-Test und erst danach produktiven Versand freigeben.
 
 **Keine Änderungen an anderen PuntaCanada-Repositories.**
+
+## Cloudflare Pages: Git-Neuverbindung (21.11.2026)
+
+Nach Wiederherstellung der Repository-Berechtigung muss ein **neues Deployment auf dem aktuellen `main`-Commit** erzeugt werden. Ein Retry eines älteren fehlgeschlagenen Deployments kann weiterhin die veraltete D1-Platzhalter-ID enthalten. Die beiden versionierten Wrangler-Dateien enthalten inzwischen die vom Projektinhaber bereitgestellte D1-Datenbankkennung.
+
+Diese reine Dokumentationsänderung dient als neuer `main`-Push, um das automatische GitHub→Cloudflare-Deployment anzustoßen und die Verbindung zu prüfen. Sie verändert **keine Anwendungslogik, keine Secrets, keine Datenbankdaten und keine Mail-Einstellungen**. Solange D1-Migrationen und Zugangsschutz noch nicht vollständig überprüft sind, bleiben Familienkonten und Erinnerungs-E-Mails deaktiviert.
