@@ -1,0 +1,10 @@
+name = "gewinnradar-familie-daily"
+main = "./index.js"
+compatibility_date = "2026-11-01"
+[triggers]
+crons = ["0 6 * * *", "0 7 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gewinnradar-familie"
+database_id = "REPLACE_WITH_NEW_D1_DATABASE_ID"
