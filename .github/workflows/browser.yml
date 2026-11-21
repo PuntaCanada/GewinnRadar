@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/admin-review-login-hardening-v03
+      - feature/advent-catalog-quality-v04
   pull_request:
 permissions:
   contents: read

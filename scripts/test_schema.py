@@ -6,7 +6,7 @@ import sqlite3
 db = sqlite3.connect(":memory:")
 db.execute("PRAGMA foreign_keys=ON")
 root = Path(__file__).resolve().parents[1]
-for name in ("0001_initial.sql", "0002_review_security.sql"):
+for name in ("0001_initial.sql", "0002_review_security.sql", "0003_catalog_staging.sql"):
     db.executescript((root / "migrations" / name).read_text(encoding="utf-8"))
 
 db.execute("INSERT INTO users(id,email,display_name,role) VALUES ('m','mother@example.invalid','Testperson','member')")
@@ -21,6 +21,7 @@ db.execute("INSERT INTO contest_evidence(game_id,reviewer_id,checked_at,note) VA
 db.execute("INSERT INTO admin_audit(actor_id,game_id,action,note) VALUES ('a','game','review','Review request')")
 db.execute("INSERT INTO login_limits(key_hash,bucket,count) VALUES ('hash','2026-11-21T09',1)")
 assert db.execute("PRAGMA foreign_key_check").fetchall() == []
+assert db.execute("SELECT count(*) FROM research_candidates").fetchone()[0] == 0
 db.execute("DELETE FROM users WHERE id='m'")
 assert db.execute("SELECT count(*) FROM participations").fetchone()[0] == 0
 assert db.execute("SELECT count(*) FROM favorites").fetchone()[0] == 0
