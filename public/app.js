@@ -26,7 +26,7 @@ function refreshOnResume(){
 }
 function render(){let filter=$('filter').value;let list=visibleGames(games,{status:filter,dailyOnly:$('dailyOnly').checked,simpleOnly:$('simpleOnly').checked,query:$('searchGames').value,sort:$('sortGames').value});const completed=games.filter(g=>g.completed).length;
 const reviewedLinks=Number(document.body.dataset.editorialLiveCount||0);
-$('counter').textContent=reviewedLinks+' geprüfte Gewinnspiele';
+$('counter').textContent=reviewedLinks+' Originalaktionen · '+Number(document.body.dataset.editorialConfirmedCount||0)+' Bedingungen bestätigt';
 const progress=document.querySelector('#progressBar');
 if(progress){progress.max=Math.max(games.length,1);progress.value=completed;progress.setAttribute('aria-label',completed+' von '+games.length+' Gewinnspielen erledigt')}
 const hint=document.querySelector('#progressHint');
