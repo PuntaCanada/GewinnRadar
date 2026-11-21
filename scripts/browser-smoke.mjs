@@ -113,7 +113,7 @@ try{
     assert.equal(await page.locator('#editorialLive').getByText('Facebook oder Instagram erforderlich').count(),3);
     assert.equal(await page.locator('#editorialLive').getByText('WhatsApp-Kanal + eigene E-Mail').count(),1);
     assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),28);
-    assert.equal(await page.locator('#adventPreview .game').count(),4);
+    assert.equal(await page.locator('#adventPreview .game').count(),2);
     assert.match(await page.locator('#editorialCount').innerText(),/42 recherchierte Originalaktionen/);
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
