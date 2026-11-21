@@ -1,0 +1,8 @@
+name = "gewinnradar-ci-local-only"
+main = "../worker/index.js"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gewinnradar-ci-only"
+database_id = "00000000-0000-0000-0000-000000000000"
