@@ -1,6 +1,6 @@
 // Read-only, independent Cloudflare Pages integrity check.
 // Run in GitHub Actions or locally: node scripts/verify-production.mjs
-// Exit 0 = identical OR inaccessible (explicit UNVERIFIED); exit 2 = mismatch.
+// Exit 0 = MATCH, 2 = MISMATCH, 3 = UNVERIFIED. Never conflate unavailable with success.
 // Never treat a failed fetch as proof of an up-to-date deployment.
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -72,3 +72,4 @@ if(process.env.GITHUB_STEP_SUMMARY) {
   await appendFile(process.env.GITHUB_STEP_SUMMARY,msg+'\n');
 }
 if(result.status==='MISMATCH')process.exitCode=2;
+else if(result.status==='UNVERIFIED')process.exitCode=3;
