@@ -60,6 +60,11 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal(before.blocked,1);
  assert.equal(before.truncated,false);
  assert.equal(before.total,1);
+ assert.equal(before.research.total,0);
+ assert.equal(before.research.candidates,0);
+ assert.equal(before.blockers.missing_editorial,1);
+ assert.equal(before.blockers.missing_form,1);
+ assert.equal(before.blockers.missing_link,1);
  assert.ok(before.contests[0].reasons.includes('Redaktionelle Freigabe fehlt'));
  assert.ok(before.contests[0].reasons.includes('Original-Link nicht bestätigt'));
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0);
