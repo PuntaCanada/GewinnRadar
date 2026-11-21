@@ -633,6 +633,133 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "hager-advent-2026",
+      "organizer": "Hager SE",
+      "title": "Hager – 24 kostenlose Tagespuzzles mit Gewinnen",
+      "url": "https://hager.com/global/de/adventskalender",
+      "terms_url": "https://hager.com/global/de/teilnahmebedingungen",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf, alle Volljährigen weltweit; täglich neues Puzzle lösen, nur einmal pro Person und Tag; E-Mail-Teilnahme. Mindestens 10 unterschiedliche Puzzletage sichern zusätzlich die Chance auf ein iPhone 17.",
+      "note": "24 Tagespreisverlosungen; Wochengewinner jeweils montags. Tages-Uhrzeit nicht ausdrücklich veröffentlicht. Veranstalter darf Vor- und Nachnamen von Gewinnern auf seiner Website nennen; Gewinnbestätigung binnen fünf Werktagen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://hager.com/global/de/teilnahmebedingungen"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "reifen-mueller-advent-2026",
+      "organizer": "Reifen Müller GmbH & Co. KG",
+      "title": "Reifen Müller – 24 tägliche Adventsverlosungen",
+      "url": "https://www.reifen-mueller.com/teilnahmebedingungen-gewinnspiel/",
+      "terms_url": "https://www.reifen-mueller.com/teilnahmebedingungen-gewinnspiel/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlose tägliche Teilnahme mit Name, E-Mail und Formular; ab 18 mit Wohnsitz Deutschland, ausdrücklich auch für Nichtkunden ohne Kauf. Newsletter wird nicht verlangt.",
+      "note": "Täglich bis 23:59 Uhr 1.–24.12.; 24 Preise, Auslosung am Folgetag, Gewinnerantwort innerhalb von sieben Tagen. Mögliche Zusatzkosten aus der späteren Nutzung eines Gewinns trägt der Gewinner; konkrete Tagespreise vor Teilnahme prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.reifen-mueller.com/teilnahmebedingungen-gewinnspiel/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "entenkoje-advent-2026",
+      "organizer": "Entenkoje (Jonathan Schöppe)",
+      "title": "Entenkoje – täglich Instagram-Reel mit Gratisverlosung",
+      "url": "https://www.entenkoje.com/adventskalender",
+      "terms_url": "https://www.entenkoje.com/adventskalender",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "confirmed"
+      },
+      "requirements": "Ab 18, Wohnsitz Deutschland, kostenlos ohne Kauf; je Instagram-Reel mit ggf. passender Antwort kommentieren. Folgen, Liken und Teilen sind ausdrücklich KEINE Voraussetzung.",
+      "note": "24 selbständige Tages-Reels mit jeweils genau sieben Tagen Teilnahmefrist ab angegebenem Start; das am 24.12. veröffentlichte Reel kann bis 31.12. offen sein. Der konkrete Start und damit die genaue Uhrzeit steht im Original-Reel.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.entenkoje.com/adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "adac-instagram-advent-2026",
+      "organizer": "ADAC e.V.",
+      "title": "ADAC – tägliche Instagram-Adventsaufgaben gewinnen",
+      "url": "https://www.instagram.com/adac/",
+      "terms_url": "https://www.adac.de/rechtliches/teilnahmebedingungen-adventskalender//",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlose Teilnahme ohne ADAC-Mitgliedschaft, 18+, Wohnsitz Deutschland, ADAC auf Instagram abonnieren, dort die richtige Antwort zum jeweiligen Tagespost kommentieren. Teilnahme an allen Tagen nicht nötig.",
+      "note": "Gesamtaktionszeit 29.11. bis 27.12.2026 23:59 Uhr. Antworten zu einzelnen Adventsposts dürfen laut Bedingungen bis 27.12. eingehen; Gewinner werden am 07.01.2027 ausgelost. Keine fälschliche Mitternachtsfrist pro Türchen angeben.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.adac.de/rechtliches/teilnahmebedingungen-adventskalender//"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "dm-advent-2026",
+      "organizer": "dm-drogerie markt",
+      "title": "dm – täglich Online-Türchen mit Sachpreisen und Coupons",
+      "url": "https://www.dm.de/neu/gewinnspiele/online-adventskalender",
+      "terms_url": "https://www.dm.de/neu/gewinnspiele/online-adventskalender",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ab 18 mit Wohnsitz Deutschland, dm-Konto und Anmeldung über dm-Website oder dm-App. Täglich Sachpreis-Verlosung und zusätzlicher Coupon. Keine Kaufpflicht für die Teilnahme beschrieben.",
+      "note": "Aktuelle Veranstalterseite nennt 1.–24. Dezember und kostenlose Tagesverlosungen. Individuelle Tages-Uhrzeit wird dort nicht genannt; Coupon-Einlösung kann von einem Einkauf abhängen und ist nicht mit kostenlosem Tagesgewinn zu verwechseln.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.dm.de/neu/gewinnspiele/online-adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "mdr-sachsenradio-advent-2026",
+      "organizer": "MDR SACHSEN – Das Sachsenradio",
+      "title": "Sachsenradio – jeden Morgen Erzgebirgs-Holzkunst gewinnen",
+      "url": "https://www.mdr.de/sachsenradio/weihnachten/adventskalender-sachsenradio-holzkunst-erzgebirge-100.html",
+      "terms_url": "https://www.mdr.de/sachsenradio/audio-adventskalender-sachsenradio-holzkunst-erzgebirge-100.html",
+      "open_time": "05:00",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "10:00",
+        "certainty": "approximate_broadcast"
+      },
+      "requirements": "Kostenloses tägliches Rätsel im MDR-Sachsenradio-Frühprogramm; Hörer müssen die jeweils genannte Aufgabe beziehungsweise den aktuellen Teilnahmeweg beachten. Es ist eine Radio-/Regionalaktion, kein jederzeit geöffnetes Onlineformular.",
+      "note": "Offizielle Ankündigung vom 17.11.2026: täglich 1.–24.12. zwischen 05:00 und 10:00 Uhr 24 Preise aus dem Erzgebirge. Exakte Einsendefrist je Sendung nicht angegeben; '10 Uhr' ist Sendungsfenster und KEINE garantierte Teilnahmefrist.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.mdr.de/sachsenradio/weihnachten/adventskalender-sachsenradio-holzkunst-erzgebirge-100.html"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
