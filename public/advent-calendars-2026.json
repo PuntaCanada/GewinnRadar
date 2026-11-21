@@ -108,6 +108,155 @@
         "checked_on": "2026-11-21",
         "evidence_url": "https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html"
       }
+    },
+    {
+      "id": "aldi-nord-advent-2026",
+      "organizer": "ALDI Nord",
+      "title": "ALDIventskalender – kostenloses Tages-Türchen",
+      "url": "https://www.aldiventskalender.de/nord",
+      "terms_url": "https://www.aldiventskalender.de/teilnahmebedingungen",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "18+, Deutschland; kostenlose Chat-Frage, E-Mail erforderlich. Am 6., 13. und 20. Dezember NUR per ALDI Nord App. Die separate Campervan-Verlosung verlangt einen Kassenbon und gehört NICHT zu den kostenlosen Tagespreisen.",
+      "note": "Jeden Tag eigenständige Tagesverlosung, 00:00–23:59 Uhr. Kein Einkauf für die Türchenpreise nötig; Campervan-Los nur mit Kassenbon. Einige Sofortgewinne sind Rabatte mit Mindesteinkaufswert.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.aldiventskalender.de/teilnahmebedingungen"
+      }
+    },
+    {
+      "id": "babor-advent-2026",
+      "organizer": "BABOR Retail",
+      "title": "BABOR Flagship Stores – tägliche Instagram-Verlosung",
+      "url": "https://de.babor.com/service/teilnahmebedingungen-adventskalender-gewinnspiel-2026",
+      "terms_url": "https://de.babor.com/service/teilnahmebedingungen-adventskalender-gewinnspiel-2026",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "per_post"
+      },
+      "requirements": "Instagram-Konto nötig; täglichen Beitrag der BABOR-Stores Aachen, Hamburg oder Frankfurt liken, kommentieren und eine andere Person markieren. 18+, Wohnsitz Deutschland. Kein Kauf.",
+      "note": "Jeder Instagram-Beitrag hat eigene 48-Stunden-Frist ab Veröffentlichung; EXAKTES Ende steht im jeweiligen Post. Gewinne müssen persönlich in dem jeweiligen Store abgeholt werden, KEIN Versand.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://de.babor.com/service/teilnahmebedingungen-adventskalender-gewinnspiel-2026"
+      }
+    },
+    {
+      "id": "tal-studio-advent-2026",
+      "organizer": "Tal Studio",
+      "title": "Tal Studio – Instagram-Adventskalender",
+      "url": "https://tal-studio.de/adventskalender26/",
+      "terms_url": "https://tal-studio.de/adventskalender26/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "unless_post_differs"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 18, Deutschland. Tal Studio auf Instagram folgen und Tagespost kommentieren.",
+      "note": "Jeder Tag ist eigene Verlosung. Standardfrist bis 23:59 Uhr am selben Tag, wenn der konkrete Post nichts anderes nennt. Original-Instagram-Beitrag am Tag überprüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://tal-studio.de/adventskalender26/"
+      }
+    },
+    {
+      "id": "tauchen-advent-2026",
+      "organizer": "TAUCHEN / Jahr Artopé Media",
+      "title": "TAUCHEN – 24 Unterwasser-Gewinnspiele",
+      "url": "https://www.tauchen.de/adventskalender/",
+      "terms_url": "https://www.tauchen.de/adventskalender/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Volljährig; pro Tag Türchen öffnen und Gewinnformular mit E-Mail ausfüllen; Javascript und Cookies nötig. Teilnahme über Gewinnspiel-Agenturen ausgeschlossen.",
+      "note": "Tagesgewinner werden laut Veranstalter am Folgetag ausgelost. Tages-Uhrzeit und Newsletter-Pflicht im konkreten Formular vor Teilnahme prüfen; nicht als garantiert newsletterfrei ausgeben.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.tauchen.de/adventskalender/"
+      }
+    },
+    {
+      "id": "evident-advent-2026",
+      "organizer": "EVIDENT GmbH",
+      "title": "EVIDENT – täglich neue Gratis-Verlosung",
+      "url": "https://www.evident.de/evident-weihnachtskalender-2026/",
+      "terms_url": "https://www.evident.de/evident-weihnachtskalender-2026/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "open_time": "08:00",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 18, Wohnsitz/Unternehmenssitz in Deutschland; je Tag Formular ausfüllen; pro Person eine Teilnahme täglich. Newsletter nicht als Pflicht genannt.",
+      "note": "Täglich 08:00–23:59 Uhr. Tagespreise werden erst beim Türchen bekanntgegeben; Daten für Ziehung und Benachrichtigung.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.evident.de/evident-weihnachtskalender-2026/"
+      }
+    },
+    {
+      "id": "handmade-kultur-advent-2026",
+      "organizer": "HANDMADE Kultur",
+      "title": "HANDMADE Kultur – täglich Bastel- und Handarbeitsgewinne",
+      "url": "https://www.handmadekultur.de/adventskalender",
+      "terms_url": "https://www.handmadekultur.de/adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "open_time": "00:01",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Jeden Tag um 00:01 Uhr Türchen öffnen, Name und E-Mail ins Tagesformular eintragen. Newsletter-Warteliste zur Erinnerung separat; mögliche Werbeeinwilligung im aktuellen Formular kontrollieren.",
+      "note": "01.–24.12.2026, tägliche Tagesverlosung 00:01–23:59 Uhr. Vorname und erster Buchstabe des Nachnamens von Gewinnern können veröffentlicht werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://www.handmadekultur.de/adventskalender"
+      }
+    },
+    {
+      "id": "athletes-blood-advent-2026",
+      "organizer": "Athletes Blood Beverages",
+      "title": "Athletes Blood – Instagram-Türchen, Lose für Gesamtverlosung",
+      "url": "https://athletesblood.com/pages/teilnahmebedingungen-adventskalender",
+      "terms_url": "https://athletesblood.com/pages/teilnahmebedingungen-adventskalender",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf, 18+, deutsche Adresse und öffentliches Instagram-Profil; Tagespost-Aktion erledigen, z. B. Kommentar. Versand kostenlos nach Deutschland.",
+      "note": "WICHTIG: Es werden insgesamt nur 3 Pakete nach dem 24.12. unter allen gesammelten Tageslosen verlost – KEINE 24 separaten Tagesgewinne. Je Türchen ein Los, die im Post genannte Frist gilt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-21",
+        "evidence_url": "https://athletesblood.com/pages/teilnahmebedingungen-adventskalender"
+      }
     }
   ],
   "review_candidates": [
@@ -118,6 +267,14 @@
       "url": "https://filiale.kaufland.de/highlights/adventskalender.html",
       "terms_url": "https://filiale.kaufland.de/highlights/adventskalender.html",
       "reason": "Offizielle Seite nennt 24 Dezember-Gewinnchancen und einen optionalen Erinnerungsservice mit separater November-Verlosung. Die konkreten Teilnahmebedingungen/Fristen für jede Dezember-Tagesverlosung konnten hier noch NICHT unabhängig verifiziert werden. November-Registrierung ist nicht mit einer Dezember-Teilnahme gleichzusetzen."
+    },
+    {
+      "id": "spielplatz-advent-2026",
+      "organizer": "Spielplatz.de (Meng GmbH)",
+      "title": "Spielplatz.de – Advent 2026",
+      "url": "https://spielplatz.de/adventskalender",
+      "terms_url": "https://spielplatz.de/teilnahmebedingungen",
+      "reason": "Offizielle 2026er Kalenderseite verspricht tägliche kostenlose Türchen; allgemeine Veranstalter-Teilnahmebedingungen verlangen jedoch einen Newsletter. Nicht als newsletterfrei freigeben, bis die spezielle Adventsteilnahme eindeutig geklärt ist."
     }
   ],
   "archive_candidates": []
