@@ -26,3 +26,15 @@ test('exclude marketing/member actions and only include specified days',()=>{
  assert.equal(eligibleToday(pilot,'2026-12-25'),false);
  assert.equal(eligibleToday(catalog.entries.find(e=>e.id==='openexperience-2026'),'2026-12-01'),false);
 });
+
+test('year-round source wave: real organizer evidence but zero automatic public approvals',()=>{
+ const wave=catalog.entries.filter(e=>['kala-art-giesspulver-2026','bergzeit-la-sportiva-2026','mosel-weinwochenende-2026','braut-saal-gutschein-2026','prosafecon-quiz-2026','lidl-weihnachtsaktion-2026','elamo-wunschwochen-2026','gesund-app-registrierung-2026','stryve-social-comment-2026','stihl-herbstprospekt-2026','fellinora-newsletterbox-2026'].includes(e.id));
+ assert.equal(wave.length,11);
+ assert.equal(wave.filter(e=>e.state==='candidate').length,5);
+ assert.equal(wave.filter(e=>e.state==='excluded').length,6);
+ assert.equal(wave.filter(e=>e.human_approved||e.allowed_for_reminders||e.verified_at!==null).length,0);
+ assert.ok(wave.every(e=>e.cadence==='single'&&e.source_url.startsWith('https://')&&e.review_note.length>=50));
+ assert.ok(wave.filter(e=>e.state==='candidate').every(e=>/noch|nicht|prüfen|Freigabe/i.test(e.review_note)));
+ assert.equal(eligibleToday(wave.find(e=>e.id==='elamo-wunschwochen-2026'),'2026-11-22'),false,'mandatory marketing cannot be published as eligible');
+ assert.equal(eligibleToday(wave.find(e=>e.id==='prosafecon-quiz-2026'),'2026-11-22'),false,'future one-time action cannot be marked open');
+});
