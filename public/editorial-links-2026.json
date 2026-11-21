@@ -58,6 +58,34 @@
       "reviewed_on": "2026-11-21",
       "required_data": "Vorname, Nachname, Geburtsdatum, E-Mail sowie Einwilligung in Gewinnspielabwicklung; Instagram-Name freiwillig",
       "note": "Am 21.11.2026 tatsächlich sichtbares Originalformular und separate Bedingungen geprüft. Teilnahme ab 16 Jahren mit Wohnsitz in Deutschland (unter 18 mit Zustimmung der Erziehungsberechtigten), ohne Kauf und ohne Pflicht zu Instagram oder Werbung. WICHTIG: Der Gewinn ist erst einlösbar, wenn die Buchungsplattform des Veranstalters startet; Reisetermin und Haus noch unbestimmt. Kein D1-Admin-Freigabeeintrag."
+    },
+    {
+      "id": "bergzeit-la-sportiva-2026",
+      "organizer": "Bergzeit GmbH",
+      "title": "Zwei La Sportiva Lumina 200 Daunenjacken gewinnen",
+      "prize": "Zwei La Sportiva Lumina 200 Daunenjacken im Gesamtwert von über 500 €",
+      "url": "https://www.bergzeit.at/magazin/la-sportiva-lumina-jacke-bergzeit-glueckspilz/",
+      "terms_url": "https://www.bergzeit.at/magazin/la-sportiva-lumina-jacke-bergzeit-glueckspilz/",
+      "privacy_url": "https://www.bergzeit.at/datenschutz/",
+      "starts_at": "2026-11-15T00:00:00+01:00",
+      "ends_at": "2026-12-15T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "required_data": "Vorname, Nachname, E-Mail, richtige Quizantwort, Zustimmung zu Bedingungen/Datenschutz und zur Veröffentlichung des abgekürzten Gewinnernamens",
+      "note": "Originalformular am 21.11.2026 geöffnet: direkte Quizteilnahme ohne Instagram; kostenlos, DE/AT/CH, ab 18, kein Kauf. Achtung: Einwilligung zur Nennung von Vorname und Nachnamensinitial im Gewinnfall ist im Formular als Pflichtfeld dargestellt. Angaben müssen vor dem Absenden selbst geprüft werden."
+    },
+    {
+      "id": "stilbruch-registration-2026",
+      "organizer": "Stilbruch Mode",
+      "title": "10 Preise im Gesamtwert von über 10.000 € gewinnen",
+      "prize": "Unter anderem 3.000 € Bargeld, KitchenAid-Set und Einkaufsgutscheine",
+      "url": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "terms_url": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "privacy_url": "https://stilbruch-mode.de/policies/privacy-policy",
+      "starts_at": "2026-10-02T00:00:00+02:00",
+      "ends_at": "2026-11-30T00:00:00+01:00",
+      "reviewed_on": "2026-11-21",
+      "required_data": "E-Mail-Adresse zur Erstregistrierung; vom 30.11. bis 15.12. separate Lösungsabgabe mit derselben E-Mail",
+      "note": "WICHTIG: Zweistufig! Jetzt nur registrieren (bis 29.11.2026, 23:59 Uhr); anschließend Lösung zwischen 30.11. und 15.12. einreichen. Kostenlos, DE, ab 18, keine Kauf- oder Newsletterpflicht. Die Zweitphase ist für die Gewinnchance zwingend. Originalseite/Datenschutz am 21.11.2026 geprüft."
     }
   ],
   "preview": [
@@ -91,5 +119,45 @@
       "ends_on": "2026-12-24",
       "note": "Tägliches Musikrätsel. Tagesfrist und Teilnahmeweg noch vor Öffnung prüfen."
     }
-  ]
+  ],
+  "review_candidates": [
+    {
+      "id": "berghaus-vanlife-2026",
+      "title": "Berghaus x Rocket Camper – zwölf Monate Wohnmobil",
+      "organizer": "Pentland Brands Deutschland",
+      "url": "https://your-berghaus.com/",
+      "terms_url": "https://your-berghaus.com/teilnahmebedingungen",
+      "reason": "Die Veranstalter-FAQ nennt 26.02.2027, die ausführlichen Teilnahmebedingungen 28.02.2027. Offenes Formular und optionale Newsletter-Anmeldung belegt, aber widersprüchliche Fristen; vor Freigabe aufklären.",
+      "category": "deadline_conflict"
+    },
+    {
+      "id": "braut-saal-gutschein-2026",
+      "title": "250-€-Saal-Digital-Gutschein bei braut.de",
+      "organizer": "AVR Agentur für Werbung und Produktion",
+      "url": "https://braut.de/win-your-memories/",
+      "terms_url": "https://braut.de/win-your-memories/",
+      "reason": "Die Teilnahmebedingungen nennen den Newsletter freiwillig; das eingebettete Formular verlangt nach dem Absenden ausdrücklich die Bestätigung der Aufnahme in den Newsletter-Verteiler. Bis zur Klärung keine Freigabe.",
+      "category": "marketing_ambiguity"
+    },
+    {
+      "id": "kala-art-giesspulver-2026",
+      "title": "100 kg Gießpulver – Kala Art",
+      "organizer": "Essy GmbH",
+      "url": "https://kala-art.de/pages/100-kg",
+      "terms_url": "https://kala-art.de/pages/100-kg",
+      "reason": "Bedingungen: kostenloses E-Mail-Formular, Newsletter freiwillig, Ende 04.12.2026. Das tatsächliche Teilnahmeformular war in der überprüfbaren Seitenfassung jedoch nicht sichtbar. Keine Behauptung über ein geprüftes Formular.",
+      "category": "form_not_observed"
+    },
+    {
+      "id": "partner-wera-2026",
+      "title": "Fünf Wera-Adventskalender – Partner für Technik",
+      "organizer": "Handelskontor Seevetal GmbH",
+      "url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
+      "terms_url": "https://partnerfuertechnik.de/wera-gewinnspiel-2026.html",
+      "reason": "Kostenlos, seriöser deutscher Veranstalter, aber Teilnahme nur durch Kommentar auf Instagram oder Facebook; kein Direktformular. Ende 24.11.2026.",
+      "category": "social_only"
+    }
+  ],
+  "blacklist": [],
+  "report_policy": "Verdachtsmeldungen sind nicht automatisch Beweise. Nur nach nachvollziehbarer Belegprüfung und bestätigtem Verstoß Einträge als blockiert markieren; nie ganze bekannte Firmen aufgrund einzelner unbestätigter Meldungen sperren."
 }
