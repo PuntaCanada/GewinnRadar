@@ -1185,7 +1185,7 @@
       "state": "candidate",
       "privacy_tier": "medium",
       "required_data": "Gewinnspielfrage, Pflichtdaten im Onlineformular; Newsletter freiwillig",
-      "review_note": "Originalbedingungen: kostenlose Teilnahme ab 18/Wohnsitz Deutschland, Newsletter und Werbung freiwillig; Gewinn 2 x 1.000 EUR für Weinwochenenden, Anreise extra; HubSpot/Agentur datenschutzrechtlich gesondert prüfen. Formularfelder und Checkboxen noch nicht abschließend verifiziert."
+      "review_note": "Originalbedingungen: kostenlose Teilnahme ab 18/Wohnsitz Deutschland, Newsletter und Werbung freiwillig; Gewinn 2 x 1.000 EUR für Weinwochenenden, Anreise extra; HubSpot/Agentur datenschutzrechtlich gesondert prüfen. Formularfelder und Checkboxen noch nicht abschließend verifiziert. Sichtbares Formular am 21.11. erneut geprüft: Vorname*, Nachname*, E-Mail*, Alter-/Bedingungsbestätigung* und Quizfrage mit drei Radiobutton-Antworten; kein Newsletter-Zwang in den speziellen 2026-Teilnahmebedingungen. Keine Daten abgesendet, kein Erfolg des Browser-Submission-Flows bestätigt; vollständige formale Freigabe bleibt gesperrt."
     },
     {
       "id": "braut-saal-gutschein-2026",
@@ -1370,7 +1370,28 @@
       "eligible_dates": null,
       "required_data": "Vorname (Pflicht), Nachname (Pflicht), E-Mail (Pflicht), Alters-/Teilnahmebedingungs-Zustimmung (Pflicht), richtige Antwort auf Quizfrage (Pflicht)",
       "privacy_tier": "medium",
-      "review_note": "Originale Gewinnspiel-Landingpage und 2026-Bedingungen sind derzeit abrufbar. Sichtbares Onlineformular zeigt Vorname, Nachname und E-Mail als Pflichtfelder, Quizfrage und eine Zustimmung zu Teilnahmebedingungen/Alter; keine Pflicht zur Newsletteranmeldung. Veranstalter DWI, Abwicklung HOPSCOTCH, mögliche Drittanbieter-Verarbeitung: Datenschutz und aktiven echten Browser-Formularfluss einschließlich eventueller versteckter Pflichtfelder und Einwilligungen vor redaktioneller Freigabe unabhängig bestätigen. Teilnahme 1.11.–31.12.2026, 23:59 Ortszeit, ab 18 mit Wohnsitz Deutschland, kostenlos. Nicht automatisch freigeben.",
+      "review_note": "Originale Gewinnspiel-Landingpage und 2026-Bedingungen sind derzeit abrufbar. Sichtbares Onlineformular zeigt Vorname, Nachname und E-Mail als Pflichtfelder, Quizfrage und eine Zustimmung zu Teilnahmebedingungen/Alter; keine Pflicht zur Newsletteranmeldung. Veranstalter DWI, Abwicklung HOPSCOTCH, mögliche Drittanbieter-Verarbeitung: Datenschutz und aktiven echten Browser-Formularfluss einschließlich eventueller versteckter Pflichtfelder und Einwilligungen vor redaktioneller Freigabe unabhängig bestätigen. Teilnahme 1.11.–31.12.2026, 23:59 Ortszeit, ab 18 mit Wohnsitz Deutschland, kostenlos. Nicht automatisch freigeben. Sichtbares Formular am 21.11. erneut geprüft: Vorname*, Nachname*, E-Mail*, Alter-/Bedingungsbestätigung* und Quizfrage mit drei Radiobutton-Antworten; kein Newsletter-Zwang in den speziellen 2026-Teilnahmebedingungen. Keine Daten abgesendet, kein Erfolg des Browser-Submission-Flows bestätigt; vollständige formale Freigabe bleibt gesperrt.",
+      "state": "candidate",
+      "human_approved": false,
+      "verified_at": null,
+      "allowed_for_reminders": false
+    },
+    {
+      "id": "stilbruch-mode-two-step-2026",
+      "year": 2026,
+      "organizer": "Stilbruch Mode",
+      "title": "Stilbruch-Gewinnspiel mit zehn Preisen 2026",
+      "prize": "1 x 3.000 EUR Bargeld, KitchenAid-Set, acht Gutscheine; Gesamtwert 10.500 EUR",
+      "url": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "terms_url": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "source_url": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "starts_on": "2026-10-02",
+      "ends_on": "2026-12-15",
+      "cadence": "single",
+      "eligible_dates": null,
+      "required_data": "Zwei-Schritt-Teilnahme: bis 29.11. E-Mail-Registrierung; 30.11.–15.12. Lösungswort mit identischer E-Mail einreichen. Newsletter freiwillig; die Lösung wird über Fashion-Haul-Videos vermittelt.",
+      "privacy_tier": "medium",
+      "review_note": "Original-Gewinnspielseite und Bedingungen für 2026: kostenlose Teilnahme, kein Kauf, Wohnsitz Deutschland ab 18. Zwei echte Phasen, Registrierung spätestens 29.11.2026 23:59, Lösungsabgabe spätestens 15.12.2026 23:59. Die bloße Registrierung ist keine vollständige Teilnahme! Es ist keine verpflichtende Anmeldung bei sozialen Netzwerken erkennbar; Videos auch über YouTube erreichbar. Die Registrierungs- und Lösungsformulare, Pflichtfelder, Datenschutz und Quizhinweise sind noch nicht end-to-end geprüft. Keinesfalls vor Prüfung oder als einfache Sofortteilnahme freigeben.",
       "state": "candidate",
       "human_approved": false,
       "verified_at": null,

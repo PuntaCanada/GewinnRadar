@@ -47,3 +47,16 @@ test('public status reflects EXACT public SQL publication gate, not research can
  state=await get();assert.equal(state.payload.visible_games,0,'revoked safety approval must immediately hide');
  sql.close();
 });
+
+test('public games fail closed with consistent 503 if D1 is missing or queries fail',async()=>{
+ const missing=await publicGames({request:new Request('https://gewinnradar.pages.dev/api/games'),env:{}});
+ assert.equal(missing.status,503);
+ assert.match((await missing.json()).error,/Datenbank/);
+ const brokenDB={prepare(){throw Error('Sensitive internal D1 binding error')}};
+ const failed=await publicGames({request:new Request('https://gewinnradar.pages.dev/api/games'),env:{DB:brokenDB}});
+ assert.equal(failed.status,503);
+ const body=await failed.json();
+ assert.match(body.error,/vorübergehend nicht verfügbar/);
+ assert.ok(!JSON.stringify(body).includes('Sensitive internal D1'));
+ assert.equal('games' in body,false,'D1 failure must not masquerade as an empty catalog');
+});

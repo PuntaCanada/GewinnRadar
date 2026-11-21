@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-21",
   "method": "Dated original-page research across year-round contests and Advent calendars. No live form/consent is approved automatically.",
-  "reviewed": 65,
+  "reviewed": 66,
   "form_approvals": 0,
   "entries": [
     {
@@ -1043,6 +1043,22 @@
       "reminder_approved": false,
       "manual_review_required": true,
       "notes": "Originaler sichtbarer Formulartext mit markierten Pflichtfeldern bestätigt; keine echte Browser-Einsendung, alle Checkboxen und Produktions-D1-Freigabe offen."
+    },
+    {
+      "id": "stilbruch-mode-two-step-2026",
+      "calendar_year": 2026,
+      "original_source": "https://stilbruch-mode.de/pages/gewinnspiel",
+      "checked_on": "2026-11-21",
+      "review_state": "pending_form_check",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": false,
+      "live_form_verified": false,
+      "marketing_optional_proven": false,
+      "germany_eligibility_proven": false,
+      "same_day_window_proven": false,
+      "reminder_approved": false,
+      "manual_review_required": true,
+      "notes": "Originalbedingungen geprüft; zwei voneinander abhängige Phasen und nicht abschließend geprüfte Formulare. Nicht zur Veröffentlichung freigegeben."
     }
   ]
 }
