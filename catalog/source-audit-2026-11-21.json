@@ -63,6 +63,109 @@
       "daily_mechanic_checked": false,
       "approval": "pending",
       "reminders_enabled": false
+    },
+    {
+      "form_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false,
+      "candidate_id": "stadtgaertner-2026",
+      "organizer": "Die Stadtgärtner",
+      "source_url": "https://www.diestadtgaertner.de/pages/teilnahmebedingungen-adventskalender-2026",
+      "calendar_url": "https://www.diestadtgaertner.de/pages/adventskalender-2026",
+      "privacy_url": "https://www.diestadtgaertner.de/pages/datenschutzerklaerung",
+      "event_dates": "2026-12-01 08:00 through 2026-12-24 24:00 (as stated)",
+      "source_confirmed": [
+        "Original 2026 terms explicitly say free without purchase or newsletter requirement",
+        "Eligible residents of Germany, Austria, Switzerland aged at least 14",
+        "Entries via displayed form; day prizes and date-specific contents in terms",
+        "December 8 is a discount, not a prize draw; some other prize descriptions are still empty"
+      ],
+      "still_unverified": [
+        "Live Jotform form required fields and any marketing checkbox",
+        "Whether each day is a separate raffle and exact daily deadline (terms give overall period)",
+        "Third-party form processing and privacy implications"
+      ],
+      "newsletter_checked": true,
+      "germany_eligible_checked": true,
+      "daily_mechanic_checked": false,
+      "excluded_non_raffle_dates": [
+        8
+      ]
+    },
+    {
+      "form_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false,
+      "candidate_id": "yellowchair-2026",
+      "organizer": "Yellowchair / dieKreidefarbe",
+      "source_url": "https://diekreidefarbe.de/pages/teilnahmebedingungen-adventskalender",
+      "calendar_url": "https://diekreidefarbe.de/pages/adventskalender",
+      "privacy_url": "https://diekreidefarbe.de/pages/datenschutzerklaerung",
+      "event_dates": "2026-12-01 through 2026-12-24; day 24 entry until 2026-12-27 23:59",
+      "source_confirmed": [
+        "Only some doors contain raffles; do not label all 24 as prize draws",
+        "Free without purchase, Germany residents aged 18+",
+        "One of comment via Instagram/Facebook or door form (name/email) for each raffle",
+        "Newsletter explicitly voluntary in terms",
+        "Each day closes 23:59 except door 24, which closes December 27"
+      ],
+      "still_unverified": [
+        "Which days contain actual raffle vs offers",
+        "Live door form and actual privacy/consent checkboxes",
+        "Each daily prize and any changed terms"
+      ],
+      "newsletter_checked": true,
+      "germany_eligible_checked": true,
+      "daily_mechanic_checked": false
+    },
+    {
+      "form_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false,
+      "candidate_id": "infra-fuerth-2026",
+      "organizer": "infra fürth",
+      "source_url": "https://www.infra-fuerth.de/teilnahmebedingungen-adventskalender",
+      "calendar_url": "https://www.infra-fuerth.de/adventskalender",
+      "privacy_url": "https://www.infra-fuerth.de/datenschutz",
+      "event_dates": "2026-12-01 through 2026-12-24",
+      "source_confirmed": [
+        "2026 terms expressly provide free participation without purchase or customer relationship",
+        "Residents in Germany aged 18+",
+        "Daily question answered using contact form; only one daily participation",
+        "Daily prizes already listed by organizer; winners notified via email"
+      ],
+      "still_unverified": [
+        "Live calendar door form fields and checkbox requirements",
+        "No explicit confirmation that the live form never bundles marketing consent",
+        "Exact close time for each daily question"
+      ],
+      "newsletter_checked": false,
+      "germany_eligible_checked": true,
+      "daily_mechanic_checked": false
+    },
+    {
+      "form_checked": false,
+      "approval": "pending",
+      "reminders_enabled": false,
+      "candidate_id": "agravis-2026",
+      "organizer": "AGRAVIS Raiffeisen AG",
+      "source_url": "https://www.agravis.de/de/unternehmen/ueber-uns/adventskalender",
+      "privacy_url": "https://www.agravis.de/de/gewinnspiele-datenschutz",
+      "event_dates": "2026-12-01 through 2026-12-24; each day closes 23:59",
+      "source_confirmed": [
+        "Free 2026 daily advent games with daily cutoff 23:59",
+        "Automated participation and prize clubs prohibited",
+        "Name, address, email collected for prize selection or delivery only under current event conditions",
+        "No evidence of obligatory newsletter in current original conditions"
+      ],
+      "still_unverified": [
+        "Live door instructions and exact form fields",
+        "Any optional or mandatory marketing consent on door",
+        "Which particular prize and game type appears daily"
+      ],
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false
     }
   ]
 }
