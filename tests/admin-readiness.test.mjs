@@ -14,7 +14,7 @@ function localDB(){
  sql.exec('PRAGMA foreign_keys=ON');
  for(const file of ['0001_initial.sql','0002_review_security.sql','0003_catalog_staging.sql','0004_source_evidence.sql','0005_form_and_reminders.sql'])
   sql.exec(readFileSync(new URL('../migrations/'+file,import.meta.url),'utf8'));
- const db={prepare(query){return {bind(...args){const stmt=sql.prepare(query);return {
+ const db={prepare(query){return {all:async()=>({results:sql.prepare(query).all()}),bind(...args){const stmt=sql.prepare(query);return {
   first:async()=>stmt.get(...args)??null,
   all:async()=>({results:stmt.all(...args)}),
   run:async()=>{const result=stmt.run(...args);return {meta:{changes:Number(result.changes)}}}
