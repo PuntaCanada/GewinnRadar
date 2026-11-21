@@ -30,6 +30,18 @@ for(const path of paths){
     entry.github_excerpt=expected.slice(Math.max(0,entry.first_difference_offset-70),entry.first_difference_offset+110);
    }
    entry.status=actual.equals(bytes)?'MATCH':'MISMATCH';
+   // Cloudflare Pages may inject its Analytics script immediately before </body>.
+   // Do not claim byte equality: only admit the exact known injection and require
+   // the complete remaining HTML to match GitHub byte for byte.
+   if(path==='public/index.html'&&entry.status==='MISMATCH'){
+    const html=actual.toString('utf8');
+    const injection=/<script defer src='https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js' data-cf-beacon='[^']*'><\/script><!-- Cloudflare Pages Analytics -->/g;
+    const occurrences=[...html.matchAll(injection)];
+    if(occurrences.length===1&&Buffer.from(html.replace(injection,''),'utf8').equals(bytes)){
+     entry.status='MATCH_WITH_PLATFORM_INJECTION';
+     entry.platform_injection='One Cloudflare Pages Analytics beacon injected before closing body; remaining source byte-identical';
+    }
+   }
    if(path.endsWith('advent-calendars-2026.json')){
     const d=JSON.parse(actual.toString('utf8'));
     if(d.schema_version!==1||!Array.isArray(d.confirmed))entry.status='MISMATCH';
@@ -38,7 +50,8 @@ for(const path of paths){
  }catch(e){entry.error=e?.name||'FetchError';}
  audit.files.push(entry);
  if(entry.status==='MISMATCH')audit.status='MISMATCH';
- if(entry.status==='UNVERIFIED'&&audit.status==='MATCH')audit.status='UNVERIFIED';
+ if(entry.status==='MATCH_WITH_PLATFORM_INJECTION'&&audit.status==='MATCH')audit.status='MATCH_WITH_PLATFORM_INJECTION';
+ if(entry.status==='UNVERIFIED'&&audit.status!=='MISMATCH')audit.status='UNVERIFIED';
 }
 await writeFile('advent-production-verification.json',JSON.stringify(audit,null,2)+'\n');
 const lines=['### GewinnRadar Advent: unabhängiger Cloudflare-Dateivergleich','- Ergebnis: **'+audit.status+'**','- GitHub-Commit: '+commit,'- Zeitpunkt: '+audit.timestamp,...audit.files.map(e=>'- '+e.path+': **'+e.status+'**, HTTP '+(e.http_status??'keine Antwort')+', GitHub SHA-256 '+e.expected_sha256+', Production SHA-256 '+(e.production_sha256??'unbekannt')+', HTML script vorhanden: '+(e.production_has_advent_script??'n/a')+', HTML Bereich vorhanden: '+(e.production_has_advent_section??'n/a')+', erste Abweichung: '+(e.first_difference_offset??'n/a')+', remote-Auszug: '+(e.production_excerpt??'n/a')+', GitHub-Auszug: '+(e.github_excerpt??'n/a'))];
