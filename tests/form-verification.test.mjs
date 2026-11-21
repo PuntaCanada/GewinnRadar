@@ -23,6 +23,16 @@ test('form review requires separate authenticated admin and all seven live check
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,0);
  assert.equal((await send(body)).status,201);
  assert.equal(sql.prepare('SELECT count(*) AS n FROM form_verifications').get().n,1);
+ sql.prepare("UPDATE games SET status='verified' WHERE id='test'").run();
+ sql.prepare("UPDATE form_verifications SET checked_at='2026-12-01T08:00:00Z' WHERE game_id='test'").run();
+ const rereview=await send({...body,notes:'Today\'s different 2026 door form was checked again; no mandatory consent.'});
+ assert.equal(rereview.status,201,'approved daily calendar must be re-reviewable');
+ assert.equal((await rereview.json()).previously_approved,true);
+ assert.notEqual(sql.prepare("SELECT checked_at FROM form_verifications WHERE game_id='test'").get().checked_at,'2026-12-01T08:00:00Z');
+ assert.equal(sql.prepare("SELECT status FROM games WHERE id='test'").get().status,'verified','recheck must not mutate approval status');
+ sql.prepare("UPDATE games SET status='rejected' WHERE id='test'").run();
+ assert.equal((await send(body)).status,409,'rejected candidate cannot be reapproved via form review');
+
  assert.equal(sql.prepare("SELECT count(*) AS n FROM games WHERE status='verified'").get().n,0);
  sql.close();
 });
