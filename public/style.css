@@ -32,3 +32,14 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 .admin-page .panel form #emailEntryFields[hidden]{display:none}
 .admin-page .panel form>p{margin:0}
 @media(max-width:600px){.admin-page .panel{padding:18px}.admin-page .panel form button{width:100%}}
+
+/* Guest-only participation markers: readable and touch-friendly without an account. */
+.guest-progress{background:#edf5ee;border:1px solid #c4dccc;border-radius:14px;padding:14px 18px;margin:12px 0 18px}
+.guest-progress #editorialProgress{font-weight:800;margin:0 0 10px}
+.guest-filter,.guest-checkrow{display:flex;align-items:center;gap:12px;max-width:100%;overflow-wrap:anywhere;cursor:pointer}
+.guest-filter input,.guest-checkrow input{width:28px;height:28px;min-width:28px;accent-color:#16653e;cursor:pointer}
+.guest-checkrow{background:#f0f7ee;border:1px solid #bad8c3;border-radius:12px;padding:12px 14px;margin:18px 0 10px;font-weight:750}
+.guest-checkrow:focus-within,.guest-filter:focus-within{outline:3px solid #ffb000;outline-offset:3px}
+.game.joined-completed{border-color:#7fb295;background:#f6fbf6}
+.game.joined-completed .guest-checkrow{background:#d6efdb}
+@media(max-width:600px){.guest-progress{padding:12px}.guest-checkrow,.guest-filter{align-items:flex-start}}

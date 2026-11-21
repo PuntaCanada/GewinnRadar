@@ -156,6 +156,31 @@ try{
   const adminGuestFieldBox=await adminGuestField.boundingBox();
   assert.ok(adminGuestFieldBox.width>=250,'mobile admin form fields remain wide and not inline');
 
+  // Real guest: participation must persist in this browser WITHOUT login or a D1 POST.
+  await guestPage.goto(base+'/');
+  const guestCards=guestPage.locator('#editorialLive .game');
+  await guestCards.first().waitFor();
+  assert.equal(await guestCards.count(),11);
+  const firstMark=guestCards.first().locator('input[data-joined-contest]');
+  assert.equal(await firstMark.isChecked(),false);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 11/);
+  await firstMark.check();
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/1 von 11/);
+  assert.equal(await guestCards.first().evaluate(x=>x.classList.contains('joined-completed')),true);
+  await guestPage.reload();
+  await guestCards.first().waitFor();
+  assert.equal(await guestCards.first().locator('input[data-joined-contest]').isChecked(),true);
+  await guestPage.locator('#editorialOnlyOpen').check();
+  assert.equal(await guestCards.first().isVisible(),false);
+  assert.equal(await guestCards.nth(1).isVisible(),true);
+  await guestPage.locator('#editorialOnlyOpen').uncheck();
+  await guestCards.first().locator('input[data-joined-contest]').uncheck();
+  await guestPage.reload();
+  await guestCards.first().waitFor();
+  assert.equal(await guestCards.first().locator('input[data-joined-contest]').isChecked(),false);
+  assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 11/);
+  const guestStorageKeys=await guestPage.evaluate(()=>Object.keys(localStorage));
+  assert.ok(guestStorageKeys.every(k=>k.startsWith('gewinnradar:guest:completed:v1:')));
   await guest.close();
   const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
   const adminPage=await adminContext.newPage();

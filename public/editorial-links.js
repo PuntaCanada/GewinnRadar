@@ -16,6 +16,44 @@ function issueLink(game,category='verdacht'){
 function sourceUrl(value){
  try{const u=new URL(value);return u.protocol==='https:'&&u.username===''&&u.password===''?u.href:null}catch{return null}
 }
+// Public editorial cards use browser-local participation marks, not D1 or login.
+// The value is deliberately a boolean rather than any personal information.
+const JOIN_KEY='gewinnradar:guest:completed:v1:';
+const fallbackCompleted=new Set();
+function safeId(id){return typeof id==='string'&&/^[a-z0-9][a-z0-9-]{2,99}$/.test(id)}
+export function readGuestCompleted(storage,id){
+ if(!safeId(id))return false;
+ try{return storage.getItem(JOIN_KEY+id)==='1'}catch{return fallbackCompleted.has(id)}
+}
+export function writeGuestCompleted(storage,id,completed){
+ if(!safeId(id))return false;
+ try{
+  if(completed)storage.setItem(JOIN_KEY+id,'1');
+  else storage.removeItem(JOIN_KEY+id);
+  if(completed)fallbackCompleted.add(id);else fallbackCompleted.delete(id);
+  return true;
+ }catch{
+  if(completed)fallbackCompleted.add(id);else fallbackCompleted.delete(id);
+  return false;
+ }
+}
+function guestStorage(){
+ try{return window.localStorage}catch{return {getItem(){throw Error('storage blocked')},setItem(){throw Error('storage blocked')},removeItem(){throw Error('storage blocked')}}}
+}
+function updateGuestProgress(){
+ const boxes=[...document.querySelectorAll('#editorialLive input[data-joined-contest]')];
+ const count=boxes.filter(b=>b.checked).length;
+ const summary=$('editorialProgress');
+ if(summary)summary.textContent=count+' von '+boxes.length+' aktuellen Gewinnspielen als teilgenommen markiert';
+ const hideDone=$('editorialOnlyOpen')?.checked||false;
+ for(const input of boxes){
+  const card=input.closest('.game');
+  if(card){
+   card.classList.toggle('joined-completed',input.checked);
+   card.classList.toggle('hidden',hideDone&&input.checked);
+  }
+ }
+}
 export function editorialDeadline(exclusiveEnd){
  const instant=Date.parse(exclusiveEnd);
  if(!Number.isFinite(instant))return null;
@@ -61,9 +99,23 @@ export function renderEditorialLinks(data,now=new Date()){
   const links=line('div',null,'action');
   links.append(outbound(type==='web_form'?'Jetzt beim Veranstalter teilnehmen':'Offiziellen Teilnahmeweg prüfen',g.url,true),outbound('Teilnahmebedingungen',g.terms_url),outbound('Datenschutz',g.privacy_url));
   card.append(links);
+  const joinedLabel=line('label',null,'guest-checkrow');
+  const joinedBox=document.createElement('input');
+  joinedBox.type='checkbox';joinedBox.dataset.joinedContest=g.id;
+  joinedBox.checked=readGuestCompleted(guestStorage(),g.id);
+  const joinedText=line('span','Ich habe teilgenommen');
+  joinedLabel.append(joinedBox,joinedText);
+  joinedBox.addEventListener('change',()=>{
+   const persisted=writeGuestCompleted(guestStorage(),g.id,joinedBox.checked);
+   const info=$('editorialStorageStatus');
+   if(info&&!persisted)info.textContent='Hinweis: Dein Browser blockiert die lokale Speicherung. Die Häkchen können nach einem Neuladen verloren gehen.';
+   updateGuestProgress();
+  });
+  card.append(joinedLabel);
   const report=outbound('Problem oder Betrugsverdacht melden','/melden/?id='+encodeURIComponent(g.id));
   report.className='small';card.append(report);liveRoot.append(card);
  }
+ updateGuestProgress();
  if(!live.length)liveRoot.append(line('p','Derzeit kein noch laufender, separat geprüfter Direktlink. Neue Aktionen werden nach Einzelprüfung ergänzt.','small'));
  for(const g of future){
   const card=line('article',null,'game');
@@ -107,6 +159,7 @@ export async function loadEditorialLinks(){
  }
 }
 if(typeof document!=='undefined'&&$('editorialLive')){
+ $('editorialOnlyOpen')?.addEventListener('change',updateGuestProgress);
  loadEditorialLinks();
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadEditorialLinks()});
 }

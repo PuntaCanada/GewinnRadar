@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {eligibleEditorialLinks,editorialDeadline} from '../public/editorial-links.js';
+import {eligibleEditorialLinks,editorialDeadline,readGuestCompleted,writeGuestCompleted} from '../public/editorial-links.js';
 const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json',import.meta.url),'utf8'));
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
@@ -107,4 +107,28 @@ test('STRYVE social draw has stated conditions and expires after 15 Dec',()=>{
  assert.equal(g.ends_at,'2026-12-16T00:00:00+01:00');
  assert.match(g.marketing_requirements,/Kein Kauf/);
  assert.match(g.note,/nicht separat geöffnet/);
+});
+
+test('guest participation marks persist independently per prize draw and can be removed',()=>{
+ const m=new Map();
+ const store={getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k)};
+ assert.equal(readGuestCompleted(store,'partner-wera-social-2026'),false);
+ assert.equal(writeGuestCompleted(store,'partner-wera-social-2026',true),true);
+ assert.equal(readGuestCompleted(store,'partner-wera-social-2026'),true);
+ assert.equal(readGuestCompleted(store,'cloetta-candyking-instagram-2026'),false);
+ assert.equal(writeGuestCompleted(store,'partner-wera-social-2026',false),true);
+ assert.equal(readGuestCompleted(store,'partner-wera-social-2026'),false);
+ assert.equal(m.size,0);
+});
+test('guest marks do not create arbitrary localStorage keys or throw if storage disabled',()=>{
+ const m=new Map();
+ const store={getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k)};
+ assert.equal(writeGuestCompleted(store,'../../api/admin',true),false);
+ assert.equal(readGuestCompleted(store,'../../api/admin'),false);
+ assert.equal(m.size,0);
+ const disabled={getItem(){throw Error('blocked')},setItem(){throw Error('blocked')},removeItem(){throw Error('blocked')}};
+ assert.equal(writeGuestCompleted(disabled,'guest-fallback-2026',true),false);
+ assert.equal(readGuestCompleted(disabled,'guest-fallback-2026'),true);
+ assert.equal(writeGuestCompleted(disabled,'guest-fallback-2026',false),false);
+ assert.equal(readGuestCompleted(disabled,'guest-fallback-2026'),false);
 });
