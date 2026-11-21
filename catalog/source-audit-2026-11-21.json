@@ -66,7 +66,7 @@
     },
     {
       "form_checked": false,
-      "approval": "pending",
+      "approval": "blocked_pending_correction",
       "reminders_enabled": false,
       "candidate_id": "stadtgaertner-2026",
       "organizer": "Die Stadtgärtner",
@@ -81,6 +81,7 @@
         "December 8 is a discount, not a prize draw; some other prize descriptions are still empty"
       ],
       "still_unverified": [
+        "2026 calendar links to a Jotform explicitly labelled 2025 and its checkbox likewise refers to 2025; do not approve until organizer replaces it with a verifiable 2026 form",
         "Live Jotform form required fields and any marketing checkbox",
         "Whether each day is a separate raffle and exact daily deadline (terms give overall period)",
         "Third-party form processing and privacy implications"
@@ -90,7 +91,11 @@
       "daily_mechanic_checked": false,
       "excluded_non_raffle_dates": [
         8
-      ]
+      ],
+      "live_form_link_checked_on": "2026-11-21",
+      "live_form_url": "https://form.jotform.com/253283338207356",
+      "live_form_title": "Adventskalender 2025",
+      "year_conflict_detected": true
     },
     {
       "form_checked": false,
