@@ -7,7 +7,7 @@ import {sendDigest,berlin} from '../worker/index.js';
 function setup(){
  const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');
  for(const file of ['0001_initial.sql','0002_review_security.sql','0003_catalog_staging.sql','0004_source_evidence.sql','0005_form_and_reminders.sql'])sql.exec(readFileSync(new URL('../migrations/'+file,import.meta.url),'utf8'));
- const db={prepare(query){return{bind(...args){return{
+ const db={prepare(query){return{all:async()=>({results:sql.prepare(query).all()}),bind(...args){return{
   first:async()=>sql.prepare(query).get(...args)||null,
   all:async()=>({results:sql.prepare(query).all(...args)}),
   run:async()=>{const r=sql.prepare(query).run(...args);return{meta:{changes:Number(r.changes)}}}
