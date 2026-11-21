@@ -43,7 +43,7 @@ async function sendDigest(env){
  const users=(await env.DB.prepare('SELECT id,email,display_name FROM users WHERE daily_email=1 AND email_verified=1 AND consent_at IS NOT NULL').all()).results||[];
  let sent=0;
  for(const u of users){
-  const games=(await env.DB.prepare("SELECT g.title,g.organizer,g.prize,g.url,g.ends_at FROM favorites f JOIN games g ON g.id=f.game_id LEFT JOIN participations p ON p.user_id=f.user_id AND p.game_id=f.game_id AND p.day=CASE WHEN g.daily=1 THEN ? ELSE 'once' END WHERE f.user_id=? AND p.user_id IS NULL AND g.status='verified' AND g.link_state='ok' AND g.starts_at<=? AND g.ends_at>? ORDER BY g.ends_at LIMIT 100").bind(today,u.id,now,now).all()).results||[];
+  const games=(await env.DB.prepare("SELECT g.title,g.organizer,g.prize,g.url,w.end_utc AS ends_at FROM favorites f JOIN games g ON g.id=f.game_id JOIN form_verifications v ON v.game_id=g.id AND v.form_observed=1 AND v.correct_year=1 AND v.german_residents=1 AND v.no_marketing_required=1 AND v.no_purchase_required=1 AND v.no_account_or_app_obligation=1 AND v.no_unresolved_deadline_conflict=1 JOIN reminder_windows w ON w.game_id=g.id AND w.review_state='approved' AND w.day=? AND w.start_utc<=? AND w.end_utc>? LEFT JOIN participations p ON p.user_id=f.user_id AND p.game_id=f.game_id AND p.day=CASE WHEN g.daily=1 THEN ? ELSE 'once' END WHERE f.user_id=? AND p.user_id IS NULL AND g.status='verified' AND g.link_state='ok' AND g.starts_at<=? AND g.ends_at>? ORDER BY w.end_utc LIMIT 100").bind(today,now,now,today,u.id,now,now).all()).results||[];
   if(!games.length)continue;
   const claim=await env.DB.prepare("INSERT OR IGNORE INTO email_log(user_id,day,status) VALUES(?,?,'sending')").bind(u.id,today).run();
   if(!claim.meta?.changes)continue;
