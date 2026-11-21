@@ -10,7 +10,17 @@ const ALLOWED=new Set([
  'www.adac.de','advent.supernurse.de','openexperience.de','adventskalender.bsw.de',
  'www.infra-fuerth.de','hager.com','www.mueller.de','www.daddyhero.de',
  'tal-studio.de','fitseveneleven.de','pld24.de','www.pluspunkt-apotheke.de',
- 'de.babor.com','de.handicraft.com'
+ 'de.babor.com','de.handicraft.com',
+ 'adventskalender.sueddeutsche.de','www.mdr.de','filiale.kaufland.de','games.focus.de',
+ 'diekreidefarbe.de','www.magdochjeder.de','www.pincamp.de','www.wirliebenbau.de',
+ 'www.hairloft-loxstedt.de','myteslatuning.de','beatwings.com',
+ 'www.montessori-dinkelscherben.de','www.staterabikes.de','sharemagazines.de',
+ 'tankstelle-kern.de','bobblume.de','outside-stories.de','www.tauchen.de',
+ 'www.cloettadeutschland.de','www.bayerndigitalradio.de','www.draco.de',
+ 'www.counterkompass.de','lumarie.de','www.borchersplus.de','himmlischschoen.de',
+ 'carmushka.humblebutbold.de','partnerfuertechnik.de',
+ 'www.berliner-sparkasse.de','www.ndr.de','spiele.connect.de','www.urlaubsguru.de',
+ 'www.gewinnarena.de'
 ]);
 export function classify(status,error=false){
  if(error)return 'inconclusive';
