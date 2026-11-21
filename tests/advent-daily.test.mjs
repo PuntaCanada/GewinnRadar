@@ -5,7 +5,8 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,29);
+ assert.equal(data.confirmed.length,35);
+ assert.equal(data.confirmed.filter(x=>['hager-advent-2026','reifen-mueller-advent-2026','entenkoje-advent-2026','adac-instagram-advent-2026','dm-advent-2026','mdr-sachsenradio-advent-2026'].includes(x.id)).length,6);
  const pilot=data.confirmed.find(g=>g.id==='pilot-advent-2026');
  const draco=data.confirmed.find(g=>g.id==='draco-advent-2026');
  assert.deepEqual(pilot.participation_days,[1,3,5,9,16,19,22,24]);
@@ -23,7 +24,7 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,29);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,35);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Berlin day respects midnight independently of browser timezone',()=>{
