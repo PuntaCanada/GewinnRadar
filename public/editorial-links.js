@@ -20,7 +20,10 @@ export function eligibleEditorialLinks(data,now=new Date()){
  const live=data.active.filter(g=>{
   const start=Date.parse(g.starts_at),end=Date.parse(g.ends_at);
   return Number.isFinite(start)&&Number.isFinite(end)&&start<=now.getTime()&&now.getTime()<end&&
-    /^\\d{4}-\\d{2}-\\d{2}$/.test(g.reviewed_on)&&\n    Date.parse(g.reviewed_on+'T00:00:00Z')<=now.getTime()&&\n    now.getTime()-Date.parse(g.reviewed_on+'T00:00:00Z')<=8*86400000&&\n    [g.url,g.terms_url,g.privacy_url].every(sourceUrl);
+    /^\\d{4}-\\d{2}-\\d{2}$/.test(g.reviewed_on)&&
+    Date.parse(g.reviewed_on+'T00:00:00Z')<=now.getTime()&&
+    now.getTime()-Date.parse(g.reviewed_on+'T00:00:00Z')<=8*86400000&&
+    [g.url,g.terms_url,g.privacy_url].every(sourceUrl);
  });
  const future=data.preview.filter(g=>g.starts_on&&g.ends_on&&g.ends_on>=now.toISOString().slice(0,10)&&
   [g.url,g.terms_url].every(sourceUrl));
