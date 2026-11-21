@@ -52,7 +52,7 @@ export function renderEditorialLinks(data,now=new Date()){
   const type=g.participation_type||'web_form';
   const kinds={web_form:'Onlineformular',instagram:'Instagram-Konto erforderlich',social:'Facebook oder Instagram erforderlich',whatsapp_email:'WhatsApp-Kanal + eigene E-Mail'};
   card.append(line('span',kinds[type]||'Teilnahmeweg prüfen','pill'));
-  card.append(line('p','Teilnahmeschluss: '+editorialDeadline(g.ends_at),'meta'));
+  card.append(line('p','Teilnahmeschluss: '+(g.deadline_label||editorialDeadline(g.ends_at)),'meta'));
   card.append(line('p','Zuletzt geprüft: '+new Date(g.reviewed_on+'T12:00:00Z').toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}),'meta'));
   card.append(line('h2',g.title),line('p','Veranstalter: '+g.organizer+' · Gewinne: '+g.prize));
   card.append(line('p','Benötigt: '+g.required_data,'meta'));
