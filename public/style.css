@@ -11,3 +11,6 @@ input[type=search]{font:inherit;min-width:0;width:100%;max-width:360px;border:2p
 .toolbar>label{white-space:nowrap}
 #resultCount{margin:0 0 12px;font-weight:650}
 @media(max-width:600px){.toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:stretch}.toolbar input[type=search],.toolbar select,.toolbar button{width:100%;max-width:100%;min-width:0}.toolbar .toggle{margin:6px 0}.toolbar label[for=filter],.toolbar label[for=sortGames]{margin-top:5px}.toolbar button{margin-top:8px}}
+
+/* Anonymous flex text inside filter labels must wrap on narrow phones, including senior font size. */
+@media(max-width:600px){.toolbar .toggle{white-space:normal;min-width:0;overflow-wrap:anywhere}.toolbar .toggle input{flex:0 0 22px}}
