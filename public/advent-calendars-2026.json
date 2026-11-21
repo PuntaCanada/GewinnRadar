@@ -748,8 +748,8 @@
       "open_time": "05:00",
       "daily_deadline": {
         "type": "same_day",
-        "time": "10:00",
-        "certainty": "approximate_broadcast"
+        "time": null,
+        "certainty": "not_verified"
       },
       "requirements": "Kostenloses tägliches Rätsel im MDR-Sachsenradio-Frühprogramm; Hörer müssen die jeweils genannte Aufgabe beziehungsweise den aktuellen Teilnahmeweg beachten. Es ist eine Radio-/Regionalaktion, kein jederzeit geöffnetes Onlineformular.",
       "note": "Offizielle Ankündigung vom 17.11.2026: täglich 1.–24.12. zwischen 05:00 und 10:00 Uhr 24 Preise aus dem Erzgebirge. Exakte Einsendefrist je Sendung nicht angegeben; '10 Uhr' ist Sendungsfenster und KEINE garantierte Teilnahmefrist.",
