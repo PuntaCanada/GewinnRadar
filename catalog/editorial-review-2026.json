@@ -1,7 +1,7 @@
 {
   "as_of": "2026-11-21",
   "method": "Dated original-page research across year-round contests and Advent calendars. No live form/consent is approved automatically.",
-  "reviewed": 66,
+  "reviewed": 69,
   "form_approvals": 0,
   "entries": [
     {
@@ -1059,6 +1059,54 @@
       "reminder_approved": false,
       "manual_review_required": true,
       "notes": "Originalbedingungen geprüft; zwei voneinander abhängige Phasen und nicht abschließend geprüfte Formulare. Nicht zur Veröffentlichung freigegeben."
+    },
+    {
+      "id": "berghaus-vanlife-2026",
+      "calendar_year": 2026,
+      "original_source": "https://your-berghaus.com/teilnahmebedingungen",
+      "checked_on": "2026-11-21",
+      "review_state": "pending_form_check",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": false,
+      "live_form_verified": false,
+      "marketing_optional_proven": false,
+      "germany_eligibility_proven": false,
+      "same_day_window_proven": false,
+      "reminder_approved": false,
+      "manual_review_required": true,
+      "notes": "Datum widersprüchlich: Veranstalter-Landingpage 26.02.2027, Originalbedingungen 28.02.2027. Drei Pflichtfelder und freiwillige Newsletter-Checkbox sichtbar; endgültige Frist ungeklärt."
+    },
+    {
+      "id": "falken-bulls-bikes-2026",
+      "calendar_year": 2026,
+      "original_source": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
+      "checked_on": "2026-11-21",
+      "review_state": "pending_form_check",
+      "terms_2026_verified": false,
+      "privacy_terms_checked": false,
+      "live_form_verified": false,
+      "marketing_optional_proven": false,
+      "germany_eligibility_proven": false,
+      "same_day_window_proven": false,
+      "reminder_approved": false,
+      "manual_review_required": true,
+      "notes": "2026-Originalformular in Prüfungsumgebung nicht lesbar, nur Sekundärbelege; konkrete Checkboxen/Teilnahmebedingungen nicht verifiziert."
+    },
+    {
+      "id": "ndac-marketing-2026",
+      "calendar_year": 2026,
+      "original_source": "https://www.ndac.de/gewinnspiel/",
+      "checked_on": "2026-11-21",
+      "review_state": "excluded",
+      "terms_2026_verified": true,
+      "privacy_terms_checked": false,
+      "live_form_verified": false,
+      "marketing_optional_proven": false,
+      "germany_eligibility_proven": false,
+      "same_day_window_proven": false,
+      "reminder_approved": false,
+      "manual_review_required": true,
+      "notes": "Offizielle Regeln setzen Einwilligung in E-Mail-Newsletter UND Telefonwerbung explizit voraus; deshalb ausgeschlossen."
     }
   ]
 }
