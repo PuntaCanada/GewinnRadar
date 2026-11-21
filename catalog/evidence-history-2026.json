@@ -926,6 +926,48 @@
       "finding": "Bedingungen nennen zehn Preise (10.500 EUR), Registrierung bis 29.11., separate Lösungsabgabe 30.11.–15.12., kein Kauf und freiwilligen Newsletter. Nur Registrierung genügt nicht; Teilnahme- und Lösungsformulare bislang nicht vollständig durchgespielt.",
       "reviewer": "assistant-research",
       "license_note": "Kurze eigene Zusammenfassung, offizielle Originalseite verlinkt"
+    },
+    {
+      "candidate_id": "berghaus-vanlife-2026",
+      "source_url": "https://your-berghaus.com/teilnahmebedingungen",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "source_only",
+      "finding": "Datum widersprüchlich: Veranstalter-Landingpage 26.02.2027, Originalbedingungen 28.02.2027. Drei Pflichtfelder und freiwillige Newsletter-Checkbox sichtbar; endgültige Frist ungeklärt.",
+      "reviewer": "assistant-research",
+      "license_note": "Eigene knappe Zusammenfassung mit Verweis auf Originalquelle; keine Komplettkopie"
+    },
+    {
+      "candidate_id": "falken-bulls-bikes-2026",
+      "source_url": "https://mit-falken-gewinnen.de/falken-sagt-tanke",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "prior_catalog_unreverified",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "pending",
+      "finding": "2026-Originalformular in Prüfungsumgebung nicht lesbar, nur Sekundärbelege; konkrete Checkboxen/Teilnahmebedingungen nicht verifiziert.",
+      "reviewer": "assistant-research",
+      "license_note": "Eigene knappe Zusammenfassung mit Verweis auf Originalquelle; keine Komplettkopie"
+    },
+    {
+      "candidate_id": "ndac-marketing-2026",
+      "source_url": "https://www.ndac.de/gewinnspiel/",
+      "observed_on": "2026-11-21",
+      "evidence_kind": "original_2026_page_seen",
+      "form_checked": false,
+      "newsletter_checked": false,
+      "germany_eligible_checked": false,
+      "daily_mechanic_checked": false,
+      "trust_status": "excluded",
+      "finding": "Offizielle Regeln setzen Einwilligung in E-Mail-Newsletter UND Telefonwerbung explizit voraus; deshalb ausgeschlossen.",
+      "reviewer": "assistant-research",
+      "license_note": "Eigene knappe Zusammenfassung mit Verweis auf Originalquelle; keine Komplettkopie"
     }
   ]
 }
