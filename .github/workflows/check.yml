@@ -23,5 +23,7 @@ jobs:
         run: node scripts/catalog-audit.mjs
       - name: Validate dated 2026 source evidence
         run: node scripts/audit-evidence.mjs
+      - name: Verify all 2026 editorial decisions and disabled reminders
+        run: node scripts/audit-editorial.mjs
       - name: Offline SQLite migrations and isolation
         run: python3 scripts/test_schema.py
