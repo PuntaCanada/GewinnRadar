@@ -66,6 +66,10 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'review');
  assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,409,'No live-form proof must block approval');
  sqlite.prepare("INSERT INTO form_verifications(game_id,reviewer_id,checked_at,form_url,privacy_url,required_fields,form_observed,correct_year,german_residents,no_marketing_required,no_purchase_required,no_account_or_app_obligation,no_unresolved_deadline_conflict,notes) VALUES (?,?,?,?,?,?,1,1,1,1,1,1,1,?)").run('advent-2026-check','admin',new Date().toISOString(),'https://www.br.de/gewinnspiel','https://www.br.de/datenschutz','Name, E-Mail','Live-Formular 2026 und Pflichtdaten nachgewiesen');
+ sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date(Date.now()-26*3600000).toISOString(),'advent-2026-check');
+ assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,409,'Admin approval must not bypass daily public gate with yesterday\'s form');
+ assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'review');
+ sqlite.prepare("UPDATE form_verifications SET checked_at=? WHERE game_id=?").run(new Date().toISOString(),'advent-2026-check');
  assert.equal((await call(review,'/api/admin/review','POST',approval(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')).status,200);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'verified');
  assert.equal((await (await call(games,'/api/games','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).json()).games.length,0,'Unknown link should not appear');
