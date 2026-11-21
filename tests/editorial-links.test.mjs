@@ -6,6 +6,9 @@ const data=JSON.parse(readFileSync(new URL('../public/editorial-links-2026.json'
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
  assert.equal(data.active.length,40);
+ assert.ok(data.active.every(g=>g.source_audit?.checked_on==='2026-11-21'&&g.source_audit?.evidence_url===g.terms_url));
+ assert.deepEqual(new Set(data.active.map(g=>g.source_audit.status)),new Set(['confirmed','partial','blocked','unconfirmed']));
+ assert.ok(data.active.every(g=>g.reviewed_on==='2026-11-21'),'historische Prüfdatumsangaben bleiben unverändert');
  assert.equal(data.preview.length,3);
  assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,43);
  for(const e of [...data.active,...data.preview]){
