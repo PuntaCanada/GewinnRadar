@@ -125,3 +125,23 @@ test('state change between preflight and atomic batch never consumes recovery cl
   sql.close();
  }
 });
+
+test('concurrent recovery requests yield one session and one permanently consumed singleton',async()=>{
+ const {sql,DB}=fixture();user(sql);
+ const responses=await Promise.all(Array.from({length:6},()=>request(env(DB))));
+ assert.equal(responses.filter(r=>r.status===201).length,1);
+ assert.equal(responses.filter(r=>r.status!==201).length,5);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,1);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,1);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM users').get().n,1);
+ sql.close();
+});
+test('a trigger that changes verification while skipping original UPDATE cannot consume recovery',async()=>{
+ const {sql,DB}=fixture();user(sql);
+ sql.exec("CREATE TRIGGER alter_and_skip BEFORE UPDATE OF email_verified ON users BEGIN UPDATE users SET email_verified=1 WHERE id=NEW.id; SELECT RAISE(IGNORE); END");
+ assert.equal((await request(env(DB))).status,503);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_bootstrap').get().n,0);
+ assert.equal(sql.prepare("SELECT email_verified FROM users WHERE id='old-admin'").get().email_verified,0);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM sessions').get().n,0);
+ sql.close();
+});
