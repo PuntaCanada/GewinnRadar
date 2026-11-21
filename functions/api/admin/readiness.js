@@ -1,6 +1,6 @@
 import {json,viewer} from '../../_lib/core.js';
 import {safeAdmin} from '../../_lib/contest-review.js';
-import {formReviewWindow} from '../../_lib/publication-gate.js';
+import {formReviewWindow,verifiedJoins,verifiedConditions} from '../../_lib/publication-gate.js';
 
 const human=['original_checked','terms_checked','privacy_checked','germany_eligible','no_mandatory_marketing','no_payment_required','human_verified'];
 const live=['form_observed','correct_year','german_residents','no_marketing_required','no_purchase_required','no_account_or_app_obligation','no_unresolved_deadline_conflict'];
@@ -27,9 +27,26 @@ export async function onRequestGet(ctx){
  ...human.map(k=>'e.'+k+' AS e_'+k),
  ...live.map(k=>'fv.'+k+' AS f_'+k),
  'fv.checked_at AS f_checked_at','fv.privacy_url AS f_privacy_url'];
- const q='SELECT '+selects.join(',')+' FROM games g LEFT JOIN contest_evidence e ON e.game_id=g.id LEFT JOIN form_verifications fv ON fv.game_id=g.id ORDER BY g.updated_at DESC LIMIT 300';
- const result=await ctx.env.DB.prepare(q).bind().all();
- const now=new Date();
- const contests=(result.results||[]).map(g=>{const reasons=readinessReasons(g,now);return {id:g.id,title:g.title,ready:reasons.length===0,reasons};});
- return json({checked_at:now.toISOString(),ready:contests.filter(x=>x.ready).length,blocked:contests.filter(x=>!x.ready).length,contests});
+ const q='SELECT '+selects.join(',')+' FROM games g LEFT JOIN contest_evidence e ON e.game_id=g.id LEFT JOIN form_verifications fv ON fv.game_id=g.id ORDER BY g.updated_at DESC LIMIT 1000';
+ const now=new Date(),stamp=now.toISOString();
+ const [from,until,dayStart]=formReviewWindow(now);
+ // Exact same SQL publication gate and 500-entry limit as GET /api/games.
+ // Readiness reasoning is advisory; only the SQL gate determines public eligibility.
+ const publicSql="SELECT g.id FROM games g"+verifiedJoins+
+   " WHERE g.starts_at<=? AND g.ends_at>? AND "+verifiedConditions+
+   " ORDER BY g.ends_at ASC LIMIT 500";
+ const [result,live,total]=await Promise.all([
+  ctx.env.DB.prepare(q).bind().all(),
+  ctx.env.DB.prepare(publicSql).bind(stamp,stamp,from,until,dayStart).all(),
+  ctx.env.DB.prepare('SELECT COUNT(*) AS count FROM games').bind().first()
+ ]);
+ const publicIds=new Set((live.results||[]).map(g=>g.id));
+ const contests=(result.results||[]).map(g=>{
+  const reasons=readinessReasons(g,now);
+  const ready=publicIds.has(g.id);
+  if(!ready && reasons.length===0)reasons.push('Nicht unter den 500 zuerst endenden öffentlich sichtbaren Gewinnspielen');
+  return {id:g.id,title:g.title,ready,reasons};
+ });
+ const totalGames=Number(total?.count||0);
+ return json({checked_at:stamp,ready:publicIds.size,blocked:Math.max(0,totalGames-publicIds.size),total:totalGames,shown:contests.length,truncated:totalGames>contests.length,contests});
 }
