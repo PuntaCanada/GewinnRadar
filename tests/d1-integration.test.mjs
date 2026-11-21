@@ -48,6 +48,7 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  const call=(handler,path,method,body,session)=>handler({request:request(path,method,body,session),env:{DB:db}});
  assert.equal((await listAdmin({request:request('/api/admin/contests','GET',undefined,'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'),env:{DB:db}})).status,403);
  assert.equal((await call(addContest,'/api/admin/contests','POST',candidate(),'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')).status,403);
+ sqlite.prepare("INSERT INTO research_candidates(id,year,canonical_key,organizer,title,prize,url,terms_url,source_url,starts_on,ends_on,cadence,required_data,privacy_tier,review_note,research_state) VALUES('research-only',2026,'2026:https://example.org/contest','Example','Research','Prize','https://example.org/contest','https://example.org/terms','https://example.org/source','2026-11-01','2026-12-31','single','Email','low','Research only','candidate')").run();
  const added=await call(addContest,'/api/admin/contests','POST',candidate(),'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
  assert.equal(added.status,201);
  assert.equal(sqlite.prepare('SELECT status FROM games').get().status,'review');
@@ -60,8 +61,8 @@ test('D1-shaped SQLite: admin approval, strict catalogue gate, separate users an
  assert.equal(before.blocked,1);
  assert.equal(before.truncated,false);
  assert.equal(before.total,1);
- assert.equal(before.research.total,0);
- assert.equal(before.research.candidates,0);
+ assert.equal(before.research.total,1);
+ assert.equal(before.research.candidates,1);
  assert.equal(before.blockers.missing_editorial,1);
  assert.equal(before.blockers.missing_form,1);
  assert.equal(before.blockers.missing_link,1);
