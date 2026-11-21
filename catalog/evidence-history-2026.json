@@ -68,8 +68,8 @@
       "newsletter_checked": false,
       "germany_eligible_checked": false,
       "daily_mechanic_checked": false,
-      "trust_status": "source_only",
-      "finding": "Kostenloses Benutzerkonto notwendig; keine zwingende Abo-Pflicht, AZ+ erhöht lediglich Gewinnchance. Registrierungsbedingungen erneut prüfen.",
+      "trust_status": "excluded",
+      "finding": "Original 2026 contest needs account and pickup; AZ general user terms allow personal-data-based personalized advertising. Exclude from family's low-marketing selection.",
       "reviewer": "assistant-research",
       "license_note": "Link und eigene kurze Zusammenfassung, kein Volltext übernommen"
     },
