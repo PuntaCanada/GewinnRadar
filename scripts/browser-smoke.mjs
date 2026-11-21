@@ -140,7 +140,7 @@ try{
   await adminPage.goto(base+'/admin/');
   await adminPage.getByRole('heading',{name:'Quellenhistorie 2026'}).waitFor();
   await adminPage.getByRole('button',{name:'Freigabereife prüfen'}).click();
-  await adminPage.getByText('0 freigabereif · 1 mit offenen Voraussetzungen. Keine automatische Veröffentlichung.').waitFor();
+  await adminPage.getByText('0 öffentlich sichtbar · 1 nicht öffentlich sichtbar. Keine automatische Veröffentlichung.').waitFor();
   await adminPage.getByText('Aktuelles Adventstürchen heute noch nicht geprüft').waitFor();
   await adminPage.locator('#evidenceCandidate').fill('wdr3-2026');
   await adminPage.locator('#evidenceUrl').fill('https://www1.wdr.de/radio/wdr3/schwerpunkte/wdr3-weihnacht/teilnahmebedingungen-adventskalender-102.html');
