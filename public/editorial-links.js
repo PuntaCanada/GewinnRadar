@@ -23,6 +23,8 @@ export function renderEditorialLinks(data,now=new Date()){
  const liveRoot=$('editorialLive'),futureRoot=$('adventPreview'),status=$('editorialStatus');
  if(!liveRoot||!futureRoot||!status)return;
  const {live,future}=eligibleEditorialLinks(data,now);
+ document.body.dataset.editorialLiveCount=String(live.length);
+ document.dispatchEvent(new Event('editorialLinksUpdated'));
  liveRoot.replaceChildren();futureRoot.replaceChildren();
  $('editorialCount').textContent=live.length+' aktuell geprüfte Originalaktion'+(live.length===1?'':'en');
  for(const g of live){
