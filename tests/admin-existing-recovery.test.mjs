@@ -19,7 +19,7 @@ function fixture(){
    run:async()=>{const z=sql.prepare(q).run(...args);return{meta:{changes:Number(z.changes)}}}
   }}}},
   async batch(stmts){sql.exec('BEGIN');try{
-   const results=stmts.map(s=>{const z=sql.prepare(s._q).run(...s._args);return{meta:{changes:Number(z.changes)}}});
+   const results=stmts.map(s=>{const stmt=sql.prepare(s._q);if(/^\s*SELECT\b/i.test(s._q)){const row=stmt.get(...s._args);return{results:row?[row]:[],meta:{changes:0}}}const z=stmt.run(...s._args);return{meta:{changes:Number(z.changes)}}});
    sql.exec('COMMIT');return results;
   }catch(e){sql.exec('ROLLBACK');throw e}}
  };
