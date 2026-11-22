@@ -111,13 +111,11 @@ export function updateAdventDisclosure(now=new Date()){
   try{preference=window.localStorage.getItem(ADVENT_DISCLOSURE_KEY)}catch{}
   details.open=preference==='1'?true:preference==='0'?false:active;
   details.dataset.adventInitialized='1';
-  details.addEventListener('toggle',()=>{
-   // Only persist user interaction, not programmatic initialization.
-   if(details.dataset.adventUserToggle!=='1')return;
-   try{window.localStorage.setItem(ADVENT_DISCLOSURE_KEY,details.open?'1':'0')}catch{}
-   details.dataset.adventUserToggle='0';
+  // A summary click is an explicit visitor decision. Persist the next state
+  // synchronously before navigation/reload; native toggle events may be delayed.
+  details.querySelector('summary')?.addEventListener('click',()=>{
+   try{window.localStorage.setItem(ADVENT_DISCLOSURE_KEY,details.open?'0':'1')}catch{}
   });
-  details.querySelector('summary')?.addEventListener('click',()=>{details.dataset.adventUserToggle='1'});
  }
  const summary=byId('adventAllHeading');
  if(summary)summary.textContent=details.open?'🎄 Adventskalender 2026 – zum Einklappen klicken':'🎄 Adventskalender 2026 – eingeklappt · zum Anzeigen klicken';
