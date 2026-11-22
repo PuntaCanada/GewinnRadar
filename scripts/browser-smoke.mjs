@@ -21,6 +21,31 @@ await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
 const base='http://127.0.0.1:'+server.address().port;
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
+  // Verify real browser date behavior in Europe/Berlin, independent of runner timezone.
+  // Fixed UTC noon is 13:00 Berlin time in November/December (CET).
+  for(const [isoDate,seasonOpen] of [
+    ['2026-11-30',false],['2026-12-01',true],
+    ['2026-12-24',true],['2026-12-25',false]
+  ]){
+    const ctx=await browser.newContext({viewport:{width:390,height:850},timezoneId:'Europe/Berlin'});
+    const page=await ctx.newPage();
+    await page.clock.setFixedTime(new Date(isoDate+'T12:00:00Z'));
+    await page.goto(base+'/');
+    await page.locator('#adventDailyDetails > summary').waitFor();
+    await page.waitForFunction(()=>document.querySelector('#adventDailyDetails')?.dataset.adventSeason!==undefined);
+    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),seasonOpen,'Advent auto disclosure on '+isoDate);
+    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),false,'Preview collapsed on '+isoDate);
+    const order=await page.locator('#editorialLinks').evaluate(el=>Boolean(el.compareDocumentPosition(document.querySelector('#adventDailyDetails')) & Node.DOCUMENT_POSITION_FOLLOWING));
+    assert.equal(order,true,'Regular draws precede Advent on '+isoDate);
+    const summary=await page.locator('#adventDailyDetails > summary').innerText();
+    assert.match(summary,seasonOpen?/heute Türchen öffnen/:/ab 1. Dezember/,'Season label on '+isoDate);
+    // Native disclosure remains user-operable without being reset on same-season refresh.
+    await page.locator('#adventDailyDetails > summary').click();
+    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),!seasonOpen,'Manual toggle on '+isoDate);
+    await page.locator('#adventPreviewDetails > summary').click();
+    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),true,'Preview toggle on '+isoDate);
+    await ctx.close();
+  }
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
