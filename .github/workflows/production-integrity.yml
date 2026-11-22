@@ -6,6 +6,7 @@ on:
     paths:
       - public/editorial-links-2026.json
       - public/advent-calendars-2026.json
+      - tests/advent-daily.test.mjs
       - public/advent-daily.js
       - public/index.html
       - scripts/verify-advent-production.mjs
@@ -16,6 +17,7 @@ on:
     paths:
       - public/editorial-links-2026.json
       - public/advent-calendars-2026.json
+      - tests/advent-daily.test.mjs
       - public/advent-daily.js
       - public/index.html
       - scripts/verify-advent-production.mjs
