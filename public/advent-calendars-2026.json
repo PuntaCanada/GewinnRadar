@@ -1013,6 +1013,133 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "advosoft-legal-advent-2026",
+      "organizer": "Advosoft GmbH",
+      "title": "Advosoft – juristisches Quiz mit zwei täglichen Gewinnen",
+      "url": "https://www.advosoft.de/adventskalender/",
+      "terms_url": "https://www.advosoft.de/adventskalender/teilnahmebedingungen/",
+      "open_time": "00:00",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf und Werbeeinwilligung; Erwachsene ab 18 mit Wohnsitz Deutschland. Täglich vier Antwortmöglichkeiten anklicken und E-Mail mit Code bestätigen, einmal pro Türchen. Keine Newsletterpflicht.",
+      "note": "1.–24.12.2026: pro Tag eine kostenlose Kanzleisoftware-Jahreslizenz plus ein Sachpreis oder Gutschein, zusätzlich Scanner-Hauptgewinn. Lizenz nur für Kanzlei oder Unternehmen in Deutschland einlösbar; für bestehende Kanzleien 12 Monate ohne Zahlung, anschließend ggf. kündigen. Die Sachpreise sind auch für Privatpersonen erreichbar.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.advosoft.de/adventskalender/teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "bobblume-netzlehrer-advent-2026",
+      "organizer": "Bob Blume / Netzlehrer",
+      "title": "Netzlehrer – tägliche kostenlose Instagram-Verlosung",
+      "url": "https://www.instagram.com/netzlehrer/",
+      "terms_url": "https://bobblume.de/2026/11/01/adventskalender/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf oder Newsletter, Instagram-Konto erforderlich. @netzlehrer folgen und täglich im Originalpost die Frage kommentieren; ab 18. Versand-Sachpreise nur an deutsche Adressen, digitale Gewinne auch international.",
+      "note": "2026 täglich eigenständiges Gewinnspiel vom 1.–24.12., bis 23:59 Uhr. Gewinner-Instagram-Name wird in Story genannt; Antwort auf DM binnen sieben Tagen, sonst verfällt Gewinn. Die konkreten Tagespreise stehen erst im jeweiligen Post.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://bobblume.de/2026/11/01/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "yellowchair-advent-2026",
+      "organizer": "Yellowchair / diekreidefarbe.de",
+      "title": "Yellowchair – 15 Advent-Verlosungen, Rabatte und Freebies",
+      "url": "https://diekreidefarbe.de/pages/adventskalender",
+      "terms_url": "https://diekreidefarbe.de/pages/teilnahmebedingungen-adventskalender",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "unless_post_differs"
+      },
+      "requirements": "Kostenlose Teilnahme ohne Kauf oder Pflicht-Newsletter, ab 18 mit Wohnsitz Deutschland. Pro Verlosungstag Formular (Name/E-Mail) ODER Kommentar auf Instagram/Facebook möglich; mehrere Wege erhöhen Chance nicht. Erinnerungs-E-Mail-Angebot schließt spätere Newsletterwerbung ein und ist freiwillig.",
+      "note": "WICHTIG: Von 24 Türen enthalten nur 15 echte Gewinnverlosungen, daneben 6 Angebote mit Rabatten und 3 kostenlose Basteltipps. Verlosungen regulär bis 23:59 Uhr; das Türchen am 24.12. bleibt bis 27.12. 23:59 offen. Kein täglicher Gewinn an jedem Kalendertag.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://diekreidefarbe.de/pages/teilnahmebedingungen-adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "boerde-therme-advent-2026",
+      "organizer": "Börde Therme Bad Sassendorf",
+      "title": "Börde Therme – kostenlose Online-Adventsverlosungen",
+      "url": "https://www.boerde-therme.de/teilnahmebedingung-adventskalender-2026/",
+      "terms_url": "https://www.boerde-therme.de/teilnahmebedingung-adventskalender-2026/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "unless_post_differs"
+      },
+      "requirements": "Kostenlos, kein Kauf oder Thermenbesuch, keine Newsletterpflicht, 18+ Deutschland. Beim jeweils geöffneten Tages-Türchen Rätsel oder Quiz lösen, angegebene Kontaktdaten zur Benachrichtigung hinterlegen.",
+      "note": "Offizielle Regeln: im Zeitraum 1.–24.12. **an ausgewählten Tagen** Verlosungen, also ausdrücklich NICHT garantiert 24 Tagespreise. Standard-Tagesfrist 00:00–23:59, einzelne Türchen können abweichen. Gewinne/Preisbedingungen am Tag prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.boerde-therme.de/teilnahmebedingung-adventskalender-2026/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "dgta-advent-2026",
+      "organizer": "Deutsche Gesellschaft für Transaktionsanalyse e. V.",
+      "title": "DGTA – 24 Tagesverlosungen mit Büchern und Seminaren",
+      "url": "https://dgta.de/adventskalender/",
+      "terms_url": "https://dgta.de/adventskalender/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlose Teilnahme ab 18; auf LinkedIn, Instagram oder Facebook DGTA folgen und Tagespost kommentieren. Newsletter oder Produktkauf auf Veranstalterseite nicht als Teilnahmebedingung genannt.",
+      "note": "Jeder Tag 1.–24.12. eigenes Gewinnspiel mit Büchern, Workshops/Kursen oder Supervision, bis 23:59 Uhr. Am 25.12. zusätzliche Hauptpreis-Aktion auf Veranstalterkanälen; nur 1.–24. erscheinen in der Tagesübersicht. Kontaktdaten werden an Gewinnsponsor weitergegeben, um Gewinn zu erfüllen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://dgta.de/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "hairloft-loxstedt-advent-2026",
+      "organizer": "Hairloft Loxstedt",
+      "title": "Hairloft – täglich kostenloses Quiz und ein Gewinn",
+      "url": "https://www.hairloft-loxstedt.de/advent/",
+      "terms_url": "https://www.hairloft-loxstedt.de/advent/teilnahmebedingungen",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:58",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, Salonsbesuch oder Newsletter, 18+, Deutschland. Täglich geöffnetes Onlineformular, Vorname, Nachname, bestätigte E-Mail via Code, eine Teilnahme pro Person und Türchen.",
+      "note": "24 eigenständige Tagesverlosungen 1.–24.12. Einsendungen um 23:59:00 Uhr oder später zählen laut Veranstalter NICHT mehr; darum zur Sicherheit vor 23:59 teilnehmen. Maximal ein Gewinn im ganzen Kalender. Bestimmte lokale Gewinne könnten Abholung oder Nebenkosten gemäß Tagesbeschreibung benötigen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.hairloft-loxstedt.de/advent/teilnahmebedingungen"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
