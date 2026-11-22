@@ -908,6 +908,90 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "urlaubsguru-advent-2026",
+      "organizer": "Urlaubsguru / UNIQ GmbH",
+      "title": "Urlaubsguru – täglich eine Reisepreis-Verlosung",
+      "url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "terms_url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlose Urlaubsguru-App und Nutzerkonto erforderlich; je Tag auf Teilnahme klicken und Link aus E-Mail bestätigen. Angaben Vor- und Nachname, E-Mail. Kein Kauf und kein kostenpflichtiges Abo für den Tagespreis angegeben.",
+      "note": "2026 offiziell bestätigt, täglich 1.–24.12. mit 24 Reise-Gewinnen. ACHTUNG: Original-FAQ widerspricht sich bei Tagesende (einmal 00:59:59, später 23:59:59); deshalb keine bestimmte Tagesfrist behaupten, immer direkt im jeweiligen Türchen nachsehen. Reise für zwei, zusätzliche Reisende kosten extra.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.urlaubsguru.de/info/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "gipfelfieber-advent-2026",
+      "organizer": "Gipfelfieber Outdoor Magazin",
+      "title": "Gipfelfieber – 24 Outdoor-Gewinnspiele",
+      "url": "https://gipfelfieber.com/outdoor-adventskalender/",
+      "terms_url": "https://gipfelfieber.com/outdoor-adventskalender-teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, kein Kauf, ab 14 und Wohnsitz Deutschland/Österreich/Schweiz. Vorname und E-Mail als Kommentar, E-Mail-Bestätigungslink nötig; zusätzliche Social-Media-Lose freiwillig.",
+      "note": "WICHTIG DATENSCHUTZ: Veranstalterregeln erlauben Weitergabe personenbezogener Daten an jeweilige Sponsoren auch zu Werbezwecken einschließlich E-Mail-Marketing, widerrufbar. Keine separate Pflicht-Newsletter-Anmeldung ausgewiesen, aber Werbenutzung muss einkalkuliert werden. Tagesfrist endet mit Deaktivierung der Kommentarfunktion, daher täglich prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://gipfelfieber.com/outdoor-adventskalender-teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "counterkompass-advent-2026",
+      "organizer": "TSS Touristik Service System GmbH",
+      "title": "CounterKompass – 24 Quiz-Verlosungen für Reisebüros",
+      "url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender",
+      "terms_url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf/Newsletter, aber tägliche Gewinne AUSSCHLIESSLICH für erwachsene Beschäftigte von Reisebüros. CounterKompass-Konto, E-Mail-Bestätigung und korrekte Tourismusfrage erforderlich.",
+      "note": "Originaler indexierter Veranstalter-Volltext für 2026 bestätigt tägliche eigene Ziehungen bis 23:59:59, keine Werbeweitergabe der Teilnehmerdaten an Sponsoren. Aktueller Direktabruf der Originalseite liefert HTTP 404: Teilnahmeweg deshalb vor Nutzung erneut kontrollieren. Für normale Privatpersonen nicht teilnahmeberechtigt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "himmlischschoen-advent-2026",
+      "organizer": "Himmlisch Schön, Bad Kreuznach",
+      "title": "Himmlisch Schön – tägliche Adventsvideos, nur einzelne Ziehungen",
+      "url": "https://himmlischschoen.de/adventskalender/",
+      "terms_url": "https://himmlischschoen.de/adventskalender/",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf/Termin, aber Teilnahme NUR durch persönlich unterschriebene Karte in einem Salon in Bad Kreuznach bis 23.12. und zwingende Newsletter-Anmeldung. 18+. Gewinner müssen Preise vor Ort abholen.",
+      "note": "24 tägliche Videos auf Instagram, aber AUSDRÜCKLICH nicht an jedem Tag eine Gewinnziehung. Die einmalige Salon-Anmeldung gilt für folgende Verlosungen, solange der Pflicht-Newsletter abonniert bleibt. Kein deutschlandweit digitaler Teilnahmeweg. Bot-Sperre beim Live-Abruf, 2026-Teilnahmebedingungen aber in vollständiger offizieller Suchindexfassung verfügbar.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://himmlischschoen.de/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
@@ -942,6 +1026,22 @@
       "url": "https://www.berliner-sparkasse.de/de/home/aktionen/sparkassen-adventskalender.html",
       "terms_url": "https://www.berliner-sparkasse.de/de/home/aktionen/sparkassen-adventskalender.html",
       "reason": "Aktuelle offizielle Seite nennt 24 kostenlose Türchen, aber einzelne eingeblendete Unterseiten verweisen noch auf Gewinner Januar 2026 und damit vermutlich 2025er Regeln. Konkrete 2026-Gewinnspielbedingungen nicht ausreichend belegt; keine Freigabe."
+    },
+    {
+      "id": "holidaycheck-advent-2026",
+      "organizer": "HolidayCheck",
+      "title": "HolidayCheck Reise-Adventskalender",
+      "url": "https://www.holidaycheck.ch/adventskalender",
+      "terms_url": "https://www.holidaycheck.ch/adventskalender",
+      "reason": "Live-Seite trägt noch den Titel Adventskalender-Gewinnspiel 2025 und meldet Aktion abgelaufen. Ein Suchergebnis deutet auf 2026 hin, aber keine vollständigen neuen Teilnahmebedingungen bestätigt."
+    },
+    {
+      "id": "statera-advent-2026",
+      "organizer": "STATERA Bikes",
+      "title": "STATERA Bikes – Instagram-Adventskalender 2026",
+      "url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
+      "terms_url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
+      "reason": "Indexierte offizielle 2026-Bedingungen vorhanden, direkter Original-Abruf derzeit HTTP 403. Teilnahmeschritte und Einschränkungen noch nicht lückenlos geprüft; kein bestätigter Eintrag."
     }
   ],
   "archive_candidates": []
