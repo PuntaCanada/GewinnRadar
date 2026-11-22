@@ -121,6 +121,8 @@ try{
     assert.equal(await page.locator('#editorialLive').getByRole('link',{name:'Offiziellen Teilnahmeweg prüfen'}).count(),28);
     assert.equal(await page.locator('#adventPreview .game').count(),1);
     assert.match(await page.locator('#editorialCount').innerText(),/42 recherchierte Originalaktionen/);
+    // Preview is deliberately collapsed; expand it to inspect its visible text.
+    await page.locator('#adventPreviewDetails > summary').click();
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     await page.getByText(/Kalender-Ende:/).waitFor();
