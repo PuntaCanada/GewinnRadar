@@ -31,19 +31,19 @@ try{
     const page=await ctx.newPage();
     await page.clock.setFixedTime(new Date(isoDate+'T12:00:00Z'));
     await page.goto(base+'/');
-    await page.locator('#adventDailyDetails > summary').waitFor();
-    await page.waitForFunction(()=>document.querySelector('#adventDailyDetails')?.dataset.adventSeason!==undefined);
-    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),seasonOpen,'Advent auto disclosure on '+isoDate);
-    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),false,'Preview collapsed on '+isoDate);
-    const order=await page.locator('#editorialLinks').evaluate(el=>Boolean(el.compareDocumentPosition(document.querySelector('#adventDailyDetails')) & Node.DOCUMENT_POSITION_FOLLOWING));
+    await page.locator('#adventAllDetails > summary').waitFor();
+    await page.waitForFunction(()=>document.querySelector('#adventAllDetails')?.dataset.adventInitialized==='1');
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),seasonOpen,'Advent auto disclosure on '+isoDate);
+    const order=await page.locator('#editorialLinks').evaluate(el=>Boolean(el.compareDocumentPosition(document.querySelector('#adventAllDetails')) & Node.DOCUMENT_POSITION_FOLLOWING));
     assert.equal(order,true,'Regular draws precede Advent on '+isoDate);
-    const summary=await page.locator('#adventDailyDetails > summary').innerText();
-    assert.match(summary,seasonOpen?/heute Türchen öffnen/:/ab 1. Dezember/,'Season label on '+isoDate);
+    const summary=await page.locator('#adventAllDetails > summary').innerText();
+    assert.match(summary,seasonOpen?/zum Einklappen klicken/:/zum Anzeigen klicken/,'Season label on '+isoDate);
     // Native disclosure remains user-operable without being reset on same-season refresh.
-    await page.locator('#adventDailyDetails > summary').click();
-    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),!seasonOpen,'Manual toggle on '+isoDate);
-    await page.locator('#adventPreviewDetails > summary').click();
-    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),true,'Preview toggle on '+isoDate);
+    await page.locator('#adventAllDetails > summary').click();
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),!seasonOpen,'Manual toggle on '+isoDate);
+    await page.reload();
+    await page.waitForFunction(()=>document.querySelector('#adventAllDetails')?.dataset.adventInitialized==='1');
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),!seasonOpen,'Persist manual choice on '+isoDate);
     await ctx.close();
   }
   for(const width of [390,1280]){
@@ -66,11 +66,11 @@ try{
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
     // Upcoming calendars must not obscure immediately playable regular contests.
-    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),false);
-    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),false);
-    assert.equal(await page.locator('#editorialLinks').evaluate(el=>el.compareDocumentPosition(document.querySelector('#adventDailyDetails')) & Node.DOCUMENT_POSITION_FOLLOWING),4);
-    await page.locator('#adventDailyDetails > summary').click();
-    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),true);
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),false);
+
+    assert.equal(await page.locator('#editorialLinks').evaluate(el=>el.compareDocumentPosition(document.querySelector('#adventAllDetails')) & Node.DOCUMENT_POSITION_FOLLOWING),4);
+    await page.locator('#adventAllDetails > summary').click();
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').count(),53);
     assert.equal(await page.locator('#adventCandidates .game').count(),9);
@@ -147,7 +147,6 @@ try{
     assert.equal(await page.locator('#adventPreview .game').count(),1);
     assert.match(await page.locator('#editorialCount').innerText(),/42 recherchierte Originalaktionen/);
     // Preview is deliberately collapsed; expand it to inspect its visible text.
-    await page.locator('#adventPreviewDetails > summary').click();
     assert.match(await page.locator('#adventPreview').innerText(),/Vorschau – nicht zur Teilnahme freigegeben/);
     await page.getByRole('heading',{name:/Was habe ich heute schon erledigt/}).waitFor();
     await page.getByText(/Kalender-Ende:/).waitFor();
