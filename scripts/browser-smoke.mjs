@@ -46,6 +46,28 @@ try{
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),!seasonOpen,'Persist manual choice on '+isoDate);
     await ctx.close();
   }
+  // Visitor preference survives a change of season; keyboard users can toggle too.
+  {
+    const ctx=await browser.newContext({viewport:{width:390,height:850},timezoneId:'Europe/Berlin'});
+    const page=await ctx.newPage();
+    await page.clock.setFixedTime(new Date('2026-11-30T12:00:00Z'));
+    await page.goto(base+'/');
+    const summary=page.locator('#adventAllDetails > summary');
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true,'Keyboard opens unified Advent');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('gewinnradar:advent:expanded:v1')),'1','Keyboard decision stored');
+    await page.clock.setFixedTime(new Date('2026-12-25T12:00:00Z'));
+    await page.reload();
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true,'User preference overrides season default');
+    assert.equal(await page.locator('#adventDaily').count(),1,'Daily section inside unified disclosure');
+    assert.equal(await page.locator('#adventPreviews').count(),1,'Preview section inside unified disclosure');
+    await summary.focus();
+    await page.keyboard.press('Space');
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),false,'Keyboard closes unified Advent');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('gewinnradar:advent:expanded:v1')),'0','Closed state stored');
+    await ctx.close();
+  }
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
