@@ -97,10 +97,26 @@ export async function loadAdvent(){
   const s=byId('adventTodayStatus');if(s)s.textContent='Advent-Quellen momentan nicht erreichbar; keine alten Links als aktuell bestätigt.';
  }
 }
+
+// Keep upcoming Advent sections below current giveaways and collapsed until December.
+// Native details remain independently operable by keyboard, touch and mouse.
+export function updateAdventDisclosure(now=new Date()){
+ const day=berlinDay(now);
+ const active=day>='2026-12-01'&&day<='2026-12-24';
+ const daily=byId('adventDailyDetails');
+ if(!daily)return;
+ const previouslyActive=daily.dataset.adventSeason==='active';
+ const previouslySet=daily.dataset.adventSeason!==undefined;
+ if(!previouslySet||previouslyActive!==active){daily.open=active;daily.dataset.adventSeason=active?'active':'preview';}
+ const summary=byId('adventDailyHeading');
+ if(summary)summary.textContent=active?'🎄 Adventskalender – heute Türchen öffnen':'🎄 Adventskalender 2026 – ab 1. Dezember';
+}
+
 if(typeof document!=='undefined'&&byId('adventToday')){
+ updateAdventDisclosure();
  byId('adventOnlyOpen')?.addEventListener('change',()=>paint());
  byId('adventOnlyToday')?.addEventListener('change',()=>paint());
  loadAdvent();
- document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadAdvent()});
- setInterval(()=>{if(document.visibilityState==='visible')paint(new Date())},60000);
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){updateAdventDisclosure();loadAdvent()}});
+ setInterval(()=>{if(document.visibilityState==='visible'){updateAdventDisclosure();paint(new Date())}},60000);
 }
