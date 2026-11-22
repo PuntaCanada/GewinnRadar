@@ -5,7 +5,11 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,35);
+ assert.equal(data.confirmed.length,47);
+ assert.match(data.confirmed.find(x=>x.id==='stadtgaertner-advent-2026').requirements,/Keine Kauf- oder Newsletterpflicht/);
+ assert.match(data.confirmed.find(x=>x.id==='urlaubsguru-advent-2026').note,/widerspricht sich/);
+ assert.match(data.confirmed.find(x=>x.id==='gipfelfieber-advent-2026').note,/Sponsoren/);
+ assert.match(data.confirmed.find(x=>x.id==='bsw-advent-2026').requirements,/BSW-Mitgliedschaft/);
  assert.equal(data.confirmed.filter(x=>['hager-advent-2026','reifen-mueller-advent-2026','entenkoje-advent-2026','adac-instagram-advent-2026','dm-advent-2026','mdr-sachsenradio-advent-2026'].includes(x.id)).length,6);
  const pilot=data.confirmed.find(g=>g.id==='pilot-advent-2026');
  const draco=data.confirmed.find(g=>g.id==='draco-advent-2026');
@@ -19,12 +23,12 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
  const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
  assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
- assert.equal(data.review_candidates.length,3);
+ assert.equal(data.review_candidates.length,9);
  assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,35);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,47);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Berlin day respects midnight independently of browser timezone',()=>{

@@ -760,6 +760,259 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "stadtgaertner-advent-2026",
+      "organizer": "Die Stadtgärtner",
+      "title": "Die Stadtgärtner – 24 kostenlose Türchen",
+      "url": "https://www.diestadtgaertner.de/pages/adventskalender-2026",
+      "terms_url": "https://www.diestadtgaertner.de/pages/teilnahmebedingungen-adventskalender-2026",
+      "open_time": "08:00",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlose Tagesformular-Verlosung ab 14 Jahren, Deutschland/Österreich/Schweiz, Name und E-Mail. Keine Kauf- oder Newsletterpflicht. Eigenständige Tagesgewinne; vereinzelte Türchen mit Rabatt statt Sachpreis.",
+      "note": "1.–24. Dezember; Start 1.12. um 08:00 Uhr. Kein belegter täglicher Teilnahme-Cutoff auf Minute; am jeweiligen Formular prüfen. Am 8.12. nur 8%-Rabatt, an 10./15./21.12.2026 in Bedingungen noch keine Preise eingetragen. Gewinner-Vorname und Wohnort können veröffentlicht werden.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.diestadtgaertner.de/pages/teilnahmebedingungen-adventskalender-2026"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "pincamp-advent-2026",
+      "organizer": "PiNCAMP GmbH by ADAC",
+      "title": "PiNCAMP – tägliche Facebook-Campinggewinne",
+      "url": "https://www.facebook.com/pincamp/",
+      "terms_url": "https://www.pincamp.de/unternehmen/social-media-gewinnspiel-datenschutz-und-teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, ab 18 Jahren mit Hauptwohnsitz Deutschland; Kommentar unter dem jeweiligen Original-Facebook-Tagespost. Kein Newsletter für diese Social-Media-Tagesgewinnspiele angegeben.",
+      "note": "Veranstalterregeln 2026: vom 1. bis einschließlich 26.12. täglich eigenständige Gewinne. Tagesfrist 23:59 Uhr. Die GewinnRadar-Tagesübersicht erfasst zunächst nur 1.–24.12.; 25./26.12. direkt beim Veranstalter prüfen. Preisbedingungen pro Beitrag beachten.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.pincamp.de/unternehmen/social-media-gewinnspiel-datenschutz-und-teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "bildspielt-advent-2026",
+      "organizer": "BILDspielt / kr3m",
+      "title": "BILDspielt – 24 Quiz-Türchen und 10.000-€-Hauptpreis",
+      "url": "https://spiele.bild.de/adventskalender/",
+      "terms_url": "https://spiele.bild.de/agb/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenloses tägliches Quiz und Online-Spiel, E-Mail-Registrierung zur Preisbenachrichtigung; Newsletter und Sponsoren-Newsletter sind laut Veranstalter zusätzliche Bonuslose, keine nachgewiesene Grundvoraussetzung. Optionales kostenpflichtiges Spiele-Abo NICHT erforderlich.",
+      "note": "24 Tagespreise und 10.000 € Hauptgewinn (Sponsor ATU). Genaue Tagesfrist am Originaltürchen prüfen; Newsletteroptionen für zusätzliche Lose getrennt. Veranstalter-Webseite 2026 ausdrücklich bestätigt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://spiele.bild.de/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "tankstelle-kern-advent-2026",
+      "organizer": "Tankstelle Kern, Nohfelden",
+      "title": "Tankstelle Kern – 24 kostenlose Social-Media-Tagespreise",
+      "url": "https://tankstelle-kern.de/adventskalender-2026/",
+      "terms_url": "https://tankstelle-kern.de/adventskalender-2026/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, Kundenkarte, Newsletter oder Vertragsabschluss, 18+, Wohnsitz Deutschland. Facebook ODER Instagram Tagespost kommentieren; Folgen, Teilen und Personen markieren sind NICHT Pflicht.",
+      "note": "Regulär bis 23:59 Uhr je Tagesbeitrag, Tank-, Shop- und Autowäschegutscheine sowie Pflegeprodukte. Manche Gewinne nur vor Ort in Nohfelden sinnvoll; Hauptpreis am 24.12. 199-€-Fahrzeugaufbereitungsgutschein ohne Zuzahlungspflicht.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://tankstelle-kern.de/adventskalender-2026/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "7evenstudios-advent-2026",
+      "organizer": "7evenStudios, Reutlingen",
+      "title": "7evenStudios – tägliche Webdesign-Verlosungen",
+      "url": "https://7evenstudios.de/adventskalender/index.html",
+      "terms_url": "https://7evenstudios.de/adventskalender/index.html",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Warenkauf, aber verpflichtendes Instagram-Follow und Werbe-Newsletter mit E-Mail-Double-Opt-in. Nur volljährige Unternehmen, Selbstständige und Gründende mit Wohnsitz Deutschland. Bis zu ein Gewinn pro Person.",
+      "note": "Tägliche Verlosung von Leistungen (Websites, Logos, Designs); selbst bei gewonnenen Websites ist Hosting ggf. kostenpflichtig (laut Anbieter 90 € pro Jahr). Rabattstufen sind KEINE Gratisgewinne. Nicht für allgemeine Privatteilnahme geeignet.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://7evenstudios.de/adventskalender/index.html"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "livento-advent-2026",
+      "organizer": "Livento Bildungsinstitut",
+      "title": "Livento – 24 Pflegequiz-Türchen für Abschlussziehung",
+      "url": "https://livento-bildung.de/adventskalender-teilnahmebedingungen/",
+      "terms_url": "https://livento-bildung.de/adventskalender-teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf, 18+, Deutschland. Drei Wissensfragen täglich, erste Teilnahme mit Name, E-Mail, Telefonnummer, Einrichtung und Position. Newsletter freiwillig. Pflegeorientiertes berufliches Quiz.",
+      "note": "KEINE täglichen Preisziehungen: täglich Lichtpunkte sammeln, die Etappen für eine gemeinsame Auslosung von 146 Kurs-/Weiterbildungsgewinnen am 07.01.2027 freischalten. Vorab-Registrierung bis 30.11. mit 3 Bonuspunkten; Gutscheine sind teils Rabatt auf zahlungspflichtige Kurse.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://livento-bildung.de/adventskalender-teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "drkservice-advent-2026",
+      "organizer": "DRK-Service GmbH",
+      "title": "DRK-Service – tägliche Buchstaben für eine Schlussverlosung",
+      "url": "https://www.drkservice.de/gewinnspiel-online",
+      "terms_url": "https://www.drkservice.de/gewinnspiel-online",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf oder Newsletter, aber ausschließlich für Mitarbeitende/Ehrenamtliche einer DRK-Einrichtung oder Gliederung in Deutschland ab 18 Jahren. Auf Facebook/Instagram 24 Türchen ansehen, Buchstaben sammeln, Lösungswort bis 28.12. einmalig per E-Mail einsenden.",
+      "note": "KEINE Tagesziehung: Die 24 Posts liefern Buchstaben für EIN Lösungswort; unter allen Einsendungen werden am 29.12. drei Fanpakete ausgelost. Nur DRK-Mitglieder bzw. dort Tätige teilnahmeberechtigt. Daten nicht für Werbung.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.drkservice.de/gewinnspiel-online"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "urlaubsguru-advent-2026",
+      "organizer": "Urlaubsguru / UNIQ GmbH",
+      "title": "Urlaubsguru – täglich eine Reisepreis-Verlosung",
+      "url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "terms_url": "https://www.urlaubsguru.de/info/adventskalender/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlose Urlaubsguru-App und Nutzerkonto erforderlich; je Tag auf Teilnahme klicken und Link aus E-Mail bestätigen. Angaben Vor- und Nachname, E-Mail. Kein Kauf und kein kostenpflichtiges Abo für den Tagespreis angegeben.",
+      "note": "2026 offiziell bestätigt, täglich 1.–24.12. mit 24 Reise-Gewinnen. ACHTUNG: Original-FAQ widerspricht sich bei Tagesende (einmal 00:59:59, später 23:59:59); deshalb keine bestimmte Tagesfrist behaupten, immer direkt im jeweiligen Türchen nachsehen. Reise für zwei, zusätzliche Reisende kosten extra.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.urlaubsguru.de/info/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "gipfelfieber-advent-2026",
+      "organizer": "Gipfelfieber Outdoor Magazin",
+      "title": "Gipfelfieber – 24 Outdoor-Gewinnspiele",
+      "url": "https://gipfelfieber.com/outdoor-adventskalender/",
+      "terms_url": "https://gipfelfieber.com/outdoor-adventskalender-teilnahmebedingungen/",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos, kein Kauf, ab 14 und Wohnsitz Deutschland/Österreich/Schweiz. Vorname und E-Mail als Kommentar, E-Mail-Bestätigungslink nötig; zusätzliche Social-Media-Lose freiwillig.",
+      "note": "WICHTIG DATENSCHUTZ: Veranstalterregeln erlauben Weitergabe personenbezogener Daten an jeweilige Sponsoren auch zu Werbezwecken einschließlich E-Mail-Marketing, widerrufbar. Keine separate Pflicht-Newsletter-Anmeldung ausgewiesen, aber Werbenutzung muss einkalkuliert werden. Tagesfrist endet mit Deaktivierung der Kommentarfunktion, daher täglich prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://gipfelfieber.com/outdoor-adventskalender-teilnahmebedingungen/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "counterkompass-advent-2026",
+      "organizer": "TSS Touristik Service System GmbH",
+      "title": "CounterKompass – 24 Quiz-Verlosungen für Reisebüros",
+      "url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender",
+      "terms_url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos ohne Kauf/Newsletter, aber tägliche Gewinne AUSSCHLIESSLICH für erwachsene Beschäftigte von Reisebüros. CounterKompass-Konto, E-Mail-Bestätigung und korrekte Tourismusfrage erforderlich.",
+      "note": "Originaler indexierter Veranstalter-Volltext für 2026 bestätigt tägliche eigene Ziehungen bis 23:59:59, keine Werbeweitergabe der Teilnehmerdaten an Sponsoren. Aktueller Direktabruf der Originalseite liefert HTTP 404: Teilnahmeweg deshalb vor Nutzung erneut kontrollieren. Für normale Privatpersonen nicht teilnahmeberechtigt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://www.counterkompass.de/teilnahmebedingungen-counterkompass-adventskalender"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "himmlischschoen-advent-2026",
+      "organizer": "Himmlisch Schön, Bad Kreuznach",
+      "title": "Himmlisch Schön – tägliche Adventsvideos, nur einzelne Ziehungen",
+      "url": "https://himmlischschoen.de/adventskalender/",
+      "terms_url": "https://himmlischschoen.de/adventskalender/",
+      "daily_deadline": {
+        "type": "per_post",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Kostenlos ohne Kauf/Termin, aber Teilnahme NUR durch persönlich unterschriebene Karte in einem Salon in Bad Kreuznach bis 23.12. und zwingende Newsletter-Anmeldung. 18+. Gewinner müssen Preise vor Ort abholen.",
+      "note": "24 tägliche Videos auf Instagram, aber AUSDRÜCKLICH nicht an jedem Tag eine Gewinnziehung. Die einmalige Salon-Anmeldung gilt für folgende Verlosungen, solange der Pflicht-Newsletter abonniert bleibt. Kein deutschlandweit digitaler Teilnahmeweg. Bot-Sperre beim Live-Abruf, 2026-Teilnahmebedingungen aber in vollständiger offizieller Suchindexfassung verfügbar.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://himmlischschoen.de/adventskalender/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
+    },
+    {
+      "id": "bsw-advent-2026",
+      "organizer": "BSW Verbraucher-Service Beamten-Selbsthilfewerk GmbH",
+      "title": "BSW – 24 Advents-Türchen für bestehende Mitglieder",
+      "url": "https://adventskalender.bsw.de/",
+      "terms_url": "https://adventskalender.bsw.de/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Die Tagesverlosung selbst ist kostenlos und für mindestens 16-Jährige mit Wohnsitz Deutschland; Teilnahme jedoch NUR mit bestehender BSW-Mitgliedschaft möglich. Mögliche Mitgliedsbeiträge sind kein Bestandteil des Gewinnspiels; nicht als öffentlich frei zugänglich einstufen.",
+      "note": "Täglich 1.–24. Dezember 2026 je ein Formular; BSW-Mitgliedschaft ausdrücklich zwingend. Keine frei zugängliche Teilnahme ohne Mitgliedschaft nachgewiesen. Gewinner/Preise pro Türchen prüfen, genaue tägliche Einsendefrist nicht genannt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://adventskalender.bsw.de/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
@@ -786,6 +1039,54 @@
       "url": "https://spiele.connect.de/adventskalender/",
       "terms_url": "https://spiele.connect.de/adventskalender/",
       "reason": "Offizielle 2026er Startseite bestätigt täglich spielen und Kreuzfahrt-Hauptpreis; echte aktuelle 2026er Teilnahmebedingungen/Formular konnten beim Direktabruf wegen HTTP 403 nicht vollständig kontrolliert werden."
+    },
+    {
+      "id": "berliner-sparkasse-advent-2026",
+      "organizer": "Berliner Sparkasse",
+      "title": "S-Adventskalender – 24 kostenlose Türchen",
+      "url": "https://www.berliner-sparkasse.de/de/home/aktionen/sparkassen-adventskalender.html",
+      "terms_url": "https://www.berliner-sparkasse.de/de/home/aktionen/sparkassen-adventskalender.html",
+      "reason": "Aktuelle offizielle Seite nennt 24 kostenlose Türchen, aber einzelne eingeblendete Unterseiten verweisen noch auf Gewinner Januar 2026 und damit vermutlich 2025er Regeln. Konkrete 2026-Gewinnspielbedingungen nicht ausreichend belegt; keine Freigabe."
+    },
+    {
+      "id": "holidaycheck-advent-2026",
+      "organizer": "HolidayCheck",
+      "title": "HolidayCheck Reise-Adventskalender",
+      "url": "https://www.holidaycheck.ch/adventskalender",
+      "terms_url": "https://www.holidaycheck.ch/adventskalender",
+      "reason": "Live-Seite trägt noch den Titel Adventskalender-Gewinnspiel 2025 und meldet Aktion abgelaufen. Ein Suchergebnis deutet auf 2026 hin, aber keine vollständigen neuen Teilnahmebedingungen bestätigt."
+    },
+    {
+      "id": "statera-advent-2026",
+      "organizer": "STATERA Bikes",
+      "title": "STATERA Bikes – Instagram-Adventskalender 2026",
+      "url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
+      "terms_url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
+      "reason": "Indexierte offizielle 2026-Bedingungen vorhanden, direkter Original-Abruf derzeit HTTP 403. Teilnahmeschritte und Einschränkungen noch nicht lückenlos geprüft; kein bestätigter Eintrag."
+    },
+    {
+      "id": "kaldewei-weeks-2026",
+      "organizer": "KALDEWEI",
+      "title": "KALDEWEI – vier wöchentliche Hotelsuiten-Verlosungen",
+      "url": "https://www.kaldewei.de/unternehmen/geschenkesuche/",
+      "terms_url": "https://www.kaldewei.de/unternehmen/geschenkesuche/",
+      "reason": "Originalseite bestätigt Start 23.11.2026 und 4 wöchentliche Gewinnrunden, aber kein tägliches Türchen und konkrete Wochenfristen fehlen aktuell. Nicht als 24-Tage-Adventskalender ausweisen."
+    },
+    {
+      "id": "hessnatur-advent-2026",
+      "organizer": "hessnatur",
+      "title": "hessnatur – Adventskalender ab Dezember",
+      "url": "https://adventskalender.hessnatur.com/",
+      "terms_url": "https://adventskalender.hessnatur.com/",
+      "reason": "Originalseite zeigt 230+ Gewinne und optionale Erinnerungsregistrierung, aber keine explizit datierten 2026er Teilnahmebedingungen zur eigentlichen Tagesverlosung geprüft; frühere Jahresbedingungen nicht übertragen."
+    },
+    {
+      "id": "urlaubsextras-advent-2026",
+      "organizer": "Holiday Extras",
+      "title": "Holiday Extras – Dezember-Gewinnspiele",
+      "url": "https://www.holidayextras.com/de/adventskalender.html",
+      "terms_url": "https://www.holidayextras.com/de/adventskalender-teilnahmebedingungen.html",
+      "reason": "Die öffentlich abrufbaren Originalbedingungen tragen 2025, inklusive Newsletterpflicht. Keine Übertragung auf 2026, bevor Veranstalter eigene 2026er Regeln veröffentlicht."
     }
   ],
   "archive_candidates": []
