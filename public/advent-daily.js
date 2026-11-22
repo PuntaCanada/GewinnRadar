@@ -98,18 +98,34 @@ export async function loadAdvent(){
  }
 }
 
-// Keep upcoming Advent sections below current giveaways and collapsed until December.
-// Native details remain independently operable by keyboard, touch and mouse.
+// A single visitor-controlled disclosure covers both daily Advent and previews.
+// Explicit user preference wins over the December default, including on reload.
+const ADVENT_DISCLOSURE_KEY='gewinnradar:advent:expanded:v1';
 export function updateAdventDisclosure(now=new Date()){
  const day=berlinDay(now);
  const active=day>='2026-12-01'&&day<='2026-12-24';
- const daily=byId('adventDailyDetails');
- if(!daily)return;
- const previouslyActive=daily.dataset.adventSeason==='active';
- const previouslySet=daily.dataset.adventSeason!==undefined;
- if(!previouslySet||previouslyActive!==active){daily.open=active;daily.dataset.adventSeason=active?'active':'preview';}
- const summary=byId('adventDailyHeading');
- if(summary)summary.textContent=active?'🎄 Adventskalender – heute Türchen öffnen':'🎄 Adventskalender 2026 – ab 1. Dezember';
+ const details=byId('adventAllDetails');
+ if(!details)return;
+ if(details.dataset.adventInitialized!=='1'){
+  let preference=null;
+  try{preference=window.localStorage.getItem(ADVENT_DISCLOSURE_KEY)}catch{}
+  details.open=preference==='1'?true:preference==='0'?false:active;
+  details.dataset.adventInitialized='1';
+  details.addEventListener('toggle',()=>{
+   // Only persist user interaction, not programmatic initialization.
+   if(details.dataset.adventUserToggle!=='1')return;
+   try{window.localStorage.setItem(ADVENT_DISCLOSURE_KEY,details.open?'1':'0')}catch{}
+   details.dataset.adventUserToggle='0';
+  });
+  details.querySelector('summary')?.addEventListener('click',()=>{details.dataset.adventUserToggle='1'});
+ }
+ const summary=byId('adventAllHeading');
+ if(summary)summary.textContent=details.open?'🎄 Adventskalender 2026 – zum Einklappen klicken':'🎄 Adventskalender 2026 – eingeklappt · zum Anzeigen klicken';
+ // The summary text follows both user clicks and seasonal defaults.
+ if(details.dataset.adventSummaryBound!=='1'){
+  details.addEventListener('toggle',()=>{const heading=byId('adventAllHeading');if(heading)heading.textContent=details.open?'🎄 Adventskalender 2026 – zum Einklappen klicken':'🎄 Adventskalender 2026 – eingeklappt · zum Anzeigen klicken'});
+  details.dataset.adventSummaryBound='1';
+ }
 }
 
 if(typeof document!=='undefined'&&byId('adventToday')){
