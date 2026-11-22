@@ -34,6 +34,16 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,53);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
+test('Advent 2026 cannot silently double-count a source or promote unverified old-year material',()=>{
+ const ids=[...data.confirmed,...data.review_candidates].map(x=>x.id);
+ assert.equal(new Set(ids).size,ids.length,'calendar and pending candidate ids must be unique');
+ assert.ok(data.confirmed.every(x=>/^https:\/\//.test(x.source_audit.evidence_url)));
+ assert.ok(data.confirmed.every(x=>x.source_audit.checked_on==='2026-11-21'||x.source_audit.checked_on==='2026-11-22'));
+ assert.ok(data.confirmed.every(x=>!x.id.endsWith('2025')),'prior year cannot be counted as 2026');
+ for(const x of data.review_candidates)assert.ok(!data.confirmed.some(y=>y.id===x.id),'unverified sources never counted as confirmed');
+ assert.ok(data.review_candidates.some(x=>x.id==='holidaycheck-advent-2026'),'2025 page stays pending');
+});
+
 test('Berlin day respects midnight independently of browser timezone',()=>{
  assert.equal(berlinDay(at('2026-11-30T23:30:00Z')),'2026-12-01');
  assert.equal(berlinDay(at('2026-12-01T23:30:00Z')),'2026-12-02');
