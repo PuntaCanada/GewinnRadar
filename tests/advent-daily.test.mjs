@@ -5,7 +5,10 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,47);
+ assert.equal(data.confirmed.length,53);
+ for(const id of ['advosoft-legal-advent-2026','bobblume-netzlehrer-advent-2026','yellowchair-advent-2026','boerde-therme-advent-2026','dgta-advent-2026','hairloft-loxstedt-advent-2026'])assert.ok(data.confirmed.some(x=>x.id===id));
+ assert.match(data.confirmed.find(x=>x.id==='yellowchair-advent-2026').note,/nur 15 echte Gewinnverlosungen/);
+ assert.match(data.confirmed.find(x=>x.id==='boerde-therme-advent-2026').note,/an ausgewählten Tagen/);
  assert.match(data.confirmed.find(x=>x.id==='stadtgaertner-advent-2026').requirements,/Keine Kauf- oder Newsletterpflicht/);
  assert.match(data.confirmed.find(x=>x.id==='urlaubsguru-advent-2026').note,/widerspricht sich/);
  assert.match(data.confirmed.find(x=>x.id==='gipfelfieber-advent-2026').note,/Sponsoren/);
@@ -28,7 +31,7 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,47);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,53);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Berlin day respects midnight independently of browser timezone',()=>{
@@ -40,6 +43,9 @@ test('daily deadline only enforced when independently supported, never invented'
  const joska=data.confirmed.find(g=>g.id==='joska-advent-2026');
  const sz=data.confirmed.find(g=>g.id==='sz-advent-2026');
  const online=data.confirmed.find(g=>g.id==='t-online-advent-2026');
+ const hair=data.confirmed.find(g=>g.id==='hairloft-loxstedt-advent-2026');
+ assert.equal(dailyState(hair,at('2026-12-01T23:58:59+01:00')),'today');
+ assert.equal(dailyState(hair,at('2026-12-01T23:59:00+01:00')),'deadline-passed');
  const pilot=data.confirmed.find(g=>g.id==='pilot-advent-2026');
  const draco=data.confirmed.find(g=>g.id==='draco-advent-2026');
  assert.equal(dailyState(pilot,at('2026-12-02T12:00:00+01:00')),'outside');
