@@ -40,6 +40,12 @@ try{
     await page.getByRole('heading',{name:/Willkommen, Mama/}).waitFor();
     await page.getByRole('heading',{name:'Jetzt direkt beim Veranstalter teilnehmen'}).waitFor();
     await page.locator('#editorialLive .game').first().waitFor();
+    // Upcoming calendars must not obscure immediately playable regular contests.
+    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),false);
+    assert.equal(await page.locator('#adventPreviewDetails').evaluate(el=>el.open),false);
+    assert.equal(await page.locator('#editorialLinks').evaluate(el=>el.compareDocumentPosition(document.querySelector('#adventDailyDetails')) & Node.DOCUMENT_POSITION_FOLLOWING),4);
+    await page.locator('#adventDailyDetails > summary').click();
+    assert.equal(await page.locator('#adventDailyDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').count(),53);
     assert.equal(await page.locator('#adventCandidates .game').count(),9);
