@@ -774,7 +774,7 @@
         "certainty": "not_verified"
       },
       "requirements": "Kostenlose Tagesformular-Verlosung ab 14 Jahren, Deutschland/Österreich/Schweiz, Name und E-Mail. Keine Kauf- oder Newsletterpflicht. Eigenständige Tagesgewinne; vereinzelte Türchen mit Rabatt statt Sachpreis.",
-      "note": "1.–24. Dezember; Start 1.12. um 08:00 Uhr. Kein belegter täglicher Teilnahme-Cutoff auf Minute; am jeweiligen Formular prüfen. Am 8.12. nur 8%-Rabatt, an 10./15./21.11.2026 in Bedingungen noch keine Preise eingetragen. Gewinner-Vorname und Wohnort können veröffentlicht werden.",
+      "note": "1.–24. Dezember; Start 1.12. um 08:00 Uhr. Kein belegter täglicher Teilnahme-Cutoff auf Minute; am jeweiligen Formular prüfen. Am 8.12. nur 8%-Rabatt, an 10./15./21.12.2026 in Bedingungen noch keine Preise eingetragen. Gewinner-Vorname und Wohnort können veröffentlicht werden.",
       "source_audit": {
         "status": "confirmed",
         "checked_on": "2026-11-22",
@@ -992,6 +992,27 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "bsw-advent-2026",
+      "organizer": "BSW Verbraucher-Service Beamten-Selbsthilfewerk GmbH",
+      "title": "BSW – 24 Advents-Türchen für bestehende Mitglieder",
+      "url": "https://adventskalender.bsw.de/",
+      "terms_url": "https://adventskalender.bsw.de/",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": null,
+        "certainty": "not_verified"
+      },
+      "requirements": "Die Tagesverlosung selbst ist kostenlos und für mindestens 16-Jährige mit Wohnsitz Deutschland; Teilnahme jedoch NUR mit bestehender BSW-Mitgliedschaft möglich. Mögliche Mitgliedsbeiträge sind kein Bestandteil des Gewinnspiels; nicht als öffentlich frei zugänglich einstufen.",
+      "note": "Täglich 1.–24. Dezember 2026 je ein Formular; BSW-Mitgliedschaft ausdrücklich zwingend. Keine frei zugängliche Teilnahme ohne Mitgliedschaft nachgewiesen. Gewinner/Preise pro Türchen prüfen, genaue tägliche Einsendefrist nicht genannt.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-22",
+        "evidence_url": "https://adventskalender.bsw.de/"
+      },
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24"
     }
   ],
   "review_candidates": [
@@ -1042,6 +1063,30 @@
       "url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
       "terms_url": "https://www.staterabikes.de/rechtliches/teilnahmebedingungen/",
       "reason": "Indexierte offizielle 2026-Bedingungen vorhanden, direkter Original-Abruf derzeit HTTP 403. Teilnahmeschritte und Einschränkungen noch nicht lückenlos geprüft; kein bestätigter Eintrag."
+    },
+    {
+      "id": "kaldewei-weeks-2026",
+      "organizer": "KALDEWEI",
+      "title": "KALDEWEI – vier wöchentliche Hotelsuiten-Verlosungen",
+      "url": "https://www.kaldewei.de/unternehmen/geschenkesuche/",
+      "terms_url": "https://www.kaldewei.de/unternehmen/geschenkesuche/",
+      "reason": "Originalseite bestätigt Start 23.11.2026 und 4 wöchentliche Gewinnrunden, aber kein tägliches Türchen und konkrete Wochenfristen fehlen aktuell. Nicht als 24-Tage-Adventskalender ausweisen."
+    },
+    {
+      "id": "hessnatur-advent-2026",
+      "organizer": "hessnatur",
+      "title": "hessnatur – Adventskalender ab Dezember",
+      "url": "https://adventskalender.hessnatur.com/",
+      "terms_url": "https://adventskalender.hessnatur.com/",
+      "reason": "Originalseite zeigt 230+ Gewinne und optionale Erinnerungsregistrierung, aber keine explizit datierten 2026er Teilnahmebedingungen zur eigentlichen Tagesverlosung geprüft; frühere Jahresbedingungen nicht übertragen."
+    },
+    {
+      "id": "urlaubsextras-advent-2026",
+      "organizer": "Holiday Extras",
+      "title": "Holiday Extras – Dezember-Gewinnspiele",
+      "url": "https://www.holidayextras.com/de/adventskalender.html",
+      "terms_url": "https://www.holidayextras.com/de/adventskalender-teilnahmebedingungen.html",
+      "reason": "Die öffentlich abrufbaren Originalbedingungen tragen 2025, inklusive Newsletterpflicht. Keine Übertragung auf 2026, bevor Veranstalter eigene 2026er Regeln veröffentlicht."
     }
   ],
   "archive_candidates": []
