@@ -1128,11 +1128,12 @@
       "terms_url": "https://www.hairloft-loxstedt.de/advent/teilnahmebedingungen",
       "daily_deadline": {
         "type": "same_day",
-        "time": "23:58",
-        "certainty": "confirmed"
+        "time": "23:59",
+        "certainty": "confirmed",
+        "exclusive": true
       },
       "requirements": "Kostenlos ohne Kauf, Salonsbesuch oder Newsletter, 18+, Deutschland. Täglich geöffnetes Onlineformular, Vorname, Nachname, bestätigte E-Mail via Code, eine Teilnahme pro Person und Türchen.",
-      "note": "24 eigenständige Tagesverlosungen 1.–24.12. Einsendungen um 23:59:00 Uhr oder später zählen laut Veranstalter NICHT mehr; darum zur Sicherheit vor 23:59 teilnehmen. Maximal ein Gewinn im ganzen Kalender. Bestimmte lokale Gewinne könnten Abholung oder Nebenkosten gemäß Tagesbeschreibung benötigen.",
+      "note": "24 eigenständige Tagesverlosungen 1.–24.12. Einsendungen um 23:59:00 Uhr oder später zählen laut Veranstalter NICHT mehr; darum unbedingt vor 23:59:00 teilnehmen. Maximal ein Gewinn im ganzen Kalender. Bestimmte lokale Gewinne könnten Abholung oder Nebenkosten gemäß Tagesbeschreibung benötigen.",
       "source_audit": {
         "status": "confirmed",
         "checked_on": "2026-11-22",
