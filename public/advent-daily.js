@@ -26,7 +26,7 @@ export function dailyState(game,now=new Date()){
  const d=game.daily_deadline||{};
  if(game.open_time&&/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(game.open_time)&&now.getTime()<berlinDateTime(day,game.open_time))return 'not-open-yet';
  if(d.type==='same_day'&&d.time&& /^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(d.time)){
-  if(d.certainty!=='not_verified'&&now.getTime()>=berlinDateTime(day,d.time)+60000)return 'deadline-passed';
+  if(d.certainty!=='not_verified'&&now.getTime()>=(berlinDateTime(day,d.time)+(d.exclusive===true?0:60000)))return 'deadline-passed';
  }
  return 'today';
 }
