@@ -61,3 +61,10 @@ body:not(.has-user) #d1CatalogHeading,body:not(.has-user) #d1CatalogHeading + p,
 #adventDaily .action a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
 #adventDaily .guest-progress{margin-bottom:16px}
 @media(max-width:600px){#adventDaily{padding:12px;margin:14px 0 22px}#adventDaily .action{flex-direction:column;align-items:stretch}#adventDaily .action a{width:100%}}
+
+/* Accessible, independent Advent disclosures. Regular giveaways always come first. */
+.catalog-fold{margin:24px 0;border:2px solid #aacfb4;border-radius:16px;background:#f7fcf7;overflow:hidden}
+.catalog-fold>summary{display:list-item;cursor:pointer;font-size:1.2rem;font-weight:800;padding:18px 22px;min-height:58px}
+.catalog-fold>summary:focus-visible{outline:3px solid #ffb000;outline-offset:-3px}
+.catalog-fold>section{margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;padding:0 18px 18px!important}
+@media(max-width:600px){.catalog-fold>summary{padding:16px}.catalog-fold>section{padding:0 12px 12px!important}}
