@@ -1141,6 +1141,27 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
+    },
+    {
+      "id": "visitmosel-advent-2026",
+      "organizer": "Mosellandtouristik GmbH",
+      "title": "Mosel-Adventskalender – 24 Tagesgewinne, auch Kurzurlaub",
+      "url": "https://www.visitmosel.de/adventskalender",
+      "terms_url": "https://www.visitmosel.de/adventskalender/teilnahmebedingungen",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "verified"
+      },
+      "requirements": "Kostenlos, ab 18, Wohnsitz Deutschland, Österreich, Luxemburg oder Schweiz; täglich Türchen öffnen, Gewinnfrage beantworten und Teilnahmeformular absenden. Keine Registrierung, kein Kauf und kein Newsletter erforderlich.",
+      "note": "Jedes Türchen nur am jeweiligen Kalendertag 00:00–23:59 spielbar; ein Eintrag pro Person und Tag. Preise u. a. Wein, kulinarische Erlebnisse, Tickets und Kurzurlaub an der Mosel. Optionaler Adventskalender-Newsletter endet automatisch am 25.12. An- und Abreise bei Reisegewinnen grundsätzlich auf eigene Kosten, sofern nicht ausdrücklich anders angegeben.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-23",
+        "evidence_url": "https://www.visitmosel.de/adventskalender/teilnahmebedingungen"
+      }
     }
   ],
   "review_candidates": [
