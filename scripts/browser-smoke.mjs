@@ -96,7 +96,7 @@ try{
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);
-    assert.equal(await page.locator('#editorialReview .game').count(),3);
+    assert.equal(await page.locator('#editorialReview .game').count(),4);
     await page.locator('#editorialReview').getByRole('heading',{name:/Berghaus/}).waitFor();
     await page.locator('#editorialReview').getByRole('heading',{name:/Saal-Digital/}).waitFor();
     assert.match(await page.locator('#editorialReview').innerText(),/nicht zur Teilnahme freigegeben/i);
