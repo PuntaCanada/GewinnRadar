@@ -92,11 +92,11 @@ try{
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').count(),54);
-    assert.equal(await page.locator('#adventCandidates .game').count(),18);
+    assert.equal(await page.locator('#adventCandidates .game').count(),19);
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);
-    assert.equal(await page.locator('#editorialReview .game').count(),4);
+    assert.equal(await page.locator('#editorialReview .game').count(),5);
     await page.locator('#editorialReview').getByRole('heading',{name:/Berghaus/}).waitFor();
     await page.locator('#editorialReview').getByRole('heading',{name:/Saal-Digital/}).waitFor();
     assert.match(await page.locator('#editorialReview').innerText(),/nicht zur Teilnahme freigegeben/i);
