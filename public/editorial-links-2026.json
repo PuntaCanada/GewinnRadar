@@ -969,6 +969,28 @@
         "evidence_url": "https://www.biomassehof.de/gewinnspiel/",
         "summary": "Originale kostenlose Registrierung mit Formular, Teilnahmebedingungen (01.01.2025–31.12.2026), Liefergebiets- und Bunker-Einschränkungen samt Namensveröffentlichung lesbar; kein Formular abgesendet."
       }
+    },
+    {
+      "id": "edeka-ferrero-fest-mit-herz-2026",
+      "organizer": "FERRERO Deutschland GmbH in Kooperation mit EDEKA",
+      "title": "Unser Fest mit Herz – täglich über 5.800 Gewinne",
+      "prize": "22 Reisegutscheine à 5.000 €, 222 EDEKA-Gutscheine à 150 €, Küchenmaschinen, Airfryer und weitere Gewinne",
+      "url": "https://www.edeka-ferrero-gewinnspiel.de/",
+      "terms_url": "https://www.edeka-ferrero-gewinnspiel.de/teilnahmebedingungen",
+      "privacy_url": "https://www.edeka-ferrero-gewinnspiel.de/",
+      "starts_at": "2026-11-19T00:00:00+01:00",
+      "ends_at": "2026-12-25T00:00:00+01:00",
+      "reviewed_on": "2026-11-23",
+      "participation_type": "online_daily",
+      "required_data": "E-Mail-Adresse und Bestätigung des E-Mail-Links innerhalb von 24 Stunden; anschließend tägliches Online-Minispiel. Volljährigkeit und Wohnsitz Deutschland.",
+      "marketing_requirements": "Für die reguläre tägliche Verlosung kein Newsletter nötig; verpflichtende Einwilligung in Digital Fingerprinting zur Betrugsprävention. Separates optionales Ferrero-Newsletter-Gewinnspiel für 15 SMEG-Sets.",
+      "note": "Offizielles aktives Teilnahmeformular, 2026-Teilnahmebedingungen, Frist und Tagesmechanik am 23.11.2026 öffentlich eingesehen. Täglich eine Teilnahme pro Person, insgesamt maximal ein Gewinn pro Person. Keine tatsächliche Teilnahme ausgeführt. Datenschutz- und Fingerprinting-Hinweise vor Eingabe beachten.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-23",
+        "evidence_url": "https://www.edeka-ferrero-gewinnspiel.de/teilnahmebedingungen",
+        "summary": "Originalseite mit E-Mail-Formular, Bestätigungsschritt, 2026-Bedingungen und täglicher Teilnahme geprüft; keine Registrierung oder Gewinnspielteilnahme durchgeführt."
+      }
     }
   ],
   "preview": [
