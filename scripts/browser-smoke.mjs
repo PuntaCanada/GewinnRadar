@@ -91,8 +91,8 @@ try{
     await page.locator('#adventAllDetails > summary').click();
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),53);
-    assert.equal(await page.locator('#adventCandidates .game').count(),16);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),54);
+    assert.equal(await page.locator('#adventCandidates .game').count(),15);
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);
