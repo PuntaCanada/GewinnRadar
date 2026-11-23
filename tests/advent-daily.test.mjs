@@ -38,7 +38,7 @@ test('Advent 2026 cannot silently double-count a source or promote unverified ol
  const ids=[...data.confirmed,...data.review_candidates].map(x=>x.id);
  assert.equal(new Set(ids).size,ids.length,'calendar and pending candidate ids must be unique');
  assert.ok(data.confirmed.every(x=>/^https:\/\//.test(x.source_audit.evidence_url)));
- assert.ok(data.confirmed.every(x=>x.source_audit.checked_on==='2026-11-21'||x.source_audit.checked_on==='2026-11-22'));
+ assert.ok(data.confirmed.every(x=>['2026-11-21','2026-11-22','2026-11-23'].includes(x.source_audit.checked_on)));
  assert.ok(data.confirmed.every(x=>!x.id.endsWith('2025')),'prior year cannot be counted as 2026');
  for(const x of data.review_candidates)assert.ok(!data.confirmed.some(y=>y.id===x.id),'unverified sources never counted as confirmed');
  assert.ok(data.review_candidates.some(x=>x.id==='holidaycheck-advent-2026'),'2025 page stays pending');
