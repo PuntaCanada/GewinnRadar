@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from '../public/advent-daily.js';
+import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone,readAdventHidden,writeAdventHidden} from '../public/advent-daily.js';
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
@@ -81,5 +81,19 @@ test('today marks are local, day-isolated, erasable, and cannot create arbitrary
  assert.equal(writeDayDone(store,'joska-advent-2026','2026-12-25',true),false);
  assert.equal(m.size,1);
  assert.equal(writeDayDone(store,'joska-advent-2026','2026-12-01',false),true);
+ assert.equal(m.size,0);
+});
+
+test('hidden Advent calendars persist by stable ID, can be restored and reject invalid IDs',()=>{
+ const m=new Map(),store={getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v),removeItem:k=>m.delete(k)};
+ const id='joska-advent-2026';
+ assert.equal(readAdventHidden(store,id),false);
+ assert.equal(writeAdventHidden(store,id,true),true);
+ assert.equal(readAdventHidden(store,id),true);
+ assert.equal(readAdventHidden(store,'agravis-advent-2026'),false);
+ assert.equal(writeAdventHidden(store,'../api/admin',true),false);
+ assert.equal(m.size,1);
+ assert.equal(writeAdventHidden(store,id,false),true);
+ assert.equal(readAdventHidden(store,id),false);
  assert.equal(m.size,0);
 });
