@@ -19,6 +19,38 @@ function sourceUrl(value){
 // Public editorial cards use browser-local participation marks, not D1 or login.
 // The value is deliberately a boolean rather than any personal information.
 const JOIN_KEY='gewinnradar:guest:completed:v1:';
+const EDITORIAL_FILTER_KEY='gewinnradar:guest:only-open:v1';
+const EDITORIAL_DISCLOSURE_KEY='gewinnradar:guest:editorial-expanded:v1';
+function initializeEditorialDisclosure(){
+ const details=$('editorialDetails'),summary=$('editorialToggleHeading');
+ if(!details||!summary)return;
+ try{
+  const saved=window.localStorage.getItem(EDITORIAL_DISCLOSURE_KEY);
+  if(saved==='0'||saved==='1')details.open=saved==='1';
+ }catch{}
+ const label=()=>{summary.textContent=details.open?'🎯 Reguläre Gewinnspiele – zum Einklappen klicken':'🎯 Reguläre Gewinnspiele – eingeklappt · zum Anzeigen klicken'};
+ label();
+ details.addEventListener('toggle',label);
+ details.querySelector('summary')?.addEventListener('click',()=>{
+  try{window.localStorage.setItem(EDITORIAL_DISCLOSURE_KEY,details.open?'0':'1')}catch{}
+ });
+}
+
+function restoreEditorialFilter(){
+ const input=$('editorialOnlyOpen');
+ if(!input)return;
+ try{input.checked=window.localStorage.getItem(EDITORIAL_FILTER_KEY)==='1'}catch{}
+}
+function persistEditorialFilter(){
+ const input=$('editorialOnlyOpen');
+ if(!input)return;
+ try{window.localStorage.setItem(EDITORIAL_FILTER_KEY,input.checked?'1':'0')}catch{
+  const info=$('editorialStorageStatus');
+  if(info)info.textContent='Dein Browser blockiert das Speichern der Filterauswahl. Nach dem Neuladen kann der Haken verloren gehen.';
+ }
+ updateGuestProgress();
+}
+
 const fallbackCompleted=new Set();
 function safeId(id){return typeof id==='string'&&/^[a-z0-9][a-z0-9-]{2,99}$/.test(id)}
 export function readGuestCompleted(storage,id){
@@ -164,7 +196,9 @@ export async function loadEditorialLinks(){
  }
 }
 if(typeof document!=='undefined'&&$('editorialLive')){
- $('editorialOnlyOpen')?.addEventListener('change',updateGuestProgress);
+ initializeEditorialDisclosure();
+ restoreEditorialFilter();
+ $('editorialOnlyOpen')?.addEventListener('change',persistEditorialFilter);
  loadEditorialLinks();
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadEditorialLinks()});
 }
