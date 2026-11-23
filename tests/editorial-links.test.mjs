@@ -71,7 +71,7 @@ test('user report is not proof: only evidence-confirmed blacklist entries block 
  safe.blacklist[0].verified=true;
  assert.equal(eligibleEditorialLinks(safe,now).live.length,41);
  assert.ok(!eligibleEditorialLinks(safe,now).live.some(g=>g.id==='bergzeit-la-sportiva-2026'));
- assert.equal(data.review_candidates.length,4);
+ assert.equal(data.review_candidates.length,5);
 });
 
 test('social and messenger draws carry distinct disclosure metadata and still expire',()=>{
