@@ -76,12 +76,25 @@ try{
     await card.waitFor();
     assert.equal(await card.locator('.advent-day-cell').count(),24,'24 checkboxes per confirmed calendar');
     assert.equal(await page.locator('#adventToday .advent-day-cell').count(),55*24,'all confirmed calendars have day cells');
-    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 0 von 1320 Tagesfeldern markiert.');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 0 von 1320 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
     const first=card.locator('.advent-day-cell input').nth(0);
     const second=card.locator('.advent-day-cell input').nth(1);
     await first.check();
     assert.equal(await second.isChecked(),false,'different day stays independent');
     assert.match(await card.locator('.advent-day-summary').innerText(),/1 von 24/);
+    // Hiding is independent from participation, persists after reload and can be undone.
+    await card.getByRole('button',{name:/Kalender ausblenden:/}).click();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),54);
+    assert.match(await page.locator('#adventHiddenCount').innerText(),/1 Kalender ausgeblendet/);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 1296 Tagesfeldern/);
+    await page.reload();
+    await page.locator('#adventToday .advent-card').first().waitFor();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),54,'hidden preference survives reload');
+    await page.locator('#adventShowHidden').check();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55);
+    await page.getByRole('button',{name:/Kalender wieder einblenden:/}).first().click();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'restored calendar visible again');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
     await page.reload();
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').first().locator('.advent-day-cell input').first().isChecked(),true,'day mark survives reload');
@@ -91,7 +104,7 @@ try{
     await cardDec.waitFor();
     assert.equal(await cardDec.locator('.advent-day-cell input').first().isChecked(),true,'past mark survives day rollover');
     assert.equal(await cardDec.locator('.advent-day-cell input').nth(1).isChecked(),false,'new day remains unmarked');
-    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1320 Tagesfeldern markiert.');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1320 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
     await page.locator('#adventOnlyToday').uncheck();
     const top=page.getByRole('link',{name:'Zurück zum Seitenanfang'});
     assert.equal(await top.getAttribute('href'),'#top');
