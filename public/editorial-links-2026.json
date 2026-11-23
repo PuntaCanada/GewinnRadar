@@ -1043,6 +1043,24 @@
       "terms_url": "https://kala-art.de/pages/100-kg",
       "reason": "Bedingungen: kostenloses E-Mail-Formular, Newsletter freiwillig, Ende 04.12.2026. Das tatsächliche Teilnahmeformular war in der überprüfbaren Seitenfassung jedoch nicht sichtbar. Keine Behauptung über ein geprüftes Formular.",
       "category": "form_not_observed"
+    },
+    {
+      "id": "rewe-whatsapp-gutscheine-2026",
+      "title": "34 REWE-Gutscheine im WhatsApp-Angebotschat",
+      "organizer": "REWE Markt GmbH",
+      "url": "https://www.rewe.de/aktionen/gewinnspiele/",
+      "terms_url": "https://www.rewe.de/service/teilnahmebedingungen/",
+      "reason": "Offizielle REWE-Teilnahmebedingungen belegen 31.10.–28.11.2026, 34 Einkaufsgutscheine und verpflichtendes kostenloses WhatsApp-Angebotschat-Abonnement. Der tatsächliche Teilnahme-Dialog im WhatsApp-Chat wurde noch nicht unabhängig geöffnet; deshalb keine Freigabe als geprüfter Direktlink.",
+      "category": "form_not_observed"
+    },
+    {
+      "id": "rewe-treuepunkte-2026",
+      "title": "REWE-Treuepunkte-Gewinnspiel bis Januar 2027",
+      "organizer": "REWE Markt GmbH",
+      "url": "https://www.rewe.de/treuepunkte",
+      "terms_url": "https://www.rewe.de/service/teilnahmebedingungen/",
+      "reason": "Offizielle Bedingungen belegen 12.10.2026–17.01.2027, Gewinnspielfrage, E-Mail und Bestätigungslink. Konkrete Gewinnliste, Teilnahmeformular und etwaige Zugangsvoraussetzungen noch nicht vollständig unabhängig geprüft.",
+      "category": "form_not_observed"
     }
   ],
   "blacklist": [],
