@@ -50,6 +50,9 @@ function paint(now=new Date()){
  const day=berlinDay(now),active=todayAdventCalendars(cache,now),isDec=validDay(day),onlyOpen=byId('adventOnlyOpen')?.checked,onlyToday=byId('adventOnlyToday')?.checked;
  const today=active.filter(g=>g.today_state==='today'),done=today.filter(g=>readDayDone(storage(),g.id,day)).length;
  count.textContent=isDec?done+' von '+today.length+' heute offenen Kalendern erledigt':'Bereits '+cache.confirmed.length+' bestätigte Kalender für Dezember 2026';
+ const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
+ const monthDone=cache.confirmed.reduce((n,g)=>n+dates.filter(d=>readDayDone(storage(),g.id,d)).length,0);
+ const monthCount=byId('adventMonthCount');if(monthCount)monthCount.textContent='Dein Dezember-Fortschritt: '+monthDone+' von '+(cache.confirmed.length*24)+' Tagesfeldern markiert.';
  root.replaceChildren();
  for(const g of (isDec?active:cache.confirmed)){
   const doneMark=isDec&&readDayDone(storage(),g.id,day);
@@ -77,6 +80,12 @@ function paint(now=new Date()){
     paint(new Date());
    });card.append(lab);
   }
+  const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
+  const doneDays=dates.filter(d=>readDayDone(storage(),g.id,d)).length;
+  const heading=el('p','Dein Dezember: '+doneDays+' von 24 Tagen markiert','advent-day-summary');
+  const grid=el('div',null,'advent-day-grid');grid.setAttribute('role','group');grid.setAttribute('aria-label','Teilnahmetage für '+g.title);
+  for(const date of dates){const n=Number(date.slice(-2)),lab=el('label',null,'advent-day-cell'),check=document.createElement('input');check.type='checkbox';check.checked=readDayDone(storage(),g.id,date);check.setAttribute('aria-label',n+'. Dezember 2026: Teilnahme bei '+g.title+' markieren');lab.append(el('span',String(n).padStart(2,'0')),check);check.addEventListener('change',()=>{if(!writeDayDone(storage(),g.id,date,check.checked)){const warning=byId('adventStorageStatus');if(warning)warning.textContent='Lokales Speichern blockiert: Häkchen können beim Neuladen verloren gehen.';}paint(new Date())});grid.append(lab)}
+  card.append(heading,grid);
   root.append(card);
  }
  if(!root.children.length)root.append(el('p',isDec?'Für heute sind hier keine weiteren bestätigten, offenen Türchen übrig.':'Die 2026er Tageskalender starten am 1. Dezember.','small'));
