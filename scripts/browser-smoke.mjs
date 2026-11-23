@@ -252,7 +252,9 @@ try{
   await guestPage.locator('#editorialOnlyOpen').check();
   assert.equal(await guestPage.evaluate(()=>localStorage.getItem('gewinnradar:guest:only-open:v1')),'1');
   await guestPage.reload();
-  await guestCards.first().waitFor();
+  // A filtered, already-joined card remains in the DOM but is deliberately hidden.
+  // Waiting for visibility here would incorrectly fail the browser regression test.
+  await guestCards.first().waitFor({state:'attached'});
   assert.equal(await guestPage.locator('#editorialOnlyOpen').isChecked(),true,'Guest filter remains selected after reload');
   assert.equal(await guestCards.first().isVisible(),false);
   assert.equal(await guestCards.nth(1).isVisible(),true);
