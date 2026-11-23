@@ -2,6 +2,17 @@
 // Checkmarks are browser-local and isolated by calendar ID AND Berlin date.
 const DAY_PREFIX='gewinnradar:advent:completed:v1:';
 const fallback=new Set();
+const HIDDEN_PREFIX='gewinnradar:advent:hidden:v1:';
+const hiddenFallback=new Map();
+export function readAdventHidden(store,id){
+ if(!safeId(id))return false;
+ try{const value=store.getItem(HIDDEN_PREFIX+id);return value==='1'}catch{return hiddenFallback.get(id)===true}
+}
+export function writeAdventHidden(store,id,hidden){
+ if(!safeId(id))return false;
+ hiddenFallback.set(id,Boolean(hidden));
+ try{if(hidden)store.setItem(HIDDEN_PREFIX+id,'1');else store.removeItem(HIDDEN_PREFIX+id);return true}catch{return false}
+}
 const safeId=id=>typeof id==='string'&&/^[a-z0-9][a-z0-9-]{2,99}$/.test(id);
 export const berlinDay=(now=new Date())=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
 const validDay=day=>typeof day==='string'&&/^2026-12-(0[1-9]|1[0-9]|2[0-4])$/.test(day);
@@ -48,17 +59,36 @@ function paint(now=new Date()){
  const root=byId('adventToday'),status=byId('adventTodayStatus'),count=byId('adventTodayCount'),candidate=byId('adventCandidates');
  if(!root||!status||!count||!cache)return;
  const day=berlinDay(now),active=todayAdventCalendars(cache,now),isDec=validDay(day),onlyOpen=byId('adventOnlyOpen')?.checked,onlyToday=byId('adventOnlyToday')?.checked;
- const today=active.filter(g=>g.today_state==='today'),done=today.filter(g=>readDayDone(storage(),g.id,day)).length;
+ const visible=cache.confirmed.filter(g=>!readAdventHidden(storage(),g.id));
+ const hiddenCount=cache.confirmed.length-visible.length;
+ const showHidden=byId('adventShowHidden')?.checked;
+ const hiddenInfo=byId('adventHiddenCount');
+ if(hiddenInfo)hiddenInfo.textContent=hiddenCount+' Kalender ausgeblendet'+(hiddenCount?' · jederzeit wieder einblendbar':'');
+ const today=active.filter(g=>g.today_state==='today'&&!readAdventHidden(storage(),g.id)),done=today.filter(g=>readDayDone(storage(),g.id,day)).length;
  count.textContent=isDec?done+' von '+today.length+' heute offenen Kalendern erledigt':'Bereits '+cache.confirmed.length+' bestätigte Kalender für Dezember 2026';
  const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
- const monthDone=cache.confirmed.reduce((n,g)=>n+dates.filter(d=>readDayDone(storage(),g.id,d)).length,0);
- const monthCount=byId('adventMonthCount');if(monthCount)monthCount.textContent='Dein Dezember-Fortschritt: '+monthDone+' von '+(cache.confirmed.length*24)+' Tagesfeldern markiert.';
+ const monthDone=visible.reduce((n,g)=>n+dates.filter(d=>readDayDone(storage(),g.id,d)).length,0);
+ const monthCount=byId('adventMonthCount');if(monthCount)monthCount.textContent='Dein Dezember-Fortschritt: '+monthDone+' von '+(visible.length*24)+' Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).';
  root.replaceChildren();
  for(const g of (isDec?active:cache.confirmed)){
+  const hidden=readAdventHidden(storage(),g.id);
+  if(hidden&&!showHidden)continue;
   const doneMark=isDec&&readDayDone(storage(),g.id,day);
   if(isDec&&onlyToday&&g.today_state!=='today')continue;
   if(isDec&&onlyOpen&&doneMark)continue;
   const card=el('article',null,'game advent-card');
+  if(hidden)card.classList.add('advent-hidden-card');
+  const hideButton=el('button',hidden?'Wieder einblenden':'Ausblenden','secondary');
+  hideButton.type='button';
+  hideButton.setAttribute('aria-label',(hidden?'Kalender wieder einblenden: ':'Kalender ausblenden: ')+g.title);
+  hideButton.addEventListener('click',()=>{
+   if(!writeAdventHidden(storage(),g.id,!hidden)){
+    const warning=byId('adventStorageStatus');if(warning)warning.textContent='Lokales Speichern blockiert: Ausgeblendete Kalender können beim Neuladen wieder erscheinen.';
+   }
+   paint(new Date());
+  });
+  const hideRow=el('div',null,'action');hideRow.append(hideButton);
+  card.append(hideRow);
   const tag=g.today_state==='deadline-passed'?'Heutige Standardfrist vorbei':g.today_state==='not-open-yet'?'Heutiges Türchen noch nicht geöffnet':isDec?'Heute beim Veranstalter prüfen':'Bestätigt für Dezember 2026 · noch nicht offen';
   card.append(el('span',tag,'pill'),el('h3',g.title),el('p',g.organizer+' · '+g.requirements));
   const deadline=g.daily_deadline||{};
@@ -139,6 +169,7 @@ if(typeof document!=='undefined'&&byId('adventToday')){
  updateAdventDisclosure();
  byId('adventOnlyOpen')?.addEventListener('change',()=>paint());
  byId('adventOnlyToday')?.addEventListener('change',()=>paint());
+ byId('adventShowHidden')?.addEventListener('change',()=>paint());
  loadAdvent();
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){updateAdventDisclosure();loadAdvent()}});
  setInterval(()=>{if(document.visibilityState==='visible'){updateAdventDisclosure();paint(new Date())}},60000);
