@@ -5,7 +5,7 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,54);
+ assert.equal(data.confirmed.length,55);
  for(const id of ['advosoft-legal-advent-2026','bobblume-netzlehrer-advent-2026','yellowchair-advent-2026','boerde-therme-advent-2026','dgta-advent-2026','hairloft-loxstedt-advent-2026'])assert.ok(data.confirmed.some(x=>x.id===id));
  assert.match(data.confirmed.find(x=>x.id==='yellowchair-advent-2026').note,/nur 15 echte Gewinnverlosungen/);
  assert.match(data.confirmed.find(x=>x.id==='boerde-therme-advent-2026').note,/an ausgewählten Tagen/);
@@ -31,7 +31,7 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,54);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,55);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Advent 2026 cannot silently double-count a source or promote unverified old-year material',()=>{
