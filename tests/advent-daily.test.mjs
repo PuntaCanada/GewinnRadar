@@ -26,7 +26,7 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
  const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
  assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
- assert.equal(data.review_candidates.length,16);
+ assert.equal(data.review_candidates.length,18);
  assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
