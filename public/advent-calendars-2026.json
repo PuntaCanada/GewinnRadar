@@ -1141,27 +1141,6 @@
       },
       "starts_on": "2026-12-01",
       "ends_on": "2026-12-24"
-    },
-    {
-      "id": "reisen-exclusiv-advent-2026",
-      "organizer": "reisen EXCLUSIV / ella Verlag und Medien GmbH",
-      "title": "reisen EXCLUSIV – 30 sofort spielbare Reise- und Hotel-Türchen",
-      "url": "https://reisenexclusiv.com/adventskalender-gewinnspiel/",
-      "terms_url": "https://reisenexclusiv.com/teilnahmebedingungen/",
-      "starts_on": "2026-11-01",
-      "ends_on": "2026-12-05",
-      "daily_deadline": {
-        "type": "common_end",
-        "time": "23:59",
-        "certainty": "not_verified"
-      },
-      "requirements": "30 eigenständige kostenlose Online-Gewinnspiele; alle Türchen sofort offen. Pro Türchen Gewinnfrage beantworten und Formular mit Vorname, Nachname, E-Mail ausfüllen; ab 18 und Wohnsitz Deutschland, Österreich, Schweiz oder Benelux. Keine Kauf- oder Newsletterpflicht; optionale Newsletter-Häkchen beachten.",
-      "note": "Aktion 01.–30.11.2026, gemeinsamer Einsendeschluss 05.12.2026. Keine Dezember-Tagesöffnung! Offizielles Originalformular für Türchen 6 (IFA Rügen, zwei Nächte für zwei ohne Verpflegung) und allgemeine Teilnahmebedingungen am 23.11. geprüft. Der Verlag behält sich Veröffentlichung des Gewinnernamens vor. Nur eine Teilnahme pro Türchen; keine automatische Teilnahme durchgeführt.",
-      "source_audit": {
-        "status": "confirmed",
-        "checked_on": "2026-11-23",
-        "evidence_url": "https://reisenexclusiv.com/gewinnspiel-ifa-ruegen-binz/"
-      }
     }
   ],
   "review_candidates": [
@@ -1284,6 +1263,14 @@
       "url": "https://trassenheide.de/weihnachtsgewinnspiel",
       "terms_url": "https://trassenheide.de/trassenheide/aktuelles/24-tuerchen-ueber-5-000-eur-an-gewinnen",
       "reason": "Offizielle Mitteilung vom 19.11.2026 bestätigt 24 tägliche Quiz-Türchen ab 01.12., über 5.000 € Tagesgewinne, Hotelübernachtungen und Hauptpreis am 25.12. (2 Nächte für 2 Erwachsene und 2 Kinder im Familien Wellness Hotel Seeklause, All-inclusive Premium, Wert 1.250 €). Vollständige Teilnahmebedingungen, Formular, Einwilligungen, Alters- und Wohnsitzregeln noch unabhängig zu prüfen; daher Prüfkandidat."
+    },
+    {
+      "id": "reisen-exclusiv-advent-2026",
+      "organizer": "reisen EXCLUSIV / ella Verlag und Medien GmbH",
+      "title": "reisen EXCLUSIV – 30 sofort offene Reise- und Hotel-Gewinnspiele (November)",
+      "url": "https://reisenexclusiv.com/adventskalender-gewinnspiel/",
+      "terms_url": "https://reisenexclusiv.com/teilnahmebedingungen/",
+      "reason": "ORIGINALVERIFIZIERT 23.11.: 30 eigenständige Türchen 01.–30.11.2026, alle sofort offen, gemeinsame Frist 05.12.2026. Keine täglichen Dezember-Türchen, daher NICHT im auf 01.–24.12. begrenzten bestätigten Advent-Tageskatalog. Offizielles Formular Türchen 6 bestätigt kostenlos, ab 18, Wohnsitz DE/AT/CH/Benelux, Name/E-Mail/Quiz, Newsletter optional. Redaktionell für reguläre Gewinnspiele geeignet; Formular für einzelne Türchen bei Aufnahme gesondert prüfen."
     }
   ],
   "archive_candidates": []
