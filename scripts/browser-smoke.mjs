@@ -46,6 +46,25 @@ try{
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),!seasonOpen,'Persist manual choice on '+isoDate);
     await ctx.close();
   }
+  // Regular giveaways and Advent calendars are independently collapsible.
+  {
+    const ctx=await browser.newContext({viewport:{width:390,height:850},timezoneId:'Europe/Berlin'});
+    const page=await ctx.newPage();
+    await page.goto(base+'/');
+    const regular=page.locator('#editorialDetails');
+    const advent=page.locator('#adventAllDetails');
+    assert.equal(await regular.evaluate(el=>el.open),true,'Regular giveaways open by default');
+    await regular.locator('summary').click();
+    assert.equal(await regular.evaluate(el=>el.open),false,'Regular giveaways collapse');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('gewinnradar:guest:editorial-expanded:v1')),'0','Regular disclosure choice saved');
+    assert.equal(await advent.count(),1,'Advent disclosure remains independently available');
+    await page.reload();
+    assert.equal(await regular.evaluate(el=>el.open),false,'Regular disclosure stays collapsed after reload');
+    await regular.locator('summary').click();
+    await page.reload();
+    assert.equal(await regular.evaluate(el=>el.open),true,'Regular disclosure stays expanded after reload');
+    await ctx.close();
+  }
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
@@ -247,7 +266,7 @@ try{
   assert.equal(await guestCards.first().locator('input[data-joined-contest]').isChecked(),false);
   assert.match(await guestPage.locator('#editorialProgress').innerText(),/0 von 42/);
   const guestStorageKeys=await guestPage.evaluate(()=>Object.keys(localStorage));
-  assert.ok(guestStorageKeys.every(k=>k.startsWith('gewinnradar:guest:completed:v1:')||k==='gewinnradar:guest:only-open:v1'));
+  assert.ok(guestStorageKeys.every(k=>k.startsWith('gewinnradar:guest:completed:v1:')||k==='gewinnradar:guest:only-open:v1'||k==='gewinnradar:guest:editorial-expanded:v1'));
   await guest.close();
   const adminContext=await browser.newContext({viewport:{width:1280,height:900}});
   const adminPage=await adminContext.newPage();
