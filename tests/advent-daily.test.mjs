@@ -5,7 +5,7 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone} from
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,53);
+ assert.equal(data.confirmed.length,54);
  for(const id of ['advosoft-legal-advent-2026','bobblume-netzlehrer-advent-2026','yellowchair-advent-2026','boerde-therme-advent-2026','dgta-advent-2026','hairloft-loxstedt-advent-2026'])assert.ok(data.confirmed.some(x=>x.id===id));
  assert.match(data.confirmed.find(x=>x.id==='yellowchair-advent-2026').note,/nur 15 echte Gewinnverlosungen/);
  assert.match(data.confirmed.find(x=>x.id==='boerde-therme-advent-2026').note,/an ausgewählten Tagen/);
@@ -26,7 +26,7 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
  const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
  assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
- assert.equal(data.review_candidates.length,16);
+ assert.equal(data.review_candidates.length,15);
  assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
