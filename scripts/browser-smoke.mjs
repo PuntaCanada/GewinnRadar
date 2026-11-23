@@ -65,6 +65,44 @@ try{
     assert.equal(await regular.evaluate(el=>el.open),true,'Regular disclosure stays expanded after reload');
     await ctx.close();
   }
+  // New public Advent tracker: 24 independent day cells, persistence, date rollover and navigation.
+  {
+    const ctx=await browser.newContext({viewport:{width:390,height:850},timezoneId:'Europe/Berlin',reducedMotion:'reduce'});
+    const page=await ctx.newPage();
+    await page.clock.setFixedTime(new Date('2026-11-23T12:00:00Z'));
+    await page.goto(base+'/');
+    await page.locator('#adventAllDetails > summary').click();
+    const card=page.locator('#adventToday .advent-card').first();
+    await card.waitFor();
+    assert.equal(await card.locator('.advent-day-cell').count(),24,'24 checkboxes per confirmed calendar');
+    assert.equal(await page.locator('#adventToday .advent-day-cell').count(),55*24,'all confirmed calendars have day cells');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 0 von 1320 Tagesfeldern markiert.');
+    const first=card.locator('.advent-day-cell input').nth(0);
+    const second=card.locator('.advent-day-cell input').nth(1);
+    await first.check();
+    assert.equal(await second.isChecked(),false,'different day stays independent');
+    assert.match(await card.locator('.advent-day-summary').innerText(),/1 von 24/);
+    await page.reload();
+    await page.locator('#adventToday .advent-card').first().waitFor();
+    assert.equal(await page.locator('#adventToday .advent-card').first().locator('.advent-day-cell input').first().isChecked(),true,'day mark survives reload');
+    await page.clock.setFixedTime(new Date('2026-12-02T12:00:00Z'));
+    await page.reload();
+    const cardDec=page.locator('#adventToday .advent-card').first();
+    await cardDec.waitFor();
+    assert.equal(await cardDec.locator('.advent-day-cell input').first().isChecked(),true,'past mark survives day rollover');
+    assert.equal(await cardDec.locator('.advent-day-cell input').nth(1).isChecked(),false,'new day remains unmarked');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1320 Tagesfeldern markiert.');
+    await page.locator('#adventOnlyToday').uncheck();
+    const top=page.getByRole('link',{name:'Zurück zum Seitenanfang'});
+    assert.equal(await top.getAttribute('href'),'#top');
+    await top.focus();
+    assert.equal(await top.evaluate(el=>document.activeElement===el),true,'top navigation keyboard focus');
+    await page.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+    await top.click();
+    assert.equal(await page.evaluate(()=>location.hash),'#top');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'tracker has no mobile horizontal overflow');
+    await ctx.close();
+  }
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
