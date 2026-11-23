@@ -1162,6 +1162,27 @@
         "checked_on": "2026-11-23",
         "evidence_url": "https://www.visitmosel.de/adventskalender/teilnahmebedingungen"
       }
+    },
+    {
+      "id": "nrha-germany-advent-2026",
+      "organizer": "National Reining Horse Association Germany e. V. (NRHA Germany)",
+      "title": "NRHA Germany – 24 kostenlose Tagesgewinne, auch ohne Mitgliedschaft",
+      "url": "https://www.nrha.de/gewinnspiel/",
+      "terms_url": "https://www.nrha.de/gewinnspiel/",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "time": "23:59",
+        "certainty": "confirmed"
+      },
+      "requirements": "Kostenlos, ab 18, Wohnsitz Deutschland, Österreich oder Schweiz; ausdrücklich keine Vereinsmitgliedschaft nötig. Täglich Vorname, Nachname, E-Mail und Teilnahmebedingungen im Originalformular bestätigen. Eine Teilnahme pro Person und Tag, kein Newsletter und keine Werbeeinwilligung erforderlich.",
+      "note": "Originalseite enthält das echte Tagesformular und vollständige Teilnahme-/Datenschutzbedingungen. Daten nur zur Durchführung, keine Nutzung zu Werbung außerhalb des Gewinnspiels; nur Gewinneradresse an Versandpartner/Sponsor. Gewinner per E-Mail innerhalb sieben Tagen, Versandkosten trägt Veranstalter. Teilnahme jeweils 00:00–23:59 MEZ, 1.–24.12.2026.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-23",
+        "evidence_url": "https://www.nrha.de/gewinnspiel/"
+      }
     }
   ],
   "review_candidates": [
