@@ -92,7 +92,7 @@ try{
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').count(),55);
-    assert.equal(await page.locator('#adventCandidates .game').count(),24);
+    assert.equal(await page.locator('#adventCandidates .game').count(),25);
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);
