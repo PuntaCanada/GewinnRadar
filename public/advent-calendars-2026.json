@@ -1257,20 +1257,20 @@
       "reason": "Offizielle Hotelseite nennt 24 Türchen 01.–24.12.2026, Gesamtpreise 5.000 € und Wellnesswochenende als Hauptgewinn; Teilnahme erfordert Kontaktdaten, Instagram-Follow, Kommentar und Teilen. In der Hauptgewinnbeschreibung steht noch ein redaktioneller Platzhalter '[Anzahl Personen/Nächte klären]'; genaue Tagesbedingungen und tatsächliche Beiträge vor Bestätigung prüfen."
     },
     {
-      "id": "reisen-exclusiv-advent-2026",
-      "organizer": "reisen EXCLUSIV",
-      "title": "reisen EXCLUSIV – 30 Reise- und Hotel-Türchen",
-      "url": "https://reisenexclusiv.com/adventskalender-gewinnspiel/",
-      "terms_url": "https://reisenexclusiv.com/adventskalender-gewinnspiel/",
-      "reason": "Originalseite zeigt 30 Türchen mit zahlreichen Hotelpartnern (u.a. Hotel Jungbrunn, Panorama Royal, Parkhotel Oberstaufen, Hotel Sand, Vitznauerhof), bezeichnet sie als Adventskalender 2026. Der angezeigte allgemeine Einsendeschluss 05.12. ist für 30 tägliche Dezember-Türchen ungewöhnlich; vollständige 2026-Teilnahmebedingungen, Kalendermechanik, Werbeeinwilligungen und Frist vor Freigabe verifizieren. Direkter Seitenabruf liefert zeitweise Bot-Schutz."
-    },
-    {
       "id": "trassenheide-weihnachtsgewinnspiel-2026",
       "organizer": "Ostseebad Trassenheide",
       "title": "Trassenheide – 24 Türchen mit Familien-Wellnessurlaub",
       "url": "https://trassenheide.de/weihnachtsgewinnspiel",
       "terms_url": "https://trassenheide.de/trassenheide/aktuelles/24-tuerchen-ueber-5-000-eur-an-gewinnen",
       "reason": "Offizielle Mitteilung vom 19.11.2026 bestätigt 24 tägliche Quiz-Türchen ab 01.12., über 5.000 € Tagesgewinne, Hotelübernachtungen und Hauptpreis am 25.12. (2 Nächte für 2 Erwachsene und 2 Kinder im Familien Wellness Hotel Seeklause, All-inclusive Premium, Wert 1.250 €). Vollständige Teilnahmebedingungen, Formular, Einwilligungen, Alters- und Wohnsitzregeln noch unabhängig zu prüfen; daher Prüfkandidat."
+    },
+    {
+      "id": "reisen-exclusiv-advent-2026",
+      "organizer": "reisen EXCLUSIV / ella Verlag und Medien GmbH",
+      "title": "reisen EXCLUSIV – 30 sofort offene Reise- und Hotel-Gewinnspiele (November)",
+      "url": "https://reisenexclusiv.com/adventskalender-gewinnspiel/",
+      "terms_url": "https://reisenexclusiv.com/teilnahmebedingungen/",
+      "reason": "ORIGINALVERIFIZIERT 23.11.: 30 eigenständige Türchen 01.–30.11.2026, alle sofort offen, gemeinsame Frist 05.12.2026. Keine täglichen Dezember-Türchen, daher NICHT im auf 01.–24.12. begrenzten bestätigten Advent-Tageskatalog. Offizielles Formular Türchen 6 bestätigt kostenlos, ab 18, Wohnsitz DE/AT/CH/Benelux, Name/E-Mail/Quiz, Newsletter optional. Redaktionell für reguläre Gewinnspiele geeignet; Formular für einzelne Türchen bei Aufnahme gesondert prüfen."
     }
   ],
   "archive_candidates": []
