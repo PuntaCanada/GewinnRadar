@@ -149,7 +149,7 @@ try{
     // The change handler replaces the entire card list synchronously; a Playwright
     // locator.check() retries on detached nodes and may toggle multiple calendars.
     await page.evaluate(()=>{const input=document.querySelector('#adventToday .advent-card .advent-day-cell input');input.focus();input.click()});
-    assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label')?.startsWith('1. Dezember 2026:')),true,'focus survives combined-filter redraw');
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'adventOnlyOpen','focus returns to open-only filter when marked card disappears');
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
     await page.reload();
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 1 mark survives reload');
