@@ -134,6 +134,47 @@ try{
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'tracker has no mobile horizontal overflow');
     await ctx.close();
   }
+  // Combined December filters: verify real browser behavior on both viewport sizes.
+  for(const width of [390,1280]){
+    const ctx=await browser.newContext({viewport:{width,height:850},timezoneId:'Europe/Berlin',reducedMotion:'reduce'});
+    const page=await ctx.newPage();
+    await page.clock.setFixedTime(new Date('2026-12-01T12:00:00Z'));
+    await page.goto(base+'/');
+    await page.locator('#adventToday .advent-card').first().waitFor();
+    await page.locator('#adventOnlyToday').check();
+    await page.locator('#adventOnlyOpen').check();
+    const first=page.locator('#adventToday .advent-card').first();
+    const initial=await page.locator('#adventToday .advent-card').count();
+    assert.ok(initial>0,'December 1 has calendars available under combined filters');
+    // The change handler replaces the entire card list synchronously; a Playwright
+    // locator.check() retries on detached nodes and may toggle multiple calendars.
+    await page.evaluate(()=>{const input=document.querySelector('#adventToday .advent-card .advent-day-cell input');input.focus();input.click()});
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'adventOnlyOpen','focus returns to open-only filter when marked card disappears');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
+    await page.reload();
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 1 mark survives reload');
+    await page.clock.setFixedTime(new Date('2026-12-02T12:00:00Z'));
+    await page.reload();
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 2 retains previous-day progress');
+    await page.locator('#adventOnlyToday').check();
+    await page.locator('#adventOnlyOpen').check();
+    assert.ok(await page.locator('#adventToday .advent-card').count()<=55,'December 2 combined filters stay within confirmed catalog');
+    await page.clock.setFixedTime(new Date('2026-12-24T12:00:00Z'));
+    await page.reload();
+    await page.locator('#adventOnlyToday').check();
+    await page.locator('#adventOnlyOpen').check();
+    assert.match(await page.locator('#adventTodayStatus').innerText(),/2026-12-24/);
+    await page.clock.setFixedTime(new Date('2026-12-25T12:00:00Z'));
+    await page.reload();
+    // Outside Dec 1–24 the disclosure closes by default and the confirmed
+    // catalog remains available as a preview, rather than an empty daily list.
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),false,'post-season disclosure is closed');
+    await page.locator('#adventAllDetails summary').click();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'post-season confirmed catalog remains browsable');
+    assert.match(await page.locator('#adventTodayStatus').innerText(),/Vorschau:/);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'post-season progress remains available');
+    await ctx.close();
+  }
   // Empty-result guidance must distinguish filtering from a lack of confirmed calendars.
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},timezoneId:'Europe/Berlin',reducedMotion:'reduce'});
