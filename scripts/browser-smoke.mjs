@@ -146,7 +146,6 @@ try{
       for(const g of data.confirmed)localStorage.setItem('gewinnradar:advent:hidden:v1:'+g.id,'1');
     });
     await page.reload();
-    await page.locator('#adventHiddenCount').getByText?.('unused').catch?.(()=>{});
     assert.equal(await page.locator('#adventToday .advent-card').count(),0,'all hidden calendars produce empty list');
     assert.match(await page.locator('#adventToday').innerText(),/Keine Kalender mit diesen Filtern sichtbar/,'empty results explain filters');
     assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 0 Tagesfeldern/,'hidden calendars excluded from progress');
