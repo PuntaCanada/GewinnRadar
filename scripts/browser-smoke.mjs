@@ -134,6 +134,28 @@ try{
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'tracker has no mobile horizontal overflow');
     await ctx.close();
   }
+  // Empty-result guidance must distinguish filtering from a lack of confirmed calendars.
+  for(const width of [390,1280]){
+    const ctx=await browser.newContext({viewport:{width,height:850},timezoneId:'Europe/Berlin',reducedMotion:'reduce'});
+    const page=await ctx.newPage();
+    await page.clock.setFixedTime(new Date('2026-12-02T12:00:00Z'));
+    await page.goto(base+'/');
+    await page.locator('#adventToday .advent-card').first().waitFor();
+    await page.evaluate(async()=>{
+      const data=await (await fetch('/advent-calendars-2026.json')).json();
+      for(const g of data.confirmed)localStorage.setItem('gewinnradar:advent:hidden:v1:'+g.id,'1');
+    });
+    await page.reload();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),0,'all hidden calendars produce empty list');
+    assert.match(await page.locator('#adventToday').innerText(),/Keine Kalender mit diesen Filtern sichtbar/,'empty results explain filters');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 0 Tagesfeldern/,'hidden calendars excluded from progress');
+    await page.locator('#adventShowHidden').check();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'show hidden restores visibility');
+    await page.getByRole('button',{name:/Kalender wieder einblenden:/}).first().click();
+    assert.match(await page.locator('#adventHiddenCount').innerText(),/54 Kalender ausgeblendet/);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 24 Tagesfeldern/);
+    await ctx.close();
+  }
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
