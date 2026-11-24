@@ -80,10 +80,12 @@ try{
     const first=card.locator('.advent-day-cell input').nth(0);
     const second=card.locator('.advent-day-cell input').nth(1);
     await first.check();
+    assert.equal(await first.evaluate(el=>document.activeElement===el),true,'keyboard focus remains on day checkbox after redraw');
     assert.equal(await second.isChecked(),false,'different day stays independent');
     assert.match(await card.locator('.advent-day-summary').innerText(),/1 von 24/);
     // Hiding is independent from participation, persists after reload and can be undone.
     await card.getByRole('button',{name:/Kalender ausblenden:/}).click();
+    assert.equal(await page.locator('#adventShowHidden').evaluate(el=>document.activeElement===el),true,'hide action moves focus to restore control');
     assert.equal(await page.locator('#adventToday .advent-card').count(),54);
     assert.match(await page.locator('#adventHiddenCount').innerText(),/1 Kalender ausgeblendet/);
     assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 1296 Tagesfeldern/);
@@ -93,6 +95,7 @@ try{
     await page.locator('#adventShowHidden').check();
     assert.equal(await page.locator('#adventToday .advent-card').count(),55);
     await page.getByRole('button',{name:/Kalender wieder einblenden:/}).first().click();
+    assert.match(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label')||''),/^Kalender ausblenden:/,'restore keeps focus on restored calendar action');
     assert.equal(await page.locator('#adventToday .advent-card').count(),55,'restored calendar visible again');
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
     await page.reload();
