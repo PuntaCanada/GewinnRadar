@@ -105,6 +105,21 @@ try{
     assert.equal(await cardDec.locator('.advent-day-cell input').first().isChecked(),true,'past mark survives day rollover');
     assert.equal(await cardDec.locator('.advent-day-cell input').nth(1).isChecked(),false,'new day remains unmarked');
     assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1320 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
+    // A hidden calendar must remain restorable even when December filters exclude it.
+    await cardDec.getByRole('button',{name:/Kalender ausblenden:/}).click();
+    assert.match(await page.locator('#adventHiddenCount').innerText(),/1 Kalender ausgeblendet/);
+    await page.clock.setFixedTime(new Date('2026-12-25T12:00:00Z'));
+    await page.reload();
+    await page.locator('#adventShowHidden').check();
+    assert.equal(await page.getByRole('button',{name:/Kalender wieder einblenden:/}).count(),1,
+      'hidden calendar remains restorable outside its participation window');
+    await page.locator('#adventOnlyOpen').check();
+    assert.equal(await page.getByRole('button',{name:/Kalender wieder einblenden:/}).count(),1,
+      'hidden calendar bypasses completed-day filter for restoration');
+    await page.getByRole('button',{name:/Kalender wieder einblenden:/}).click();
+    assert.match(await page.locator('#adventHiddenCount').innerText(),/0 Kalender ausgeblendet/);
+    await page.clock.setFixedTime(new Date('2026-12-02T12:00:00Z'));
+    await page.reload();
     await page.locator('#adventOnlyToday').uncheck();
     const top=page.getByRole('link',{name:'Zurück zum Seitenanfang'});
     assert.equal(await top.getAttribute('href'),'#top');

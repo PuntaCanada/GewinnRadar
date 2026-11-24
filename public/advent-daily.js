@@ -70,12 +70,12 @@ function paint(now=new Date()){
  const monthDone=visible.reduce((n,g)=>n+dates.filter(d=>readDayDone(storage(),g.id,d)).length,0);
  const monthCount=byId('adventMonthCount');if(monthCount)monthCount.textContent='Dein Dezember-Fortschritt: '+monthDone+' von '+(visible.length*24)+' Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).';
  root.replaceChildren();
- for(const g of (isDec?active:cache.confirmed)){
+ for(const g of (isDec?(showHidden?cache.confirmed.map(g=>({...g,today_state:dailyState(g,now)})):active):cache.confirmed)){
   const hidden=readAdventHidden(storage(),g.id);
   if(hidden&&!showHidden)continue;
   const doneMark=isDec&&readDayDone(storage(),g.id,day);
-  if(isDec&&onlyToday&&g.today_state!=='today')continue;
-  if(isDec&&onlyOpen&&doneMark)continue;
+  if(isDec&&!hidden&&onlyToday&&g.today_state!=='today')continue;
+  if(isDec&&!hidden&&onlyOpen&&doneMark)continue;
   const card=el('article',null,'game advent-card');
   if(hidden)card.classList.add('advent-hidden-card');
   const hideButton=el('button',hidden?'Wieder einblenden':'Ausblenden','secondary');
