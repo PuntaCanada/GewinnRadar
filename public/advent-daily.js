@@ -126,7 +126,10 @@ function paint(now=new Date()){
   card.append(heading,grid);
   root.append(card);
  }
- if(!root.children.length)root.append(el('p',isDec?'Für heute sind hier keine weiteren bestätigten, offenen Türchen übrig.':'Die 2026er Tageskalender starten am 1. Dezember.','small'));
+ if(!root.children.length){
+  const filtered=isDec&&(onlyToday||onlyOpen||hiddenCount>0);
+  root.append(el('p',filtered?'Keine Kalender mit diesen Filtern sichtbar. Entferne einen Filter oder aktiviere „Ausgeblendete anzeigen“, um weitere Kalender zu sehen.':isDec?'Für heute sind keine bestätigten Kalender verfügbar.':'Die 2026er Tageskalender starten am 1. Dezember.','small'));
+ }
  status.textContent=isDec?'Heute: '+day+' (Europe/Berlin). Tagesangebote und Ausnahmen stets beim Veranstalter prüfen. Häkchen wechseln automatisch zum nächsten Tag.':'Vorschau: Noch keine heutige Teilnahme. 2025er Kalender und ungeprüfte Kandidaten werden nicht als bestätigt gezählt.';
  if(candidate){
   candidate.replaceChildren();
