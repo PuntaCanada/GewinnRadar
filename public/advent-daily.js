@@ -86,6 +86,13 @@ function paint(now=new Date()){
     const warning=byId('adventStorageStatus');if(warning)warning.textContent='Lokales Speichern blockiert: Ausgeblendete Kalender können beim Neuladen wieder erscheinen.';
    }
    paint(new Date());
+   if(hidden){
+    const restored=Array.from(root.querySelectorAll('.advent-card button[aria-label]'))
+     .find(button=>button.getAttribute('aria-label')==='Kalender ausblenden: '+g.title);
+    restored?.focus({preventScroll:true});
+   }else{
+    byId('adventShowHidden')?.focus({preventScroll:true});
+   }
   });
   const hideRow=el('div',null,'action');hideRow.append(hideButton);
   card.append(hideRow);
@@ -108,13 +115,14 @@ function paint(now=new Date()){
    input.addEventListener('change',()=>{
     if(!writeDayDone(storage(),g.id,day,input.checked))byId('adventStorageStatus').textContent='Lokales Speichern blockiert: Häkchen können beim Neuladen verloren gehen.';
     paint(new Date());
+    root.querySelector('input[data-advent-day="'+g.id+'"]')?.focus({preventScroll:true});
    });card.append(lab);
   }
   const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
   const doneDays=dates.filter(d=>readDayDone(storage(),g.id,d)).length;
   const heading=el('p','Dein Dezember: '+doneDays+' von 24 Tagen markiert','advent-day-summary');
   const grid=el('div',null,'advent-day-grid');grid.setAttribute('role','group');grid.setAttribute('aria-label','Teilnahmetage für '+g.title);
-  for(const date of dates){const n=Number(date.slice(-2)),lab=el('label',null,'advent-day-cell'),check=document.createElement('input');check.type='checkbox';check.checked=readDayDone(storage(),g.id,date);check.setAttribute('aria-label',n+'. Dezember 2026: Teilnahme bei '+g.title+' markieren');lab.append(el('span',String(n).padStart(2,'0')),check);check.addEventListener('change',()=>{if(!writeDayDone(storage(),g.id,date,check.checked)){const warning=byId('adventStorageStatus');if(warning)warning.textContent='Lokales Speichern blockiert: Häkchen können beim Neuladen verloren gehen.';}paint(new Date())});grid.append(lab)}
+  for(const date of dates){const n=Number(date.slice(-2)),lab=el('label',null,'advent-day-cell'),check=document.createElement('input');check.type='checkbox';check.checked=readDayDone(storage(),g.id,date);check.setAttribute('aria-label',n+'. Dezember 2026: Teilnahme bei '+g.title+' markieren');lab.append(el('span',String(n).padStart(2,'0')),check);check.addEventListener('change',()=>{if(!writeDayDone(storage(),g.id,date,check.checked)){const warning=byId('adventStorageStatus');if(warning)warning.textContent='Lokales Speichern blockiert: Häkchen können beim Neuladen verloren gehen.';}paint(new Date());const refreshed=Array.from(root.querySelectorAll('.advent-card')).find(card=>card.querySelector('input[aria-label="'+check.getAttribute('aria-label')+'"]'));refreshed?.querySelector('input[aria-label="'+check.getAttribute('aria-label')+'"]')?.focus({preventScroll:true})});grid.append(lab)}
   card.append(heading,grid);
   root.append(card);
  }
