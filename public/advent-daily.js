@@ -59,13 +59,14 @@ function paint(now=new Date()){
  const root=byId('adventToday'),status=byId('adventTodayStatus'),count=byId('adventTodayCount'),candidate=byId('adventCandidates');
  if(!root||!status||!count||!cache)return;
  const day=berlinDay(now),active=todayAdventCalendars(cache,now),isDec=validDay(day),onlyOpen=byId('adventOnlyOpen')?.checked,onlyToday=byId('adventOnlyToday')?.checked;
+ const seasonEnded=day>'2026-12-24';
  const visible=cache.confirmed.filter(g=>!readAdventHidden(storage(),g.id));
  const hiddenCount=cache.confirmed.length-visible.length;
  const showHidden=byId('adventShowHidden')?.checked;
  const hiddenInfo=byId('adventHiddenCount');
  if(hiddenInfo)hiddenInfo.textContent=hiddenCount+' Kalender ausgeblendet'+(hiddenCount?' · jederzeit wieder einblendbar':'');
  const today=active.filter(g=>g.today_state==='today'&&!readAdventHidden(storage(),g.id)),done=today.filter(g=>readDayDone(storage(),g.id,day)).length;
- count.textContent=isDec?done+' von '+today.length+' heute offenen Kalendern erledigt':'Bereits '+cache.confirmed.length+' bestätigte Kalender für Dezember 2026';
+ count.textContent=seasonEnded?cache.confirmed.length+' bestätigte Kalender im Adventarchiv 2026':isDec?done+' von '+today.length+' heute offenen Kalendern erledigt':'Bereits '+cache.confirmed.length+' bestätigte Kalender für Dezember 2026';
  const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
  const monthDone=visible.reduce((n,g)=>n+dates.filter(d=>readDayDone(storage(),g.id,d)).length,0);
  const monthCount=byId('adventMonthCount');if(monthCount)monthCount.textContent='Dein Dezember-Fortschritt: '+monthDone+' von '+(visible.length*24)+' Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).';
@@ -96,7 +97,7 @@ function paint(now=new Date()){
   });
   const hideRow=el('div',null,'action');hideRow.append(hideButton);
   card.append(hideRow);
-  const tag=g.today_state==='deadline-passed'?'Heutige Standardfrist vorbei':g.today_state==='not-open-yet'?'Heutiges Türchen noch nicht geöffnet':isDec?'Heute beim Veranstalter prüfen':'Bestätigt für Dezember 2026 · noch nicht offen';
+  const tag=seasonEnded?'Adventarchiv · Dezember-Türchen beendet':g.today_state==='deadline-passed'?'Heutige Standardfrist vorbei':g.today_state==='not-open-yet'?'Heutiges Türchen noch nicht geöffnet':isDec?'Heute beim Veranstalter prüfen':'Bestätigt für Dezember 2026 · noch nicht offen';
   card.append(el('span',tag,'pill'),el('h3',g.title),el('p',g.organizer+' · '+g.requirements));
   const deadline=g.daily_deadline||{};
   let msg='Tagesfrist nicht unabhängig bestätigt – auf Originalseite prüfen';
@@ -107,7 +108,7 @@ function paint(now=new Date()){
   if(/newsletter|werbe|marketing/i.test(g.requirements+' '+g.note))card.append(el('p','Werbe-/Newsletter-Bedingungen im Hinweis unbedingt beachten.','notes'));
   if(g.today_state==='outside'&&isDec)card.append(el('p','Heute keine Verlosung bei diesem Veranstalter.','meta'));
 
-  const links=el('div',null,'action');links.append(link('Türchen beim Veranstalter öffnen',g.url),link('Regeln und Datenschutz prüfen',g.terms_url));card.append(links);
+  const links=el('div',null,'action');links.append(link(seasonEnded?'Veranstalterseite ansehen':'Türchen beim Veranstalter öffnen',g.url),link('Regeln und Datenschutz prüfen',g.terms_url));card.append(links);
   if(isDec&&g.today_state==='today'){
    const lab=el('label',null,'guest-checkrow');
    const input=document.createElement('input');input.type='checkbox';input.dataset.adventDay=g.id;input.checked=doneMark;
@@ -129,10 +130,10 @@ function paint(now=new Date()){
   root.append(card);
  }
  if(!root.children.length){
-  const filtered=isDec&&(onlyToday||onlyOpen||hiddenCount>0);
-  root.append(el('p',filtered?'Keine Kalender mit diesen Filtern sichtbar. Entferne einen Filter oder aktiviere „Ausgeblendete anzeigen“, um weitere Kalender zu sehen.':isDec?'Für heute sind keine bestätigten Kalender verfügbar.':'Die 2026er Tageskalender starten am 1. Dezember.','small'));
+  const filtered=hiddenCount>0||(isDec&&(onlyToday||onlyOpen));
+  root.append(el('p',filtered?'Keine Kalender mit diesen Filtern sichtbar. Entferne einen Filter oder aktiviere „Ausgeblendete anzeigen“, um weitere Kalender zu sehen.':isDec?'Für heute sind keine bestätigten Kalender verfügbar.':seasonEnded?'Im Adventarchiv sind keine bestätigten Kalender verfügbar.':'Die 2026er Tageskalender starten am 1. Dezember.','small'));
  }
- status.textContent=isDec?'Heute: '+day+' (Europe/Berlin). Tagesangebote und Ausnahmen stets beim Veranstalter prüfen. Häkchen wechseln automatisch zum nächsten Tag.':'Vorschau: Noch keine heutige Teilnahme. 2025er Kalender und ungeprüfte Kandidaten werden nicht als bestätigt gezählt.';
+ status.textContent=seasonEnded?'Archiv: Die Dezember-Tagesübersicht 2026 ist beendet. Abweichende Fristen für einzelne Aktionen stehen in den Teilnahmebedingungen.':isDec?'Heute: '+day+' (Europe/Berlin). Tagesangebote und Ausnahmen stets beim Veranstalter prüfen. Häkchen wechseln automatisch zum nächsten Tag.':'Vorschau: Noch keine heutige Teilnahme. 2025er Kalender und ungeprüfte Kandidaten werden nicht als bestätigt gezählt.';
  if(candidate){
   candidate.replaceChildren();
   for(const g of cache.review_candidates||[]){

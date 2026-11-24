@@ -5,7 +5,7 @@ import {berlinDay,dailyState,todayAdventCalendars,readDayDone,writeDayDone,readA
 const data=JSON.parse(readFileSync(new URL('../public/advent-calendars-2026.json',import.meta.url),'utf8'));
 const at=(s)=>new Date(s);
 test('2026 verified Advent sources are distinct from old candidates and uncertain sources',()=>{
- assert.equal(data.confirmed.length,55);
+ assert.equal(data.confirmed.length,56);
  for(const id of ['advosoft-legal-advent-2026','bobblume-netzlehrer-advent-2026','yellowchair-advent-2026','boerde-therme-advent-2026','dgta-advent-2026','hairloft-loxstedt-advent-2026'])assert.ok(data.confirmed.some(x=>x.id===id));
  assert.match(data.confirmed.find(x=>x.id==='yellowchair-advent-2026').note,/nur 15 echte Gewinnverlosungen/);
  assert.match(data.confirmed.find(x=>x.id==='boerde-therme-advent-2026').note,/an ausgewählten Tagen/);
@@ -26,19 +26,19 @@ test('2026 verified Advent sources are distinct from old candidates and uncertai
  assert.ok(aldi&&/Kassenbon/.test(aldi.requirements));
  const pooled=data.confirmed.find(x=>x.id==='athletes-blood-advent-2026');
  assert.match(pooled.note,/KEINE 24 separaten Tagesgewinne/);
- assert.equal(data.review_candidates.length,32);
+ assert.equal(data.review_candidates.length,34);
  assert.ok(data.confirmed.every(g=>g.source_audit.status==='confirmed'&&g.starts_on==='2026-12-01'&&g.ends_on==='2026-12-24'));
  assert.ok(data.confirmed.every(g=>new URL(g.url).protocol==='https:'&&new URL(g.terms_url).protocol==='https:'));
  assert.ok(!data.confirmed.some(g=>g.id==='kaufland-advent-2026'));
  assert.equal(todayAdventCalendars(data,at('2026-11-30T12:00:00+01:00')).length,0);
- assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,55);
+ assert.equal(todayAdventCalendars(data,at('2026-12-01T10:00:00+01:00')).length,56);
  assert.equal(todayAdventCalendars(data,at('2026-12-25T10:00:00+01:00')).length,0);
 });
 test('Advent 2026 cannot silently double-count a source or promote unverified old-year material',()=>{
  const ids=[...data.confirmed,...data.review_candidates].map(x=>x.id);
  assert.equal(new Set(ids).size,ids.length,'calendar and pending candidate ids must be unique');
  assert.ok(data.confirmed.every(x=>/^https:\/\//.test(x.source_audit.evidence_url)));
- assert.ok(data.confirmed.every(x=>['2026-11-21','2026-11-22','2026-11-23'].includes(x.source_audit.checked_on)));
+ assert.ok(data.confirmed.every(x=>['2026-11-21','2026-11-22','2026-11-23','2026-11-24'].includes(x.source_audit.checked_on)));
  assert.ok(data.confirmed.every(x=>!x.id.endsWith('2025')),'prior year cannot be counted as 2026');
  for(const x of data.review_candidates)assert.ok(!data.confirmed.some(y=>y.id===x.id),'unverified sources never counted as confirmed');
  assert.ok(data.review_candidates.some(x=>x.id==='holidaycheck-advent-2026'),'2025 page stays pending');
