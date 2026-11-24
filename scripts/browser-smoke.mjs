@@ -146,8 +146,9 @@ try{
     const first=page.locator('#adventToday .advent-card').first();
     const initial=await page.locator('#adventToday .advent-card').count();
     assert.ok(initial>0,'December 1 has calendars available under combined filters');
-    const dayMark=first.locator('.advent-day-cell input').first();
-    await dayMark.check();
+    // The change handler replaces the entire card list synchronously; a Playwright
+    // locator.check() retries on detached nodes and may toggle multiple calendars.
+    await page.evaluate(()=>document.querySelector('#adventToday .advent-card .advent-day-cell input').click());
     assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label')?.startsWith('1. Dezember 2026:')),true,'focus survives combined-filter redraw');
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
     await page.reload();
