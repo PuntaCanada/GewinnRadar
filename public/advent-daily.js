@@ -115,7 +115,9 @@ function paint(now=new Date()){
    input.addEventListener('change',()=>{
     if(!writeDayDone(storage(),g.id,day,input.checked))byId('adventStorageStatus').textContent='Lokales Speichern blockiert: Häkchen können beim Neuladen verloren gehen.';
     paint(new Date());
-    root.querySelector('input[data-advent-day="'+g.id+'"]')?.focus({preventScroll:true});
+    const next=root.querySelector('input[data-advent-day="'+g.id+'"]');
+    if(next)next.focus({preventScroll:true});
+    else byId('adventOnlyOpen')?.focus({preventScroll:true});
    });card.append(lab);
   }
   const dates=Array.from({length:24},(_,i)=>'2026-12-'+String(i+1).padStart(2,'0'));
