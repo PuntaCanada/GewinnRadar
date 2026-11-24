@@ -75,8 +75,8 @@ try{
     const card=page.locator('#adventToday .advent-card').first();
     await card.waitFor();
     assert.equal(await card.locator('.advent-day-cell').count(),24,'24 checkboxes per confirmed calendar');
-    assert.equal(await page.locator('#adventToday .advent-day-cell').count(),55*24,'all confirmed calendars have day cells');
-    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 0 von 1320 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
+    assert.equal(await page.locator('#adventToday .advent-day-cell').count(),56*24,'all confirmed calendars have day cells');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 0 von 1344 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
     const first=card.locator('.advent-day-cell input').nth(0);
     const second=card.locator('.advent-day-cell input').nth(1);
     await first.check();
@@ -86,18 +86,18 @@ try{
     // Hiding is independent from participation, persists after reload and can be undone.
     await card.getByRole('button',{name:/Kalender ausblenden:/}).click();
     assert.equal(await page.locator('#adventShowHidden').evaluate(el=>document.activeElement===el),true,'hide action moves focus to restore control');
-    assert.equal(await page.locator('#adventToday .advent-card').count(),54);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55);
     assert.match(await page.locator('#adventHiddenCount').innerText(),/1 Kalender ausgeblendet/);
-    assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 1296 Tagesfeldern/);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 1320 Tagesfeldern/);
     await page.reload();
     await page.locator('#adventToday .advent-card').first().waitFor();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),54,'hidden preference survives reload');
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'hidden preference survives reload');
     await page.locator('#adventShowHidden').check();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),55);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),56);
     await page.getByRole('button',{name:/Kalender wieder einblenden:/}).first().click();
     assert.match(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label')||''),/^Kalender ausblenden:/,'restore keeps focus on restored calendar action');
-    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'restored calendar visible again');
-    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),56,'restored calendar visible again');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1344 Tagesfeldern/);
     await page.reload();
     await page.locator('#adventToday .advent-card').first().waitFor();
     assert.equal(await page.locator('#adventToday .advent-card').first().locator('.advent-day-cell input').first().isChecked(),true,'day mark survives reload');
@@ -107,7 +107,7 @@ try{
     await cardDec.waitFor();
     assert.equal(await cardDec.locator('.advent-day-cell input').first().isChecked(),true,'past mark survives day rollover');
     assert.equal(await cardDec.locator('.advent-day-cell input').nth(1).isChecked(),false,'new day remains unmarked');
-    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1320 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
+    assert.equal(await page.locator('#adventMonthCount').innerText(),'Dein Dezember-Fortschritt: 1 von 1344 Tagesfeldern markiert (ausgeblendete Kalender nicht mitgezählt).');
     // A hidden calendar must remain restorable even when December filters exclude it.
     await cardDec.getByRole('button',{name:/Kalender ausblenden:/}).click();
     assert.match(await page.locator('#adventHiddenCount').innerText(),/1 Kalender ausgeblendet/);
@@ -150,15 +150,15 @@ try{
     // locator.check() retries on detached nodes and may toggle multiple calendars.
     await page.evaluate(()=>{const input=document.querySelector('#adventToday .advent-card .advent-day-cell input');input.focus();input.click()});
     assert.equal(await page.evaluate(()=>document.activeElement?.id),'adventOnlyOpen','focus returns to open-only filter when marked card disappears');
-    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1344 Tagesfeldern/);
     await page.reload();
-    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 1 mark survives reload');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1344 Tagesfeldern/,'December 1 mark survives reload');
     await page.clock.setFixedTime(new Date('2026-12-02T12:00:00Z'));
     await page.reload();
-    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 2 retains previous-day progress');
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1344 Tagesfeldern/,'December 2 retains previous-day progress');
     await page.locator('#adventOnlyToday').check();
     await page.locator('#adventOnlyOpen').check();
-    assert.ok(await page.locator('#adventToday .advent-card').count()<=55,'December 2 combined filters stay within confirmed catalog');
+    assert.ok(await page.locator('#adventToday .advent-card').count()<=56,'December 2 combined filters stay within confirmed catalog');
     await page.clock.setFixedTime(new Date('2026-12-24T12:00:00Z'));
     await page.reload();
     await page.locator('#adventOnlyToday').check();
@@ -167,12 +167,14 @@ try{
     await page.clock.setFixedTime(new Date('2026-12-25T12:00:00Z'));
     await page.reload();
     // Outside Dec 1–24 the disclosure closes by default and the confirmed
-    // catalog remains available as a preview, rather than an empty daily list.
+    // The confirmed catalog remains available as an archive.
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),false,'post-season disclosure is closed');
     await page.locator('#adventAllDetails summary').click();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'post-season confirmed catalog remains browsable');
-    assert.match(await page.locator('#adventTodayStatus').innerText(),/Vorschau:/);
-    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'post-season progress remains available');
+    assert.equal(await page.locator('#adventToday .advent-card').count(),56,'post-season confirmed catalog remains browsable');
+    assert.match(await page.locator('#adventTodayStatus').innerText(),/Archiv:/);
+    assert.match(await page.locator('#adventToday .advent-card .pill').first().innerText(),/Dezember-Türchen beendet/);
+    assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
+    assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1344 Tagesfeldern/,'post-season progress remains available');
     await ctx.close();
   }
   // Empty-result guidance must distinguish filtering from a lack of confirmed calendars.
@@ -191,9 +193,9 @@ try{
     assert.match(await page.locator('#adventToday').innerText(),/Keine Kalender mit diesen Filtern sichtbar/,'empty results explain filters');
     assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 0 Tagesfeldern/,'hidden calendars excluded from progress');
     await page.locator('#adventShowHidden').check();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'show hidden restores visibility');
+    assert.equal(await page.locator('#adventToday .advent-card').count(),56,'show hidden restores visibility');
     await page.getByRole('button',{name:/Kalender wieder einblenden:/}).first().click();
-    assert.match(await page.locator('#adventHiddenCount').innerText(),/54 Kalender ausgeblendet/);
+    assert.match(await page.locator('#adventHiddenCount').innerText(),/55 Kalender ausgeblendet/);
     assert.match(await page.locator('#adventMonthCount').innerText(),/0 von 24 Tagesfeldern/);
     await ctx.close();
   }
@@ -223,8 +225,8 @@ try{
     await page.locator('#adventAllDetails > summary').click();
     assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),true);
     await page.locator('#adventToday .advent-card').first().waitFor();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),55);
-    assert.equal(await page.locator('#adventCandidates .game').count(),32);
+    assert.equal(await page.locator('#adventToday .advent-card').count(),56);
+    assert.equal(await page.locator('#adventCandidates .game').count(),34);
     assert.match(await page.locator('#adventTodayStatus').innerText(),/Noch keine heutige Teilnahme/);
     assert.equal(await page.locator('#adventToday input[data-advent-day]').count(),0);
     assert.equal(await page.locator('#editorialLive .game').count(),42);

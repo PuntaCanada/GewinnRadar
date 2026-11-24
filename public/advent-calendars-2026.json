@@ -1183,6 +1183,26 @@
         "checked_on": "2026-11-23",
         "evidence_url": "https://www.nrha.de/gewinnspiel/"
       }
+    },
+    {
+      "id": "alpin-bergquiz-advent-2026",
+      "organizer": "ALPIN / Olympia-Verlag GmbH",
+      "title": "ALPIN Adventskalender – Bergsport-Quiz",
+      "url": "https://www.alpin.de/home/adventskalender/41142/artikel_das-sind-die-spielregeln-und-teilnahmebedingungen.html",
+      "terms_url": "https://www.alpin.de/home/adventskalender/41142/artikel_das-sind-die-spielregeln-und-teilnahmebedingungen.html",
+      "starts_on": "2026-12-01",
+      "ends_on": "2026-12-24",
+      "daily_deadline": {
+        "type": "same_day",
+        "certainty": "not_verified"
+      },
+      "requirements": "Ab 18 Jahren; Vor- und Nachname sowie E-Mail für das Bergsport-Quiz. Die Aktionsregeln nennen keinen Kauf und keine Newsletterpflicht. ALPIN veröffentlicht die Namen der Gewinner.",
+      "note": "Tagesverlosungen vom 1. bis 23.12.; am 24.12. Hauptpreis unter den 1.000 Punktbesten. Für die Gesamtwertung immer dieselben Daten verwenden. Hier sind die offiziellen Regeln verlinkt; einzelne Preise und Tagesfristen am Türchen prüfen.",
+      "source_audit": {
+        "status": "confirmed",
+        "checked_on": "2026-11-24",
+        "evidence_url": "https://www.alpin.de/home/adventskalender/41142/artikel_das-sind-die-spielregeln-und-teilnahmebedingungen.html"
+      }
     }
   ],
   "review_candidates": [
@@ -1441,6 +1461,21 @@
       "url": "https://www.radio8.de/adventskalender/",
       "terms_url": "https://www.radio8.de/gewinnspiel-agbs/",
       "reason": "ORIGINAL 23.11.2026: Radio 8 verlinkt auf seiner Startseite den ausdrücklich als 2026 bezeichneten Adventskalender. Die Veranstalter-Aktionsseite bestätigt tägliche Partner-Gewinne, ersten Teilnahmebeginn 30.11.2026 um 18:15 Uhr, Teilnahme je Türchen für einen Tag, werktägliche Bekanntgabe der Gewinner um 18:15 Uhr, Ausfüllen/Absenden eines Formulars und Mindestalter 18 Jahre. Sämtliche 24 Türchen zeigen vor dem Start 'Sie sind zu früh dran'. Verlinkte allgemeine Gewinnspiel-AGB https://www.radio8.de/gewinnspiel-agbs/ waren im unabhängigen Textabruf nicht auslesbar; Datenschutzhinweise https://www.radio8.de/datenschutz/ vorhanden, aber konkrete Formular-Pflichtfelder, Werbe-/Newsletter-Einwilligungen, Kosten-/Kaufbedingungen und Teilnahmeberechtigung noch nicht unabhängig geprüft. Daher nur Prüfkandidat; kein aktives Formular behaupten. Achtung: Start 30.11. 18:15 und werktägliche Gewinnerbekanntgabe weichen von üblichen 00:00–23:59-Kalendern ab."
+    },
+    {
+      "id": "inside-digital-advent-2026",
+      "organizer": "inside digital / beebuzz media GmbH",
+      "title": "inside digital – Adventsgewinnspiel 2026",
+      "url": "https://www.inside-digital.de/adventskalender",
+      "terms_url": "https://www.inside-digital.de/adventskalender-bedingungen",
+      "reason": "Stand 24.11.2026: Die Originalbedingungen bestätigen kostenlose Verlosungen an ausgewählten Dezembertagen und einen Treuepreis am 27.12. Pflicht: E-Mail bestätigen und Werbe-E-Mails erhalten (tägliche Türchenerinnerung bis 27.12. sowie wöchentlicher Newsletter; abbestellbar). Ab 18 Jahren mit Wohnsitz in Deutschland. Die in den Regeln verlinkte Aktionsseite zeigte beim Abruf einen Einkaufsratgeber. Teilnahmeformular und konkrete Gewinnspieltage sind noch offen."
+    },
+    {
+      "id": "dallmayr-advent-2026",
+      "organizer": "Dallmayr",
+      "title": "Dallmayr Adventskalender 2026",
+      "url": "https://www.dallmayr.com/de/adventskalender/",
+      "reason": "Stand 24.11.2026: Dallmayr kündigt auf der Originalseite eine Aktion vom 29.11.2026 bis zum 06.01.2027 an. Auf der Aktionsseite wird der Brewletter beworben. Ob er erforderlich ist, wie die Teilnahme funktioniert und wann einzelne Türchen schließen, geht aus der Ankündigung noch nicht hervor."
     }
   ],
   "archive_candidates": []
