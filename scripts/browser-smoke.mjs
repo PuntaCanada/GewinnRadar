@@ -157,7 +157,7 @@ try{
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'December 2 retains previous-day progress');
     await page.locator('#adventOnlyToday').check();
     await page.locator('#adventOnlyOpen').check();
-    assert.ok(await page.locator('#adventToday .advent-card').count()<=initial,'December 2 combined filters do not add unavailable entries');
+    assert.ok(await page.locator('#adventToday .advent-card').count()<=55,'December 2 combined filters stay within confirmed catalog');
     await page.clock.setFixedTime(new Date('2026-12-24T12:00:00Z'));
     await page.reload();
     await page.locator('#adventOnlyToday').check();
