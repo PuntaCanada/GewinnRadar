@@ -166,10 +166,12 @@ try{
     assert.match(await page.locator('#adventTodayStatus').innerText(),/2026-12-24/);
     await page.clock.setFixedTime(new Date('2026-12-25T12:00:00Z'));
     await page.reload();
-    await page.locator('#adventOnlyToday').check();
-    await page.locator('#adventOnlyOpen').check();
-    assert.equal(await page.locator('#adventToday .advent-card').count(),0,'December 25 has no active calendars');
-    assert.match(await page.locator('#adventToday').innerText(),/Keine Kalender mit diesen Filtern sichtbar/);
+    // Outside Dec 1–24 the disclosure closes by default and the confirmed
+    // catalog remains available as a preview, rather than an empty daily list.
+    assert.equal(await page.locator('#adventAllDetails').evaluate(el=>el.open),false,'post-season disclosure is closed');
+    await page.locator('#adventAllDetails summary').click();
+    assert.equal(await page.locator('#adventToday .advent-card').count(),55,'post-season confirmed catalog remains browsable');
+    assert.match(await page.locator('#adventTodayStatus').innerText(),/Vorschau:/);
     assert.match(await page.locator('#adventMonthCount').innerText(),/1 von 1320 Tagesfeldern/,'post-season progress remains available');
     await ctx.close();
   }
