@@ -8,9 +8,15 @@ function refresh(){
  if(inflight)return inflight;
  inflight=(async()=>{
   try{
-   const r=await api('games');
+   let requestDay=berlinDay();
+   let r=await api('games',{cache:'no-store'});
+   if(berlinDay()!==requestDay){
+    games=[];lastLoadedAt=0;lastLoadedDay='';render();
+    requestDay=berlinDay();r=await api('games',{cache:'no-store'});
+    if(berlinDay()!==requestDay)throw Error('Tageswechsel während der Abfrage');
+   }
    if(!Array.isArray(r.games))throw Error('Ungültiger Katalog');
-   games=r.games;lastLoadedAt=Date.now();lastLoadedDay=berlinDay();render();
+   games=r.games;lastLoadedAt=Date.now();lastLoadedDay=requestDay;render();
   }catch(e){
    // Fail closed: yesterday's verified door must not remain clickable after network failure.
    games=[];lastLoadedAt=0;lastLoadedDay='';render();
@@ -40,6 +46,7 @@ $('searchGames').addEventListener('input',render);$('sortGames').addEventListene
 document.addEventListener('editorialLinksUpdated',render);
 document.addEventListener('visibilitychange',refreshOnResume);
 window.addEventListener('focus',refreshOnResume);
+window.addEventListener('pageshow',refreshOnResume);
 $('loginForm').onsubmit=async e=>{e.preventDefault();$('loginMessage').textContent='Prüfe deine Anfrage …';try{let d=await api('login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:$('email').value})});$('loginMessage').textContent=d.message}catch(err){$('loginMessage').textContent=err.message}};
 $('saveSettings').onclick=async()=>{try{await api('settings',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({daily_email:$('daily').checked,senior_mode:$('senior').checked})});user.daily_email=+$('daily').checked;user.senior_mode=+$('senior').checked;document.body.classList.toggle('senior',Boolean(user.senior_mode));$('settingsMessage').textContent='Gespeichert ✓'}catch(err){$('settingsMessage').textContent=err.message}};
 $('logout').onclick=async()=>{await api('logout',{method:'POST'});location.reload()};

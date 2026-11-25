@@ -14,3 +14,18 @@ test('returning visitor checks Berlin daily boundary, without background polling
  assert.match(script,/berlinDay\(\)!==lastLoadedDay/);
  assert.doesNotMatch(script,/setInterval|sendBrevo|BREVO_API_KEY/);
 });
+
+import vm from 'node:vm';
+test('cross-midnight catalogue responses are discarded and retried once',async()=>{
+ const source=script.slice(script.indexOf('function refresh(){'),script.indexOf('function render(){'));
+ let day='2026-11-30',calls=0;const rendered=[];
+ const ctx=vm.createContext({games:[],lastLoadedAt:0,lastLoadedDay:'',inflight:null,berlinDay:()=>day,api:async()=>{calls++;if(calls===1){day='2026-12-01';return {games:[{id:'old'}]}}return {games:[{id:'new'}]}},render:()=>rendered.push(JSON.stringify(ctx.games)),Date,document:{visibilityState:'visible'}});
+ vm.runInContext(source,ctx);await ctx.refresh();
+ assert.equal(calls,2);assert.equal(ctx.lastLoadedDay,'2026-12-01');assert.deepEqual(rendered,['[]','[{"id":"new"}]']);
+});
+test('browser history restoration checks catalogue freshness',()=>{assert.match(script,/pageshow',refreshOnResume/);});
+test('second crossing fails closed instead of retrying indefinitely',async()=>{
+ const source=script.slice(script.indexOf('function refresh(){'),script.indexOf('function render(){'));
+ let day=0,calls=0;const ctx=vm.createContext({games:[{id:'old'}],lastLoadedAt:1,lastLoadedDay:'old',inflight:null,berlinDay:()=>String(day),api:async()=>{calls++;day++;return {games:[{id:'stale'}]}},render:()=>{},$:()=>({replaceChildren(){}}),el:()=>({}),Date,document:{visibilityState:'visible'}});
+ vm.runInContext(source,ctx);await ctx.refresh();assert.equal(calls,2);assert.equal(ctx.games.length,0);assert.equal(ctx.lastLoadedDay,'');
+});
