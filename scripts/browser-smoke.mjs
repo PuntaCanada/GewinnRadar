@@ -202,6 +202,8 @@ try{
   for(const width of [390,1280]){
     const ctx=await browser.newContext({viewport:{width,height:850},reducedMotion:'reduce'});
     const page=await ctx.newPage();
+    // Fixed editorial fixture date: expiry assertions elsewhere test real boundaries.
+    await page.clock.setFixedTime(new Date('2026-11-23T12:00:00Z'));
     const actions=[];
     await page.route('**/api/**',async route=>{
       const path=new URL(route.request().url()).pathname;
