@@ -337,6 +337,8 @@ try{
   }
   const guest=await browser.newContext({viewport:{width:390,height:850}});
   const guestPage=await guest.newPage();
+  // Same dated editorial fixture as the signed-in browser scenario.
+  await guestPage.clock.setFixedTime(new Date('2026-11-23T12:00:00Z'));
   let failGuestCatalog=false;
   await guestPage.route('**/api/**',route=>{
     const path=new URL(route.request().url()).pathname;
