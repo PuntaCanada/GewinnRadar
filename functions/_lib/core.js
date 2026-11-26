@@ -1,6 +1,6 @@
 import {publicContestUrl} from './urls.js';
 const te = new TextEncoder();
-export function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff'}})}
+export function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff','x-robots-tag':'noindex, nofollow'}})}
 export async function hash(input){const a=await crypto.subtle.digest('SHA-256',te.encode(input));return Array.from(new Uint8Array(a),x=>x.toString(16).padStart(2,'0')).join('')}
 export function randomToken(){return Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('')}
 export function cookies(request){
