@@ -33,14 +33,14 @@
       "privacy_url": "https://www.deinmoment-deinwein.de/datenschutzerklaerung",
       "starts_at": "2026-11-01T00:00:00+01:00",
       "ends_at": "2027-01-01T00:00:00+01:00",
-      "reviewed_on": "2026-11-21",
+      "reviewed_on": "2026-11-28",
       "required_data": "Vorname, Nachname, E-Mail, Bestätigung der Teilnahmebedingungen und Gewinnspielfrage",
       "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht im Gewinn enthalten. Keine D1-Adminfreigabe.",
       "source_audit": {
         "status": "confirmed",
-        "checked_on": "2026-11-21",
+        "checked_on": "2026-11-28",
         "evidence_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/pfalz",
-        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+        "summary": "Originalformular mit Quiz, Vorname, Nachname, E-Mail und Pflichtbestätigung sowie aktuelle Bedingungen und Datenschutz erneut geprüft. Kostenlos, ab 18, Wohnsitz Deutschland, Werbung freiwillig, eine Teilnahme; keine Daten übermittelt."
       }
     },
     {
@@ -53,14 +53,14 @@
       "privacy_url": "https://www.deinmoment-deinwein.de/datenschutzerklaerung",
       "starts_at": "2026-11-01T00:00:00+01:00",
       "ends_at": "2027-01-01T00:00:00+01:00",
-      "reviewed_on": "2026-11-21",
+      "reviewed_on": "2026-11-28",
       "required_data": "Vorname, Nachname, E-Mail, Bestätigung der Teilnahmebedingungen und Gewinnspielfrage",
       "note": "Originales Formular am 21.11.2026 sichtbar. Kostenlos und ohne Kauf; mindestens 18 Jahre und Wohnsitz Deutschland. Werbe-/Newsletter-Einwilligung laut separaten Bedingungen freiwillig. An-/Abreise sind nicht enthalten. Keine D1-Adminfreigabe.",
       "source_audit": {
         "status": "confirmed",
-        "checked_on": "2026-11-21",
+        "checked_on": "2026-11-28",
         "evidence_url": "https://www.deinmoment-deinwein.de/teilnahmebedingungen/mosel",
-        "summary": "Offizielle 2026-Teilnahmebedingungen mit Aktion, Frist und Teilnahmevoraussetzungen lesbar; keine tatsächliche Teilnahme ausgeführt."
+        "summary": "Originalformular mit Quiz, Vorname, Nachname, E-Mail und Pflichtbestätigung sowie aktuelle Bedingungen und Datenschutz erneut geprüft. Kostenlos, ab 18, Wohnsitz Deutschland, Werbung freiwillig, eine Teilnahme; keine Daten übermittelt."
       }
     },
     {
