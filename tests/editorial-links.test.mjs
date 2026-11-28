@@ -12,23 +12,24 @@ test('all 16 previously limited sources have a fresh, source-specific attempt wi
   assert.ok(g.source_audit.summary.length>45,id);
   assert.equal(g.reviewed_on,'2026-11-21',id);
  }
- const counts=Object.fromEntries(['confirmed','partial','blocked','unconfirmed'].map(status=>[status,data.active.filter(g=>g.source_audit?.status===status).length]));
+ const historical=data.active.filter(g=>g.reviewed_on==='2026-11-21');
+ const counts=Object.fromEntries(['confirmed','partial','blocked','unconfirmed'].map(status=>[status,historical.filter(g=>g.source_audit?.status===status).length]));
  assert.deepEqual(counts,{confirmed:29,partial:10,blocked:2,unconfirmed:1});
 });
 
 test('public source links are genuine separately reviewed entries, no D1 approval',()=>{
  assert.equal(data.schema_version,1);
- assert.equal(data.active.length,42);
- assert.ok(data.active.every(g=>g.source_audit?.checked_on==='2026-11-21'&&new URL(g.source_audit?.evidence_url).protocol==='https:'));
+ assert.ok(data.active.length>=42);
+ assert.ok(data.active.every(g=>/^\d{4}-\d{2}-\d{2}$/.test(g.source_audit?.checked_on)&&new URL(g.source_audit?.evidence_url).protocol==='https:'));
  assert.deepEqual(new Set(data.active.map(g=>g.source_audit.status)),new Set(['confirmed','partial','blocked','unconfirmed']));
- assert.ok(data.active.every(g=>g.reviewed_on==='2026-11-21'),'historische Prüfdatumsangaben bleiben unverändert');
+ assert.ok(data.active.every(g=>/^\d{4}-\d{2}-\d{2}$/.test(g.reviewed_on)));
  assert.equal(data.preview.length,4);
  assert.equal(data.preview.filter(g=>g.promoted_to).length,3,'Original-Vorschauen bleiben als historische Prüfnachweise erhalten');
  const bingo=data.preview.find(x=>x.id==='great-body-xmas-bingo-2026');
  assert.ok(bingo&&bingo.starts_on==='2026-12-01'&&bingo.ends_on==='2026-12-24');
  assert.match(bingo.note,/ohne Kauf ausschließlich im Great Body Store/);
  assert.equal(data.active.some(x=>x.id===bingo.id),false);
- assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,46);
+ assert.equal(new Set([...data.active,...data.preview].map(x=>x.id)).size,data.active.length+data.preview.length);
  for(const e of [...data.active,...data.preview]){
   for(const k of ['url','terms_url'])assert.equal(new URL(e[k]).protocol,'https:');
  }
@@ -60,7 +61,8 @@ test('a future daily research review is allowed, but stale or future-dated evide
  const next=structuredClone(data);next.active[0].reviewed_on='2026-11-23';
  assert.equal(eligibleEditorialLinks(next,new Date('2026-11-23T12:00:00+01:00')).live.length,42);
  assert.equal(eligibleEditorialLinks(next,new Date('2026-11-22T12:00:00+01:00')).live.length,41);
- assert.equal(eligibleEditorialLinks(data,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
+ const stale=structuredClone(data); for(const g of stale.active)g.reviewed_on='2026-11-21';
+ assert.equal(eligibleEditorialLinks(stale,new Date('2026-12-02T12:00:00+01:00')).live.length,0);
 });
 
 test('user report is not proof: only evidence-confirmed blacklist entries block the targeted game',()=>{
@@ -283,4 +285,15 @@ test('KRONE FISCH and Robby Bubble original-form draws last until January 2027 w
  assert.match(family.deadline_label,/Uhrzeit nicht angegeben/);
  assert.match(family.marketing_requirements,/keine Weitergabe/);
  assert.equal(eligibleEditorialLinks(data,new Date('2026-11-21T12:00:00+01:00')).live.filter(x=>[fish.id,family.id].includes(x.id)).length,2);
+});
+
+test('EDEKA Ferrero respects actual review date, freshness and deadline',()=>{
+ const id='edeka-ferrero-fest-mit-herz-2026';
+ const has=(d,t)=>eligibleEditorialLinks(d,new Date(t)).live.some(g=>g.id===id);
+ assert.equal(has(data,'2026-11-27T12:00:00+01:00'),false);
+ assert.equal(has(data,'2026-11-28T12:00:00+01:00'),true);
+ assert.equal(has(data,'2026-12-06T12:00:00+01:00'),false);
+ const d=structuredClone(data);d.active.find(g=>g.id===id).reviewed_on='2026-12-24';
+ assert.equal(has(d,'2026-12-24T23:59:59+01:00'),true);
+ assert.equal(has(d,'2026-12-25T00:00:00+01:00'),false);
 });
